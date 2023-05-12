@@ -9,10 +9,17 @@ namespace LeetCode
     {
         static void Main(string[] args)
         {
-            var nums1 = new[] { 1, 2, 4, 1, 4, 4, 3, 5, 5, 1, 4, 4, 4, 1, 4, 3, 4, 2, 4, 2 };
-            var nums2 = new[] { 2, 4, 1, 1, 3, 5, 2, 1, 5, 1, 2, 3, 3, 2, 1, 4, 1, 2, 5, 5 };
+            var nums1 = new int[8][];
+            nums1[0] = new int[] { 21, 5 };
+            nums1[1] = new int[] { 92, 3 };
+            nums1[2] = new int[] { 74, 2 };
+            nums1[3] = new int[] { 39, 4 };
+            nums1[4] = new int[] { 58, 2 };
+            nums1[5] = new int[] { 5, 5 };
+            nums1[6] = new int[] { 49, 4 };
+            nums1[7] = new int[] { 65, 3 };
 
-            var result = ArraySolutions.MaxUncrossedLines(nums1, nums2);
+            var result = ArraySolutions.MostPoints(nums1);
             Console.WriteLine(result);
         }
     }
