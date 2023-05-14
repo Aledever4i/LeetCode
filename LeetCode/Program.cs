@@ -10,7 +10,9 @@ namespace LeetCode
     {
         static void Main(string[] args)
         {
-            var result = DynamicProgramming.CountGoodStrings(9, 9, 4, 2);
+            var array = new int[] { 415, 230, 471, 705, 902, 87 };
+
+            var result = _1700_1799.MaxScore(array);
         
             Console.WriteLine(result);
         }
