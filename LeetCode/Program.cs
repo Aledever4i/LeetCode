@@ -12,7 +12,9 @@ namespace LeetCode
         {
             var array = new int[] { 415, 230, 471, 705, 902, 87 };
 
-            var result = _1700_1799.MaxScore(array);
+            var result = _1_99.AddBinary(
+                "11", "1"
+            );
         
             Console.WriteLine(result);
         }
