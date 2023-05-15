@@ -6,8 +6,50 @@ using System.Threading.Tasks;
 
 namespace LeetCode
 {
-    internal class _1700_1799
+    public class ListNode
     {
+        public int val;
+        public ListNode next;
+        public ListNode(int val = 0, ListNode next = null)
+        {
+            this.val = val;
+            this.next = next;
+        }
+    }
+
+    public class _1700_1799
+    {
+        /// <summary>
+        /// 1721. Swapping Nodes in a Linked List. Tags: Linked List, Two Pointers
+        /// </summary>
+        /// <param name="head"></param>
+        /// <param name="k"></param>
+        /// <returns></returns>
+        public static ListNode SwapNodes(ListNode head, int k)
+        {
+            var list = new List<ListNode>();
+            list.Add(head);
+
+            ListNode endElement = head.next;
+
+            while (endElement != null) {
+                list.Add(endElement);
+
+                endElement = endElement.next;
+            }
+
+            var endIndex = list.Count - k;
+
+            var firstItem = list[k - 1];
+            var endItem = list[endIndex];
+
+            var temp = firstItem.val;
+            firstItem.val = endItem.val;
+            endItem.val = temp;
+
+            return head;
+        }
+
         /// <summary>
         /// 1799. Maximize Score After N Operations. Tags: Array, Math, Dynamic Programming, Backtracking, Bit Manipulation, Number Theory, Bitmask
         /// </summary>
