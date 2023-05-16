@@ -10,7 +10,7 @@ namespace LeetCode
     {
         static void Main(string[] args)
         {
-            var array = new int[] { 1, 2, 3, 4, 5 };
+            var array = new int[] { 2, 5, 3, 4, 6, 2, 2 };
 
             ListNode end = new ListNode(array[array.Length - 1], null);
             ListNode head = null;
@@ -21,7 +21,7 @@ namespace LeetCode
                 end = head;
             }
 
-            var result = _1700_1799.SwapNodes(head, 2);
+            var result = _1_99.SwapPairs(head);
         
             Console.WriteLine(result);
         }

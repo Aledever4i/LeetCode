@@ -11,6 +11,69 @@ namespace LeetCode
     public static class _1_99
     {
         /// <summary>
+        /// 9. Palindrome Number. Tags: Math
+        /// </summary>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        public static bool IsPalindrome(int x)
+        {
+            if (x < 0)
+            {
+                return false;
+            }
+
+            return (x.ToString() == string.Join("", x.ToString().Reverse()));
+        }
+
+        /// <summary>
+        /// 24. Swap Nodes in Pairs. Tags: Linked List, Recursion
+        /// </summary>
+        /// <param name="head"></param>
+        public static ListNode SwapPairs(ListNode head)
+        {
+            if (head == null || head.next == null)
+            {
+                return head;
+            }
+
+            ListNode result = head.next;
+
+            ListNode forward = head;
+            ListNode forward2 = null;
+
+            ListNode currentElement = head;
+
+
+            forward = currentElement.next;
+            forward2 = forward.next;
+            currentElement.next = forward2;
+            forward.next = currentElement;
+
+            while (currentElement != null)
+            {
+                forward = currentElement.next;
+
+                if (forward == null)
+                {
+                    break;
+                }
+
+                forward2 = forward.next;
+
+                if (forward2 == null)
+                {
+                    break;
+                }
+
+                forward.next = forward2.next;
+                currentElement.next = new ListNode(forward2.val, forward);
+                currentElement = forward;
+            }
+
+            return result;
+        }
+
+        /// <summary>
         /// 67. Add Binary. Tags: Math, String, Bit Manipulation, Simulation
         /// Задача простая но нужная
         /// </summary>
