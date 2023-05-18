@@ -22,11 +22,11 @@ namespace LeetCode
 
             //var list = new List<IList<int>>() { new List<int>() { 1, 3 }, new List<int>() { 2, 0 }, new List<int>() { 2, 3 }, new List<int>() { 1, 0 }, new List<int>() { 4, 1 }, new List<int>() { 0, 3 } };
 
-            var array = new int[10] { 0, 0, 1, 1, 1, 2, 2, 3, 3, 4 } ;
+            //var array = new int[10] { 0, 0, 1, 1, 1, 2, 2, 3, 3, 4 } ;
 
-            _1_99.Merge(new int[] { 1,2,3,0,0,0 }, 3, new int[] { 2,5,6 }, 3);
+            var result = _300_383.CanConstruct("aa", "ab");
         
-            //Console.WriteLine(result);
+            Console.WriteLine(result);
         }
     }
 }
