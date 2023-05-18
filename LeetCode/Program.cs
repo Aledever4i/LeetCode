@@ -20,9 +20,11 @@ namespace LeetCode
             //    end = head;
             //}
 
-            var list = new List<IList<int>>() { new List<int>() { 1, 3 }, new List<int>() { 2, 0 }, new List<int>() { 2, 3 }, new List<int>() { 1, 0 }, new List<int>() { 4, 1 }, new List<int>() { 0, 3 } };
+            //var list = new List<IList<int>>() { new List<int>() { 1, 3 }, new List<int>() { 2, 0 }, new List<int>() { 2, 3 }, new List<int>() { 1, 0 }, new List<int>() { 4, 1 }, new List<int>() { 0, 3 } };
 
-            var result = _1500_1599.FindSmallestSetOfVertices(5, list);
+            var array = new int[10] { 0, 0, 1, 1, 1, 2, 2, 3, 3, 4 } ;
+
+            var result = _1_99.RemoveDuplicates(array);
         
             Console.WriteLine(result);
         }

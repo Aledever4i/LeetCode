@@ -26,7 +26,7 @@ namespace LeetCode
         }
 
         /// <summary>
-        /// 15. 3Sum. Array, Two Pointers, Sorting
+        /// 15. 3Sum. Tags: Array, Two Pointers, Sorting
         /// </summary>
         /// <param name="nums"></param>
         /// <returns></returns>
@@ -204,6 +204,22 @@ namespace LeetCode
             }
 
             return result;
+        }
+
+        /// <summary>
+        /// 26. Remove Duplicates from Sorted Array. Tags: Array, Two Pointers
+        /// </summary>
+        /// <param name="nums"></param>
+        /// <returns></returns>
+        public static int RemoveDuplicates(int[] nums)
+        {
+            var x = nums.Distinct().ToList();
+            for (int i = 0; i < x.Count; i++)
+            {
+                nums[i] = x[i];
+            }
+
+            return x.Count;
         }
 
         /// <summary>
