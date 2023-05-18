@@ -314,5 +314,45 @@ namespace LeetCode
 
             return string.Join("", stringBuilder.ToString().Reverse());
         }
+
+        /// <summary>
+        /// 88. Merge Sorted Array. Tags: Array, Two Pointers, Sorting
+        /// </summary>
+        /// <param name="nums1"></param>
+        /// <param name="m"></param>
+        /// <param name="nums2"></param>
+        /// <param name="n"></param>
+        public static void Merge(int[] nums1, int m, int[] nums2, int n)
+        {
+            int start = nums1.Count() - 1;
+            int nums1Index = m - 1;
+            int nums2Index = n - 1;
+
+            for (int i = start; i >= 0; i--)
+            {
+                var nums1Value = int.MinValue;
+                var nums2Value = int.MinValue;
+
+                if (nums1Index >= 0)
+                {
+                    nums1Value = nums1[nums1Index];
+                }
+                if (nums2Index >= 0)
+                {
+                    nums2Value = nums2[nums2Index];
+                }
+
+                if (nums1Value >= nums2Value)
+                {
+                    nums1[i] = nums1Value;
+                    nums1Index--;
+                }
+                else
+                {
+                    nums1[i] = nums2Value;
+                    nums2Index--;
+                }
+            }
+        }
     }
 }

@@ -24,9 +24,9 @@ namespace LeetCode
 
             var array = new int[10] { 0, 0, 1, 1, 1, 2, 2, 3, 3, 4 } ;
 
-            var result = _1_99.RemoveDuplicates(array);
+            _1_99.Merge(new int[] { 1,2,3,0,0,0 }, 3, new int[] { 2,5,6 }, 3);
         
-            Console.WriteLine(result);
+            //Console.WriteLine(result);
         }
     }
 }
