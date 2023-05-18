@@ -11,20 +11,20 @@ namespace LeetCode
     {
         static void Main(string[] args)
         {
-            //var array = new int[10];
-            //ListNode end = new ListNode(array[array.Length - 1], null);
-            //ListNode head = null;
-            //for (int i = array.Length - 2; i >= 0 ; i--)
-            //{
-            //    head = new ListNode(array[i], end);
-            //    end = head;
-            //}
+            var array = new int[] { 0, 0, 0, 1, 1, 2, 4, 9};
+            ListNode end = new ListNode(array[array.Length - 1], null);
+            ListNode head = null;
+            for (int i = array.Length - 2; i >= 0; i--)
+            {
+                head = new ListNode(array[i], end);
+                end = head;
+            }
 
             //var list = new List<IList<int>>() { new List<int>() { 1, 3 }, new List<int>() { 2, 0 }, new List<int>() { 2, 3 }, new List<int>() { 1, 0 }, new List<int>() { 4, 1 }, new List<int>() { 0, 3 } };
 
             //var array = new int[10] { 0, 0, 1, 1, 1, 2, 2, 3, 3, 4 } ;
 
-            var result = _300_383.CanConstruct("aa", "ab");
+            var result = _1_99.DeleteDuplicates(head);
         
             Console.WriteLine(result);
         }

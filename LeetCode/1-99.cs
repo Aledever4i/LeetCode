@@ -316,6 +316,40 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 83. Remove Duplicates from Sorted List. Tags: Linked List
+        /// </summary>
+        /// <param name="head"></param>
+        /// <returns></returns>
+        public static ListNode DeleteDuplicates(ListNode head)
+        {
+            if (head == null || head.next == null)
+            {
+                return head;
+            }
+
+            var result = head;
+            var currentElement = head;
+            var previousValue = head.val;
+
+            while (currentElement.next != null)
+            {
+                var nextValue = currentElement.next;
+
+                if (previousValue == nextValue.val)
+                {
+                    currentElement.next = currentElement.next.next;
+                }
+                else
+                {
+                    previousValue = nextValue.val;
+                    currentElement = currentElement.next;
+                }
+            }
+
+            return result;
+        }
+
+        /// <summary>
         /// 88. Merge Sorted Array. Tags: Array, Two Pointers, Sorting
         /// </summary>
         /// <param name="nums1"></param>
