@@ -26,6 +26,139 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 15. 3Sum. Array, Two Pointers, Sorting
+        /// </summary>
+        /// <param name="nums"></param>
+        /// <returns></returns>
+        public static IList<IList<int>> ThreeSum(int[] nums)
+        {
+            var orderedNums =
+                nums
+                    .GroupBy(num => num)
+                    .SelectMany(group =>
+                    {
+                        var count = group.Count();
+                        if (count == 1)
+                        {
+                            return new int[] { group.Key };
+                        }
+                        else if (count == 2)
+                        {
+                            return new int[] { group.Key, group.Key };
+                        }
+                        else
+                        {
+                            return new int[] { group.Key, group.Key, group.Key };
+                        }
+                    })
+                    .OrderBy(nums => nums)
+                    .ToList();
+            var firstPositive = orderedNums.Select((num, index) => new { num, index }).FirstOrDefault(a => a.num >= 0)?.index;
+            var hashTable = new Dictionary<string, IList<int>>();
+
+            if (!firstPositive.HasValue)
+            {
+                return System.Array.Empty<IList<int>>();
+            }
+
+            var result = new List<IList<int>>();
+            var dict = new Dictionary<int, List<int[]>>();
+
+            var stepX = 0;
+            using (var iterX = orderedNums.GetRange(stepX, firstPositive.Value).GetEnumerator())
+            {
+                while (iterX.MoveNext())
+                {
+                    var xValue = iterX.Current;
+
+                    using (var iterY = orderedNums.GetRange(stepX + 1, firstPositive.Value - stepX - 1).GetEnumerator())
+                    {
+                        while (iterY.MoveNext())
+                        {
+                            var yValue = iterY.Current;
+                            if (!dict.ContainsKey(xValue + yValue))
+                            {
+                                dict.Add(xValue + yValue, new List<int[]>() { new int[] { xValue, yValue } });
+                            }
+                            else
+                            {
+                                var item = dict[xValue + yValue];
+                                item.Add(new int[] { xValue, yValue });
+                            }
+                        }
+                    }
+
+                    stepX++;
+                }
+            }
+
+            stepX = firstPositive.Value;
+            using (var iterX = orderedNums.GetRange(stepX, orderedNums.Count() - stepX).GetEnumerator())
+            {
+                while (iterX.MoveNext())
+                {
+                    var xValue = iterX.Current;
+
+                    using (var iterY = orderedNums.GetRange(stepX + 1, orderedNums.Count() - stepX - 1).GetEnumerator())
+                    {
+                        while (iterY.MoveNext())
+                        {
+                            var yValue = iterY.Current;
+                            if (!dict.ContainsKey(xValue + yValue))
+                            {
+                                dict.Add(xValue + yValue, new List<int[]>() { new int[] { xValue, yValue } });
+                            }
+                            else
+                            {
+                                var item = dict[xValue + yValue];
+                                item.Add(new int[] { xValue, yValue });
+                            }
+                        }
+                    }
+
+                    stepX++;
+                }
+            }
+
+            foreach (var negative in orderedNums)
+            {
+                var dictKey = -1 * negative;
+                if (negative == 0)
+                {
+                    continue;
+                }
+
+                if (dict.ContainsKey(dictKey))
+                {
+                    var keys = dict[dictKey];
+
+                    foreach (var key in keys)
+                    {
+                        var temp = key.ToList();
+                        temp.Add(negative);
+                        var ordered = temp.OrderBy(num => num);
+                        var hash = string.Join("+", ordered);
+
+                        if (!hashTable.ContainsKey(hash))
+                        {
+                            hashTable.Add(hash, ordered.ToList());
+                        }
+                    }
+                }
+            }
+
+            if (dict.ContainsKey(0))
+            {
+                if (dict[0].Count >= 2)
+                {
+                    hashTable.Add("0+0+0", new int[] { 0, 0, 0 });
+                }
+            }
+
+            return hashTable.Values.ToList();
+        }
+
+        /// <summary>
         /// 24. Swap Nodes in Pairs. Tags: Linked List, Recursion
         /// </summary>
         /// <param name="head"></param>
@@ -71,6 +204,31 @@ namespace LeetCode
             }
 
             return result;
+        }
+
+        /// <summary>
+        /// 27. Remove Element. Tags: Array, Two Pointers
+        /// </summary>
+        /// <param name="nums"></param>
+        /// <param name="val"></param>
+        public static int RemoveElement(int[] nums, int val)
+        {
+            var values = nums.Where(num => num != val);
+            var valueLength = values.Count();
+
+            for (int i = 0; i < nums.Length; i++)
+            {
+                if (i < valueLength)
+                {
+                    nums[i] = values.ElementAt(i);
+                }
+                else
+                {
+                    nums[i] = 0;
+                }
+            }
+
+            return valueLength;
         }
 
         /// <summary>
