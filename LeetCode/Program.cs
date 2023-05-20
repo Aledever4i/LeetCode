@@ -24,6 +24,10 @@ namespace LeetCode
 
             //var array = new int[10] { 0, 0, 1, 1, 1, 2, 2, 3, 3, 4 } ;
 
+            // [[4,1],[0,2],[1,3,4],[2,4],[0,3,2]] false
+            // [[4,1],[0,2],[1,3],[2,4],[0,3]] true
+            // [[1,4],[0,2],[1,4,3],[2],[0,2]] true
+
             var result = _1_99.DeleteDuplicates(head);
         
             Console.WriteLine(result);
