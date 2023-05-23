@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -8,6 +9,14 @@ namespace LeetCode
 {
     public static class _300_399
     {
+        /// <summary>
+        /// 347. Top K Frequent Elements. Tags: Array, Hash Table, Divide and Conquer, Sorting, Heap(Priority Queue), Bucket Sort, Counting, Quickselect
+        /// </summary>
+        public static int[] TopKFrequent(int[] nums, int k)
+        {
+            return nums.GroupBy(n => n).OrderByDescending(g => g.Count()).Take(k).Select(g => g.Key).ToArray();
+        }
+
         /// <summary>
         /// 383. Ransom Note. Tags: Hash Table, String, Counting
         /// </summary>

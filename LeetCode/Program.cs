@@ -20,7 +20,9 @@ namespace LeetCode
             //    end = head;
             //}
 
-            //var list = new List<IList<int>>() { new List<int>() { 1, 3 }, new List<int>() { 2, 0 }, new List<int>() { 2, 3 }, new List<int>() { 1, 0 }, new List<int>() { 4, 1 }, new List<int>() { 0, 3 } };
+            var list = new int[2][] { new int[]{ 0, 1 }, new int[]{ 1, 0 } };
+
+
 
             //var array = new int[10] { 0, 0, 1, 1, 1, 2, 2, 3, 3, 4 } ;
 
@@ -29,23 +31,23 @@ namespace LeetCode
             // [[4,1],[0,2],[1,3],[2,4],[0,3]] true
             // [[1,4],[0,2],[1,4,3],[2],[0,2]] true
 
-            IList<IList<string>> equations = new List<IList<string>>() { 
-                new List<string>() { "x1", "x2" },
-                new List<string>() { "x2", "x3" },
-                new List<string>() { "x3", "x4" },
-                new List<string>() { "x4", "x5" },
-            };
-            double[] values = new double[] { 3.0, 4.0, 5.0, 6.0 };
-            IList<IList<string>> queries = new List<IList<string>>() { 
-                new List<string>() { "x1", "x5" },
-                new List<string>() { "x5", "x2" },
-                new List<string>() { "x2", "x4" },
-                new List<string>() { "x2", "x2" },
-                new List<string>() { "x2", "x9" },
-                new List<string>() { "x9", "x9" }
-            };
+            //IList<IList<string>> equations = new List<IList<string>>() { 
+            //    new List<string>() { "x1", "x2" },
+            //    new List<string>() { "x2", "x3" },
+            //    new List<string>() { "x3", "x4" },
+            //    new List<string>() { "x4", "x5" },
+            //};
+            //double[] values = new double[] { 3.0, 4.0, 5.0, 6.0 };
+            //IList<IList<string>> queries = new List<IList<string>>() { 
+            //    new List<string>() { "x1", "x5" },
+            //    new List<string>() { "x5", "x2" },
+            //    new List<string>() { "x2", "x4" },
+            //    new List<string>() { "x2", "x2" },
+            //    new List<string>() { "x2", "x9" },
+            //    new List<string>() { "x9", "x9" }
+            //};
 
-            var result = _300_399.CalcEquation(equations, values, queries);
+            var result = _900_999.ShortestBridge(list);
         
             Console.WriteLine(result);
         }

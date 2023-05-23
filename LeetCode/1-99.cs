@@ -388,5 +388,52 @@ namespace LeetCode
                 }
             }
         }
+
+        /// <summary>
+        /// 94. Binary Tree Inorder Traversal. Tags: Stack, Tree, Depth-First Search, Binary Tree
+        /// </summary>
+        public static IList<int> InorderTraversal(TreeNode root)
+        {
+            var result = new List<int>();
+            TreeNode curr = root;
+            TreeNode pre = null;
+
+            while (curr != null)
+            {
+                if (curr.left == null)
+                {
+                    result.Add(curr.val);
+                    curr = curr.right;
+                }
+                else
+                {
+                    pre = curr.left;
+                    while (pre.right != null)
+                    {
+                        pre = pre.right;
+                    }
+
+                    pre.right = curr;
+                    TreeNode temp = curr;
+                    curr = curr.left;
+                    temp.left = null;
+                }
+            }
+
+            return result;
+        }
+    }
+
+    public class TreeNode
+    {
+        public int val;
+        public TreeNode left;
+        public TreeNode right;
+        public TreeNode(int val = 0, TreeNode left = null, TreeNode right = null)
+        {
+            this.val = val;
+            this.left = left;
+            this.right = right;
+        }
     }
 }
