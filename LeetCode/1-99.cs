@@ -396,7 +396,7 @@ namespace LeetCode
         {
             var result = new List<int>();
             TreeNode curr = root;
-            TreeNode pre = null;
+            TreeNode nextRoot = null;
 
             while (curr != null)
             {
@@ -407,13 +407,13 @@ namespace LeetCode
                 }
                 else
                 {
-                    pre = curr.left;
-                    while (pre.right != null)
+                    nextRoot = curr.left;
+                    while (nextRoot.right != null)
                     {
-                        pre = pre.right;
+                        nextRoot = nextRoot.right;
                     }
 
-                    pre.right = curr;
+                    nextRoot.right = curr;
                     TreeNode temp = curr;
                     curr = curr.left;
                     temp.left = null;
