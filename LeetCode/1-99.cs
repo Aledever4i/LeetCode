@@ -26,6 +26,42 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 14. Longest Common Prefix. Tags: String, Trie
+        /// </summary>
+        public static string LongestCommonPrefix(string[] strs)
+        {
+            var start = strs[0];
+            var currentCommon = start.AsSpan().ToArray();
+
+            if (strs.Length == 1 || start.Length == 0)
+            {
+                return strs[0];
+            }
+
+            for (int i = 1; i < strs.Length; i++)
+            {
+                var chars = strs[i].AsSpan();
+                var list = new List<char>();
+
+                for (int y = 0; y < currentCommon.Length && y < chars.Length; y++)
+                {
+                    if (currentCommon[y].Equals(chars[y]))
+                    {
+                        list.Add(chars[y]);
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+
+                currentCommon = list.ToArray();
+            }
+
+            return string.Join("", currentCommon);
+        }
+
+        /// <summary>
         /// 15. 3Sum. Tags: Array, Two Pointers, Sorting
         /// </summary>
         /// <param name="nums"></param>

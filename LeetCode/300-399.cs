@@ -10,6 +10,14 @@ namespace LeetCode
     public static class _300_399
     {
         /// <summary>
+        /// 338. Counting Bits. Tags: Dynamic Programming, Bit Manipulation
+        /// </summary>
+        public static int[] CountBits(int n)
+        {
+            return new int[n];
+        }
+
+        /// <summary>
         /// 347. Top K Frequent Elements. Tags: Array, Hash Table, Divide and Conquer, Sorting, Heap(Priority Queue), Bucket Sort, Counting, Quickselect
         /// </summary>
         public static int[] TopKFrequent(int[] nums, int k)
