@@ -52,5 +52,53 @@ namespace LeetCode
 
     public static class _1300_1399
     {
+        /// <summary>
+        /// 1376. Time Needed to Inform All Employees. Tags: Tree, Depth-First Search, Breadth-First Search
+        /// </summary>
+        public static int NumOfMinutes(int n, int headID, int[] manager, int[] informTime)
+        {
+            if (n == 1)
+            {
+                return informTime[0];
+            }
+
+            var subordinates = new Dictionary<int, List<int>>();
+            var result = 0;
+
+            for (int i = 0; i < n; i++)
+            {
+                var managerId = manager[i];
+
+                if (managerId == -1)
+                {
+                    continue;
+                }
+
+                if (subordinates.TryGetValue(managerId, out List<int> value))
+                {
+                    value.Add(i);
+                }
+                else
+                {
+                    subordinates.Add(managerId, new List<int>() { i });
+                }
+            }
+
+            return getInsideTime(headID);
+
+            int getInsideTime(int managerId)
+            {
+                var currentSubs = subordinates[managerId];
+
+                var nextMoves = currentSubs.Where(sub => subordinates.TryGetValue(sub, out List<int> values));
+
+                if (nextMoves.Any())
+                {
+                    return informTime[managerId] + nextMoves.Max(sub => getInsideTime(sub));
+                }
+
+                return informTime[managerId];
+            }
+        }
     }
 }
