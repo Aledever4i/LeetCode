@@ -48,8 +48,7 @@ namespace LeetCode
                 new int[] { 4, 5, 3},
                 new int[] { 5, 6, 4},
             };
-            var result = _2100_2199.MaximumDetonation(list);
-
+            var result = _1_99.StrStr("sadbutsad", "sad");
 
             Console.WriteLine(result);
         }

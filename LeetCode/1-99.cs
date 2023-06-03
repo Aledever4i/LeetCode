@@ -284,6 +284,31 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 28. Find the Index of the First Occurrence in a String. Tags: Two Pointers, String, String Matching
+        /// </summary>
+        public static int StrStr(string haystack, string needle)
+        {
+            var n = needle.Length;
+            var h = haystack.Length;
+
+            if (n > h || n == 0)
+            {
+                return -1;
+            }
+
+            for (int i = 0; i <= h - n; i++)
+            {
+                var end = i + n;
+                if (haystack[i] == needle[0] && haystack[i..end].Equals(needle))
+                {
+                    return i;
+                }
+            }
+
+            return -1;
+        }
+
+        /// <summary>
         /// 67. Add Binary. Tags: Math, String, Bit Manipulation, Simulation
         /// Задача простая но нужная
         /// </summary>
