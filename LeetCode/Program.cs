@@ -40,8 +40,9 @@ namespace LeetCode
             //    new List<string>() { "x9", "x9" }
             //};
 
+            var coord = new int[][] { new int[] { 1, 2 }, new int[] { 2, 3 }, new int[] { 3, 4 } };
 
-            var result = _1300_1399.NumOfMinutes(13, 0, new int[13] { -1, 6, 6, 7, 12, 1, 0, 0, 12, 0, 2, 6, 11 }, new int[13] { 567, 670, 351, 0, 0, 0, 573, 17, 0, 0, 0, 594, 866 });
+            var result = _1200_1299.CheckStraightLine(coord);
 
             Console.WriteLine(result);
         }
