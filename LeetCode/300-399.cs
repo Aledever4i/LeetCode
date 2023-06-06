@@ -14,7 +14,30 @@ namespace LeetCode
         /// </summary>
         public static int[] CountBits(int n)
         {
-            return new int[n];
+            if (n == 0)
+            {
+                return new int[] { 0 };
+            }
+
+            var result = new int[n + 1];
+            var repeatPeriod = 2;
+            var count = 2;
+            result[0] = 0;
+            result[1] = 1;
+
+            for (int i = 2; i <= n; i++)
+            {
+                count--;
+                result[i] = result[i - repeatPeriod] + 1;
+
+                if (count == 0)
+                {
+                    repeatPeriod *= 2;
+                    count = repeatPeriod;
+                }
+            }
+
+            return result;
         }
 
         /// <summary>
