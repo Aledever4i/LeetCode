@@ -53,6 +53,65 @@ namespace LeetCode
     public static class _1300_1399
     {
         /// <summary>
+        /// 1318. Minimum Flips to Make a OR b Equal to c. Tags: Bit Manipulation
+        /// </summary>
+        public static int MinFlips(int a, int b, int c)
+        {
+            var result = 0;
+
+            var aString = Convert.ToString(a, 2).Reverse();
+            var bString = Convert.ToString(b, 2).Reverse();
+            var cString = Convert.ToString(c, 2).Reverse();
+            for (int i = 0; i < Math.Max(aString.Count(), Math.Max(bString.Count(), cString.Count())); i++)
+            {
+                var bit = cString.ElementAtOrDefault(i);
+
+                if (bit == '1')
+                {
+                    if (!(aString.ElementAtOrDefault(i) == '1' || bString.ElementAtOrDefault(i) == '1'))
+                    {
+                        result++;
+                    }
+                }
+                else
+                {
+                    if (aString.ElementAtOrDefault(i) == '1')
+                    {
+                        result++;
+                    }
+
+                    if (bString.ElementAtOrDefault(i) == '1')
+                    {
+                        result++;
+                    }
+                }
+            }
+
+            // Пример другого решения
+            //int res = 0;
+            //for (int i = 0; i < 32; i++)
+            //{
+            //    int aBit = 1 << i & a;
+            //    int bBit = 1 << i & b;
+            //    int cBit = 1 << i & c;
+
+            //    if (cBit == 0)
+            //    {
+            //        if (aBit != cBit)
+            //            res++;
+            //        if (bBit != cBit)
+            //            res++;
+            //    }
+            //    else if (aBit != cBit && bBit != cBit)
+            //    {
+            //        res++;
+            //    }
+            //}
+
+            return result;
+        }
+
+        /// <summary>
         /// 1376. Time Needed to Inform All Employees. Tags: Tree, Depth-First Search, Breadth-First Search
         /// </summary>
         public static int NumOfMinutes(int n, int headID, int[] manager, int[] informTime)
@@ -63,7 +122,6 @@ namespace LeetCode
             }
 
             var subordinates = new Dictionary<int, List<int>>();
-            var result = 0;
 
             for (int i = 0; i < n; i++)
             {

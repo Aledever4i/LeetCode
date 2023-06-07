@@ -40,9 +40,7 @@ namespace LeetCode
             //    new List<string>() { "x9", "x9" }
             //};
 
-            var coord = new int[][] { new int[] { 1, 2 }, new int[] { 2, 3 }, new int[] { 3, 4 } };
-
-            var result = _1200_1299.CheckStraightLine(coord);
+            var result = _1300_1399.MinFlips(8, 3, 5);
 
             Console.WriteLine(result);
         }
