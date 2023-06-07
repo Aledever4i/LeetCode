@@ -40,7 +40,7 @@ namespace LeetCode
             //    new List<string>() { "x9", "x9" }
             //};
 
-            var result = _1300_1399.MinFlips(8, 3, 5);
+            var result = _100_199.SingleNumber(new int[2, 2, 1]);
 
             Console.WriteLine(result);
         }
