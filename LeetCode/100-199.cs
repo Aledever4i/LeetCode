@@ -143,5 +143,28 @@ namespace LeetCode
 
             return 0;
         }
+
+        public int SingleNumber(int[] nums)
+        {
+            var array = new Dictionary<int, int>();
+
+            foreach (var num in nums)
+            {
+                if (!array.TryAdd(num, 1))
+                {
+                    array[num] = array[num] + 1;
+                }
+            }
+
+            foreach (var item in array)
+            {
+                if (item.Value == 1)
+                {
+                    return item.Key;
+                }
+            }
+
+            return 0;
+        }
     }
 }

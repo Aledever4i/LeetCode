@@ -69,6 +69,51 @@ namespace LeetCode
     public static class _700_799
     {
         /// <summary>
+        /// 744. Find Smallest Letter Greater Than Target. Tags: Array, Binary Search
+        /// </summary>
+        public char NextGreatestLetter(char[] letters, char target)
+        {
+            int s = 0, e = letters.Length - 1;
+
+            if (letters[letters.Length - 1] <= target)
+            {
+                return letters[0];
+            }
+
+            while (s < e)
+            {
+                int mid = (s + e) / 2;
+
+                if (letters[mid] <= target)
+                {
+                    s = mid + 1;
+                }
+                else
+                {
+                    e = mid;
+                }
+            }
+
+            return letters[s];
+
+
+            //var alpha = "abcdefghijklmnopqrstuvwxyz".ToList();
+            //var index = alpha.IndexOf(target);
+
+            //for (int i = index + 1; i < alpha.Count; i++)
+            //{
+            //    var a = alpha[i];
+
+            //    if (letters.Contains(a))
+            //    {
+            //        return a;
+            //    }
+            //}
+
+            //return letters[0];
+        }
+
+        /// <summary>
         /// 785. Is Graph Bipartite?. Tags: Depth-First Search, Breadth-First Search, Union Find, Graph
         /// </summary>
         /// <param name="graph"></param>

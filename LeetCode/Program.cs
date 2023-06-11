@@ -40,8 +40,7 @@ namespace LeetCode
             //    new List<string>() { "x9", "x9" }
             //};
 
-            var result = _100_199.SingleNumber(new int[2, 2, 1]);
-
+            var result = new SnapshotArray(5);
             Console.WriteLine(result);
         }
     }
