@@ -71,7 +71,7 @@ namespace LeetCode
         /// <summary>
         /// 744. Find Smallest Letter Greater Than Target. Tags: Array, Binary Search
         /// </summary>
-        public char NextGreatestLetter(char[] letters, char target)
+        public static char NextGreatestLetter(char[] letters, char target)
         {
             int s = 0, e = letters.Length - 1;
 

@@ -31,17 +31,18 @@ namespace LeetCode
             //    new List<string>() { "x4", "x5" },
             //};
             //doublenew int[] {} values = new doublenew int[] {} { 3.0, 4.0, 5.0, 6.0 };
-            //IList<IList<string>> queries = new List<IList<string>>() { 
-            //    new List<string>() { "x1", "x5" },
-            //    new List<string>() { "x5", "x2" },
-            //    new List<string>() { "x2", "x4" },
-            //    new List<string>() { "x2", "x2" },
-            //    new List<string>() { "x2", "x9" },
-            //    new List<string>() { "x9", "x9" }
+
+            //var queries = new int[3][] {
+            //    new int[] { 3,2,1 },
+            //    new int[] { 1,7,6 },
+            //    new int[] { 2,7,7 }
             //};
 
-            var result = new SnapshotArray(5);
-            Console.WriteLine(result);
+            var queries = new int[1][] {
+                new int[] { 1 }
+            };
+
+            Console.WriteLine(_2300_2399.EqualPairs(queries));
         }
     }
 }

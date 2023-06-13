@@ -11,9 +11,9 @@ namespace LeetCode
         /// <summary>
         /// 1802. Maximum Value at a Given Index in a Bounded Array. Tags: Binary Search, Greedy
         /// </summary>
-        public int MaxValue(int n, int index, int maxSum)
+        public static int MaxValue(int n, int index, int maxSum)
         {
-
+            return 0;
         }
     }
 }

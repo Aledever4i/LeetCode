@@ -121,7 +121,7 @@ namespace LeetCode
         /// <summary>
         /// 136. Single Number. Tags: Array, Bit Manipulation
         /// </summary>
-        public int SingleNumber(int[] nums)
+        public static int SingleNumber(int[] nums)
         {
             var array = new Dictionary<int, bool>();
 
@@ -136,29 +136,6 @@ namespace LeetCode
             foreach (var item in array)
             {
                 if (item.Value == true)
-                {
-                    return item.Key;
-                }
-            }
-
-            return 0;
-        }
-
-        public int SingleNumber(int[] nums)
-        {
-            var array = new Dictionary<int, int>();
-
-            foreach (var num in nums)
-            {
-                if (!array.TryAdd(num, 1))
-                {
-                    array[num] = array[num] + 1;
-                }
-            }
-
-            foreach (var item in array)
-            {
-                if (item.Value == 1)
                 {
                     return item.Key;
                 }
