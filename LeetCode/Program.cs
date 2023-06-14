@@ -42,7 +42,7 @@ namespace LeetCode
                 new int[] { 1 }
             };
 
-            Console.WriteLine(_2300_2399.EqualPairs(queries));
+            Console.WriteLine(_200_299.AddDigits(10));
         }
     }
 }
