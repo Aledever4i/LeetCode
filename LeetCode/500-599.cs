@@ -60,7 +60,7 @@ namespace LeetCode
 
                     if (array.Count - 1 != index)
                     {
-                        var tempResult = Math.Abs(array[index] - nextValue);
+                        var tempResult = Math.Abs(array[index] - array[index + 1]);
                         result = (result > tempResult) ? tempResult : result;
 
                         if (result == 0)
