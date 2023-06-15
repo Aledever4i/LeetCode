@@ -42,7 +42,7 @@ namespace LeetCode
                 new int[] { 1 }
             };
 
-            Console.WriteLine(_100_199.IsPalindrome("A man, a plan, a canal -- Panama"));
+            Console.WriteLine(_1_99.PlusOne(new int[] { 1, 2, 3 }));
         }
     }
 }

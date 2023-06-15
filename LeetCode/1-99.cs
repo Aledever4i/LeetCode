@@ -309,6 +309,74 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 66. Plus One. Tags: Array, Math
+        /// </summary>
+        public static int[] PlusOne(int[] digits)
+        {
+            // Отличный пример
+            //int n = digits.Length;
+            //int carry = 1;
+
+            //for (int i = n - 1; i >= 0; i--)
+            //{
+            //    int sum = digits[i] + carry;
+            //    digits[i] = sum % 10;
+            //    carry = sum / 10;
+
+            //    if (carry == 0)
+            //    {
+            //        // No need to carry over to the next digit
+            //        break;
+            //    }
+            //}
+
+            //You do not need to copy the digits to the new array (using digits.CopyTo(result,1)). Because the new array will always have a 1 as the first digit,
+            //and a 0 for every digit after that, you can just set result[0] = 1 and then return it.
+            //if (carry == 1)
+            //{
+            //    // Need to add an additional digit
+            //    int[] result = new int[n + 1];
+            //    result[0] = 1;
+            //    return result;
+            //}
+
+            //return digits;
+
+            var list = new List<int>();
+            bool discharge = true;
+
+            for (int i = digits.Length; i > 0; i--)
+            {
+                var number = digits[i - 1];
+
+                if (number == 9 && discharge)
+                {
+                    discharge = true;
+                    list.Add(0);
+                }
+                else if (discharge)
+                {
+                    discharge = false;
+                    list.Add(number + 1);
+                }
+                else
+                {
+                    list.AddRange(digits[..i].Reverse());
+                    break;
+                }
+            }
+
+            if (discharge)
+            {
+                list.Add(1);
+            }
+
+            list.Reverse();
+
+            return list.ToArray();
+        }
+
+        /// <summary>
         /// 67. Add Binary. Tags: Math, String, Bit Manipulation, Simulation
         /// Задача простая но нужная
         /// </summary>
