@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace LeetCode
@@ -116,6 +117,30 @@ namespace LeetCode
                 values[i] = new int[] { price };
             }
             return 0;
+        }
+
+        /// <summary>
+        /// 125. Valid Palindrome
+        /// </summary>
+        public static bool IsPalindrome(string s)
+        {
+            var rgx = new System.Text.RegularExpressions.Regex("[^a-zA-Z0-9]");
+            s = rgx.Replace(s, "").ToLower();
+
+            int start = 0, end = s.Length;
+
+            while (start < end)
+            {
+                if (s[start] != s[end - 1])
+                {
+                    return false;
+                }
+
+                start++;
+                end--;
+            }
+
+            return true;
         }
 
         /// <summary>

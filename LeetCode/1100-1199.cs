@@ -58,5 +58,38 @@ namespace LeetCode
         {
             return 1;
         }
+
+        /// <summary>
+        /// 1161. Maximum Level Sum of a Binary Tree. Tags: Tree, Depth-First Search, Breadth-First Search, Binary Tree
+        /// </summary>
+        public static int MaxLevelSum(TreeNode root)
+        {
+            var dict = new Dictionary<int, int>();
+
+            var queue = new Queue<(int, TreeNode)>();
+            queue.Enqueue((1, root));
+
+            while (queue.Count > 0)
+            {
+                var node = queue.Dequeue();
+
+                if (!dict.TryAdd(node.Item1, node.Item2.val))
+                {
+                    dict[node.Item1] += node.Item2.val;
+                }
+
+                if (node.Item2.right != null)
+                {
+                    queue.Enqueue((node.Item1 + 1, node.Item2.right));
+                }
+
+                if (node.Item2.left != null)
+                {
+                    queue.Enqueue((node.Item1 + 1, node.Item2.left));
+                }
+            }
+
+            return dict.MaxBy(value => value.Value).Key;
+        }
     }
 }
