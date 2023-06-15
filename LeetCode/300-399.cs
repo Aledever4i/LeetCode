@@ -66,6 +66,26 @@ namespace LeetCode
             return !ransomList.Any();
         }
 
+        /// <summary>
+        /// 387. First Unique Character in a String. Tags: Hash Table, String, Queue, Counting
+        /// </summary>
+        public static int FirstUniqChar(string s)
+        {
+            var dict = new Dictionary<char, int>();
+
+            for (int i = 0; i < s.Length; i++)
+            {
+                var key = s[i];
+
+                if (!dict.TryAdd(key, i))
+                {
+                    dict[key] = -1;
+                }
+            }
+
+            return dict.Values.Where(v => v > -1).OrderBy(v => v).FirstOrDefault(-1);
+        }
+
         public class NodeConnect
         {
             public string To;
