@@ -377,6 +377,38 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 80. Remove Duplicates from Sorted Array II. Tags: Array, Two Pointers
+        /// </summary>
+        public static int RemoveDuplicates2(int[] nums)
+        {
+            var list = new List<int>();
+            bool skip = false;
+            var previousNum = int.MinValue;
+
+            foreach (var num in nums)
+            {
+                if (previousNum != num)
+                {
+                    skip = false;
+                    previousNum = num;
+                    list.Add(num);
+                }
+                else if (!skip)
+                {
+                    skip = true;
+                    list.Add(num);
+                }
+            }
+
+            for (int i = 0; i < list.Count; i++)
+            {
+                nums[i] = list[i];
+            }
+
+            return list.Count;
+        }
+
+        /// <summary>
         /// 83. Remove Duplicates from Sorted List. Tags: Linked List
         /// </summary>
         /// <param name="head"></param>
