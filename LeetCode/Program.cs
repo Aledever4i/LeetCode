@@ -38,8 +38,7 @@ namespace LeetCode
             //    new int[] { 2,7,7 }
             //};
 
-            _100_199.Rotate(new int[] { -1, -100, 3, 99 }, 2);
-            //Console.WriteLine();
+            Console.WriteLine(_1_99.CanJump(new int[] { 2, 5, 0, 0 }));
         }
     }
 }

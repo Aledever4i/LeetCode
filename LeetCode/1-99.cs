@@ -360,6 +360,50 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 55. Jump Game
+        /// </summary>
+        public static bool CanJump(int[] nums)
+        {
+            var endIndex = nums.Length - 1;
+            if (endIndex <= 0)
+            {
+                return true;
+            }
+            var results = new Dictionary<int, bool>();
+            return CheckJump(0, 0);
+
+            bool CheckJump(int position, int step)
+            {
+                if (results.ContainsKey(position + step))
+                {
+                    return results[position + step];
+                }
+
+                if (position + step >= endIndex)
+                {
+                    results[position + step] = true;
+
+                    return results[position + step];
+                }
+
+                var jump = nums[position + step];
+                var result = false;
+
+                for (int i = jump; i > 0; i--)
+                {
+                    result |= CheckJump(position + step, i);
+                    if (result)
+                    {
+                        return true;
+                    }
+                }
+
+                results[position + step] = result;
+                return result;
+            }
+        }
+
+        /// <summary>
         /// 66. Plus One. Tags: Array, Math
         /// </summary>
         public static int[] PlusOne(int[] digits)
