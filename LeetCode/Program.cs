@@ -38,11 +38,8 @@ namespace LeetCode
             //    new int[] { 2,7,7 }
             //};
 
-            var queries = new int[1][] {
-                new int[] { 1 }
-            };
-
-            Console.WriteLine(_1_99.MyPow(-1, 2147483647));
+            _100_199.Rotate(new int[] { -1, -100, 3, 99 }, 2);
+            //Console.WriteLine();
         }
     }
 }

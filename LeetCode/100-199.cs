@@ -185,5 +185,31 @@ namespace LeetCode
             }
             return counter;
         }
+
+        /// <summary>
+        /// 189. Rotate Array. Tags: Array, Math, Two Pointers
+        /// </summary>
+        public static void Rotate(int[] nums, int k)
+        {
+            var n = nums.Length;
+            while (k >= n)
+            {
+                k -= n;
+            }
+
+            if (k == 0)
+            {
+                return;
+            }
+
+            var list = new List<int>();
+            list.AddRange(nums[(n - k)..]);
+            list.AddRange(nums[..(n - k)]);
+
+            for (int i = 0; i < n; i++)
+            {
+                nums[i] = list.ElementAt(i);
+            }
+        }
     }
 }
