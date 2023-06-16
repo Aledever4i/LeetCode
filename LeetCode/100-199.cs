@@ -168,5 +168,22 @@ namespace LeetCode
 
             return 0;
         }
+
+        /// <summary>
+        /// 172. Factorial Trailing Zeroes. Tags: Math
+        /// </summary>
+        public static int TrailingZeroes(int n)
+        {
+            int multi = 5;
+            int k = 1 * multi;
+            int counter = 0;
+
+            while (n / k != 0)
+            {
+                counter += n / k;
+                k *= multi;
+            }
+            return counter;
+        }
     }
 }

@@ -42,7 +42,7 @@ namespace LeetCode
                 new int[] { 1 }
             };
 
-            Console.WriteLine(_1_99.PlusOne(new int[] { 1, 2, 3 }));
+            Console.WriteLine(_1_99.MyPow(-1, 2147483647));
         }
     }
 }

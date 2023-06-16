@@ -309,6 +309,57 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 50. Pow(x, n). Tags: Math, Recursion
+        /// </summary>
+        public static double MyPow(double x, long n)
+        {
+            //if (n == 0)
+            //{
+            //    return 1;
+            //}
+            //else if (n < 0)
+            //{
+            //    return 1 / MyPow(x, -n);
+            //}
+            //else
+            //{
+            //    if (n % 2 == 0)
+            //    {
+            //        return MyPow(x * x, n / 2);
+            //    }
+            //    else
+            //    {
+            //        return x * MyPow(x * x, (n - 1) / 2);
+            //    }
+            //}
+
+            double value = (n < 0) ? 1 / Math.Abs(x) : Math.Abs(x);
+            if (n == 0)
+            {
+                return 1;
+            }
+            else if (value == 1)
+            {
+                if (n % 2 == 1)
+                {
+                    return x;
+                }
+
+                return Math.Abs(x);
+            }
+
+            long pow = Math.Abs(n);
+            double result = value;
+
+            for (long i = 1; i < pow; i++)
+            {
+                result *= value;
+            }
+
+            return (x > 0 || (x < 0 && n % 2 == 0)) ? result : -result;
+        }
+
+        /// <summary>
         /// 66. Plus One. Tags: Array, Math
         /// </summary>
         public static int[] PlusOne(int[] digits)
@@ -442,6 +493,41 @@ namespace LeetCode
             }
 
             return string.Join("", stringBuilder.ToString().Reverse());
+        }
+
+        /// <summary>
+        /// 69. Sqrt(x). Tags: Math, Binary Search
+        /// </summary>
+        public static int MySqrt(int x)
+        {
+            if (x == 0)
+            { return 0; }
+
+            int left = 1;
+            int right = x;
+
+            while (left <= right)
+            {
+                int mid = left + (right - left) / 2;
+                int sqrt = x / mid;
+
+                if (sqrt == mid)
+                { return mid; }
+                else if (sqrt < mid)
+                { right = mid - 1; }
+                else
+                { left = mid + 1; }
+            }
+
+            return right;
+
+            //var dict = new Dictionary<ulong, ulong>();
+            //for (ulong i = 0; i < 65536; i++)
+            //{
+            //    dict.Add(i, i * i);
+            //}
+            //var filtered = dict.Where(value => value.Value <= (ulong)x);
+            //return (int)filtered.Last().Key;
         }
 
         /// <summary>

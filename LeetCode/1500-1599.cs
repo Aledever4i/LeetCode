@@ -55,5 +55,13 @@ namespace LeetCode
 
             return empty;
         }
+
+        /// <summary>
+        /// 1569. Number of Ways to Reorder Array to Get Same BST. Tags: Array, Math, Divide and Conquer, Dynamic Programming, Tree, Union Find, Binary Search Tree, Memoization, Combinatorics, Binary Tree
+        /// </summary>
+        public static int NumOfWays(int[] nums)
+        {
+            return 0 % 1_000_000_007;
+        }
     }
 }
