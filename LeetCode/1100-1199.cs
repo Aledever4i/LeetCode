@@ -91,5 +91,69 @@ namespace LeetCode
 
             return dict.MaxBy(value => value.Value).Key;
         }
+
+        /// <summary>
+        /// 1187. Make Array Strictly Increasing. Tags: Array, Binary Search, Dynamic Programming, Sorting
+        /// </summary>
+        public static int MakeArrayIncreasing(int[] arr1, int[] arr2)
+        {
+            System.Array.Sort(arr2);
+            var dp = new Dictionary<(int, int), int>();
+
+            int answer = dfs(0, -1, arr1, arr2);
+
+            return answer < 2_001 ? answer : -1;
+
+            int dfs(int i, int prev, int[] arr1, int[] arr2)
+            {
+                if (i == arr1.Length)
+                {
+                    return 0;
+                }
+
+                if (dp.ContainsKey((i, prev)))
+                {
+                    return dp[(i, prev)];
+                }
+
+                int cost = 2_001;
+
+                // If arr1[i] is already greater than prev, we can leave it be.
+                if (arr1[i] > prev)
+                {
+                    cost = dfs(i + 1, arr1[i], arr1, arr2);
+                }
+
+                // Find a replacement with the smallest value in arr2.
+                int idx = bisectRight(arr2, prev);
+
+                // Replace arr1[i], with a cost of 1 operation.
+                if (idx < arr2.Length)
+                {
+                    cost = Math.Min(cost, 1 + dfs(i + 1, arr2[idx], arr1, arr2));
+                }
+
+                dp.Add((i, prev), cost);
+                return cost;
+            }
+
+            int bisectRight(int[] arr, int value)
+            {
+                int left = 0, right = arr.Length;
+                while (left < right)
+                {
+                    int mid = (left + right) / 2;
+                    if (arr[mid] <= value)
+                    {
+                        left = mid + 1;
+                    }
+                    else
+                    {
+                        right = mid;
+                    }
+                }
+                return left;
+            }
+        }
     }
 }

@@ -195,6 +195,18 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 20. Valid Parentheses. Tags: String, Stack
+        /// </summary>
+        public static bool IsValid(string s)
+        {
+            var stack = new Stack<char>();
+
+
+
+            return false;
+        }
+
+        /// <summary>
         /// 24. Swap Nodes in Pairs. Tags: Linked List, Recursion
         /// </summary>
         /// <param name="head"></param>
