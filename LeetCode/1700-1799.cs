@@ -51,6 +51,24 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 1732. Find the Highest Altitude. Tags: Array, Prefix Sum
+        /// </summary>
+        public static int LargestAltitude(int[] gain)
+        {
+            var maxAltitude = 0;
+            var currentAltitude = 0;
+
+            foreach (var step in gain)
+            {
+                currentAltitude += step;
+
+                maxAltitude = Math.Max(maxAltitude, currentAltitude);
+            }
+
+            return maxAltitude;
+        }
+
+        /// <summary>
         /// 1799. Maximize Score After N Operations. Tags: Array, Math, Dynamic Programming, Backtracking, Bit Manipulation, Number Theory, Bitmask
         /// </summary>
         /// <param name="nums"></param>

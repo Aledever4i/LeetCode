@@ -98,8 +98,6 @@ namespace LeetCode
         /// <summary>
         /// 121. Best Time to Buy and Sell Stock. Tags: Array, Dynamic Programming
         /// </summary>
-        /// [7,1,5,3,6,4]
-        /// [7,6,4,3,1]
         public static int MaxProfit1(int[] prices)
         {
             var n = prices.Length;
@@ -108,15 +106,31 @@ namespace LeetCode
                 return 0;
             }
 
-            int[][] values = new int[n][];
+            int[] values = new int[n];
 
-            for (int i = 0; i < n; i++)
+            int[] maxValues = new int[n];
+            var currentMaxValue = 0;
+            for (int i = n - 1; i >= 0; i--)
             {
                 var price = prices[i];
-
-                values[i] = new int[] { price };
+                currentMaxValue = Math.Max(price, currentMaxValue);
+                maxValues[i] = currentMaxValue;
             }
-            return 0;
+
+            for (int i = 0; i < n - 1; i++)
+            {
+                values[i] = maxValues[i + 1] - prices[i];
+            }
+            
+            return values.Max();
+        }
+
+        /// <summary>
+        /// 122. Best Time to Buy and Sell Stock II
+        /// </summary>
+        public static int MaxProfit2(int[] prices)
+        {
+
         }
 
         /// <summary>
