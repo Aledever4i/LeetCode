@@ -126,11 +126,43 @@ namespace LeetCode
         }
 
         /// <summary>
-        /// 122. Best Time to Buy and Sell Stock II
+        /// 122. Best Time to Buy and Sell Stock II. Tags: Array, Dynamic Programming, Greedy
         /// </summary>
         public static int MaxProfit2(int[] prices)
         {
+            var n = prices.Length;
+            if (n == 1)
+            {
+                return 0;
+            }
 
+            var dp = new int[n + 1][];
+            for (int i = 0; i < n + 1; i++)
+            {
+                dp[i] = new int[2];
+
+                for (int j = 0; j < 2; j++)
+                {
+                    dp[i][j] = 0;
+                }
+            }
+
+            for (int i = n - 1; i >= 0; i--)
+            {
+                for (int buy = 0; buy < 2; buy++)
+                {
+                    if (buy == 1)
+                    {
+                        dp[i][1] = Math.Max(-prices[i] + dp[i + 1][0], dp[i + 1][1]);
+                    }
+                    else
+                    {
+                        dp[i][0] = Math.Max(prices[i] + dp[i + 1][1], dp[i + 1][0]);
+                    }
+                }
+            }
+
+            return dp[0][1];
         }
 
         /// <summary>

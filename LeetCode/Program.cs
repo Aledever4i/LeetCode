@@ -41,7 +41,7 @@ namespace LeetCode
             var array1 = new int[] { 1, 3, 2 };
             var array2 = new int[] { 2 };
 
-            Console.WriteLine(_1100_1199.MakeArrayIncreasing(array1, array2));
+            Console.WriteLine(_100_199.MaxProfit2(new int[] { 7, 1, 5, 3, 6, 4 }));
         }
     }
 }
