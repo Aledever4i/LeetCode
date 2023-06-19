@@ -166,6 +166,43 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 123. Best Time to Buy and Sell Stock III. Tags: Array, Dynamic Programming
+        /// </summary>
+        public static int MaxProfit3(int[] prices)
+        {
+            int n = prices.Length;
+            if (n <= 1)
+            {
+                return 0;
+            }
+
+            int[] left = new int[n];
+            int[] right = new int[n];
+
+            int minLeft = prices[0];
+            for (int i = 1; i < n; i++)
+            {
+                minLeft = Math.Min(minLeft, prices[i]);
+                left[i] = Math.Max(left[i - 1], prices[i] - minLeft);
+            }
+
+            int maxRight = prices[n - 1];
+            for (int i = n - 2; i >= 0; i--)
+            {
+                maxRight = Math.Max(maxRight, prices[i]);
+                right[i] = Math.Max(right[i + 1], maxRight - prices[i]);
+            }
+
+            int maxProfit = 0;
+            for (int i = 0; i < n; i++)
+            {
+                maxProfit = Math.Max(maxProfit, left[i] + right[i]);
+            }
+
+            return maxProfit;
+        }
+
+        /// <summary>
         /// 125. Valid Palindrome
         /// </summary>
         public static bool IsPalindrome(string s)
