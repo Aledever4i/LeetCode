@@ -20,7 +20,8 @@ namespace LeetCode
                 return nums;
             }
 
-            var decimals = new decimal[n];
+            var decimals = new int[n];
+            System.Array.Fill(decimals, -1);
 
             decimal currentWindowValue = 0.0M;
 
@@ -35,18 +36,11 @@ namespace LeetCode
 
                 if (i - (2 * k) >= 0)
                 {
-                    decimals[i - k] = currentWindowValue;
+                    decimals[i - k] = Convert.ToInt32(currentWindowValue / (2 * k + 1));
                 }
             }
 
-            var result = new int[n];
-            System.Array.Fill(result, -1);
-            for (int i = k; i < n - k; i++)
-            {
-                result[i] = (int)Math.Truncate(decimals[i] / (2 * k + 1));
-            }
-
-            return result;
+            return decimals;
         }
     }
 }

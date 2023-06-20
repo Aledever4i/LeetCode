@@ -41,7 +41,7 @@ namespace LeetCode
             var array1 = new int[] { 1, 3, 2 };
             var array2 = new int[] { 2 };
 
-            Console.WriteLine(_2000_2099.GetAverages(new int[] { 56725, 48784, 74934, 6772, 98570, 96847, 46483, 6592, 62552 }, 1));
+            Console.WriteLine(_1400_1499.MaxVowels("ibpbhixfiouhdljnjfflpapptrxgcomvnb", 33));
         }
     }
 }
