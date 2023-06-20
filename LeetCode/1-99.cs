@@ -321,6 +321,36 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 35. Search Insert Position. Tags: Array, Binary Search
+        /// </summary>
+        public static int SearchInsert(int[] nums, int target)
+        {
+            int left = 0;
+            int right = nums.Length;
+
+            while (left < right)
+            {
+                var mid = (left + right) / 2;
+                var value = nums[mid];
+
+                if (target == value)
+                {
+                    return mid;
+                }
+                else if (target >= value)
+                {
+                    left = mid + 1;
+                }
+                else
+                {
+                    right = mid;
+                }
+            }
+
+            return left;
+        }
+
+        /// <summary>
         /// 50. Pow(x, n). Tags: Math, Recursion
         /// </summary>
         public static double MyPow(double x, long n)
