@@ -38,10 +38,7 @@ namespace LeetCode
             //    new int[] { 2,7,7 }
             //};
 
-            var array1 = new int[] { 1, 3, 2 };
-            var array2 = new int[] { 2 };
-
-            Console.WriteLine(_1400_1499.MaxVowels("ibpbhixfiouhdljnjfflpapptrxgcomvnb", 33));
+            Console.WriteLine(_600_699.FindMaxAverage(new int[] { 1, 12, -5, -6, 50, 3 }, 4));
         }
     }
 }
