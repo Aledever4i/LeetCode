@@ -9,6 +9,35 @@ namespace LeetCode
     public static class _200_299
     {
         /// <summary>
+        /// 209. Minimum Size Subarray Sum. Tags: 
+        /// </summary>
+        public static int MinSubArrayLen(int target, int[] nums)
+        {
+            var subArrayLength = nums.Length + 1;
+            var currentSum = 0;
+
+            int left = 0;
+            int right = 0;
+
+            while (right < nums.Length)
+            {
+                currentSum += nums[right];
+
+                while (currentSum >= target)
+                {
+                    subArrayLength = Math.Min(subArrayLength, right - left + 1);
+
+                    currentSum -= nums[left];
+                    left++;
+                }
+
+                right++;
+            }
+
+            return subArrayLength == nums.Length + 1 ? 0 : subArrayLength;
+        }
+
+        /// <summary>
         /// 219. Contains Duplicate II. Tags: Array, Hash Table, Sliding Window
         /// </summary>
         public static bool ContainsNearbyDuplicate(int[] nums, int k)
