@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.Intrinsics.Arm;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -122,7 +123,7 @@ namespace LeetCode
             {
                 values[i] = maxValues[i + 1] - prices[i];
             }
-            
+
             return values.Max();
         }
 
@@ -239,7 +240,7 @@ namespace LeetCode
                 if (!array.TryAdd(num, true))
                 {
                     array[num] = false;
-                } 
+                }
             }
 
             foreach (var item in array)
@@ -328,6 +329,51 @@ namespace LeetCode
             {
                 nums[i] = list.ElementAt(i);
             }
+        }
+
+        /// <summary>
+        /// 198. House Robber
+        /// </summary>
+        public static int Rob(int[] nums)
+        {
+            if (nums.Length == 1)
+            {
+                return nums[0];
+            }
+            else if (nums.Length == 1)
+            {
+                return Math.Max(nums[0], nums[1]);
+            }
+
+            var dp = new int[nums.Length][];
+            for (int i = 0; i < nums.Length; i++)
+            {
+                dp[i] = new int[2];
+            }
+
+            dp[nums.Length - 1][0] = 0;
+            dp[nums.Length - 1][1] = nums[nums.Length - 1];
+
+            dp[nums.Length - 2][0] = nums[nums.Length - 1];
+            dp[nums.Length - 2][1] = nums[nums.Length - 2];
+
+
+            for (int i = nums.Length - 3; i >= 0; i--)
+            {
+                for (int y = 0; y < 2; y++)
+                {
+                    if (y == 0)
+                    {
+                        dp[i][0] = Math.Max(dp[i + 1][0], dp[i + 1][1]);
+                    }
+                    else
+                    {
+                        dp[i][1] = Math.Max(nums[i] + dp[i + 2][0], nums[i] + dp[i + 2][1]);
+                    }
+                }
+            }
+            
+            return Math.Max(dp[0][0], dp[0][1]);
         }
     }
 }

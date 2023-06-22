@@ -38,7 +38,7 @@ namespace LeetCode
             //    new int[] { 2,7,7 }
             //};
 
-            Console.WriteLine(_700_799.MaxProfit(new int[] { 1, 3, 2, 8, 4, 9 }, 2));
+            Console.WriteLine(_100_199.Rob(new int[] { 1, 2, 3, 1 }));
         }
     }
 }
