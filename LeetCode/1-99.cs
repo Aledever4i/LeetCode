@@ -199,11 +199,51 @@ namespace LeetCode
         /// </summary>
         public static bool IsValid(string s)
         {
+            bool isOpen(char c)
+            {
+                return (c == '(' || c == '{' || c == '[');
+            }
+
+            var chars = s.ToCharArray();
+            var n = chars.Length;
+
+            if (n % 2 == 1)
+            {
+                return false;
+            }
+
+            var dict = new Dictionary<char, char>() { { '(', ')' }, { '{', '}' }, { '[', ']' } };
+
             var stack = new Stack<char>();
 
+            for (int i = 0; i < n; i++)
+            {
+                var x = chars[i];
 
+                if (isOpen(x))
+                {
+                    stack.Push(x);
+                }
+                else
+                {
+                    if (!stack.TryPop(out char r))
+                    {
+                        return false;
+                    }
 
-            return false;
+                    if (dict[r] != x)
+                    {
+                        return false;
+                    }
+                }
+            }
+
+            if (stack.Count > 0)
+            {
+                return false;
+            }
+
+            return true;
         }
 
         /// <summary>
