@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Intrinsics.Arm;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -267,6 +268,40 @@ namespace LeetCode
                 k *= multi;
             }
             return counter;
+        }
+
+        /// <summary>
+        /// 188. Best Time to Buy and Sell Stock IV. Tags: Array, Dynamic Programming
+        /// </summary>
+        public static int MaxProfit(int k, int[] prices)
+        {
+            int length = prices.Length;
+            var dp = new Dictionary<(int, int, int), int>();
+
+            return processTransaction(0, 0, 1);
+
+            int processTransaction(int i, int transactionId, int isBuy)
+            {
+                if (i >= length || transactionId > k)
+                {
+                    return 0;
+                }
+
+                if (!dp.ContainsKey((i, transactionId, isBuy)))
+                {
+                    if (isBuy == 1)
+                    {
+                        dp[(i, transactionId, isBuy)] = Math.Max(-prices[i] + processTransaction(i + 1, transactionId + 1, 0), processTransaction(i + 1, transactionId, 1));
+                    }
+                    else
+                    {
+                        dp[(i, transactionId, isBuy)] = Math.Max(prices[i] + processTransaction(i + 1, transactionId, 1), processTransaction(i + 1, transactionId, 0));
+                    }
+
+                }
+
+                return dp[(i, transactionId, isBuy)];
+            }
         }
 
         /// <summary>
