@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -68,6 +69,43 @@ namespace LeetCode
 
     public static class _700_799
     {
+        /// <summary>
+        /// 714. Best Time to Buy and Sell Stock with Transaction Fee. Tags: Array, Dynamic Programming, Greedy
+        /// </summary>
+        public static int MaxProfit(int[] prices, int fee)
+        {
+            var length = prices.Length;
+            var dp = new Dictionary<(int, int), int>();
+
+            return Math.Max(processTransaction(0, 1), 0);
+
+            int processTransaction(int i, int isBuy)
+            {
+                if (i >= length)
+                {
+                    return 0;
+                }
+
+                if (dp.ContainsKey((i, isBuy)))
+                {
+                    return dp[(i, isBuy)];
+                }
+
+                var result = 0;
+
+                if (isBuy == 1)
+                {
+                    dp[(i, isBuy)] = Math.Max(-prices[i] + processTransaction(i + 1, 0), processTransaction(i + 1, 1));
+                }
+                else
+                {
+                    dp[(i, isBuy)] = Math.Max(prices[i] - fee + processTransaction(i + 1, 1), processTransaction(i + 1, 0));
+                }
+
+                return dp[(i, isBuy)];
+            }
+        }
+
         /// <summary>
         /// 744. Find Smallest Letter Greater Than Target. Tags: Array, Binary Search
         /// </summary>
