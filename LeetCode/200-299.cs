@@ -95,8 +95,36 @@ namespace LeetCode
             //return num % 9;
         }
 
+        /// <summary>
+        /// 205. Isomorphic Strings. Tags: Hash Table, String
+        /// </summary>
         public static bool IsIsomorphic(string s, string t)
         {
+            var dict = new Dictionary<char, char>();
+            var hash = new HashSet<char>();
+
+            for (int i = 0; i < s.Length; i++)
+            {
+                var sChar = s[i];
+                var tChar = t[i];
+
+                if (!dict.TryGetValue(sChar, out char dictChar))
+                {
+                    dict[sChar] = tChar;
+                    if (!hash.Add(tChar))
+                    {
+                        return false;
+                    }
+                }
+                else
+                {
+                    if (dictChar != tChar)
+                    {
+                        return false;
+                    }
+                }
+            }
+
             return true;
         }
     }

@@ -38,7 +38,7 @@ namespace LeetCode
             //    new int[] { 2,7,7 }
             //};
 
-            Console.WriteLine(_100_199.Rob(new int[] { 1, 2, 3, 1 }));
+            Console.WriteLine(_200_299.IsIsomorphic("badc", "baba"));
         }
     }
 }
