@@ -9,6 +9,46 @@ namespace LeetCode
     public static class _1000_1099
     {
         /// <summary>
+        /// 1027. Longest Arithmetic Subsequence. Tags: Array, Hash Table, Binary Search, Dynamic Programming
+        /// </summary>
+        public static int LongestArithSeqLength(int[] nums)
+        {
+            var length = nums.Length;
+
+            if (length == 2)
+            {
+                return 2;
+            }
+
+            var dp = new Dictionary<(int, int), int>();
+            var maxLength = 0;
+
+            for (int right = 0; right < length; right++)
+            {
+                var rightValue = nums[right];
+
+                for (int left = 0; left < right; left++)
+                {
+                    var leftValue = nums[left];
+                    int diff = leftValue - rightValue;
+
+                    if (dp.TryGetValue((left, diff), out int prevValue))
+                    {
+                        dp[(right, diff)] = prevValue + 1;
+                    }
+                    else
+                    {
+                        dp[(right, diff)] = 2;
+                    }
+
+                    maxLength = Math.Max(maxLength, dp[(right, diff)]);
+                }
+            }
+
+            return maxLength;
+        }
+
+        /// <summary>
         /// 1091. Shortest Path in Binary Matrix. Tags: Array, Breadth-First Search, Matrix
         /// </summary>
         public static int ShortestPathBinaryMatrix(int[][] grid)
