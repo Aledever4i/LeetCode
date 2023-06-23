@@ -9,6 +9,27 @@ namespace LeetCode
     public static class _200_299
     {
         /// <summary>
+        /// 202. Happy Number. Tags: Hash Table, Math, Two Pointers
+        /// </summary>
+        public static bool IsHappy(int n)
+        {
+            var unique = new HashSet<double>();
+            double result = n;
+
+            while (result != 1)
+            {
+                if (!unique.Add(result))
+                {
+                    return false; 
+                }
+
+                result = result.ToString().ToCharArray().Select(c => Math.Pow(Char.GetNumericValue(c), 2)).Sum();
+            }
+
+            return true;
+        }
+
+        /// <summary>
         /// 209. Minimum Size Subarray Sum. Tags: 
         /// </summary>
         public static int MinSubArrayLen(int target, int[] nums)
