@@ -38,7 +38,7 @@ namespace LeetCode
             //    new int[] { 2,7,7 }
             //};
 
-            Console.WriteLine(_200_299.IsIsomorphic("badc", "baba"));
+            Console.WriteLine(_200_299.WordPattern("abba", "dog cat cat dog"));
         }
     }
 }

@@ -127,5 +127,50 @@ namespace LeetCode
 
             return true;
         }
+
+        /// <summary>
+        /// 290. Word Pattern. Tags: Hash Table, String
+        /// </summary>
+        public static bool WordPattern(string pattern, string s)
+        {
+            var pArray = pattern.ToCharArray();
+            var pLength = pArray.Length;
+
+            var sArray = s.Split(' ').ToArray();
+            var sLength = sArray.Length;
+
+            if (pLength != sLength)
+            {
+                return false;
+            }
+
+            var dict = new Dictionary<char, string>();
+            var unique = new HashSet<string>();
+
+            for (int i = 0; i < pLength; i++)
+            {
+                var pChar = pArray[i];
+                var sValue = sArray[i];
+
+                if (!dict.TryGetValue(pChar, out string value))
+                {
+                    dict[pChar] = sValue;
+
+                    if (!unique.Add(sValue))
+                    {
+                        return false;
+                    }
+                }
+                else
+                {
+                    if (value != sValue)
+                    {
+                        return false;
+                    }
+                }
+            }
+
+            return true;
+        }
     }
 }
