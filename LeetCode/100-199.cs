@@ -12,6 +12,38 @@ namespace LeetCode
     public static class _100_199
     {
         /// <summary>
+        /// 104. Maximum Depth of Binary Tree. Tags: Tree, Depth-First Search, Breadth-First Search, Binary Tree
+        /// </summary>
+        public static int MaxDepth(TreeNode root)
+        {
+            var result = 0;
+
+            if (root == null)
+            {
+                return result;
+            }
+
+            getLevel(root, 1);
+
+            return result;
+
+            void getLevel(TreeNode root, int l)
+            {
+                result = Math.Max(result, l);
+
+                if (root.right != null)
+                {
+                    getLevel(root.right, l + 1);
+                }
+
+                if (root.left != null)
+                {
+                    getLevel(root.left, l + 1);
+                }
+            }
+        }
+
+        /// <summary>
         /// 118. Pascal's Triangle. Tags: Array, Dynamic Programming
         /// </summary>
         public static IList<IList<int>> Generate(int numRows)
