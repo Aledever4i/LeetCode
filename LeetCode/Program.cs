@@ -38,7 +38,15 @@ namespace LeetCode
             //    new int[] { 2,7,7 }
             //};
 
-            Console.WriteLine(_200_299.WordPattern("abba", "dog cat cat dog"));
+            //_200_299.WordPattern("abba", "dog cat cat dog");
+
+            var s = new RandomizedSet();
+            s.Insert(1);
+            s.Remove(2);
+            s.Insert(2);
+            s.Remove(1);
+            s.Insert(2);
+            Console.WriteLine(s.GetRandom());
         }
     }
 }
