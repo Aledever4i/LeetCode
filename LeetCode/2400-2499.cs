@@ -112,5 +112,76 @@ namespace LeetCode
 
             //return answer;
         }
+
+
+
+        /// <summary>
+        /// 2462. Total Cost to Hire K Workers
+        /// </summary>
+        public static long TotalCost(int[] costs, int k, int candidates)
+        {
+            var n = costs.Length;
+            long result = 0;
+            var used = new int[n];
+
+            for (int i = 0; i < k; i++)
+            {
+                var minIndex = int.MaxValue;
+                var minValue = int.MaxValue;
+
+                int startCandidates = 0;
+                int startIndex = 0;
+                while (startCandidates < candidates)
+                {
+                    if (startIndex >= n)
+                    {
+                        startCandidates++;
+                    }
+                    else if (used[startIndex] == 0)
+                    {
+                        var value = costs[startIndex];
+
+                        if (value < minValue || (value == minValue && startIndex < minIndex))
+                        {
+                            minValue = value;
+                            minIndex = startIndex;
+                        }
+
+                        startCandidates++;
+                    }
+
+                    startIndex++;
+                }
+
+                int endCandidates = 0;
+                int endIndex = n - 1;
+                while (endCandidates < candidates)
+                {
+                    if (endIndex < 0)
+                    {
+                        endCandidates++;
+                    }
+                    else if (used[endIndex] == 0)
+                    {
+                        var value = costs[endIndex];
+
+                        if (value < minValue || (value == minValue && endIndex < minIndex))
+                        {
+                            minValue = value;
+                            minIndex = endIndex;
+                        }
+
+                        endCandidates++;
+                    }
+
+                    endIndex--;
+                }
+
+                result += minValue;
+                used[minIndex] = 1;
+            }
+
+            return result;
+        }
     }
 }

@@ -103,6 +103,42 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 373. Find K Pairs with Smallest Sums. Tags: Array, Heap(Priority Queue)
+        /// </summary>
+        /// <param name="nums1"></param>
+        /// <param name="nums2"></param>
+        /// <param name="k"></param>
+        /// <returns></returns>
+        public static IList<IList<int>> KSmallestPairs(int[] nums1, int[] nums2, int k)
+        {
+            List<IList<int>> result = new List<IList<int>>();
+
+            var queue = new PriorityQueue<(int, int), long>();
+
+            foreach (int i in nums1)
+            {
+                foreach (int j in nums2)
+                {
+                    queue.Enqueue((i, j), i + j);
+                }
+            }
+
+            for (int i = 0; i < k; i++)
+            {
+                if (queue.TryDequeue(out (int, int) x, out long p))
+                {
+                    result.Add(new List<int>() { x.Item1, x.Item2 });
+                }
+                else
+                {
+                    break;
+                }
+            }
+
+            return result;
+        }
+
+        /// <summary>
         /// 383. Ransom Note. Tags: Hash Table, String, Counting
         /// </summary>
         /// <param name="ransomNote"></param>

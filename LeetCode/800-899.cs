@@ -18,6 +18,54 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 859. Buddy Strings
+        /// </summary>
+        /// <param name="s"></param>
+        /// <param name="goal"></param>
+        /// <returns></returns>
+        public static bool BuddyStrings(string s, string goal)
+        {
+            var sInEqual = new List<char>();
+            var goalInEqual = new List<char>();
+
+            if (s.Length != goal.Length)
+            {
+                return false;
+            }
+
+            for (int i = 0; i < s.Length; i++)
+            {
+                var sChar = s[i];
+                var goalChar = goal[i];
+
+                if (sChar != goalChar)
+                {
+                    sInEqual.Add(sChar);
+                    goalInEqual.Add(goalChar);
+                }
+            }
+
+            if (sInEqual.Count() == 2 && !sInEqual.Except(goalInEqual).Any())
+            {
+                return true;
+            }
+            else if (sInEqual.Count() == 1)
+            {
+                return false;
+            }
+            else if (sInEqual.Count() > 2)
+            {
+                return false;
+            }
+            else if (!sInEqual.Any())
+            {
+                return s.GroupBy(c => c).Any(gr => gr.Count() > 1);
+            }
+
+            return false;
+        }
+
+        /// <summary>
         /// 877. Stone Game. Tags: Array, Math, Dynamic Programming, Game Theory
         /// </summary>
         public static bool StoneGame(int[] piles)

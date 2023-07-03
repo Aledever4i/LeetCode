@@ -18,5 +18,13 @@ namespace LeetCode
 
             return 1;
         }
+
+        /// <summary>
+        /// 956. Tallest Billboard. Tags: Array, Dynamic Programming
+        /// </summary>
+        public static int TallestBillboard(int[] rods)
+        {
+            return 0;
+        }
     }
 }

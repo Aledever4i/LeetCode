@@ -63,5 +63,43 @@ namespace LeetCode
         {
             return 0 % 1_000_000_007;
         }
+
+        public static int CountRoutes(int[] locations, int start, int finish, int fuel)
+        {
+            int solve(int[] locations, int currCity, int finish, int remainingFuel, int[][] memo)
+            {
+                if (remainingFuel < 0)
+                {
+                    return 0;
+                }
+                if (memo[currCity][remainingFuel] != -1)
+                {
+                    return memo[currCity][remainingFuel];
+                }
+
+                int ans = currCity == finish ? 1 : 0;
+                for (int nextCity = 0; nextCity < locations.Length; nextCity++)
+                {
+                    if (nextCity != currCity)
+                    {
+                        ans = (ans + solve(locations, nextCity, finish,
+                        remainingFuel - Math.Abs(locations[currCity] - locations[nextCity]),
+                                           memo)) % 1000000007;
+                    }
+                }
+
+                return memo[currCity][remainingFuel] = ans;
+            }
+
+            int n = locations.Length;
+            int[][] memo = new int[n][];
+            for (int i = 0; i < n; ++i)
+            {
+                memo[i] = new int[fuel + 1];
+                System.Array.Fill(memo[i], -1);
+            }
+
+            return solve(locations, start, finish, fuel, memo);
+        }
     }
 }
