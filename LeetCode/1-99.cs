@@ -391,6 +391,52 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 45. Jump Game II
+        /// </summary>
+        public static int Jump2(int[] nums)
+        {
+            var currentIndex = 0;
+            var result = 0;
+            var n = nums.Length;
+            var maxJump = 0;
+
+            if (nums.Length == 1)
+            {
+                return 0;
+            }
+
+            if (currentIndex + nums[0] >= n - 1)
+            {
+                return 1;
+            }
+
+            while (currentIndex < n - 1)
+            {
+                var step = nums[currentIndex];
+                var current = currentIndex;
+
+                if (current + step >= n - 1)
+                {
+                    return result + 1;
+                }
+
+                for (int i = current + step; i > current; i--)
+                {
+                    if (i + nums[i] > maxJump)
+                    {
+                        maxJump = i + nums[i];
+                        currentIndex = i;
+                    }
+                }
+
+                maxJump = 0;
+                result++;
+            }
+
+            return result;
+        }
+
+        /// <summary>
         /// 50. Pow(x, n). Tags: Math, Recursion
         /// </summary>
         public static double MyPow(double x, long n)

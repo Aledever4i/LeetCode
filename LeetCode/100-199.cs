@@ -287,6 +287,32 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 137. Single Number II
+        /// </summary>
+        public static int SingleNumber3(int[] nums)
+        {
+            var array = new Dictionary<int, int>();
+
+            foreach (var num in nums)
+            {
+                if (!array.TryAdd(num, 1))
+                {
+                    array[num] = array[num] + 1;
+                }
+            }
+
+            foreach (var item in array)
+            {
+                if (item.Value == 1)
+                {
+                    return item.Key;
+                }
+            }
+
+            return 0;
+        }
+
+        /// <summary>
         /// 172. Factorial Trailing Zeroes. Tags: Math
         /// </summary>
         public static int TrailingZeroes(int n)

@@ -38,7 +38,7 @@ namespace LeetCode
             //    new int[] { 2,7,7 }
             //};
 
-            _800_899.BuddyStrings("aa", "aa");
+            _1_99.Jump2(new int[] { 2, 3, 1, 1, 4 });
         }
     }
 }

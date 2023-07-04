@@ -18,11 +18,8 @@ namespace LeetCode
         }
 
         /// <summary>
-        /// 859. Buddy Strings
+        /// 859. Buddy Strings. Tags: Hash Table, String
         /// </summary>
-        /// <param name="s"></param>
-        /// <param name="goal"></param>
-        /// <returns></returns>
         public static bool BuddyStrings(string s, string goal)
         {
             var sInEqual = new List<char>();

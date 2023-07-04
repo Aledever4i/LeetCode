@@ -176,6 +176,39 @@ namespace LeetCode
             return dict.Values.Where(v => v > -1).OrderBy(v => v).FirstOrDefault(-1);
         }
 
+        /// <summary>
+        /// 392. Is Subsequence
+        /// </summary>
+        public static bool IsSubsequence(string s, string t)
+        {
+            var tIndex = 0;
+
+            for (int i = 0; i < s.Length; i++)
+            {
+                var sChar = s[i];
+                var isFound = false;
+
+                while (!isFound && tIndex < t.Length)
+                {
+                    var tChar = t[tIndex];
+
+                    if (tChar == sChar)
+                    {
+                        isFound = true;
+                    }
+
+                    tIndex++;
+                }
+
+                if (!isFound)
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
         public class NodeConnect
         {
             public string To;
