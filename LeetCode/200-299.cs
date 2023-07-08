@@ -30,6 +30,39 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 205. Isomorphic Strings. Tags: Hash Table, String
+        /// </summary>
+        public static bool IsIsomorphic(string s, string t)
+        {
+            var dict = new Dictionary<char, char>();
+            var hash = new HashSet<char>();
+
+            for (int i = 0; i < s.Length; i++)
+            {
+                var sChar = s[i];
+                var tChar = t[i];
+
+                if (!dict.TryGetValue(sChar, out char dictChar))
+                {
+                    dict[sChar] = tChar;
+                    if (!hash.Add(tChar))
+                    {
+                        return false;
+                    }
+                }
+                else
+                {
+                    if (dictChar != tChar)
+                    {
+                        return false;
+                    }
+                }
+            }
+
+            return true;
+        }
+
+        /// <summary>
         /// 209. Minimum Size Subarray Sum. Tags: 
         /// </summary>
         public static int MinSubArrayLen(int target, int[] nums)
@@ -117,36 +150,27 @@ namespace LeetCode
         }
 
         /// <summary>
-        /// 205. Isomorphic Strings. Tags: Hash Table, String
+        /// 274. H-Index
         /// </summary>
-        public static bool IsIsomorphic(string s, string t)
+        public static int HIndex(int[] citations)
         {
-            var dict = new Dictionary<char, char>();
-            var hash = new HashSet<char>();
+            var n = citations.Length;
 
-            for (int i = 0; i < s.Length; i++)
+            System.Array.Sort(citations);
+
+            int h = n;
+            while (h > 0)
             {
-                var sChar = s[i];
-                var tChar = t[i];
+                var value = citations[n - h];
 
-                if (!dict.TryGetValue(sChar, out char dictChar))
+                if (value >= h)
                 {
-                    dict[sChar] = tChar;
-                    if (!hash.Add(tChar))
-                    {
-                        return false;
-                    }
+                    return h;
                 }
-                else
-                {
-                    if (dictChar != tChar)
-                    {
-                        return false;
-                    }
-                }
+                h--;
             }
 
-            return true;
+            return 0;
         }
 
         /// <summary>

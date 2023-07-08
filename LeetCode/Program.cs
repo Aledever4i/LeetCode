@@ -38,7 +38,7 @@ namespace LeetCode
             //    new int[] { 2,7,7 }
             //};
 
-            _2500_2599.PutMarbles(new int[] { 1, 3, 5, 1 }, 2);
+            _200_299.HIndex(new int[] { 3, 0, 6, 1, 5 });
         }
     }
 }
