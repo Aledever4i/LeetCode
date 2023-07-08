@@ -133,6 +133,54 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 238. Product of Array Except Self
+        /// </summary>
+        public static int[] ProductExceptSelf(int[] nums)
+        {
+            var multi = 1;
+            var hasZero = false;
+            var result = new int[nums.Length];
+
+            for (int i = 0; i < nums.Length; i++)
+            {
+                var value = nums[i];
+                if (value == 0)
+                {
+                    if (hasZero)
+                    {
+                        return result;
+                    }
+
+                    hasZero = true;
+                }
+                else
+                {
+                    multi *= value;
+                }
+            }
+
+            for (int i = 0; i < nums.Length; i++)
+            {
+                var value = nums[i];
+
+                if (value == 0)
+                {
+                    result[i] = multi;
+                }
+                else if (hasZero)
+                {
+                    result[i] = 0;
+                }
+                else
+                {
+                    result[i] = multi / value;
+                }
+            }
+
+            return result;
+        }
+
+        /// <summary>
         /// 258. Add Digits
         /// </summary>
         public static int AddDigits(int num)

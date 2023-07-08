@@ -38,7 +38,7 @@ namespace LeetCode
             //    new int[] { 2,7,7 }
             //};
 
-            _200_299.HIndex(new int[] { 3, 0, 6, 1, 5 });
+            _200_299.ProductExceptSelf(new int[] { 0, 2, 3, 4 });
         }
     }
 }
