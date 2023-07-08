@@ -53,5 +53,25 @@ namespace LeetCode
 
             return res;
         }
+
+        /// <summary>
+        /// 2551. Put Marbles in Bags
+        /// </summary>
+        public static long PutMarbles(int[] weights, int k)
+        {
+            var n = weights.Length;
+            if (k >= n)
+            {
+                return 0;
+            }
+
+            var pair = new long[n - 1];
+            for (int i = 0; i < n - 1; i++)
+            {
+                pair[i] = weights[i] + weights[i + 1];
+            }
+
+            return pair.OrderByDescending(v => v).Take(k - 1).Sum() - pair.OrderBy(v => v).Take(k - 1).Sum();
+        }
     }
 }

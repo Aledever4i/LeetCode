@@ -38,7 +38,7 @@ namespace LeetCode
             //    new int[] { 2,7,7 }
             //};
 
-            _2000_2099.MaxConsecutiveAnswers("TFFT", 1);
+            _2500_2599.PutMarbles(new int[] { 1, 3, 5, 1 }, 2);
         }
     }
 }
