@@ -11,34 +11,10 @@ namespace LeetCode
     {
         static void Main(string[] args)
         {
-            //var array = new intnew int[] {} { 0, 0, 0, 1, 1, 2, 4, 9};
-            //ListNode end = new ListNode(arraynew int[] {array.Length - 1}, null);
-            //ListNode head = null;
-            //for (int i = array.Length - 2; i >= 0; i--)
-            //{
-            //    head = new ListNode(arraynew int[] {i}, end);
-            //    end = head;
-            //}
+            var list1 = new ListNode() { val = 1, next = new ListNode() { val = 2, next = new ListNode() { val = 4, next = null } } };
+            var list2 = new ListNode() { val = 1, next = new ListNode() { val = 3, next = new ListNode() { val = 4, next = null } } };
 
-            // new int[] {new int[] {4,1},new int[] {0,2},new int[] {1,3,4},new int[] {2,4},new int[] {0,3,2}} false
-            // new int[] {new int[] {4,1},new int[] {0,2},new int[] {1,3},new int[] {2,4},new int[] {0,3}} true
-            // new int[] {new int[] {1,4},new int[] {0,2},new int[] {1,4,3},new int[] {2},new int[] {0,2}} true
-
-            //IList<IList<string>> equations = new List<IList<string>>() { 
-            //    new List<string>() { "x1", "x2" },
-            //    new List<string>() { "x2", "x3" },
-            //    new List<string>() { "x3", "x4" },
-            //    new List<string>() { "x4", "x5" },
-            //};
-            //doublenew int[] {} values = new doublenew int[] {} { 3.0, 4.0, 5.0, 6.0 };
-
-            //var queries = new int[3][] {
-            //    new int[] { 3,2,1 },
-            //    new int[] { 1,7,6 },
-            //    new int[] { 2,7,7 }
-            //};
-
-            _2200_2300.LargestVariance("dsyemilsuwhciclqwprizywgkwkbgcqhtcwfvlw");
+            _1_99.MergeTwoLists(list1, list2);
         }
     }
 }

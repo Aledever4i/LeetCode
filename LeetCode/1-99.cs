@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
+using System.Security;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -244,6 +245,57 @@ namespace LeetCode
             }
 
             return true;
+        }
+
+        /// <summary>
+        /// 21. Merge Two Sorted Lists
+        /// </summary>
+        public static ListNode MergeTwoLists(ListNode list1, ListNode list2)
+        {
+            var result = new ListNode();
+            ListNode head = null;
+            var current1 = list1;
+            var current2 = list2;
+
+            while (current1 != null)
+            {
+                while (current2 != null && current2.val < current1.val)
+                {
+
+                    result.next = current2;
+
+                    if (head == null)
+                    {
+                        head = result.next;
+                    }
+
+                    result = result.next;
+                    current2 = current2.next;
+                }
+
+                result.next = current1;
+
+                if (head == null)
+                {
+                    head = result.next;
+                }
+                result = result.next;
+                current1 = current1.next;
+            }
+
+            while (current2 != null)
+            {
+                result.next = current2;
+
+                if (head == null)
+                {
+                    head = result.next;
+                }
+                result = result.next;
+                current2 = current2.next;
+            }
+
+            return head;
         }
 
         /// <summary>
