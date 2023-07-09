@@ -261,6 +261,64 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 134. Gas Station
+        /// </summary>
+        public static int CanCompleteCircuit(int[] gas, int[] cost)
+        {
+            var n = gas.Length;
+            var calculated = new int[n];
+
+            for (int i = 0; i < n; i++)
+            {
+                calculated[i] = gas[i] - cost[i];
+            }
+
+            if (calculated.Sum() < 0)
+            {
+                return -1;
+            }
+
+            for (int i = 0; i < n; i++)
+            {
+                if (calculated[i] <= 0)
+                {
+                    continue;
+                }
+
+                var startValue = gas[i];
+                for (int y = i; y < n + i; y++)
+                {
+                    var yIndex = y;
+                    if (yIndex >= n)
+                    {
+                        yIndex -= n;
+                    }
+
+                    startValue -= cost[yIndex];
+                    if (startValue < 0)
+                    {
+                        break;
+                    }
+
+                    yIndex += 1;
+                    if (yIndex >= n)
+                    {
+                        yIndex -= n;
+                    }
+
+                    if (yIndex == i)
+                    {
+                        return i;
+                    }
+
+                    startValue += gas[yIndex]; 
+                }
+            }
+
+            return 0;
+        }
+
+        /// <summary>
         /// 136. Single Number. Tags: Array, Bit Manipulation
         /// </summary>
         public static int SingleNumber(int[] nums)

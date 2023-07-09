@@ -38,7 +38,7 @@ namespace LeetCode
             //    new int[] { 2,7,7 }
             //};
 
-            _200_299.ProductExceptSelf(new int[] { 0, 2, 3, 4 });
+            _100_199.CanCompleteCircuit(new int[] { 0, 0, 0, 2 }, new int[] { 0, 0, 1, 0 });
         }
     }
 }
