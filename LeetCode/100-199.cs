@@ -319,6 +319,47 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 135. Candy
+        /// </summary>
+        public static int Candy(int[] ratings)
+        {
+            var n = ratings.Length;
+            var changed = true;
+
+            if (n == 1) { return 1; }
+
+            while (changed)
+            {
+                changed = false;
+
+                for (int i = 0; i < n - 1; i++)
+                {
+                    var value = ratings[i];
+
+                    if (value - ratings[i + 1] > 1)
+                    {
+                        ratings[i] = value - 1;
+                        changed = true;
+                    }
+                }
+            }
+
+            changed = true;
+            while (changed)
+            {
+                changed = false;
+
+                if (ratings[n - 1] - ratings[n - 2] > 1)
+                {
+                    ratings[n - 1] = ratings[n - 1] - 1;
+                    changed = true;
+                }
+            }
+
+            return ratings.Sum() + n;
+        }
+
+        /// <summary>
         /// 136. Single Number. Tags: Array, Bit Manipulation
         /// </summary>
         public static int SingleNumber(int[] nums)
