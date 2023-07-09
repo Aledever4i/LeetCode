@@ -253,7 +253,7 @@ namespace LeetCode
         public static ListNode MergeTwoLists(ListNode list1, ListNode list2)
         {
             var result = new ListNode();
-            ListNode head = null;
+            ListNode head = result;
             var current1 = list1;
             var current2 = list2;
 
@@ -261,24 +261,12 @@ namespace LeetCode
             {
                 while (current2 != null && current2.val < current1.val)
                 {
-
                     result.next = current2;
-
-                    if (head == null)
-                    {
-                        head = result.next;
-                    }
-
                     result = result.next;
                     current2 = current2.next;
                 }
 
                 result.next = current1;
-
-                if (head == null)
-                {
-                    head = result.next;
-                }
                 result = result.next;
                 current1 = current1.next;
             }
@@ -286,16 +274,11 @@ namespace LeetCode
             while (current2 != null)
             {
                 result.next = current2;
-
-                if (head == null)
-                {
-                    head = result.next;
-                }
                 result = result.next;
                 current2 = current2.next;
             }
 
-            return head;
+            return head.next;
         }
 
         /// <summary>
