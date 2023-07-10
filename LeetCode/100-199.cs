@@ -44,6 +44,40 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 111. Minimum Depth of Binary Tree
+        /// </summary>
+        public static int MinDepth(TreeNode root)
+        {
+            if (root == null)
+            {
+                return 0;
+            }
+            var result = int.MaxValue;
+            var queue = new Queue<(TreeNode, int)>();
+            queue.Enqueue((root, 1));
+
+            while (queue.Count() > 0)
+            {
+                var current = queue.Dequeue();
+                if (current.Item1.left != null)
+                {
+                    queue.Enqueue((current.Item1.left, current.Item2 + 1));
+                }
+                if (current.Item1.right != null)
+                {
+                    queue.Enqueue((current.Item1.right, current.Item2 + 1));
+                }
+
+                if (current.Item1.left == null && current.Item1.right == null)
+                {
+                    result = Math.Min(result, current.Item2);
+                }
+            }
+
+            return result;
+        }
+
+        /// <summary>
         /// 118. Pascal's Triangle. Tags: Array, Dynamic Programming
         /// </summary>
         public static IList<IList<int>> Generate(int numRows)
