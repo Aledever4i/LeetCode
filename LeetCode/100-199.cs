@@ -446,6 +446,14 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 151. Reverse Words in a String
+        /// </summary>
+        public static string ReverseWords(string s)
+        {
+            return string.Join(' ', s.Split(' ', StringSplitOptions.RemoveEmptyEntries).Reverse());
+        }
+
+        /// <summary>
         /// 172. Factorial Trailing Zeroes. Tags: Math
         /// </summary>
         public static int TrailingZeroes(int n)
