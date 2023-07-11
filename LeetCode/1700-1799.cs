@@ -69,6 +69,37 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 1768. Merge Strings Alternately
+        /// </summary>
+        public static string MergeAlternately(string word1, string word2)
+        {
+            var n1 = word1.Length;
+            var n2 = word2.Length;
+            int i = 0;
+            var result = new StringBuilder();
+            while (i < n1 && i < n2)
+            {
+                result.Append(word1[i]);
+                result.Append(word2[i]);
+                i++;
+            }
+
+            while (i < n1)
+            {
+                result.Append(word1[i]);
+                i++;
+            }
+
+            while (i < n2)
+            {
+                result.Append(word2[i]);
+                i++;
+            }
+
+            return result.ToString();
+        }
+
+        /// <summary>
         /// 1799. Maximize Score After N Operations. Tags: Array, Math, Dynamic Programming, Backtracking, Bit Manipulation, Number Theory, Bitmask
         /// </summary>
         /// <param name="nums"></param>

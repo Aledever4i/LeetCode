@@ -12,6 +12,19 @@ namespace LeetCode
     public static class _1_99
     {
         /// <summary>
+        /// 6. Zigzag Conversion
+        /// </summary>
+        public static string ConvertZigZag(string s, int numRows)
+        {
+            if (numRows <= 2)
+            {
+                return s;
+            }
+
+
+        }
+
+        /// <summary>
         /// 9. Palindrome Number. Tags: Math
         /// </summary>
         /// <param name="x"></param>
