@@ -21,7 +21,7 @@ namespace LeetCode
                 return s;
             }
 
-
+            return string.Empty;
         }
 
         /// <summary>

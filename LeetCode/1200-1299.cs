@@ -9,6 +9,36 @@ namespace LeetCode
     public static class _1200_1299
     {
         /// <summary>
+        /// 1218. Longest Arithmetic Subsequence of Given Difference
+        /// </summary>
+        public static int LongestSubsequence(int[] arr, int difference)
+        {
+            var n = arr.Length;
+            var result = new Dictionary<int, int>();
+
+            if (n == 1)
+            {
+                return 1;
+            }
+
+            for (int i = 0; i < n; i++)
+            {
+                var value = arr[i];
+
+                if (result.TryGetValue(value - difference, out int count))
+                {
+                    result[value] = count + 1;
+                }
+                else
+                {
+                    result[value] = 1;
+                }
+            }
+
+            return result.Values.Max();
+        }
+
+        /// <summary>
         /// 1232. Check If It Is a Straight Line. Tags: Array, Math, Geometry
         /// </summary>
         public static bool CheckStraightLine(int[][] coordinates)

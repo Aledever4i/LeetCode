@@ -1,14 +1,71 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace LeetCode
 {
     public static class _800_899
     {
+        /// <summary>
+        /// 802. Find Eventual Safe States
+        /// </summary>
+        public static IList<int> EventualSafeNodes(int[][] graph)
+        {
+            int n = graph.Length;
+            var adj = new List<List<int>>();
+            for (int i = 0; i < n; i++)
+            {
+                var newList = new List<int>();
+                newList.AddRange(graph[i]);
+                adj.Add(newList);
+            }
+
+            bool[] visit = new bool[n];
+            bool[] inStack = new bool[n];
+
+            for (int i = 0; i < n; i++)
+            {
+                dfs(i, adj, visit, inStack);
+            }
+
+            var safeNodes = new List<int>();
+            for (int i = 0; i < n; i++)
+            {
+                if (!inStack[i])
+                {
+                    safeNodes.Add(i);
+                }
+            }
+            return safeNodes;
+
+            bool dfs(int node, List<List<int>> adj, bool[] visit, bool[] inStack)
+            {
+                if (inStack[node])
+                    return true;
+
+                if (visit[node])
+                    return false;
+
+                visit[node] = true;
+                inStack[node] = true;
+
+                foreach (int neighbor in adj[node]) 
+                {
+                    if (dfs(neighbor, adj, visit, inStack))
+                    {
+                        return true;
+                    }
+                }
+                inStack[node] = false;
+                return false;
+            }
+        }
+
         /// <summary>
         /// 837. New 21 Game. Tags: Math, Dynamic Programming, Sliding Window, Probability and Statistics
         /// </summary>

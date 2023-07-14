@@ -11,10 +11,12 @@ namespace LeetCode
     {
         static void Main(string[] args)
         {
-            var list1 = new ListNode() { val = 1, next = new ListNode() { val = 2, next = new ListNode() { val = 4, next = null } } };
-            var list2 = new ListNode() { val = 1, next = new ListNode() { val = 3, next = new ListNode() { val = 4, next = null } } };
+            // new int[] {1,5,7,8,5,3,4,2,1}, 1
 
-            _1_99.MergeTwoLists(list1, list2);
+            //new int[] { 1, 3, 5, 7 }, 2
+
+
+            Console.WriteLine(_1200_1299.LongestSubsequence(new int[] { 3, 0, -3, 4, -4, 7, 6 }, 3));
         }
     }
 }
