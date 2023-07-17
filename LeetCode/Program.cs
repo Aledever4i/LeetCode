@@ -11,12 +11,13 @@ namespace LeetCode
     {
         static void Main(string[] args)
         {
-            // new int[] {1,5,7,8,5,3,4,2,1}, 1
+            //var req_skills = new string[3] { "java", "nodejs", "reactjs" };
+            //var people = new List<IList<string>>() { new List<string> { "java" }, new List<string> { "nodejs" }, new List<string> { "nodejs", "reactjs" } };
+            //Console.WriteLine(_1100_1199.SmallestSufficientTeam(req_skills, people));
 
-            //new int[] { 1, 3, 5, 7 }, 2
-
-
-            Console.WriteLine(_1200_1299.LongestSubsequence(new int[] { 3, 0, -3, 4, -4, 7, 6 }, 3));
+            var l1 = new ListNode(3, new ListNode(9, new ListNode(9, new ListNode(9))));
+            var l2 = new ListNode(7);
+            _400_499.AddTwoNumbers(l1, l2);
         }
     }
 }

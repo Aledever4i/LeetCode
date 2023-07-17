@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -51,6 +52,26 @@ namespace LeetCode
 
     public static class _1100_1199
     {
+        /// <summary>
+        /// 1125. Smallest Sufficient Team
+        /// </summary>
+        public static int[] SmallestSufficientTeam(string[] req_skills, IList<IList<string>> people)
+        {
+            var skillOwners = people
+                .Select((skills, index) => new { skills, Index = index })
+                .SelectMany(skills =>
+                    skills
+                    .skills
+                    .Select(skill => new { skill, Owner = skills.Index })
+                )
+                .GroupBy(skill => skill.skill)
+                .Select(gr => new { Skill = gr.Key, People = gr.Select(s => s.Owner).ToList() });  
+                
+                //skills.SelectMany(skill => new { skill, Owner = index })).Select(x => new { x.Key, People = x.Select(k => index) });
+
+            return System.Array.Empty<int>();
+        }
+
         /// <summary>
         /// 1140. Stone Game II
         /// </summary>

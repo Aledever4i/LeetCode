@@ -112,6 +112,35 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 1353. Maximum Number of Events That Can Be Attended
+        /// </summary>
+        public static int MaxEvents(int[][] events)
+        {
+            System.Array.Sort(events, (a, b) => a[0] - b[0]);
+            var result = 0;
+
+            return result;
+
+            int bisectRight(int[][] events, int target)
+            {
+                int left = 0, right = events.Length;
+                while (left < right)
+                {
+                    int mid = (left + right) / 2;
+                    if (events[mid][0] <= target)
+                    {
+                        left = mid + 1;
+                    }
+                    else
+                    {
+                        right = mid;
+                    }
+                }
+                return left;
+            }
+        }
+
+        /// <summary>
         /// 1376. Time Needed to Inform All Employees. Tags: Tree, Depth-First Search, Breadth-First Search
         /// </summary>
         public static int NumOfMinutes(int n, int headID, int[] manager, int[] informTime)

@@ -69,6 +69,58 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 1751. Maximum Number of Events That Can Be Attended II
+        /// </summary>
+        public static int MaxValue(int[][] events, int k)
+        {
+            System.Array.Sort(events, (a, b) => a[0] - b[0]);
+            var dp = new int[k + 1][];
+            for (int i = 0; i < k + 1; i++)
+            {
+                dp[i] = new int[events.Length];
+                System.Array.Fill(dp[i], -1);
+            }
+            return dfs(0, k);
+
+            int dfs(int currentIndex, int count)
+            {
+                if (currentIndex == events.Length || count == 0)
+                {
+                    return 0;
+                }
+
+                if (dp[count][currentIndex] != -1)
+                {
+                    return dp[count][currentIndex];
+                }
+
+                var nextIndex = bisectRight(events, events[currentIndex][1]);
+                dp[count][currentIndex] = Math.Max(events[currentIndex][2] + dfs(nextIndex, count - 1), dfs(currentIndex + 1, count));
+
+                return dp[count][currentIndex];
+
+            }
+
+            int bisectRight(int[][] events, int target)
+            {
+                int left = 0, right = events.Length;
+                while (left < right)
+                {
+                    int mid = (left + right) / 2;
+                    if (events[mid][0] <= target)
+                    {
+                        left = mid + 1;
+                    }
+                    else
+                    {
+                        right = mid;
+                    }
+                }
+                return left;
+            }
+        }
+
+        /// <summary>
         /// 1768. Merge Strings Alternately
         /// </summary>
         public static string MergeAlternately(string word1, string word2)
