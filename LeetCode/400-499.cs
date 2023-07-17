@@ -67,5 +67,46 @@ namespace LeetCode
 
             return result;
         }
+
+        /// <summary>
+        /// 448. Find All Numbers Disappeared in an Array. Tags: Array, Hash Table
+        /// </summary>
+        public static IList<int> FindDisappearedNumbers(int[] nums)
+        {
+            var n = nums.Length;
+            var currentNumber = 1;
+            var result = new List<int>();
+            System.Array.Sort(nums);
+
+            for (int i = 0; i < n; i++)
+            {
+                var temp = nums[i];
+                if (currentNumber == temp)
+                {
+                    currentNumber++;
+                    continue;
+                }
+
+                if (currentNumber < temp)
+                {
+                    result.Add(currentNumber);
+                    currentNumber++;
+                    i--;
+                    continue;
+                }
+
+                if (currentNumber > temp)
+                {
+                    continue;
+                }
+            }
+
+            if (currentNumber - 1 < n)
+            {
+                result.AddRange(Enumerable.Range(currentNumber, n - currentNumber + 1));
+            }
+
+            return result;
+        }
     }
 }
