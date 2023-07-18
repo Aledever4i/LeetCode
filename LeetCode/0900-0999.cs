@@ -2,7 +2,7 @@
 
 namespace LeetCode
 {
-    public static class _900_999
+    public static class _0900_0999
     {
         /// <summary>
         /// 934. Shortest Bridge. Tags: Array, Depth-First Search, Breadth-First Search, Matrix

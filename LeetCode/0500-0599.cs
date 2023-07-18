@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LeetCode
 {
-    public static class _500_599
+    public static class _0500_0599
     {
         /// <summary>
         /// 530. Minimum Absolute Difference in BST. Tags: Tree, Depth-First Search, Breadth-First Search, Binary Search Tree, Binary Tree,

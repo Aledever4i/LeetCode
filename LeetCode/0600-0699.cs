@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LeetCode
 {
-    public static class _600_699
+    public static class _0600_0699
     {
         /// <summary>
         /// 643. Maximum Average Subarray I. Tags: Array, Sliding Window

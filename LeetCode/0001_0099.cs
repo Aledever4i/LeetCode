@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace LeetCode
 {
-    public static class _1_99
+    public static class _0001_0099
     {
         /// <summary>
         /// 6. Zigzag Conversion

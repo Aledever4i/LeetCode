@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LeetCode
 {
-    public static class _200_299
+    public static class _0200_0299
     {
         /// <summary>
         /// 202. Happy Number. Tags: Hash Table, Math, Two Pointers

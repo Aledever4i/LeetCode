@@ -9,7 +9,7 @@ using System.Xml.Linq;
 
 namespace LeetCode
 {
-    public static class _800_899
+    public static class _0800_0899
     {
         /// <summary>
         /// 802. Find Eventual Safe States

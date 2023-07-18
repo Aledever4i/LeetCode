@@ -67,7 +67,7 @@ namespace LeetCode
         }
     }
 
-    public static class _700_799
+    public static class _0700_0799
     {
         /// <summary>
         /// 714. Best Time to Buy and Sell Stock with Transaction Fee. Tags: Array, Dynamic Programming, Greedy

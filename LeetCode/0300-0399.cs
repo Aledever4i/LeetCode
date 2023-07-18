@@ -61,7 +61,7 @@ namespace LeetCode
     }
 
 
-    public static class _300_399
+    public static class _0300_0399
     {
         /// <summary>
         /// 338. Counting Bits. Tags: Dynamic Programming, Bit Manipulation
