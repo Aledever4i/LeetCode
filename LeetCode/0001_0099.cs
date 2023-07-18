@@ -40,6 +40,170 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 13. Roman to Integer
+        /// </summary>
+        public static int RomanToInt(string s)
+        {
+            var result = 0;
+
+            while (s.Length > 0)
+            {
+                if (s.IndexOf("MMM") > -1)
+                {
+                    result += 3000;
+                    s = s.Remove(s.IndexOf("MMM"), 3);
+                }
+                else if (s.IndexOf("MM") > -1)
+                {
+                    result += 2000;
+                    s = s.Remove(s.IndexOf("MM"), 2);
+                }
+                else if (s.IndexOf("CM") > -1)
+                {
+                    result += 900;
+                    s = s.Remove(s.IndexOf("CM"), 2);
+                }
+                else if (s.IndexOf("M") > -1)
+                {
+                    result += 1000;
+                    s = s.Remove(s.IndexOf("M"), 1);
+                }
+                else if (s.IndexOf("DCCC") > -1)
+                {
+                    result += 800;
+                    s = s.Remove(s.IndexOf("DCCC"), 4);
+                }
+                else if (s.IndexOf("DCC") > -1)
+                {
+                    result += 700;
+                    s = s.Remove(s.IndexOf("DCC"), 3);
+                }
+                else if (s.IndexOf("DC") > -1)
+                {
+                    result += 600;
+                    s = s.Remove(s.IndexOf("DC"), 2);
+                }
+                else if (s.IndexOf("CD") > -1)
+                {
+                    result += 400;
+                    s = s.Remove(s.IndexOf("CD"), 2);
+                }
+                else if (s.IndexOf("D") > -1)
+                {
+                    result += 500;
+                    s = s.Remove(s.IndexOf("D"), 1);
+                }
+                else if (s.IndexOf("CCC") > -1)
+                {
+                    result += 300;
+                    s = s.Remove(s.IndexOf("CCC"), 3);
+                }
+                else if (s.IndexOf("CC") > -1)
+                {
+                    result += 200;
+                    s = s.Remove(s.IndexOf("CC"), 2);
+                }
+                else if (s.IndexOf("XC") > -1)
+                {
+                    result += 90;
+                    s = s.Remove(s.IndexOf("XC"), 2);
+                }
+                else if (s.IndexOf("C") > -1)
+                {
+                    result += 100;
+                    s = s.Remove(s.IndexOf("C"), 1);
+                }
+                else if (s.IndexOf("LXXX") > -1)
+                {
+                    result += 80;
+                    s = s.Remove(s.IndexOf("LXXX"), 4);
+                }
+                else if (s.IndexOf("LXX") > -1)
+                {
+                    result += 70;
+                    s = s.Remove(s.IndexOf("LXX"), 3);
+                }
+                else if (s.IndexOf("LX") > -1)
+                {
+                    result += 60;
+                    s = s.Remove(s.IndexOf("LX"), 2);
+                }
+                else if (s.IndexOf("XL") > -1)
+                {
+                    result += 40;
+                    s = s.Remove(s.IndexOf("XL"), 2);
+                }
+                else if (s.IndexOf("L") > -1)
+                {
+                    result += 50;
+                    s = s.Remove(s.IndexOf("L"), 1);
+                }
+                else if (s.IndexOf("XXX") > -1)
+                {
+                    result += 30;
+                    s = s.Remove(s.IndexOf("XXX"), 3);
+                }
+                else if (s.IndexOf("XX") > -1)
+                {
+                    result += 20;
+                    s = s.Remove(s.IndexOf("XX"), 2);
+                }
+                else if (s.IndexOf("IX") > -1)
+                {
+                    result += 9;
+                    s = s.Remove(s.IndexOf("IX"), 2);
+                }
+                else if (s.IndexOf("X") > -1)
+                {
+                    result += 10;
+                    s = s.Remove(s.IndexOf("X"), 1);
+                }
+                else if (s.IndexOf("VIII") > -1)
+                {
+                    result += 8;
+                    s = s.Remove(s.IndexOf("VIII"), 4);
+                }
+                else if (s.IndexOf("VII") > -1)
+                {
+                    result += 7;
+                    s = s.Remove(s.IndexOf("VII"), 3);
+                }
+                else if (s.IndexOf("VI") > -1)
+                {
+                    result += 6;
+                    s = s.Remove(s.IndexOf("VI"), 2);
+                }
+                else if (s.IndexOf("IV") > -1)
+                {
+                    result += 4;
+                    s = s.Remove(s.IndexOf("IV"), 2);
+                }
+                else if (s.IndexOf("V") > -1)
+                {
+                    result += 5;
+                    s = s.Remove(s.IndexOf("V"), 1);
+                }
+                else if (s.IndexOf("III") > -1)
+                {
+                    result += 3;
+                    s = s.Remove(s.IndexOf("III"), 3);
+                }
+                else if (s.IndexOf("II") > -1)
+                {
+                    result += 2;
+                    s = s.Remove(s.IndexOf("II"), 2);
+                }
+                else if (s.IndexOf("I") > -1)
+                {
+                    result += 1;
+                    s = s.Remove(s.IndexOf("I"), 1);
+                }
+            }
+
+            return result;
+        }
+
+        /// <summary>
         /// 14. Longest Common Prefix. Tags: String, Trie
         /// </summary>
         public static string LongestCommonPrefix(string[] strs)

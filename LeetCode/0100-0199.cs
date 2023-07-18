@@ -1,11 +1,15 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.IO.Compression;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Reflection;
 using System.Runtime.Intrinsics.Arm;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace LeetCode
 {
@@ -39,6 +43,69 @@ namespace LeetCode
                 if (root.left != null)
                 {
                     getLevel(root.left, l + 1);
+                }
+            }
+        }
+
+        /// <summary>
+        /// 146. LRU Cache
+        /// </summary>
+        public class LRUCache
+        {
+            private readonly int capacity;
+            private readonly Dictionary<int, LinkedListNode<CacheItem>> cacheMap;
+            private readonly LinkedList<CacheItem> cacheList;
+
+            public LRUCache(int capacity)
+            {
+                this.capacity = capacity;
+                cacheMap = new Dictionary<int, LinkedListNode<CacheItem>>(capacity);
+                cacheList = new LinkedList<CacheItem>();
+            }
+
+            public int Get(int key)
+            {
+                if (cacheMap.TryGetValue(key, out var node))
+                {
+                    cacheList.Remove(node);
+                    cacheList.AddFirst(node);
+                    return node.Value.Value;
+                }
+                return -1;
+            }
+
+            public void Put(int key, int value)
+            {
+                if (cacheMap.TryGetValue(key, out var node))
+                {
+                    node.Value.Value = value;
+                    cacheList.Remove(node);
+                    cacheList.AddFirst(node);
+                }
+                else
+                {
+                    if (cacheMap.Count >= capacity)
+                    {
+                        var lastNode = cacheList.Last;
+                        cacheMap.Remove(lastNode.Value.Key);
+                        cacheList.RemoveLast();
+                    }
+
+                    var newNode = new LinkedListNode<CacheItem>(new CacheItem(key, value));
+                    cacheMap.Add(key, newNode);
+                    cacheList.AddFirst(newNode);
+                }
+            }
+
+            private class CacheItem
+            {
+                public int Key { get; }
+                public int Value { get; set; }
+
+                public CacheItem(int key, int value)
+                {
+                    Key = key;
+                    Value = value;
                 }
             }
         }
