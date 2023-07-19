@@ -9,6 +9,67 @@ namespace LeetCode
     public static class _0400_0499
     {
         /// <summary>
+        /// 435. Non-overlapping Intervals. TagsL Array, Dynamic Programming, Greedy, Sorting
+        /// </summary>
+        public static int EraseOverlapIntervals(int[][] intervals)
+        {
+            //var dp = new int[intervals.Length];
+            var dp = new int[intervals.Length][];
+            for (var i = 0; i < intervals.Length; i++)
+            {
+                var negative = new int[2] { -1, -1 };
+                dp[i] = negative;
+            }
+            System.Array.Sort(intervals, (a, b) => a[0] - b[0]);
+
+            var result = Math.Min(bfs(0, 1), bfs(0, 0));
+
+            return result;
+
+            int bfs(int currentIndex, int isPick)
+            {
+                if (currentIndex == intervals.Length)
+                {
+                    return 0;
+                }
+
+                if (dp[currentIndex][isPick] > -1)
+                {
+                    return dp[currentIndex][isPick];
+                }
+
+                var endValue = intervals[currentIndex][1];
+                var nextIndex = findIndex(currentIndex, endValue);
+                dp[currentIndex][1] = nextIndex - currentIndex - 1 + Math.Min(bfs(nextIndex, 0), bfs(nextIndex, 1));
+                dp[currentIndex][0] = 1 + Math.Min(bfs(currentIndex + 1, 0), bfs(currentIndex + 1, 1));
+
+                return dp[currentIndex][isPick];
+            }
+
+            int findIndex(int currentIndex, int value)
+            {
+                int left = currentIndex, right = intervals.Length;
+
+                while (left < right)
+                {
+                    var mid = (left + right) / 2;
+                    var midValue = intervals[mid];
+
+                    if (value > midValue[0])
+                    {
+                        left = mid + 1;
+                    }
+                    else
+                    {
+                        right = mid;
+                    }
+                }
+
+                return left;
+            }
+        }
+
+        /// <summary>
         /// 445. Add Two Numbers II. Tags: Linked List, Math, Stack
         /// </summary>
         public static ListNode AddTwoNumbers(ListNode l1, ListNode l2)

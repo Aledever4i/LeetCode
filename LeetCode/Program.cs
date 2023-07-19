@@ -12,11 +12,12 @@ namespace LeetCode
     {
         static void Main(string[] args)
         {
-            //var req_skills = new string[3] { "java", "nodejs", "reactjs" };
-            //var people = new List<IList<string>>() { new List<string> { "java" }, new List<string> { "nodejs" }, new List<string> { "nodejs", "reactjs" } };
-            Console.WriteLine(_0001_0099.RomanToInt("DCXXI"));
-
-            
+            var result = new int[4][];
+            result[0] = new int[2] { 1,2 };
+            result[1] = new int[2] { 2,3 };
+            result[2] = new int[2] { 3,4 };
+            result[3] = new int[2] { 1,3 };
+            var x = _0400_0499.EraseOverlapIntervals(result);
         }
     }
 }
