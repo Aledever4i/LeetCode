@@ -107,6 +107,55 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 735. Asteroid Collision. Tags: Array, Stack, Simulation
+        /// </summary>
+        public static int[] AsteroidCollision(int[] asteroids)
+        {
+            var queue = new Stack<int>();
+            var result = new List<int>();
+
+            foreach (var asteroid in asteroids)
+            {
+                if (queue.Count == 0 && asteroid < 0)
+                {
+                    result.Add(asteroid);
+                }
+                else if (asteroid > 0)
+                {
+                    queue.Push(asteroid);
+                }
+                else if (asteroid < 0)
+                {
+                    while (queue.Count > 0)
+                    {
+                        var ast = queue.Pop();
+
+                        if (ast > Math.Abs(asteroid))
+                        {
+                            queue.Push(ast);
+                            break;
+                        }
+                        else if (ast == Math.Abs(asteroid))
+                        {
+                            break;
+                        }
+                        else if (queue.Count == 0)
+                        {
+                            result.Add(asteroid);
+                        }
+                    }
+                }
+            }
+
+            if (queue.Count > 0)
+            {
+                result.AddRange(queue.Reverse());
+            }
+
+            return result.ToArray();
+        }
+
+        /// <summary>
         /// 744. Find Smallest Letter Greater Than Target. Tags: Array, Binary Search
         /// </summary>
         public static char NextGreatestLetter(char[] letters, char target)
