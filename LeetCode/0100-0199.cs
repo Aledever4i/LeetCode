@@ -521,6 +521,37 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 167. Two Sum II - Input Array Is Sorted. Tags: Array, Two Pointers, Binary Search
+        /// </summary>
+        public static int[] TwoSum(int[] numbers, int target)
+        {
+            var dict = new Dictionary<int, int>();
+            for (int i = 0; i < numbers.Length; i++)
+            {
+                var v = numbers[i];
+                if (!dict.TryAdd(v, i))
+                {
+                    if (v * 2 == target)
+                    {
+                        return new int[] { i, i + 1 };
+                    }
+                }
+            }
+
+            for (int i = 0; i < numbers.Length; i++)
+            {
+                var v = numbers[i];
+
+                if (dict.TryGetValue(target - v, out int index))
+                {
+                    return new int[] { i + 1, index + 1 };
+                }
+            }
+
+            return new int[] { };
+        }
+
+        /// <summary>
         /// 172. Factorial Trailing Zeroes. Tags: Math
         /// </summary>
         public static int TrailingZeroes(int n)
