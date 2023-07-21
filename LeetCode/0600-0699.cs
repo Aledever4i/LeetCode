@@ -30,5 +30,20 @@ namespace LeetCode
 
             return maxValue / k;
         }
+
+        /// <summary>
+        /// 673. Number of Longest Increasing Subsequence
+        /// </summary>
+        public static int FindNumberOfLIS(int[] nums)
+        {
+            var n = nums.Length;
+
+            var lis = new int[n];
+            var count = new int[n];
+
+            var dp = new int[n];
+
+            return 0;
+        }
     }
 }

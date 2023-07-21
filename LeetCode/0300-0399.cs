@@ -64,6 +64,25 @@ namespace LeetCode
     public static class _0300_0399
     {
         /// <summary>
+        /// 300. Longest Increasing Subsequence
+        /// </summary>
+        public static int LengthOfLIS(int[] nums)
+        {
+            var n = nums.Length;
+            var dp = new int[n][];
+            for (int i = 0; i < n; i++)
+            {
+                dp[i] = new int[n];
+            }
+
+            for (int i = 0; i < n; i++)
+            {
+            }
+
+            return 0;
+        }
+
+        /// <summary>
         /// 338. Counting Bits. Tags: Dynamic Programming, Bit Manipulation
         /// </summary>
         public static int[] CountBits(int n)

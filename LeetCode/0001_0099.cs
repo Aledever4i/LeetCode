@@ -40,6 +40,14 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 
+        /// </summary>
+        public static int MaxArea(int[] height)
+        {
+            return 0;
+        }
+
+        /// <summary>
         /// 13. Roman to Integer
         /// </summary>
         public static int RomanToInt(string s)
