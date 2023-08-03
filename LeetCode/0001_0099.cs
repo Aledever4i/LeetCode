@@ -661,50 +661,25 @@ namespace LeetCode
         /// </summary>
         public static double MyPow(double x, long n)
         {
-            //if (n == 0)
-            //{
-            //    return 1;
-            //}
-            //else if (n < 0)
-            //{
-            //    return 1 / MyPow(x, -n);
-            //}
-            //else
-            //{
-            //    if (n % 2 == 0)
-            //    {
-            //        return MyPow(x * x, n / 2);
-            //    }
-            //    else
-            //    {
-            //        return x * MyPow(x * x, (n - 1) / 2);
-            //    }
-            //}
-
-            double value = (n < 0) ? 1 / Math.Abs(x) : Math.Abs(x);
             if (n == 0)
             {
                 return 1;
             }
-            else if (value == 1)
+            else if (n < 0)
             {
-                if (n % 2 == 1)
+                return 1 / MyPow(x, -n);
+            }
+            else
+            {
+                if (n % 2 == 0)
                 {
-                    return x;
+                    return MyPow(x * x, n / 2);
                 }
-
-                return Math.Abs(x);
+                else
+                {
+                    return x * MyPow(x * x, (n - 1) / 2);
+                }
             }
-
-            long pow = Math.Abs(n);
-            double result = value;
-
-            for (long i = 1; i < pow; i++)
-            {
-                result *= value;
-            }
-
-            return (x > 0 || (x < 0 && n % 2 == 0)) ? result : -result;
         }
 
         /// <summary>
@@ -920,6 +895,22 @@ namespace LeetCode
             //}
             //var filtered = dict.Where(value => value.Value <= (ulong)x);
             //return (int)filtered.Last().Key;
+        }
+
+        /// <summary>
+        /// 77. Combinations
+        /// </summary>
+        public static IList<IList<int>> Combine(int n, int k)
+        {
+            IList<IList<int>> result = new List<IList<int>>();
+
+            for (int i = 1; i <= n - k; i++)
+            {
+                var newElement = new List<int>();
+                var range = Enumerable.Range(i, k - 1 + i);
+            }
+
+            return result;
         }
 
         /// <summary>
