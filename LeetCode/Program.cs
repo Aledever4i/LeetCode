@@ -12,7 +12,7 @@ namespace LeetCode
     {
         static void Main(string[] args)
         {
-            var x = _0500_0599.Change(5, new int[] { 1, 2, 5 });
+            var x = _0300_0399.CoinChange(new int[] { 1, 2, 5 }, 11);
         }
     }
 }

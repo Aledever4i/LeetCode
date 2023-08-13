@@ -87,10 +87,43 @@ namespace LeetCode
         /// </summary>
         public static int CoinChange(int[] coins, int amount)
         {
-            var current = amount;
-            System.Array.Sort(coins, new Comparison<int>((i1, i2) => i2.CompareTo(i1)));
+            var n = coins.Length;
+            var dp = new int[n][];
 
-            return 0;
+            for (int i = 0; i < dp.Length; i++)
+            {
+                var value = new int[amount + 1];
+                System.Array.Fill(value, -1);
+                dp[i] = value;
+            }
+
+            var result = numberOfWays(0, amount);
+            if (result >= int.MaxValue - 1)
+            {
+                return -1;
+            }
+            return result;
+
+            int numberOfWays(int index, int remaining)
+            {
+                if (index == n || remaining < 0)
+                {
+                    return Int32.MaxValue - 1;
+                }
+                else if (dp[index][remaining] != -1)
+                {
+                    return dp[index][remaining];
+                }
+                else if (remaining == 0)
+                {
+                    return 0;
+                }
+
+                var op1 = numberOfWays(index, remaining - coins[index]) + 1;
+                var op2 = numberOfWays(index + 1, remaining);
+
+                return dp[index][remaining] = Math.Min(op1, op2);
+            }
         }
 
         /// <summary>
