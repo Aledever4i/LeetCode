@@ -72,14 +72,35 @@ namespace LeetCode
             var dp = new int[n][];
             for (int i = 0; i < n; i++)
             {
-                dp[i] = new int[n];
+                dp[i] = new int[n + 1];
+                System.Array.Fill(dp[i], -1);
             }
 
-            for (int i = 0; i < n; i++)
+            var longest = searchLongest(0, n);
+            return longest;
+
+            int searchLongest(int index, int lastPickIndex)
             {
-            }
+                if (index == n)
+                {
+                    return 0;
+                }
+                else if (dp[index][lastPickIndex] != -1)
+                {
+                    return dp[index][lastPickIndex];
+                }
 
-            return 0;
+                var currentValue = nums[index];
+                var lastPickValue = (lastPickIndex == n) ? int.MinValue : nums[lastPickIndex];
+                if (lastPickValue >= currentValue)
+                {
+                    return dp[index][lastPickIndex] = searchLongest(index + 1, lastPickIndex);
+                }
+                else
+                {
+                    return dp[index][lastPickIndex] = Math.Max(1 + searchLongest(index + 1, index), searchLongest(index + 1, lastPickIndex));
+                }
+            }
         }
 
         /// <summary>
