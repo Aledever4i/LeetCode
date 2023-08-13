@@ -513,6 +513,42 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 139. Word Break. Tags: Array, Hash Table, String, Dynamic Programming, Trie, Memoization
+        /// </summary>
+        public static bool WordBreak(string s, IList<string> wordDict)
+        {
+            var words = new HashSet<string>(wordDict);
+            var queue = new Queue<int>();
+            bool[] seen = new bool[s.Length + 1];
+            queue.Enqueue(0);
+
+            while (queue.Count > 0)
+            {
+                int start = queue.Dequeue();
+                if (start == s.Length)
+                {
+                    return true;
+                }
+
+                for (int end = start + 1; end <= s.Length; end++)
+                {
+                    if (seen[end])
+                    {
+                        continue;
+                    }
+
+                    if (words.Contains(s[start..end]))
+                    {
+                        queue.Enqueue(end);
+                        seen[end] = true;
+                    }
+                }
+            }
+
+            return false;
+        }
+
+        /// <summary>
         /// 151. Reverse Words in a String
         /// </summary>
         public static string ReverseWords(string s)

@@ -83,6 +83,17 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 322. Coin Change
+        /// </summary>
+        public static int CoinChange(int[] coins, int amount)
+        {
+            var current = amount;
+            System.Array.Sort(coins, new Comparison<int>((i1, i2) => i2.CompareTo(i1)));
+
+            return 0;
+        }
+
+        /// <summary>
         /// 338. Counting Bits. Tags: Dynamic Programming, Bit Manipulation
         /// </summary>
         public static int[] CountBits(int n)

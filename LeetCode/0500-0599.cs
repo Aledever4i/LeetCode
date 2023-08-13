@@ -9,6 +9,55 @@ namespace LeetCode
     public static class _0500_0599
     {
         /// <summary>
+        /// 518. Coin Change II
+        /// </summary>
+        public static int Change(int amount, int[] coins)
+        {
+            var n = coins.Length;
+            var dp = new int[n][];
+
+            for (int i = 0; i < dp.Length; i++)
+            {
+                var value = new int[amount + 1];
+                System.Array.Fill(value, -1);
+                dp[i] = value;
+            }
+
+            var result = numberOfWays(0, amount);
+
+            return result;
+
+            int numberOfWays(int index, int remaining)
+            {
+                if (remaining == 0)
+                {
+                    return 1;
+                }
+
+                if (index == n)
+                {
+                    return 0;
+                }
+
+                if (dp[index][remaining] != -1)
+                {
+                    return dp[index][remaining];
+                }
+
+                if (coins[index] > remaining)
+                {
+                    dp[index][remaining] = numberOfWays(index + 1, remaining);
+                }
+                else
+                {
+                    dp[index][remaining] = numberOfWays(index, remaining - coins[index]) + numberOfWays(index + 1, remaining);
+                }
+
+                return dp[index][remaining];
+            }
+        }
+
+        /// <summary>
         /// 530. Minimum Absolute Difference in BST. Tags: Tree, Depth-First Search, Breadth-First Search, Binary Search Tree, Binary Tree,
         /// </summary>
         public static int GetMinimumDifference(TreeNode root)

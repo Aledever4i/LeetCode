@@ -12,7 +12,7 @@ namespace LeetCode
     {
         static void Main(string[] args)
         {
-            var x = _0700_0799.AsteroidCollision(new int[] { 5, 10, -5 });
+            var x = _0500_0599.Change(5, new int[] { 1, 2, 5 });
         }
     }
 }
