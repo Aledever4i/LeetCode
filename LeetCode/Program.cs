@@ -12,7 +12,33 @@ namespace LeetCode
     {
         static void Main(string[] args)
         {
-            var x = _0300_0399.LengthOfLIS(new int[] { 10, 9, 2, 5, 3, 7, 101, 18 });
+            var x = new ListNode()
+            {
+                val = 1,
+                next = new ListNode()
+                {
+                    val = 4,
+                    next = new ListNode()
+                    {
+                        val = 3,
+                        next = new ListNode()
+                        {
+                            val = 2,
+                            next = new ListNode()
+                            {
+                                val = 5,
+                                next = new ListNode()
+                                {
+                                    val = 2,
+                                    next = null
+                                }
+                            }
+                        }
+                    }
+                }
+            };
+
+            var y = _0001_0099.Partition(x, 3);
         }
     }
 }

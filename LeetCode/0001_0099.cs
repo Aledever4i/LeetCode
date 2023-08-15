@@ -980,6 +980,74 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 86. Partition List
+        /// </summary>
+        public static ListNode Partition(ListNode head, int x)
+        {
+            var before = new Queue<ListNode>();
+            var after = new Queue<ListNode>();
+
+            if (head == null)
+            {
+                return new ListNode() { val = 0, next = null };
+            }
+
+            var current = head;
+            while (current != null)
+            {
+                if (current.val < x)
+                {
+                    before.Enqueue(current);
+                }
+                else
+                {
+                    after.Enqueue(current);
+                }
+
+                current = current.next;
+            }
+
+            ListNode resultHead = null;
+            ListNode result = null;
+
+            while (before.Count > 0)
+            {
+                var value = before.Dequeue();
+
+                if (result == null)
+                {
+                    result = value;
+                    resultHead = result;
+                }
+                else
+                {
+                    result.next = value;
+                    result = result.next;
+                }
+            }
+
+            while (after.Count > 0)
+            {
+                var value = after.Dequeue();
+
+                if (result == null)
+                {
+                    result = value;
+                    resultHead = result;
+                }
+                else
+                {
+                    result.next = value;
+                    result = result.next;
+                }
+            }
+
+            result.next = null;
+
+            return resultHead;
+        }
+
+        /// <summary>
         /// 88. Merge Sorted Array. Tags: Array, Two Pointers, Sorting
         /// </summary>
         /// <param name="nums1"></param>

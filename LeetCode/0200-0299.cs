@@ -92,6 +92,16 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 215. Kth Largest Element in an Array
+        /// </summary>
+        public static int FindKthLargest(int[] nums, int k)
+        {
+            System.Array.Sort(nums, new Comparison<int>((i1, i2) => i1.CompareTo(i2)));
+
+            return nums[nums.Length - k];
+        }
+
+        /// <summary>
         /// 219. Contains Duplicate II. Tags: Array, Hash Table, Sliding Window
         /// </summary>
         public static bool ContainsNearbyDuplicate(int[] nums, int k)
