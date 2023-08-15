@@ -989,7 +989,7 @@ namespace LeetCode
 
             if (head == null)
             {
-                return new ListNode() { val = 0, next = null };
+                return head;
             }
 
             var current = head;
