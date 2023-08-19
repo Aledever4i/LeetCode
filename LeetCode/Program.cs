@@ -38,7 +38,7 @@ namespace LeetCode
                 }
             };
 
-            var y = _0001_0099.Partition(x, 3);
+            var y = _0001_0099.MaxArea(new int[] { 2, 3, 4, 5, 18, 17, 6 });
         }
     }
 }

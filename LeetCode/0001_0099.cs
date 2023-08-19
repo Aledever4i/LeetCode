@@ -40,11 +40,29 @@ namespace LeetCode
         }
 
         /// <summary>
-        /// 
+        /// 11. Container With Most Water
         /// </summary>
         public static int MaxArea(int[] height)
         {
-            return 0;
+            var n = height.Length;
+            int left = 0, right = n - 1;
+            var result = 0;
+
+            while (left < right)
+            {
+                result = Math.Max(result, Math.Min(height[left], height[right]) * (right - left));
+
+                if (height[left] > height[right])
+                {
+                    right--;
+                }
+                else
+                {
+                    left++;
+                }
+            }
+
+            return result;
         }
 
         /// <summary>
