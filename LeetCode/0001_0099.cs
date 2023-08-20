@@ -711,6 +711,30 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 49. Group Anagrams
+        /// </summary>
+        public static IList<IList<string>> GroupAnagrams(string[] strs)
+        {
+            var dict = new Dictionary<string, List<string>>();
+
+            foreach (var str in strs)
+            {
+                var ordered = string.Concat(str.OrderBy(s => s).TakeWhile(char.IsLetter));
+
+                if (dict.ContainsKey(ordered))
+                {
+                    dict[ordered].Add(str);
+                }
+                else
+                {
+                    dict.Add(ordered, new List<string>() { str });
+                }
+            }
+
+            return dict.Keys.Select(key => (IList<string>)dict[key]).ToList();
+        }
+
+        /// <summary>
         /// 50. Pow(x, n). Tags: Math, Recursion
         /// </summary>
         public static double MyPow(double x, long n)
@@ -975,6 +999,14 @@ namespace LeetCode
                     index++;
                 }
             }
+        }
+
+        /// <summary>
+        /// 76. Minimum Window Substring
+        /// </summary>
+        public static string MinWindow(string s, string t)
+        {
+            return string.Empty;
         }
 
         /// <summary>
