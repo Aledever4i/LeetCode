@@ -38,7 +38,7 @@ namespace LeetCode
                 }
             };
 
-            var y = _0200_0299.MaxSlidingWindow(new int[] { 1, 3, -1, -3, 5, 3, 6, 7 }, 3);
+            var y = _0001_0099.Permute(new int[] { 0, 1 });
         }
     }
 }

@@ -711,6 +711,37 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 46. Permutations
+        /// </summary>
+        public static IList<IList<int>> Permute(int[] nums)
+        {
+            var result = new List<IList<int>>();
+
+            Backtrack(new List<int>(), result, nums);
+
+            return result;
+
+            void Backtrack(List<int> curr, List<IList<int>> ans, int[] nums)
+            {
+                if (curr.Count == nums.Length)
+                {
+                    ans.Add(new List<int>(curr));
+                    return;
+                }
+
+                foreach (int num in nums)
+                {
+                    if (!curr.Contains(num))
+                    {
+                        curr.Add(num);
+                        Backtrack(curr, ans, nums);
+                        curr.RemoveAt(curr.Count - 1);
+                    }
+                }
+            }
+        }
+
+        /// <summary>
         /// 49. Group Anagrams
         /// </summary>
         public static IList<IList<string>> GroupAnagrams(string[] strs)
