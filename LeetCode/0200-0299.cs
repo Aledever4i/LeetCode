@@ -268,6 +268,36 @@ namespace LeetCode
             return 0;
         }
 
+        public static void MoveZeroes(int[] nums)
+        {
+            var zeroCount = 0;
+            var nonZeroList = new List<int>();
+
+            foreach (var num in nums)
+            {
+                if (num != 0)
+                {
+                    nonZeroList.Add(num);
+                }
+                else
+                {
+                    zeroCount++;
+                }
+            }
+
+            int i = 0;
+            foreach (var num in nonZeroList)
+            {
+                nums[i] = num;
+                i++;
+            }
+
+            for (int y = i; y < nums.Length; y++)
+            {
+                nums[y] = 0;
+            }
+        }
+
         /// <summary>
         /// 290. Word Pattern. Tags: Hash Table, String
         /// </summary>
