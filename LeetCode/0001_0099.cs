@@ -12,6 +12,42 @@ namespace LeetCode
     public static class _0001_0099
     {
         /// <summary>
+        /// 3. Longest Substring Without Repeating Characters
+        /// </summary>
+        public static int LengthOfLongestSubstring(string s)
+        {
+            var chars = s.ToCharArray();
+            var n = chars.Length;
+            var dict = new HashSet<char>();
+
+            int left = 0, right = 0;
+            int longestLength = 0;
+
+            while (right < n)
+            {
+                var c = chars[right];
+
+                if (!dict.Contains(c))
+                {
+                    dict.Add(c);
+                    right++;
+                    longestLength = Math.Max(longestLength, dict.Count());
+                }
+                else
+                {
+                    while (dict.Contains(c))
+                    {
+                        var removeChar = chars[left];
+                        dict.Remove(removeChar);
+                        left++;
+                    }
+                }
+            }
+
+            return longestLength;
+        }
+
+        /// <summary>
         /// 6. Zigzag Conversion
         /// </summary>
         public static string ConvertZigZag(string s, int numRows)
@@ -913,6 +949,32 @@ namespace LeetCode
             //}
             //var filtered = dict.Where(value => value.Value <= (ulong)x);
             //return (int)filtered.Last().Key;
+        }
+
+        /// <summary>
+        /// 75. Sort Colors
+        /// </summary>
+        public static void SortColors(int[] nums)
+        {
+            var dict = new Dictionary<int, int>();
+            dict[0] = 0;
+            dict[1] = 0;
+            dict[2] = 0;
+
+            foreach (var num in nums)
+            {
+                dict[num]++;
+            }
+
+            var index = 0;
+            foreach (var v in dict.Keys)
+            {
+                for (int i = 0; i < dict[v]; i++)
+                {
+                    nums[index] = v;
+                    index++;
+                }
+            }
         }
 
         /// <summary>
