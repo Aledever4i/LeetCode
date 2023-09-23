@@ -173,7 +173,7 @@ namespace LeetCode
 
                 if (letters[mid] <= target)
                 {
-                    +0,s = mid + 1;
+                    s = mid + 1;
                 }
                 else
                 {
