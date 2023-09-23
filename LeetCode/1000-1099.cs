@@ -49,6 +49,14 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 1048. Longest String Chain
+        /// </summary>
+        public static int LongestStrChain(string[] words)
+        {
+            return 0;
+        }
+
+        /// <summary>
         /// 1091. Shortest Path in Binary Matrix. Tags: Array, Breadth-First Search, Matrix
         /// </summary>
         public static int ShortestPathBinaryMatrix(int[][] grid)

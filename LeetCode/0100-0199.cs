@@ -588,6 +588,27 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 168. Excel Sheet Column Title
+        /// </summary>
+        public static string ConvertToTitle(long columnNumber)
+        {
+            const string letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            var n = letters.Length;
+            var builder = new StringBuilder();
+            var redeem = columnNumber;
+
+            while (redeem / n > 0)
+            {
+                builder.Append(letters[(int)redeem / n - 1]);
+                redeem = redeem % n;
+            }
+
+            builder.Append(letters[(int)redeem - 1]);
+
+            return builder.ToString();
+        }
+
+        /// <summary>
         /// 172. Factorial Trailing Zeroes. Tags: Math
         /// </summary>
         public static int TrailingZeroes(int n)

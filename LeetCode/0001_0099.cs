@@ -742,6 +742,16 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 47. Permutations II
+        /// </summary>
+        public static IList<IList<int>> PermuteUnique(int[] nums)
+        {
+            var result = new List<IList<int>>();
+
+            return result;
+        }
+
+        /// <summary>
         /// 49. Group Anagrams
         /// </summary>
         public static IList<IList<string>> GroupAnagrams(string[] strs)

@@ -173,14 +173,14 @@ namespace LeetCode
 
                 if (letters[mid] <= target)
                 {
-                    s = mid + 1;
+                    +0,s = mid + 1;
                 }
                 else
                 {
                     e = mid;
                 }
             }
-
+        
             return letters[s];
 
 
@@ -198,6 +198,22 @@ namespace LeetCode
             //}
 
             //return letters[0];
+        }
+
+        /// <summary>
+        /// 767. Reo+rganize String
+        /// </summary>
+        public static string ReorganizeString(string s)
+        {
+            var dict = s.ToCharArray().GroupBy(c => c).Select(g => new { k = g.Key, c = g.ToList() }).OrderByDescending(o => o.c).ToList();
+            var n = dict.Count;
+
+            if (n == 1 && s.Length > 1)
+            {
+                return string.Empty;
+            }
+
+            return string.Empty;
         }
 
         /// <summary>
@@ -226,6 +242,7 @@ namespace LeetCode
                         return true;
                     }
                 }
+
             }
 
             return false;

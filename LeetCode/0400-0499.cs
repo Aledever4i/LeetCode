@@ -169,5 +169,35 @@ namespace LeetCode
 
             return result;
         }
+
+        /// <summary>
+        /// 459. Repeated Substring Pattern
+        /// </summary>
+        public static bool RepeatedSubstringPattern(string s)
+        {
+            var result = false;
+            var n = s.Length;
+
+            check(s[0]);
+
+            return result;
+
+            void check(int index)
+            {
+                if (index > n / 2)
+                {
+                    return;
+                }
+
+                var current = s[0..index];
+
+                for (int i = index; i < n; i += index)
+                {
+                    var indexEnd = i + index;
+
+                    var cheched = s[i..indexEnd];
+                }
+            }
+        }
     }
 }
