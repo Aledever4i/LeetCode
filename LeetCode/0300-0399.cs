@@ -261,6 +261,27 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 389. Find the Difference
+        /// </summary>
+        public static char FindTheDifference(string s, string t)
+        {
+            var sortedS = s.OrderBy(v => v);
+            var sortedT = t.OrderBy(v => v);
+
+            var count = sortedS.Count();
+
+            for (int i = 0; i < count; i++)
+            {
+                if (!sortedS.ElementAt(i).Equals(sortedT.ElementAt(i)))
+                {
+                    return sortedT.ElementAt(i);
+                }
+            }
+
+            return sortedT.ElementAt(count);
+        }
+
+        /// <summary>
         /// 392. Is Subsequence
         /// </summary>
         public static bool IsSubsequence(string s, string t)

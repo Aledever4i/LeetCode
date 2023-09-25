@@ -12,33 +12,7 @@ namespace LeetCode
     {
         static void Main(string[] args)
         {
-            var x = new ListNode()
-            {
-                val = 1,
-                next = new ListNode()
-                {
-                    val = 4,
-                    next = new ListNode()
-                    {
-                        val = 3,
-                        next = new ListNode()
-                        {
-                            val = 2,
-                            next = new ListNode()
-                            {
-                                val = 5,
-                                next = new ListNode()
-                                {
-                                    val = 2,
-                                    next = null
-                                }
-                            }
-                        }
-                    }
-                }
-            };
-
-            var y = _0001_0099.Permute(new int[] { 0, 1 });
+            var y = _1000_1099.LongestStrChain(new string[] { "a", "b", "ba", "bca", "bda", "bdca" });
         }
     }
 }

@@ -53,6 +53,10 @@ namespace LeetCode
         /// </summary>
         public static int LongestStrChain(string[] words)
         {
+            System.Array.Sort(words, (a, b) => { return a.Length - b.Length; });
+
+            var chainCount = new string[words.Length][];
+
             return 0;
         }
 
