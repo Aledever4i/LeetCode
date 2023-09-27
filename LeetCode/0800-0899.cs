@@ -189,81 +189,89 @@ namespace LeetCode
         /// 877. Stone Game. Tags: Array, Math, Dynamic Programming, Game Theory
         /// </summary>
         public static bool StoneGame(int[] piles)
+        {
+            int count = piles.Length;
+
+            var dp = new int[count + 2][];
+            for (int y = 0; y < count + 2; y++)
             {
-                int count = piles.Length;
+                dp[y] = new int[count + 2];
+            }
 
-                var dp = new int[count + 2][];
-                for (int y = 0; y < count + 2; y++)
+            var first = 0;
+            var second = 0;
+            var step = 0;
+
+            for (int x = 0, y = count - 1; step < count; step++)
+            {
+                var who = (x + y % 2);
+                var left1 = piles[x] + GetMAxPoint(x + 2, y);
+                var right = piles[y] + GetMAxPoint(x, y - 2);
+
+                if (left1 > right)
                 {
-                    dp[y] = new int[count + 2];
-                }
-
-                var first = 0;
-                var second = 0;
-                var step = 0;
-
-                for (int x = 0, y = count - 1; step < count; step++)
-                {
-                    var who = (x + y % 2);
-                    var left1 = piles[x] + GetMAxPoint(x + 2, y);
-                    var right = piles[y] + GetMAxPoint(x, y - 2);
-
-                    if (left1 > right)
+                    if (who == 1)
                     {
-                        if (who == 1)
-                        {
-                            first += piles[x];
-                        }
-                        else
-                        {
-                            second += piles[x];
-                        }
-                        x = x + 1;
+                        first += piles[x];
                     }
                     else
                     {
-                        if (who == 1)
-                        {
-                            first += piles[y];
-                        }
-                        else
-                        {
-                            second += piles[y];
-                        }
-                        y = y - 1;
+                        second += piles[x];
                     }
+                    x = x + 1;
                 }
-
-                return first > second;
-
-                int GetMAxPoint(int x, int y)
+                else
                 {
-                    if (x > y || y < x || x < 0 || y < 0)
+                    if (who == 1)
                     {
-                        return 0;
-                    }
-
-                    if (dp[x][y] > 0)
-                    {
-                        return dp[x][y];
-                    }
-
-                    if (x == y || Math.Abs(x - y) == 1)
-                    {
-                        dp[x][y] = Math.Max(piles[x], piles[y]);
-
-                        return dp[x][y];
+                        first += piles[y];
                     }
                     else
                     {
-                        var left1 = piles[x] + GetMAxPoint(x + 2, y);
-                        var right2 = piles[y] + GetMAxPoint(x, y - 2);
-                    
-                        dp[x][y] = Math.Max(left1, right2);
+                        second += piles[y];
                     }
+                    y = y - 1;
+                }
+            }
+
+            return first > second;
+
+            int GetMAxPoint(int x, int y)
+            {
+                if (x > y || y < x || x < 0 || y < 0)
+                {
+                    return 0;
+                }
+
+                if (dp[x][y] > 0)
+                {
+                    return dp[x][y];
+                }
+
+                if (x == y || Math.Abs(x - y) == 1)
+                {
+                    dp[x][y] = Math.Max(piles[x], piles[y]);
 
                     return dp[x][y];
                 }
+                else
+                {
+                    var left1 = piles[x] + GetMAxPoint(x + 2, y);
+                    var right2 = piles[y] + GetMAxPoint(x, y - 2);
+                    
+                    dp[x][y] = Math.Max(left1, right2);
+                }
+
+                return dp[x][y];
             }
+        }
+
+        /// <summary>
+        /// 880. Decoded String at Index
+        /// </summary>
+        public static string DecodeAtIndex(string s, int k)
+        {
+            return string.Empty;
+        }
     }
 }

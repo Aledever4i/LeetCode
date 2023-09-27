@@ -33,6 +33,47 @@ namespace LeetCode
 
     public static class _1600_1699
     {
+        /// <summary>
+        /// 1658. Minimum Operations to Reduce X to Zero
+        /// </summary>
+        public static int MinOperations(int[] nums, int x)
+        {
+            var n = nums.Length;
+            var leftStack = new Stack<int>();
+            var tempSum = 0;
+            var leftIter = 0;
+            var result = -1;
 
+            while (tempSum < x && leftIter < n)
+            {
+                var leftValue = nums[leftIter];
+                tempSum += leftValue;
+                leftStack.Push(leftValue);
+                leftIter++;
+            }
+
+            if (leftIter == n)
+            {
+                return -1;
+            }
+
+            if (tempSum == 0)
+            {
+                result = leftIter;
+            }
+
+            for (int i = 0; i < leftIter; i++)
+            {
+                tempSum -= leftStack.Pop();
+                tempSum += nums[n - 1 - i];
+
+                if (tempSum == 0)
+                {
+                    result = Math.Min(result, leftIter );
+                }
+            }
+
+            return result;
+        }
     }
 }
