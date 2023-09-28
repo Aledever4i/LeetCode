@@ -12,7 +12,7 @@ namespace LeetCode
     {
         static void Main(string[] args)
         {
-            var y = _1000_1099.LongestStrChain(new string[] { "a", "b", "ba", "bca", "bda", "bdca" });
+            var y = _0001_0099.Reverse(1534236469);
         }
     }
 }
