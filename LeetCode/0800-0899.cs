@@ -273,5 +273,25 @@ namespace LeetCode
         {
             return string.Empty;
         }
+
+        /// <summary>
+        /// 896. Monotonic Array
+        /// </summary>
+        public static bool IsMonotonic(int[] nums)
+        {
+            var inc = nums.OrderBy(x => x);
+            if (Enumerable.SequenceEqual(nums, inc))
+            {
+                return true;
+            }
+
+            var descr = nums.OrderByDescending(x => x);
+            if (Enumerable.SequenceEqual(nums, descr))
+            {
+                return true;
+            }
+
+            return false;
+        }
     }
 }
