@@ -12,7 +12,7 @@ namespace LeetCode
     {
         static void Main(string[] args)
         {
-            var y = _0001_0099.Reverse(1534236469);
+            var y = _0400_0499.Find132pattern(new[] { 1, 3, 2, 4, 5, 6, 7, 8, 9, 10 });
         }
     }
 }

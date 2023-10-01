@@ -171,6 +171,43 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 456. 132 Pattern
+        /// </summary>
+        public static bool Find132pattern(int[] nums)
+        {
+            var n = nums.Length;
+            if (n < 3)
+            {
+                return false;
+            }
+            var stack = new Stack<int>();
+            int[] min = new int[n];
+            min[0] = nums[0];
+            for (int i = 1; i < n; i++)
+            {
+                min[i] = Math.Min(min[i - 1], nums[i]);
+            }
+            for (int j = n - 1; j >= 0; j--)
+            {
+                if (nums[j] > min[j])
+                {
+                    while (stack.Count > 0 && stack.Peek() <= min[j])
+                    {
+                        stack.Pop();
+
+                    }
+                    if (stack.Count > 0 && stack.Peek() < nums[j])
+                    {
+                        return true;
+                    }
+
+                    stack.Push(nums[j]);
+                }
+            }
+            return false;
+        }
+
+        /// <summary>
         /// 459. Repeated Substring Pattern
         /// </summary>
         public static bool RepeatedSubstringPattern(string s)
