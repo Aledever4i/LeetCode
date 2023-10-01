@@ -156,5 +156,15 @@ namespace LeetCode
                 }
             }
         }
+
+        /// <summary>
+        /// 557. Reverse Words in a String III
+        /// </summary>
+        public static string ReverseWords(string s)
+        {
+            var words = s.Split(" ");
+            var reversedWords = words.Select(word => string.Join("", word.Reverse()));
+            return string.Join(" ", reversedWords);
+        }
     }
 }
