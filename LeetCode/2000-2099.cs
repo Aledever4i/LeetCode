@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace LeetCode
 {
@@ -67,6 +69,102 @@ namespace LeetCode
             maxSum = Math.Max(maxSum, right - left);
 
             return maxSum;
+        }
+
+        /// <summary>
+        /// 2038. Remove Colored Pieces if Both Neighbors are the Same Color
+        /// </summary>
+        public static bool WinnerOfGame(string colors)
+        {
+            var aliceMoves = 0;
+            var bobMoves = 0;
+            var n = colors.Length;
+
+            if (n <= 2)
+            {
+                return false;
+            }
+
+            var aliceIndexes = new Queue<int>();
+            var bobIndexes = new Queue<int>();
+
+            for (int i = 0; i < n; i++)
+            {
+                var color = colors[i];
+
+                if (color == 'A')
+                {
+                    aliceIndexes.Enqueue(i);
+                }
+                else
+                {
+                    bobIndexes.Enqueue(i);
+                }
+            }
+
+            int prevIndex;
+            int prevCount;
+
+            if (aliceIndexes.Any())
+            {
+                prevIndex = aliceIndexes.Dequeue();
+                prevCount = 1;
+
+                while (aliceIndexes.Count > 0)
+                {
+                    var index = aliceIndexes.Dequeue();
+
+                    if (prevIndex + 1 == index)
+                    {
+                        prevIndex = index;
+                        prevCount++;
+                    }
+                    else
+                    {
+                        aliceMoves += (prevCount > 2) ? prevCount - 2 : 0;
+                        prevCount = 1;
+                        prevIndex = index;
+                    }
+                }
+
+                aliceMoves += (prevCount > 2) ? prevCount - 2 : 0;
+            }
+            else
+            {
+                return false;
+            }
+
+            if (aliceMoves == 0)
+            {
+                return false;
+            }
+
+            if (bobIndexes.Any())
+            {
+                prevIndex = bobIndexes.Dequeue();
+                prevCount = 1;
+
+                while (bobIndexes.Count > 0)
+                {
+                    var index = bobIndexes.Dequeue();
+
+                    if (prevIndex + 1 == index)
+                    {
+                        prevIndex = index;
+                        prevCount++;
+                    }
+                    else
+                    {
+                        bobMoves += (prevCount > 2) ? prevCount - 2 : 0;
+                        prevCount = 1;
+                        prevIndex = index;
+                    }
+                }
+
+                bobMoves += (prevCount > 2) ? prevCount - 2 : 0;
+            }
+
+            return (aliceMoves > bobMoves);
         }
 
         /// <summary>
