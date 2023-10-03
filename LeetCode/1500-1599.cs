@@ -35,6 +35,42 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 1512. Number of Good Pairs
+        /// </summary>
+        public static int NumIdenticalPairs(int[] nums)
+        {
+            var n = nums.Length;
+            var counts = new int[100];
+            var fibCount = new int[n + 1];
+            fibCount[0] = 0;
+            fibCount[1] = 0;
+
+            if (n < 2)
+            {
+                return 0;
+            }
+
+            for (int i = 2; i < n + 1; i++)
+            {
+                fibCount[i] = fibCount[i - 1] + i - 1;
+            }
+
+            var result = 0;
+
+            foreach (var num in nums)
+            {
+                counts[num]++;
+            }
+
+            foreach (var count in counts.Where(val => val > 1))
+            {
+                result += fibCount[count];
+            }
+
+            return result;
+        }
+
+        /// <summary>
         /// 1558. Minimum Numbers of Function Calls to Make Target Array. Graph
         /// </summary>
         /// <param name="n"></param>

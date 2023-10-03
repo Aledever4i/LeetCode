@@ -12,7 +12,7 @@ namespace LeetCode
     {
         static void Main(string[] args)
         {
-            var y = _2000_2099.WinnerOfGame("ABAAA");
+            var y = _1500_1599.NumIdenticalPairs(new int[] { 1, 1, 1, 1, 1, 1 });
         }
     }
 }
