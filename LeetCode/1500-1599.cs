@@ -40,7 +40,7 @@ namespace LeetCode
         public static int NumIdenticalPairs(int[] nums)
         {
             var n = nums.Length;
-            var counts = new int[100];
+            var counts = new int[101];
             var fibCount = new int[n + 1];
             fibCount[0] = 0;
             fibCount[1] = 0;

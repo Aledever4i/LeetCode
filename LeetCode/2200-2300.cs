@@ -7,6 +7,33 @@ namespace LeetCode
     public static class _2200_2300
     {
         /// <summary>
+        /// 2259. Remove Digit From Number to Maximize Result
+        /// </summary>
+        public static string RemoveDigit(string number, char digit)
+        {
+            var lastIndex = -1;
+            for (int i = 0; i < number.Length; i++)
+            {
+                var currentChar = number[i];
+                if (currentChar == digit)
+                {
+                    lastIndex = i;
+
+                    if (i + 1 < number.Length)
+                    {
+                        var nextChar = number[i + 1];
+                        if (currentChar != nextChar && char.GetNumericValue(currentChar) < char.GetNumericValue(nextChar))
+                        {
+                            break;
+                        }
+                    }
+                }
+            }
+
+            return number.Remove(lastIndex, 1);
+        }
+
+        /// <summary>
         /// 2272. Substring With Largest Variance
         /// </summary>
         public static int LargestVariance(string s)

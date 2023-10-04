@@ -12,7 +12,7 @@ namespace LeetCode
     {
         static void Main(string[] args)
         {
-            var y = _1500_1599.NumIdenticalPairs(new int[] { 1, 1, 1, 1, 1, 1 });
+            var y = _2200_2300.RemoveDigit("123", '3');
         }
     }
 }
