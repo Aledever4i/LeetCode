@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Metrics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -140,6 +141,60 @@ namespace LeetCode
 
 
             return true;
+        }
+
+        /// <summary>
+        /// 229. Majority Element II
+        /// </summary>
+        public static IList<int> MajorityElement(int[] nums)
+        {
+            var n1 = int.MinValue;
+            var n1count = 0;
+
+            var n2 = int.MinValue;
+            var n2count = 0;
+
+            foreach (int num in nums)
+            {
+                if (num == n1)
+                {
+                    n1count++;
+                }
+                else if (num == n2)
+                {
+                    n2count++;
+                }
+                else if (n1count == 0)
+                {
+                    n1 = num;
+                    n1count = 1;
+                }
+                else if (n2count == 0)
+                {
+                    n2 = num;
+                    n2count = 1;
+                }
+                else
+                {
+                    n1count--;
+                    n2count--;
+                }
+            }
+
+            n1count = n2count = 0;
+            foreach (int num in nums)
+            {
+                if (num == n1) n1count++;
+                if (num == n2) n2count++;
+            }
+
+            int threshold = nums.Length / 3;
+
+            IList<int> result = new List<int>();
+            if (n1count > threshold) result.Add(n1);
+            if (n2count > threshold && n1 != n2) result.Add(n2);
+
+            return result;
         }
 
         /// <summary>

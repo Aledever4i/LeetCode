@@ -12,7 +12,7 @@ namespace LeetCode
     {
         static void Main(string[] args)
         {
-            var y = _2200_2300.RemoveDigit("123", '3');
+            var y = _0200_0299.MajorityElement(new int[] { 2, 2, 1, 3 });
         }
     }
 }

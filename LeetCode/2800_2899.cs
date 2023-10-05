@@ -44,5 +44,52 @@ namespace LeetCode
                 return max;
             }
         }
+
+        /// <summary>
+        /// 2873. Maximum Value of an Ordered Triplet I
+        /// </summary>
+        public static long MaximumTripletValue(int[] nums)
+        {
+            var n = nums.Length;
+            var result = 0;
+
+            if (n == 3)
+            {
+                result = (nums[0] - nums[1]) * nums[2];
+            }
+            else
+            {
+                var stack = new Stack<int>();
+                int[] min = new int[n];
+
+                min[0] = nums[0];
+                for (int i = 1; i < n; i++)
+                {
+                    min[i] = Math.Min(min[i - 1], nums[i]);
+                }
+                for (int j = n - 1; j >= 0; j--)
+                {
+                    if (nums[j] > min[j])
+                    {
+                        while (stack.Count > 0 && stack.Peek() <= min[j])
+                        {
+                            stack.Pop();
+
+                        }
+                        if (stack.Count > 0 && stack.Peek() < nums[j])
+                        {
+                            return 0;
+                        }
+
+                        stack.Push(nums[j]);
+                    }
+                }
+
+            }
+
+
+
+            return (result < 0) ? 0 : result;
+        }
     }
 }

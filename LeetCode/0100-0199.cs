@@ -609,6 +609,40 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 169. Majority Element
+        /// </summary>
+        public static int MajorityElement(int[] nums)
+        {
+            var l = nums.Length;
+
+            if (l == 1)
+            {
+                return nums[0];
+            }
+
+            var dict = new Dictionary<int, int>();
+
+            foreach (var num in nums)
+            {
+                if (!dict.TryGetValue(num, out int value))
+                {
+                    dict[num] = 1;
+                }
+
+                value += 1;
+
+                if (value > l / 2)
+                {
+                    return num;
+                }
+
+                dict[num] = value;
+            }
+
+            throw new Exception();
+        }
+
+        /// <summary>
         /// 172. Factorial Trailing Zeroes. Tags: Math
         /// </summary>
         public static int TrailingZeroes(int n)
