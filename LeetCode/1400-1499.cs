@@ -9,6 +9,62 @@ namespace LeetCode
     public static class _1400_1499
     {
         /// <summary>
+        /// 1420. Build Array Where You Can Find The Maximum Exactly K Comparisons
+        /// </summary>
+        public static int NumOfArrays(int n, int m, int k)
+        {
+            int MOD = (int)1e9 + 7;
+
+            var memo = new int[n][][]; // new int[n][m + 1][k + 1];
+            for (int i = 0; i < n; i++)
+            {
+                for (int j = 0; j <= m; j++)
+                {
+                    System.Array.Fill(memo[i][j], -1);
+                }
+            }
+
+            return dp(0, 0, k);
+
+            int dp(int i, int maxSoFar, int remain)
+            {
+                if (i == n)
+                {
+                    if (remain == 0)
+                    {
+                        return 1;
+                    }
+
+                    return 0;
+                }
+
+                if (remain < 0)
+                {
+                    return 0;
+                }
+
+                if (memo[i][maxSoFar][remain] != -1)
+                {
+                    return memo[i][maxSoFar][remain];
+                }
+
+                int ans = 0;
+                for (int num = 1; num <= maxSoFar; num++)
+                {
+                    ans = (ans + dp(i + 1, maxSoFar, remain)) % MOD;
+                }
+
+                for (int num = maxSoFar + 1; num <= m; num++)
+                {
+                    ans = (ans + dp(i + 1, num, remain - 1)) % MOD;
+                }
+
+                memo[i][maxSoFar][remain] = ans;
+                return ans;
+            }
+        }
+
+        /// <summary>
         /// 1456. Maximum Number of Vowels in a Substring of Given Length
         /// </summary>
         public static int MaxVowels(string s, int k)

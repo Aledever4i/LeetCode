@@ -7,6 +7,44 @@ namespace LeetCode
     public static class _2200_2300
     {
         /// <summary>
+        /// 2251. Number of Flowers in Full Bloom
+        /// </summary>
+        public static int[] FullBloomFlowers(int[][] flowers, int[] people)
+        {
+            int[] sortedPeople = people.OrderBy(v => v).ToArray();
+            System.Array.Sort(flowers, (a, b) => a[0].CompareTo(b[0]));
+
+            var dict = new Dictionary<int, int>();
+            var queue = new PriorityQueue<int, int>();
+
+            int i = 0;
+
+            foreach (var person in sortedPeople)
+            {
+                while (i < flowers.Length && flowers[i][0] <= person)
+                {
+                    queue.Enqueue(flowers[i][1], flowers[i][1]);
+                    i++;
+                }
+
+                while (queue.Count > 0 && queue.Peek() < person)
+                {
+                    queue.Dequeue();
+                }
+
+                dict[person] = queue.Count;
+            }
+
+
+            var result = new List<int>();
+            foreach (var person in people)
+            {
+                result.Add(dict[person]);
+            }
+            return result.ToArray();
+        }
+
+        /// <summary>
         /// 2259. Remove Digit From Number to Maximize Result
         /// </summary>
         public static string RemoveDigit(string number, char digit)

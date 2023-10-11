@@ -12,7 +12,10 @@ namespace LeetCode
     {
         static void Main(string[] args)
         {
-            var y = _0200_0299.MajorityElement(new int[] { 2, 2, 1, 3 });
+            var flowers = new int[3][] { new int[] {19, 37 }, new int[] { 19, 38 }, new int[] { 19, 35 } };
+            var people = new int[] { 6, 7, 21, 1, 13, 37, 5, 37, 46, 43 };
+
+            var y = _2200_2300.FullBloomFlowers(flowers, people);
         }
     }
 }
