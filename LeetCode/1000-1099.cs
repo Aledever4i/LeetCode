@@ -150,5 +150,79 @@ namespace LeetCode
             }
         }
 
+        /// <summary>
+        /// 1095. Find in Mountain Array
+        /// </summary>
+        public static int FindInMountainArray(int target, IMountainArray mountainArr)
+        {
+            int len = mountainArr.Length();
+
+            var left = 0;
+            var right = len - 1;
+
+            while (left != right)
+            {
+                var mid = (int)(left + right) / 2;
+                if (mountainArr.Get(mid) < mountainArr.Get(mid + 1))
+                {
+                    left = mid + 1;
+                }
+                else
+                {
+                    right = mid;
+                }
+            }
+
+            int peak = left;
+            left = 0;
+            right = peak;
+
+            while (left != right)
+            {
+                var mid = (int)(left + right) / 2;
+                if (mountainArr.Get(mid) < target)
+                {
+                    left = mid + 1;
+                }
+                else
+                {
+                    right = mid;
+                }
+            }
+
+            if (mountainArr.Get(left) == target)
+            {
+                return left;
+            }
+
+            left = peak + 1;
+            right = len - 1;
+
+            while (left != right)
+            {
+                var mid = (int)(left + right) / 2;
+                if (mountainArr.Get(mid) > target)
+                {
+                    left = mid + 1;
+                }
+                else
+                {
+                    right = mid;
+                }
+            }
+
+            if (mountainArr.Get(left) == target)
+            {
+                return left;
+            }
+
+            return -1;
+        }
+    }
+
+    public interface IMountainArray
+    {
+        public int Get(int index);
+        public int Length();
     }
 }
