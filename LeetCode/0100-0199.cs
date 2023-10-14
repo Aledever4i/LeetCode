@@ -16,6 +16,61 @@ namespace LeetCode
     public static class _0100_0199
     {
         /// <summary>
+        /// 100. Same Tree
+        /// </summary>
+        public static bool IsSameTree(TreeNode p, TreeNode q)
+        {
+            var p1 = new List<int?>();
+            var p2 = new List<int?>();
+
+            analyzeTree(p, p1);
+            analyzeTree(q, p2);
+
+            void analyzeTree(TreeNode p, List<int?> values)
+            {
+                if (p == null)
+                {
+                    return;
+                }
+
+                values.Add(p.val);
+
+                if (p.left != null)
+                {
+                    analyzeTree(p.left, values);
+                }
+                else
+                {
+                    values.Add(null);
+                }
+
+                if (p.right != null)
+                {
+                    analyzeTree(p.right, values);
+                }
+                else
+                {
+                    values.Add(null);
+                }
+            }
+
+            if (p1.Count != p2.Count)
+            {
+                return false;
+            }
+
+            for (int i = 0; i < p1.Count; i++)
+            {
+                if (p1.ElementAt(i) != p2.ElementAt(i))
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        /// <summary>
         /// 104. Maximum Depth of Binary Tree. Tags: Tree, Depth-First Search, Breadth-First Search, Binary Tree
         /// </summary>
         public static int MaxDepth(TreeNode root)

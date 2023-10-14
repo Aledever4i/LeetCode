@@ -201,6 +201,35 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 746. Min Cost Climbing Stairs
+        /// </summary>
+        public static int MinCostClimbingStairs(int[] cost)
+        {
+            var result = 0;
+            var n = cost.Length;
+            var dp = new int?[n];
+
+            return Math.Min(GetMinStep(0), GetMinStep(1));
+
+            int GetMinStep(int startIndex)
+            {
+                if (startIndex >= n)
+                {
+                    return 0;
+                }
+
+                if (dp[startIndex].HasValue)
+                {
+                    return dp[startIndex].Value;
+                }
+
+                dp[startIndex] = cost[startIndex] + Math.Min(GetMinStep(startIndex + 1), GetMinStep(startIndex + 2));
+
+                return dp[startIndex].Value;
+            }
+        }
+
+        /// <summary>
         /// 767. Reo+rganize String
         /// </summary>
         public static string ReorganizeString(string s)
