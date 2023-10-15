@@ -69,5 +69,56 @@ namespace LeetCode
 
             return !coordinates.Any(coordinate => (coordinate[0] - point1X) / (point2X - point1X) != (coordinate[1] - point1Y) / (point2Y - point1Y));
         }
+
+        /// <summary>
+        /// 1269. Number of Ways to Stay in the Same Place After Some Steps
+        /// </summary>
+        public static int NumWays(int steps, int arrLen)
+        {
+            var modulo = 1000000007;
+            var dp = new double[steps][];
+            for (int i = 0; i < steps; i++)
+            {
+                dp[i] = new double[steps + 1];
+            }
+
+            var result = checkMove(0, steps);
+            return (int)result;
+
+            double checkMove(int position, int remain)
+            {
+                if (position >= arrLen)
+                {
+                    return 0;
+                }
+
+                if (position < 0)
+                {
+                    return 0;
+                }
+
+                if (position > remain)
+                {
+                    return 0;
+                }
+
+                if (dp[position][remain] != 0)
+                {
+                    return dp[position][remain];
+                }
+
+                if (position == 0 && remain == 0)
+                {
+                    return 1;
+                }
+
+                dp[position][remain] += checkMove(position, remain - 1) % modulo;
+                dp[position][remain] += checkMove(position + 1, remain - 1) % modulo;
+                dp[position][remain] += checkMove(position - 1, remain - 1) % modulo;
+                dp[position][remain] %= modulo;
+
+                return dp[position][remain];
+            }
+        }
     }
 }

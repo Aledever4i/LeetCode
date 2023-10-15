@@ -17,7 +17,7 @@ namespace LeetCode
                 new int[3] { 12345, 1, 2 },
             };
 
-            var result = _367.ConstructProductMatrix(m);
+            var result = _1200_1299.NumWays(27, 7);
 
             Console.WriteLine(result);
         }
