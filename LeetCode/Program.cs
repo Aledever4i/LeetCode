@@ -1,4 +1,5 @@
 ﻿using LeetCode.Array;
+using LeetCode.Contest;
 using LeetCode.Dynamic_Programming;
 using LeetCode.Matrix;
 using LeetCode.String;
@@ -12,10 +13,13 @@ namespace LeetCode
     {
         static void Main(string[] args)
         {
-            _0100_0199.IsSameTree(new TreeNode(1), new TreeNode(1));
+            var m = new int[1][] {
+                new int[3] { 12345, 1, 2 },
+            };
 
-            var flowers = new int[3][] { new int[] {19, 37 }, new int[] { 19, 38 }, new int[] { 19, 35 } };
-            var people = new int[] { 6, 7, 21, 1, 13, 37, 5, 37, 46, 43 };
+            var result = _367.ConstructProductMatrix(m);
+
+            Console.WriteLine(result);
         }
     }
 }
