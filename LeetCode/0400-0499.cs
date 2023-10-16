@@ -171,6 +171,24 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 455. Assign Cookies
+        /// </summary>
+        public static int FindContentChildren(int[] g, int[] s)
+        {
+            System.Array.Sort(s, (a, b) => b.CompareTo(a));
+            System.Array.Sort(g, (a, b) => b.CompareTo(a));
+
+            var result = 0;
+
+            foreach (var cookie in s)
+            {
+
+            }
+
+            return 0;
+        }
+
+        /// <summary>
         /// 456. 132 Pattern
         /// </summary>
         public static bool Find132pattern(int[] nums)
