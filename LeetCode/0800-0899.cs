@@ -75,6 +75,36 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 844. Backspace String Compare
+        /// </summary>
+        public static bool BackspaceCompare(string s, string t)
+        {
+            return Sanitaze(s).Equals(Sanitaze(t));
+
+            string Sanitaze(string s)
+            {
+                var stack = new Stack<char>();
+
+                foreach (var c in s)
+                {
+                    if (c == '#')
+                    {
+                        if (stack.Count > 0)
+                        {
+                            stack.Pop();
+                        }
+                    }
+                    else
+                    {
+                        stack.Push(c);
+                    }
+                }
+
+                return new string(stack.ToArray());
+            }
+        }
+
+        /// <summary>
         /// 859. Buddy Strings. Tags: Hash Table, String
         /// </summary>
         public static bool BuddyStrings(string s, string goal)

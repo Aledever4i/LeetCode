@@ -13,11 +13,7 @@ namespace LeetCode
     {
         static void Main(string[] args)
         {
-            var m = new int[1][] {
-                new int[3] { 12345, 1, 2 },
-            };
-
-            var result = _1200_1299.NumWays(27, 7);
+            var result = _0800_0899.BackspaceCompare("y#fo##f", "y#f#o##f");
 
             Console.WriteLine(result);
         }

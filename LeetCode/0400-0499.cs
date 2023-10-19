@@ -179,13 +179,30 @@ namespace LeetCode
             System.Array.Sort(g, (a, b) => b.CompareTo(a));
 
             var result = 0;
+            int indexG = 0;
+            int indexS = 0;
 
-            foreach (var cookie in s)
+            var nG = g.Length;
+            var nS = s.Length;
+
+            while (indexG < nG && indexS < nS)
             {
+                var vG = g[indexG];
+                var vS = s[indexS];
 
+                if (vS >= vG)
+                {
+                    result++;
+                    indexG++;
+                    indexS++;
+                }
+                else
+                {
+                    indexG++;
+                }
             }
 
-            return 0;
+            return result;
         }
 
         /// <summary>
