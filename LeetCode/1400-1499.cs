@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -185,6 +186,126 @@ namespace LeetCode
             if (!hasOtherNumber)
             {
                 return (result - 1 <= 0) ? 0 : result - 1;
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// 1494. Parallel Courses II
+        /// доделать
+        /// </summary>
+        public static int MinNumberOfSemesters(int n, int[][] relations, int k)
+        {
+            var waiting = new Dictionary<int, List<int>>();
+
+            var priorityLen = new Dictionary<int, int>();
+            var priorityCost = new Dictionary<int, int>();
+
+            var visited = new HashSet<int>();
+            
+
+            for (int i = 1; i <= n; i++)
+            {
+                waiting[i] = new List<int>();
+            }
+
+            foreach (var relation in relations)
+            {
+                var prev = relation[0];
+                var next = relation[1];
+
+                waiting[next].Add(prev);
+                
+                calculatePriorityLen(prev);
+                calculatePriorityCost(prev);
+            }
+
+            for (int i = 1; i <= n; i++)
+            {
+                if (!priorityLen.ContainsKey(i))
+                {
+                    priorityLen.Add(i, 0);
+                }
+
+                if (!priorityCost.ContainsKey(i))
+                {
+                    priorityCost.Add(i, 0);
+                }
+            }
+
+            var result = 0;
+
+            while (visited.Count < n)
+            {
+                result++;
+
+                var nonVisitedCourses =
+                    waiting
+                        .Where(w => !visited.Contains(w.Key))
+                        .Where(w => !w.Value.Except(visited.ToArray()).Any());
+
+                var prioritized =
+                    from non in nonVisitedCourses
+                    orderby priorityLen[non.Key] descending
+                    select new
+                    {
+                        Value = non.Key,
+                        Rank = (
+                            from o in nonVisitedCourses
+                            where priorityLen[o.Key] > priorityLen[non.Key]
+                            select o
+                        ).Count() + 1
+                    };
+
+
+                var withMaxLen =
+                    prioritized
+                    .Where(p => p.Rank <= k)
+                    .OrderByDescending(v => priorityCost[v.Value])
+                    .Take(k)
+                    .Select(v => v.Value);
+
+                foreach (var visit in withMaxLen)
+                {
+                    visited.Add(visit);
+                }
+            }
+
+            int calculatePriorityLen(int course)
+            {
+                if (priorityLen.ContainsKey(course))
+                {
+                    return priorityLen[course];
+                }
+
+                var maxLen = 0;
+                foreach (var relation in relations.Where(r => r[0] == course).Select(r => r[1]))
+                {
+                    maxLen = Math.Max(maxLen, calculatePriorityLen(relation) + 1);
+                }
+
+                priorityLen.Add(course, maxLen);
+
+                return priorityLen[course];
+            }
+
+            int calculatePriorityCost(int course)
+            {
+                if (priorityCost.ContainsKey(course))
+                {
+                    return priorityCost[course];
+                }
+
+                var maxLen = 1;
+                foreach (var relation in relations.Where(r => r[0] == course).Select(r => r[1]))
+                {
+                    maxLen += calculatePriorityLen(relation);
+                }
+
+                priorityCost.Add(course, maxLen);
+
+                return priorityCost[course];
             }
 
             return result;
