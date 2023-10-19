@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Xml.Linq;
 
 namespace LeetCode
 {
@@ -165,6 +166,61 @@ namespace LeetCode
             }
 
             return (aliceMoves > bobMoves);
+        }
+
+        /// <summary>
+        /// 2050. Parallel Courses III
+        /// </summary>
+        public static int MinimumTime(int n, int[][] relations, int[] time)
+        {
+            Dictionary<int, List<int>> graph = new Dictionary<int, List<int>>();
+            for (int i = 0; i < n; i++)
+            {
+                graph.Add(i, new List<int>());
+            }
+
+            int[] indegree = new int[n];
+            foreach (int[] edge in relations)
+            {
+                int x = edge[0] - 1;
+                int y = edge[1] - 1;
+                graph[x].Add(y);
+                indegree[y]++;
+            }
+
+            Queue<int> queue = new Queue<int>();
+            int[] maxTime = new int[n];
+
+            for (int node = 0; node < n; node++)
+            {
+                if (indegree[node] == 0)
+                {
+                    queue.Enqueue(node);
+                    maxTime[node] = time[node];
+                }
+            }
+
+            while (queue.Count > 0)
+            {
+                int node = queue.Dequeue();
+                foreach (int neighbor in graph[node])
+                {
+                    maxTime[neighbor] = Math.Max(maxTime[neighbor], maxTime[node] + time[neighbor]);
+                    indegree[neighbor]--;
+                    if (indegree[neighbor] == 0)
+                    {
+                        queue.Enqueue(neighbor);
+                    }
+                }
+            }
+
+            int ans = 0;
+            for (int node = 0; node < n; node++)
+            {
+                ans = Math.Max(ans, maxTime[node]);
+            }
+
+            return ans;
         }
 
         /// <summary>
