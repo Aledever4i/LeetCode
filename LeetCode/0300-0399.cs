@@ -60,6 +60,54 @@ namespace LeetCode
         }
     }
 
+    public interface NestedInteger
+    {
+        public bool IsInteger();
+        public int GetInteger();
+        public IList<NestedInteger> GetList();
+    }
+
+    /// <summary>
+    /// 341. Flatten Nested List Iterator
+    /// </summary>
+    public class NestedIterator
+    {
+        LinkedList<int> _list = new LinkedList<int>();
+        LinkedListNode<int> currentNode;
+
+        public NestedIterator(IList<NestedInteger> nestedList)
+        {
+            GetValues(nestedList);
+            currentNode = _list.First;
+        }
+
+        public bool HasNext()
+        {
+            return currentNode != null;
+        }
+
+        public int Next()
+        {
+            var v = currentNode.Value;
+            currentNode = currentNode.Next;
+            return v;
+        }
+
+        private void GetValues(IList<NestedInteger> list)
+        {
+            foreach (var v in list)
+            {
+                if (v.IsInteger())
+                {
+                    _list.AddLast(v.GetInteger());
+                }
+                else
+                {
+                    GetValues(v.GetList());
+                }
+            }
+        }
+    }
 
     public static class _0300_0399
     {
@@ -177,6 +225,8 @@ namespace LeetCode
 
             return result;
         }
+
+
 
         /// <summary>
         /// 347. Top K Frequent Elements. Tags: Array, Hash Table, Divide and Conquer, Sorting, Heap(Priority Queue), Bucket Sort, Counting, Quickselect
