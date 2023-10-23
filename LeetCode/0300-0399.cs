@@ -196,6 +196,15 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 326. Power of Three
+        /// </summary>
+        public static bool IsPowerOfThree(int n)
+        {
+            var maxPow = (int)Math.Pow(3, 19);
+            return n > 0 && maxPow % n == 0;
+        }
+
+        /// <summary>
         /// 338. Counting Bits. Tags: Dynamic Programming, Bit Manipulation
         /// </summary>
         public static int[] CountBits(int n)

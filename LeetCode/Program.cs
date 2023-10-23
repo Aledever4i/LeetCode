@@ -13,7 +13,7 @@ namespace LeetCode
     {
         static void Main(string[] args)
         {
-            var result = _0300_0399.IsPowerOfFour(16);
+            var result = _0300_0399.IsPowerOfThree(14348907);
 
             Console.WriteLine(result);
         }
