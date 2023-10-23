@@ -198,6 +198,14 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 231. Power of Two
+        /// </summary>
+        public static bool IsPowerOfTwo(int n)
+        {
+            return (n > 0) && (n & (n - 1)) == 0;
+        }
+
+        /// <summary>
         /// 238. Product of Array Except Self
         /// </summary>
         public static int[] ProductExceptSelf(int[] nums)

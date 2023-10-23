@@ -231,12 +231,7 @@ namespace LeetCode
         /// </summary>
         public static bool IsPowerOfFour(int n)
         {
-            if (n == 0)
-            {
-                return false;
-            }
-
-            return (n & (n - 1)) == 0 && Convert.ToString(n, 2).Length % 2 == 1;
+            return (n > 0) && (n & (n - 1)) == 0 && Convert.ToString(n, 2).Length % 2 == 1;
         }
 
         /// <summary>
