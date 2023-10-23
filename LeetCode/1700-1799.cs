@@ -152,6 +152,79 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 1793. Maximum Score of a Good Subarray
+        /// </summary>
+        public static int MaximumScore(int[] nums, int k)
+        {
+            //var n = nums.Length;
+
+            //var dpForward = new int[n];
+            //var dpBack = new int[k + 1];
+
+            //dpBack[k] = nums[k];
+            //dpForward[k] = nums[k];
+
+            //if (k >= 1)
+            //{
+            //    for (int i = k - 1; i >= 0; i--)
+            //    {
+            //        dpBack[i] = Math.Min(dpBack[i + 1], nums[i]);
+            //    }
+            //}
+
+            //for (int i = k + 1; i < n; i++)
+            //{
+            //    dpForward[i] = Math.Min(dpForward[i - 1], nums[i]);
+            //}
+
+            //var rightMax = 0;
+            //var rightIndex = k;
+
+            //for (int i = k; i < n; i++)
+            //{
+            //    var temp = (i - k + 1) * dpForward[i];
+            //    if (temp >= rightMax)
+            //    {
+            //        rightMax = temp;
+            //        rightIndex = i;
+            //    }
+            //}
+
+            //var rValue = dpForward[rightIndex];
+            //var result = 0;
+            //for (int i = k; i >= 0; i--)
+            //{
+            //    result = Math.Max(result, Math.Min(dpBack[i], rValue) * (rightIndex - i + 1));
+            //}
+
+            //return result;
+
+            int n = nums.Length;
+            int left = k;
+            int right = k;
+            int ans = nums[k];
+            int currMin = nums[k];
+
+            while (left > 0 || right < n - 1)
+            {
+                if ((left > 0 ? nums[left - 1] : 0) < (right < n - 1 ? nums[right + 1] : 0))
+                {
+                    right++;
+                    currMin = Math.Min(currMin, nums[right]);
+                }
+                else
+                {
+                    left--;
+                    currMin = Math.Min(currMin, nums[left]);
+                }
+
+                ans = Math.Max(ans, currMin * (right - left + 1));
+            }
+
+            return ans;
+        }
+
+        /// <summary>
         /// 1799. Maximize Score After N Operations. Tags: Array, Math, Dynamic Programming, Backtracking, Bit Manipulation, Number Theory, Bitmask
         /// </summary>
         /// <param name="nums"></param>

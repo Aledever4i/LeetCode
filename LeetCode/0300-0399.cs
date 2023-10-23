@@ -226,7 +226,26 @@ namespace LeetCode
             return result;
         }
 
+        /// <summary>
+        /// 342. Power of Four
+        /// </summary>
+        public static bool IsPowerOfFour(int n)
+        {
+            if (n == 0)
+            {
+                return false;
+            }
 
+            return (n & (n - 1)) == 0 && Convert.ToString(n, 2).Length % 2 == 1;
+        }
+
+        /// <summary>
+        /// 343. Integer Break
+        /// </summary>
+        public static int IntegerBreak(int n)
+        {
+            return 0;
+        }
 
         /// <summary>
         /// 347. Top K Frequent Elements. Tags: Array, Hash Table, Divide and Conquer, Sorting, Heap(Priority Queue), Bucket Sort, Counting, Quickselect

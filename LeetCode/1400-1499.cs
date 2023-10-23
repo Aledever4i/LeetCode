@@ -66,6 +66,30 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 1425. Constrained Subsequence Sum
+        /// </summary>
+        public static int ConstrainedSubsetSum(int[] nums, int k)
+        {
+            var heap = new PriorityQueue<int[], int>();
+            heap.Enqueue(new int[] { nums[0], 0 }, nums[0]);
+            int ans = nums[0];
+        
+            for (int i = 1; i < nums.Length; i++)
+            {
+                while (i - heap.Peek()[1] > k)
+                {
+                    heap.Dequeue();
+                }
+
+                int curr = Math.Max(0, heap.Peek()[0]) + nums[i];
+                ans = Math.Max(ans, curr);
+                heap.Enqueue(new int[] { curr, i }, i);
+            }
+        
+            return ans;
+        }
+
+        /// <summary>
         /// 1456. Maximum Number of Vowels in a Substring of Given Length
         /// </summary>
         public static int MaxVowels(string s, int k)
