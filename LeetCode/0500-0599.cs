@@ -9,6 +9,41 @@ namespace LeetCode
     public static class _0500_0599
     {
         /// <summary>
+        /// 515. Find Largest Value in Each Tree Row
+        /// </summary>
+        public static IList<int> LargestValues(TreeNode root)
+        {
+            if (root == null)
+            {
+                return new List<int>();
+            }
+
+            var dict = new Dictionary<int, int>();
+
+            dfs(root, 0);
+
+            void dfs(TreeNode node, int level)
+            {
+                if (!dict.TryAdd(level, node.val))
+                {
+                    dict[level] = Math.Max(dict[level], node.val);
+                }
+
+                if (node.right != null)
+                {
+                    dfs(node.right, level + 1);
+                }
+
+                if (node.left != null)
+                {
+                    dfs(node.left, level + 1);
+                }
+            }
+
+            return dict.Values.ToList();
+        }
+
+        /// <summary>
         /// 518. Coin Change II
         /// </summary>
         public static int Change(int amount, int[] coins)
