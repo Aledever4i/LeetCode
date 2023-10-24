@@ -775,6 +775,21 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 190. Reverse Bits
+        /// </summary>
+        public static uint reverseBits(uint n)
+        {
+            var converted = Convert.ToString(n, 2);
+            var len = converted.Length;
+
+            var newConverted = string.Join("", Enumerable.Repeat("0", 32 - len)) + converted;
+
+            var reversed = newConverted.Reverse();
+
+            return Convert.ToUInt32(string.Join("", reversed), 2);
+        }
+
+        /// <summary>
         /// 198. House Robber
         /// </summary>
         public static int Rob(int[] nums)
