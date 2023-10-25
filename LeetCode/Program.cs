@@ -13,7 +13,7 @@ namespace LeetCode
     {
         static void Main(string[] args)
         {
-            var result = _0100_0199.reverseBits(43261596);
+            var result = _0700_0799.KthGrammar(7, 33);
 
             Console.WriteLine(result);
         }

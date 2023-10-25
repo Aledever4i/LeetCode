@@ -180,7 +180,7 @@ namespace LeetCode
                     e = mid;
                 }
             }
-        
+
             return letters[s];
 
 
@@ -243,6 +243,39 @@ namespace LeetCode
             }
 
             return string.Empty;
+        }
+
+        /// <summary>
+        /// 779. K-th Symbol in Grammar
+        /// </summary>
+        public static int KthGrammar(int n, int k)
+        {
+            var power = n - 1;
+            var rowCount = Math.Pow(2, power);
+            double currentK = k;
+
+            while (currentK > 2)
+            {
+                var half = rowCount / 2;
+                if (currentK > half)
+                {
+                    if (currentK > half + half / 2 && currentK <= rowCount)
+                    {
+                        currentK = currentK - half - half / 2;
+                    }
+                    else
+                    {
+                        currentK = currentK - half / 2;
+                    }
+
+                }
+                else
+                {
+                    rowCount = half;
+                }
+            }
+
+            return (currentK == 2) ? 1 : 0;
         }
 
         /// <summary>
