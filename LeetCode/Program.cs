@@ -13,7 +13,7 @@ namespace LeetCode
     {
         static void Main(string[] args)
         {
-            var result = _0700_0799.KthGrammar(7, 33);
+            var result = _0800_0899.LemonadeChange(new int[] { 5, 5, 10, 10, 20 });
 
             Console.WriteLine(result);
         }

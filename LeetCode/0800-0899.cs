@@ -150,6 +150,51 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 860. Lemonade Change
+        /// </summary>
+        public static bool LemonadeChange(int[] bills)
+        {
+            var dict = new Dictionary<int, int>
+            {
+                { 5, 0 },
+                { 10, 0 }
+            };
+
+            for (int i = 0; i < bills.Length; i++)
+            {
+                var value = bills[i];
+
+                if (value == 5)
+                {
+                    dict[5] += 1;
+                }
+                else if (value == 10 && dict[5] >= 1)
+                {
+                    dict[10] += 1;
+                    dict[5] -= 1;
+                }
+                else
+                {
+                    if (dict[10] >= 1 && dict[5] >= 1)
+                    {
+                        dict[10] -= 1;
+                        dict[5] -= 1;
+                    }
+                    else if (dict[5] >= 3)
+                    {
+                        dict[5] -= 3;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+            }
+
+            return true;
+        }
+
+        /// <summary>
         /// 863. All Nodes Distance K in Binary Tree
         /// TODO: НЕ РЕШИЛ САМ
         /// </summary>

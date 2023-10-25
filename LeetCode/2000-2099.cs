@@ -8,6 +8,16 @@ namespace LeetCode
     public static class _2000_2099
     {
         /// <summary>
+        /// 2009. Minimum Number of Operations to Make Array Continuous
+        /// </summary>
+        public static int MinOperations(int[] nums)
+        {
+
+
+            return 0;
+        }
+
+        /// <summary>
         /// 2024. Maximize the Confusion of an Exam
         /// </summary>
         public static int MaxConsecutiveAnswers(string answerKey, int k)
