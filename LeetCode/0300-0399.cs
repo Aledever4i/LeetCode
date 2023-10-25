@@ -248,7 +248,33 @@ namespace LeetCode
         /// </summary>
         public static int IntegerBreak(int n)
         {
-            return 0;
+            if (n == 2)
+            {
+                return 1;
+            }
+            else if (n == 3)
+            {
+                return 2;
+            }
+            else if (n == 4)
+            {
+                return 4;
+            }
+
+            var threeCount = 0;
+            while (n > 2)
+            {
+                threeCount++;
+                n -= 3;
+            }
+
+            if (n == 1)
+            {
+                threeCount--;
+                n += 3;
+            }
+
+            return (int)(Math.Pow(3, threeCount) * ((n > 0) ? n : 1));
         }
 
         /// <summary>
