@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -8,6 +10,27 @@ namespace LeetCode
 {
     public static class _0400_0499
     {
+        /// <summary>
+        /// 401. Binary Watch
+        /// </summary>
+        public static IList<string> ReadBinaryWatch(int turnedOn)
+        {
+            var result = new List<string>();
+            for (var h = 0; h < 12; h++)
+            {
+                for (var m = 0; m < 60; m++)
+                {
+                    if (BitOperations.PopCount((uint)h) + BitOperations.PopCount((uint)m) == turnedOn)
+                    {
+                        result.Add($"{h}:{m:D2}");
+                    }
+                }
+            }
+
+            return result;
+        }
+
+
         /// <summary>
         /// 435. Non-overlapping Intervals. TagsL Array, Dynamic Programming, Greedy, Sorting
         /// </summary>
