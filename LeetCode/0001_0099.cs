@@ -52,46 +52,49 @@ namespace LeetCode
         /// </summary>
         public static string LongestPalindrome(string s)
         {
-            int n = s.Length;
-            bool[][] dp = new bool[n][];
-
-            for (int i = 0; i < n; i++)
+            if (s.Distinct().Count() == 1)
             {
-                dp[i] = new bool[n];
-            }
-
-            for (int i = 0; i < n; i++)
-            {
-                dp[i][i] = true;
+                return s;
             }
 
             int[] ans = new int[] { 0, 0 };
 
-            for (int i = 0; i < n - 1; i++)
+            for (int i = 0; i < s.Length; i++)
             {
-                if (s.ElementAt(i) == s.ElementAt(i + 1))
+                int oddLength = expand(i, i, s);
+                if (oddLength > ans[1] - ans[0] + 1)
                 {
-                    dp[i][i + 1] = true;
-                    ans[0] = i;
-                    ans[1] = i + 1;
+                    int dist = oddLength / 2;
+                    ans[0] = i - dist;
+                    ans[1] = i + dist;
+                }
+
+                int evenLength = expand(i, i + 1, s);
+                if (evenLength > ans[1] - ans[0] + 1)
+                {
+                    int dist = (evenLength / 2) - 1;
+                    ans[0] = i - dist;
+                    ans[1] = i + 1 + dist;
                 }
             }
 
-            for (int diff = 2; diff < n; diff++)
-            {
-                for (int i = 0; i < n - diff; i++)
-                {
-                    int j = i + diff;
-                    if (s.ElementAt(i) == s.ElementAt(j) && dp[i + 1][j - 1])
-                    {
-                        dp[i][j] = true;
-                        ans[0] = i;
-                        ans[1] = j;
-                    }
-                }
-            }
+            int start = ans[0];
+            int end = ans[1] + 1;
+            return s[start..end];
 
-            return s.Substring(ans[0], ans[1] + 1);
+            int expand(int i, int j, string s)
+            {
+                int left = i;
+                int right = j;
+
+                while (left >= 0 && right < s.Length && s.ElementAt(left) == s.ElementAt(right))
+                {
+                    left--;
+                    right++;
+                }
+
+                return right - left - 1;
+            }
         }
 
         /// <summary>

@@ -13,7 +13,7 @@ namespace LeetCode
     {
         static void Main(string[] args)
         {
-            var result = _0400_0499.ReadBinaryWatch(1);
+            var result = _0001_0099.LongestPalindrome("a");
 
             Console.WriteLine(result);
         }
