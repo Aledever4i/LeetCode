@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.Intrinsics.Arm;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
@@ -67,9 +68,48 @@ namespace LeetCode
         }
 
         /// <summary>
-        /// 837. New 21 Game. Tags: Math, Dynamic Programming, Sliding Window, Probability and Statistics
+        /// 823. Binary Trees With Factors
         /// </summary>
-        public static double New21Game(int n, int k, int maxPts)
+        public static int NumFactoredBinaryTrees(int[] arr)
+        {
+            System.Array.Sort(arr);
+            var s = new HashSet<int>(arr);
+            var dp = new Dictionary<int, long>();
+
+            foreach (int x in arr)
+            {
+                dp[x] = 1;
+            }
+
+            foreach (int i in arr)
+            {
+                foreach (int j in arr)
+                {
+                    if (j > Math.Sqrt(i))
+                    {
+                        break;
+                    }
+
+                    if (i % j == 0 && s.Contains(i / j))
+                    {
+                        long temp = dp[j] * dp[i / j];
+                        dp[i] = (dp[i] + (i / j == j ? temp : temp * 2)) % 1000000007;
+                    }
+                }
+            }
+
+            long result = 0;
+            foreach (long val in dp.Values)
+            {
+                result = (result + val) % 1000000007;
+            }
+            return (int)result;
+        }
+
+/// <summary>
+/// 837. New 21 Game. Tags: Math, Dynamic Programming, Sliding Window, Probability and Statistics
+/// </summary>
+public static double New21Game(int n, int k, int maxPts)
         {
             return 0.0;
         }

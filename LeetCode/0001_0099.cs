@@ -48,6 +48,53 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 5. Longest Palindromic Substring
+        /// </summary>
+        public static string LongestPalindrome(string s)
+        {
+            int n = s.Length;
+            bool[][] dp = new bool[n][];
+
+            for (int i = 0; i < n; i++)
+            {
+                dp[i] = new bool[n];
+            }
+
+            for (int i = 0; i < n; i++)
+            {
+                dp[i][i] = true;
+            }
+
+            int[] ans = new int[] { 0, 0 };
+
+            for (int i = 0; i < n - 1; i++)
+            {
+                if (s.ElementAt(i) == s.ElementAt(i + 1))
+                {
+                    dp[i][i + 1] = true;
+                    ans[0] = i;
+                    ans[1] = i + 1;
+                }
+            }
+
+            for (int diff = 2; diff < n; diff++)
+            {
+                for (int i = 0; i < n - diff; i++)
+                {
+                    int j = i + diff;
+                    if (s.ElementAt(i) == s.ElementAt(j) && dp[i + 1][j - 1])
+                    {
+                        dp[i][j] = true;
+                        ans[0] = i;
+                        ans[1] = j;
+                    }
+                }
+            }
+
+            return s.Substring(ans[0], ans[1] + 1);
+        }
+
+        /// <summary>
         /// 6. Zigzag Conversion
         /// </summary>
         public static string ConvertZigZag(string s, int numRows)
