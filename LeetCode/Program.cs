@@ -13,8 +13,7 @@ namespace LeetCode
     {
         static void Main(string[] args)
         {
-            var result = _0001_0099.LongestPalindrome("a");
-
+            var result = _2000_2099.MinOperations(new int[] { 8, 10, 16, 18, 10, 10, 16, 13, 13, 16 } );
             Console.WriteLine(result);
         }
     }

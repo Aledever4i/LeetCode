@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Xml.Linq;
 
 namespace LeetCode
 {
@@ -12,9 +11,27 @@ namespace LeetCode
         /// </summary>
         public static int MinOperations(int[] nums)
         {
+            var initialN = nums.Length;
+            System.Array.Sort(nums);
 
+            var newNums = nums.Distinct().ToArray();
 
-            return 0;
+            var n = newNums.Length;
+            var ans = initialN;
+
+            var j = 0;
+            for (int i = 0; i < n; i++)
+            {
+                var vMax = newNums[i] + initialN;
+                while (j < n && newNums[j] < vMax)
+                {
+                    j++;
+                }
+
+                ans = Math.Min(ans, initialN - j + i);
+            }
+
+            return ans;
         }
 
         /// <summary>

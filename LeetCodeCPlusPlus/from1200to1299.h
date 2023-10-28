@@ -1,8 +1,8 @@
 #pragma once
-class from1200to1299
+class From1200to1299
 {
 	public:
-		from1200to1299();
+		From1200to1299();
 		int countVowelPermutation(int n);
 };
 
