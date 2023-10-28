@@ -39,6 +39,56 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 1220. Count Vowels Permutation
+        /// </summary>
+        public static int CountVowelPermutation(int n)
+        {
+            var mod = 1000000007;
+            var dict = new Dictionary<int, List<int>>()
+            {
+                { 1, new List<int>() { 2 } },
+                { 2, new List<int>() { 1, 3 } },
+                { 3, new List<int>() { 1, 2, 4, 5 } },
+                { 4, new List<int>() { 3, 5 } },
+                { 5, new List<int>() { 1 } }
+            };
+
+            var chars = new int[5] { 1, 2, 3, 4, 5 };
+
+            var dp = new int[n + 1][];
+            for (int i = 0; i < n + 1; i++)
+            {
+                dp[i] = new int[6];
+            }
+
+            dp[1][1] = 1;
+            dp[1][2] = 1;
+            dp[1][3] = 1;
+            dp[1][4] = 1;
+            dp[1][5] = 1;
+
+            for (int i = 2; i < n + 1; i++)
+            {
+                foreach (var x in chars)
+                {
+                    var list = dict[x];
+                    foreach (var s in list)
+                    {
+                        dp[i][s] = (dp[i][s] + dp[i - 1][x]) % mod;
+                    }
+                }
+            }
+
+            var result = 0;
+            foreach (var x in dp[n])
+            {
+                result = (result + x) % mod;
+            }
+
+            return result;
+        }
+
+        /// <summary>
         /// 1232. Check If It Is a Straight Line. Tags: Array, Math, Geometry
         /// </summary>
         public static bool CheckStraightLine(int[][] coordinates)
