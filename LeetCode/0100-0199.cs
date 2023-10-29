@@ -103,6 +103,45 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 128. Longest Consecutive Sequence
+        /// </summary>
+        public static int LongestConsecutive(int[] nums)
+        {
+            var n = nums.Length;
+            if (n == 0)
+            {
+                return 0;
+            }
+
+            var hash = new HashSet<int>();
+            var dp = new Dictionary<int, int>();
+            System.Array.Sort(nums);
+
+            var value = nums[0];
+            dp.Add(value, 1);
+            hash.Add(value);
+
+            for (int i = 1; i < nums.Length; i++)
+            {
+                value = nums[i];
+
+                if (hash.Add(value))
+                {
+                    if (dp.TryGetValue(value - 1, out int previous))
+                    {
+                        dp.Add(value, previous + 1);
+                    }
+                    else
+                    {
+                        dp.Add(value, 1);
+                    }
+                }
+            }
+
+            return dp.Values.Max();
+        }
+
+        /// <summary>
         /// 146. LRU Cache
         /// </summary>
         public class LRUCache
