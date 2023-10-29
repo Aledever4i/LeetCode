@@ -266,6 +266,16 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 458. Poor Pigs
+        /// </summary>
+        public static int PoorPigs(int buckets, int minutesToDie, int minutesToTest)
+        {
+
+
+            return 1;
+        }
+
+        /// <summary>
         /// 459. Repeated Substring Pattern
         /// </summary>
         public static bool RepeatedSubstringPattern(string s)
