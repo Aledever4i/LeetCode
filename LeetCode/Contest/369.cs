@@ -17,30 +17,6 @@ namespace LeetCode.Contest
             var n = nums.Length;
             var dict = new Dictionary<int, int>();
 
-            if (n == k)
-            {
-                int answer = nums[0];
-
-                for (int i = 1; i < n; i++)
-                {
-                    answer &= nums[i];
-                }
-
-                return answer;
-            }
-
-            if (k == 1)
-            {
-                int answer = nums[0];
-
-                for (int i = 1; i < n; i++)
-                {
-                    answer |= nums[i];
-                }
-
-                return answer;
-            }
-
             for (int i = 0; i < n; i++)
             {
                 var number = Convert.ToString(nums[i], 2);
