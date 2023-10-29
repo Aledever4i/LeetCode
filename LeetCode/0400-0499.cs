@@ -270,9 +270,15 @@ namespace LeetCode
         /// </summary>
         public static int PoorPigs(int buckets, int minutesToDie, int minutesToTest)
         {
+            var time = minutesToTest / minutesToDie;
+            var pigs = 0;
 
+            while (Math.Pow(time + 1, pigs) < buckets)
+            {
+                pigs++;
+            }
 
-            return 1;
+            return pigs;
         }
 
         /// <summary>
