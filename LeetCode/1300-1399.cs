@@ -141,6 +141,36 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 1356. Sort Integers by The Number of 1 Bits
+        /// </summary>
+        public static int[] SortByBits(int[] arr)
+        {
+            System.Array.Sort(arr);
+            var dict = new Dictionary<int, List<int>>();
+
+            for (int y = 0; y < arr.Length; y++)
+            {
+                var value = arr[y];
+                var bitCount = 0;
+
+                for (int i = 0; i < 32; i++)
+                {
+                    if ((value & (1 << i)) > 0)
+                    {
+                        bitCount++;
+                    }
+                }
+
+                if (!dict.TryAdd(bitCount, new List<int>() { value }))
+                {
+                    dict[bitCount].Add(value);
+                }
+            }
+
+            return dict.OrderBy(x => x.Key).SelectMany(x => x.Value).ToArray();
+        }
+
+        /// <summary>
         /// 1376. Time Needed to Inform All Employees. Tags: Tree, Depth-First Search, Breadth-First Search
         /// </summary>
         public static int NumOfMinutes(int n, int headID, int[] manager, int[] informTime)
