@@ -154,6 +154,46 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 1491. Average Salary Excluding the Minimum and Maximum Salary
+        /// </summary>
+        /// <param name="salary"></param>
+        /// <returns></returns>
+        public static double Average(int[] salary)
+        {
+            double sum = 0;
+
+            int firstSalary = salary[0];
+            int secondSalary = salary[1];
+
+            int minSalary = (firstSalary > secondSalary) ? secondSalary : firstSalary;
+            int biggestSalary = (firstSalary > secondSalary) ? firstSalary : secondSalary;
+
+            for (var i = 2; i < salary.Length; i++)
+            {
+                var iterSalary = salary[i];
+
+                if (iterSalary < minSalary)
+                {
+                    sum += minSalary;
+                    minSalary = iterSalary;
+                    continue;
+                }
+                else if (iterSalary > biggestSalary)
+                {
+                    sum += biggestSalary;
+                    biggestSalary = iterSalary;
+                    continue;
+                }
+                else
+                {
+                    sum += iterSalary;
+                }
+            }
+
+            return sum / (salary.Length - 2);
+        }
+
+        /// <summary>
         /// 1493. Longest Subarray of 1's After Deleting One Element
         /// </summary>
         public static int LongestSubarray(int[] nums)

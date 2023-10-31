@@ -66,5 +66,77 @@ namespace LeetCode
                 }
             }
         }
+
+        /// <summary>
+        /// 2140. Solving Questions With Brainpower
+        /// По аналогии с задачей 1035 попробывал решить через матрицу. В принципе решение прикольное, но не проходит по памяти.
+        /// Поэтому старый подход с алгоритмом фибоначчи и кеширующей таблицей подошел.
+        /// </summary>
+        /// <param name="questions"></param>
+        /// <returns></returns>
+        public static long MostPoints(int[][] questions)
+        {
+            var cache = new long[questions.Length];
+
+            long choice(int index)
+            {
+                if (index >= questions.Length)
+                {
+                    return 0;
+                }
+
+                if (cache[index] != 0)
+                {
+                    return cache[index];
+                }
+
+                var choice1 = questions[index][0] + choice(index + questions[index][1] + 1);
+                var choice2 = choice(index + 1);
+
+                cache[index] = Math.Max(choice1, choice2);
+
+                return cache[index];
+            }
+
+            long max = 0;
+            for (int i = 0; i < questions.Length; i++)
+            {
+                var result = choice(i);
+                max = max > result ? max : result;
+            }
+
+            return max;
+
+
+            //var points = new int[questions.Length, questions.Length];
+
+            //for (int i = 0; i < questions.Length; i++)
+            //{
+            //    var question = questions[i];
+
+            //    var max = 0;
+            //    for (int y = 0; y < i; y++)
+            //    {
+            //        if (questions[y][1] + y < i)
+            //        {
+            //            max = max > points[y, i] ? max : points[y, i];
+            //        }
+            //    }
+
+            //    for (int y = i; y < questions.Length; y++)
+            //    {
+            //        points[i, y] = question[0] + max;
+            //    }
+            //}
+
+            //var result = 0;
+            //for (int i = 0; i < questions.Length; i++)
+            //{
+            //    var p = points[i, questions.Length - 1];
+            //    result = (p > result) ? p : result;
+            //}
+
+            //return result;
+        }
     }
 }

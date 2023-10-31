@@ -12,6 +12,34 @@ namespace LeetCode
     public static class _0001_0099
     {
         /// <summary>
+        /// 1. Two Sum
+        /// </summary>
+        public static int[] TwoSum(int[] nums, int target)
+        {
+            var valueDictionary = new Dictionary<int, int>();
+
+            for (int i = 0; i < nums.Length; i++)
+            {
+                var currentElement = nums[i];
+                var search = target - currentElement;
+
+                if (valueDictionary.ContainsKey(search))
+                {
+                    return new int[] { valueDictionary[search], i };
+                }
+                else
+                {
+                    if (!valueDictionary.ContainsKey(currentElement))
+                    {
+                        valueDictionary.Add(currentElement, i);
+                    }
+                }
+            }
+
+            throw new Exception();
+        }
+
+        /// <summary>
         /// 3. Longest Substring Without Repeating Characters
         /// </summary>
         public static int LengthOfLongestSubstring(string s)
@@ -876,6 +904,133 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 54. Spiral Matrix
+        /// </summary>
+        /// <param name="matrix"></param>
+        /// <returns></returns>
+        public static IList<int> SpiralOrder(int[][] matrix)
+        {
+            var x = matrix[0].Length;
+            var y = matrix.Length;
+            var result = new List<int>();
+
+            var xCicle = 0;
+            var yCicle = 0;
+            var xReturnCicle = 0;
+            var yReturnCicle = 0;
+
+            var positionX = 0;
+            var positionY = 0;
+
+            var canContinueX = true;
+            var canContinueY = false;
+
+            while (true)
+            {
+                if (canContinueX)
+                {
+                    if ((xCicle > 0 && positionX + xCicle < x - 1) || xCicle == 0)
+                    {
+                        positionX = xCicle;
+
+                        result.Add(matrix[positionY][positionX]);
+
+                        canContinueY = true;
+                    }
+
+                    for (int ixright = positionX + 1; ixright < x - xCicle - 1; ++ixright)
+                    {
+                        positionX = ixright;
+
+                        result.Add(matrix[positionY][positionX]);
+
+                        canContinueY = true;
+                    }
+
+                    if (positionX < x - xCicle)
+                    {
+                        if (positionX + 1 + xCicle < x)
+                        {
+                            positionX += 1;
+                            result.Add(matrix[positionY][positionX]);
+
+                            canContinueY = true;
+                        }
+                    }
+                }
+                canContinueX = false;
+                xCicle += 1;
+
+                if (canContinueY)
+                {
+                    for (int yxdown = positionY + 1; yxdown < y - yCicle - 1; ++yxdown)
+                    {
+                        positionY = yxdown;
+
+                        result.Add(matrix[positionY][positionX]);
+
+                        canContinueX = true;
+                    }
+
+                    if (positionY < y - yCicle - 1)
+                    {
+                        positionY += 1;
+                        result.Add(matrix[positionY][positionX]);
+
+                        canContinueX = true;
+                    }
+                }
+                canContinueY = false;
+                yCicle += 1;
+
+                if (canContinueX)
+                {
+                    for (int ixright = positionX - 1; ixright > xReturnCicle; --ixright)
+                    {
+                        positionX = ixright;
+
+                        result.Add(matrix[positionY][positionX]);
+
+                        canContinueY = true;
+                    }
+
+                    if (positionX - xReturnCicle > 0)
+                    {
+                        positionX -= 1;
+                        result.Add(matrix[positionY][positionX]);
+
+                        canContinueY = true;
+                    }
+                }
+
+                canContinueX = false;
+                xReturnCicle += 1;
+
+                if (canContinueY)
+                {
+                    for (int yxdown = positionY - 1; yxdown > yReturnCicle; --yxdown)
+                    {
+                        positionY = yxdown;
+
+                        result.Add(matrix[positionY][positionX]);
+
+                        canContinueX = true;
+                    }
+                }
+
+                canContinueY = false;
+                yReturnCicle += 1;
+
+                if (xCicle + yCicle > x + y)
+                {
+                    break;
+                }
+            }
+
+            return result;
+        }
+
+        /// <summary>
         /// 55. Jump Game
         /// </summary>
         public static bool CanJump(int[] nums)
@@ -917,6 +1072,76 @@ namespace LeetCode
                 results[position + step] = result;
                 return result;
             }
+        }
+
+        // 58. Length of Last Word
+        public static int LengthOfLastWord(string s)
+        {
+            return (s.Trim().Split().Reverse().First()).Length;
+        }
+
+        /// <summary>
+        /// 59. Spiral Matrix II
+        /// </summary>
+        public static int[][] GenerateMatrix(int n)
+        {
+            int[][] result = new int[n][];
+            for (int i = 0; i < n; i++)
+            {
+                result[i] = new int[n];
+            }
+
+            var elements = n * n;
+            var value = 1;
+
+            var x = 0;
+            var y = 0;
+            var dx = 1;
+            var dy = 1;
+
+            while (value <= elements)
+            {
+                result[x][y] = value;
+
+                if (y == dy - 1 && x < n - dx)
+                {
+                    x++;
+                }
+                else if (x == n - dx && y < n - dy)
+                {
+                    y++;
+                }
+                else if (x > dx - 1)
+                {
+                    x--;
+                }
+                else if (y > dy)
+                {
+                    y--;
+                    if (y == dy && x == dx - 1)
+                    {
+                        dx++;
+                        dy++;
+                    }
+                }
+
+                value++;
+            }
+
+            int[][] pivot = new int[n][];
+            for (int i = 0; i < n; i++)
+            {
+                pivot[i] = new int[n];
+            }
+            for (int yp = 0; yp < n; yp++)
+            {
+                for (int xp = 0; xp < n; xp++)
+                {
+                    pivot[yp][xp] = result[xp][yp];
+                }
+            }
+
+            return pivot;
         }
 
         /// <summary>
@@ -1088,6 +1313,24 @@ namespace LeetCode
             //}
             //var filtered = dict.Where(value => value.Value <= (ulong)x);
             //return (int)filtered.Last().Key;
+        }
+
+        /// <summary>
+        /// 70. Climbing Stairs
+        /// Эта задача кроссылка с задачи 2466 на форуме. Неожиданно для себя осознал что это последовательность фибоначчи.
+        /// </summary>
+        public static int ClimbStairs(int n)
+        {
+            var cache = new int[n + 1];
+            cache[0] = 1;
+            cache[1] = 1;
+
+            for (int i = 2; i <= n; i++)
+            {
+                cache[i] = cache[i - 1] + cache[i - 2];
+            }
+
+            return cache[n];
         }
 
         /// <summary>

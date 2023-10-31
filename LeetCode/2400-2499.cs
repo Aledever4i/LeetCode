@@ -16,22 +16,12 @@ namespace LeetCode
         {
             var n = pref.Length;
 
-            if (n == 1)
+            for (int i = n - 1; i > 0; i--)
             {
-                return pref;
+                pref[i] = pref[i] ^ pref[i - 1];
             }
 
-            int value = pref[0];
-            var result = new Dictionary<int, (int, int)>() { { 0, (pref[0], pref[0]) } };
-
-            for (int i = 1; i < n; i++)
-            {
-                value = result[i - 1].Item2;
-                value ^= pref[i];
-                result.Add(i, (value, pref[i]));
-            }
-
-            return result.Values.Select(x => x.Item1).ToArray();
+            return pref;
         }
 
         /// <summary>
@@ -204,6 +194,41 @@ namespace LeetCode
 
                 result += minValue;
                 used[minIndex] = 1;
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// 2466. Count Ways To Build Good Strings.
+        /// Первый вариант оказался рабочим но медленным.
+        /// Итоговое решение посмотрел, сделал несколько Excel, но так и не смог додуматься какая формула вшита. 
+        /// То что я возвращаюсь на 1 элемент когда оказывается то количество шагов, которое требовалось искомо, это удивительно.
+        /// </summary>
+        public static int CountGoodStrings(int low, int high, int zero, int one)
+        {
+            int[] cache = new int[high + 1];
+            cache[0] = 1;
+
+            for (int i = 1; i <= high; i++)
+            {
+                if (i - zero >= 0)
+                {
+                    cache[i] += cache[i - zero];
+                }
+
+                if (i - one >= 0)
+                {
+                    cache[i] += cache[i - one];
+                }
+
+                cache[i] %= 1_000_000_007;
+            }
+
+            int result = 0;
+            for (int i = low; i <= high; i++)
+            {
+                result = (result + cache[i]) % 1_000_000_007;
             }
 
             return result;

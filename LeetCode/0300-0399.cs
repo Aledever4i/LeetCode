@@ -151,6 +151,32 @@ namespace LeetCode
             }
         }
 
+
+        /// <summary>
+        /// 309. Best Time to Buy and Sell Stock with Cooldown
+        /// </summary>
+        /// <param name="prices"></param>
+        /// <returns></returns>
+        public static int MaxProfit(int[] prices)
+        {
+            var hasStock = false;
+            int? currentPrice = null;
+            int? currentElementPrice = null;
+            int? prevElementPrice = null;
+
+            foreach (var price in prices)
+            {
+                currentElementPrice = price;
+
+                if (currentElementPrice < prevElementPrice)
+                {
+                    Console.WriteLine("");
+                }
+            }
+
+            return 0;
+        }
+
         /// <summary>
         /// 322. Coin Change
         /// </summary>

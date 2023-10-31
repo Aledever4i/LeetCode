@@ -137,5 +137,68 @@ namespace LeetCode
 
             return solve(locations, start, finish, fuel, memo);
         }
+
+        /// <summary>
+        /// 1572. Matrix Diagonal Sum
+        /// </summary>
+        public static int DiagonalSum(int[][] matrix)
+        {
+            var x = matrix[0].Length;
+            var y = matrix.Length;
+
+            var elements = x * y;
+            var result = 0;
+            var res = 0;
+
+            if (elements % 2 == 0)
+            {
+                var centerDownRight = ((int)Math.Sqrt(elements)) / 2;
+
+                res = matrix[centerDownRight][centerDownRight];
+                result += res;
+                for (int i = 1; i < centerDownRight; i++)
+                {
+                    res = matrix[centerDownRight + i][centerDownRight + i];
+                    result += res;
+                }
+
+                res = matrix[centerDownRight - 1][centerDownRight];
+                result += res;
+                for (int i = 1; i < centerDownRight; i++)
+                {
+                    res = matrix[centerDownRight - 1 - i][centerDownRight + i];
+                    result += res;
+                }
+
+                res = matrix[centerDownRight - 1][centerDownRight - 1];
+                result += res;
+                for (int i = 1; i < centerDownRight; i++)
+                {
+                    res = matrix[centerDownRight - 1 - i][centerDownRight - 1 - i];
+                    result += res;
+                }
+
+                res = matrix[centerDownRight][centerDownRight - 1];
+                result += res;
+                for (int i = 1; i < centerDownRight; i++)
+                {
+                    res = matrix[centerDownRight + i][centerDownRight - 1 - i];
+                    result += res;
+                }
+
+                return result;
+            }
+            else
+            {
+                var center = ((int)Math.Sqrt(elements) - 1) / 2;
+
+                for (int i = 1; i <= center; i++)
+                {
+                    result += matrix[center - i][center - i] + matrix[center + i][center + i] + matrix[center + i][center - i] + matrix[center - i][center + i];
+                }
+
+                return result + matrix[center][center];
+            }
+        }
     }
 }
