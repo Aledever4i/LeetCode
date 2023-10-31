@@ -9,7 +9,7 @@ namespace LeetCode
     {
         static void Main(string[] args)
         {
-            var result = _1300_1399.SortByBits(new int[] { 10, 100, 1000, 10000 });
+            var result = _2400_2499.FindArray(new int[] { 5, 2, 0, 3, 1 });
 
             Console.WriteLine(result);
         }

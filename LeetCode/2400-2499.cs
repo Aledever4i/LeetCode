@@ -10,6 +10,31 @@ namespace LeetCode
     public static class _2400_2499
     {
         /// <summary>
+        /// 2433. Find The Original Array of Prefix Xor
+        /// </summary>
+        public static int[] FindArray(int[] pref)
+        {
+            var n = pref.Length;
+
+            if (n == 1)
+            {
+                return pref;
+            }
+
+            int value = pref[0];
+            var result = new Dictionary<int, (int, int)>() { { 0, (pref[0], pref[0]) } };
+
+            for (int i = 1; i < n; i++)
+            {
+                value = result[i - 1].Item2;
+                value ^= pref[i];
+                result.Add(i, (value, pref[i]));
+            }
+
+            return result.Values.Select(x => x.Item1).ToArray();
+        }
+
+        /// <summary>
         /// 2448. Minimum Cost to Make Array Equal. Tags: Array, Binary Search, Greedy, Sorting, Prefix Sum
         /// </summary>
         public static long MinCost(int[] nums, int[] cost)

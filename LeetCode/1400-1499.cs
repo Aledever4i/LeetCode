@@ -70,23 +70,39 @@ namespace LeetCode
         /// </summary>
         public static int ConstrainedSubsetSum(int[] nums, int k)
         {
-            var heap = new PriorityQueue<int[], int>();
-            heap.Enqueue(new int[] { nums[0], 0 }, nums[0]);
-            int ans = nums[0];
-        
-            for (int i = 1; i < nums.Length; i++)
+            var n = nums.Length;
+            var dp = new int[n + 1][];
+            for (int i = 0; i < n + 1; i++)
             {
-                while (i - heap.Peek()[1] > k)
+                dp[i] = new int[k + 1];
+
+                System.Array.Fill(dp[i], int.MinValue);
+            }
+
+            analyze(nums, 0, k);
+            return dp.SelectMany(x => x).Max();
+
+            int analyze(int[] nums, int currentPosition, int remain)
+            {
+                if (currentPosition >= n)
                 {
-                    heap.Dequeue();
+                    return 0;
                 }
 
-                int curr = Math.Max(0, heap.Peek()[0]) + nums[i];
-                ans = Math.Max(ans, curr);
-                heap.Enqueue(new int[] { curr, i }, i);
+                if (remain == 0)
+                {
+                    return -100000;
+                }
+
+                if (dp[currentPosition][remain] != int.MinValue)
+                {
+                    return dp[currentPosition][remain];
+                }
+
+                var value = nums[currentPosition];
+                dp[currentPosition][remain] = Math.Max(value + analyze(nums, currentPosition + 1, k), analyze(nums, currentPosition + 1, remain - 1));
+                return dp[currentPosition][remain];
             }
-        
-            return ans;
         }
 
         /// <summary>
