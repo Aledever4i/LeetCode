@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace LeetCode
 {
@@ -70,39 +71,36 @@ namespace LeetCode
         /// </summary>
         public static int ConstrainedSubsetSum(int[] nums, int k)
         {
-            var n = nums.Length;
-            var dp = new int[n + 1][];
-            for (int i = 0; i < n + 1; i++)
-            {
-                dp[i] = new int[k + 1];
+            var queue = new ArrayList();
+            var dp = new int[nums.Length];
 
-                System.Array.Fill(dp[i], int.MinValue);
+            for (int i = 0; i < nums.Length; i++)
+            {
+                if (queue.Count > 0 && i - (int)queue[0] > k)
+                {
+                    queue.RemoveAt(0);
+                }
+
+                dp[i] = (queue.Count > 0 ? dp[(int)queue[0]] : 0) + nums[i];
+
+                while (queue.Count > 0 && dp[(int)queue[queue.Count - 1]] < dp[i])
+                {
+                    queue.RemoveAt(queue.Count - 1);
+                }
+
+                if (dp[i] > 0)
+                {
+                    queue.Add(i);
+                }
             }
 
-            analyze(nums, 0, k);
-            return dp.SelectMany(x => x).Max();
-
-            int analyze(int[] nums, int currentPosition, int remain)
+            int ans = int.MinValue;
+            foreach (int num in dp)
             {
-                if (currentPosition >= n)
-                {
-                    return 0;
-                }
-
-                if (remain == 0)
-                {
-                    return -100000;
-                }
-
-                if (dp[currentPosition][remain] != int.MinValue)
-                {
-                    return dp[currentPosition][remain];
-                }
-
-                var value = nums[currentPosition];
-                dp[currentPosition][remain] = Math.Max(value + analyze(nums, currentPosition + 1, k), analyze(nums, currentPosition + 1, remain - 1));
-                return dp[currentPosition][remain];
+                ans = Math.Max(ans, num);
             }
+
+            return ans;
         }
 
         /// <summary>

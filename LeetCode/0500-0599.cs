@@ -9,6 +9,43 @@ namespace LeetCode
     public static class _0500_0599
     {
         /// <summary>
+        /// 501. Find Mode in Binary Search Tree
+        /// </summary>
+        public static int[] FindMode(TreeNode root)
+        {
+            var dict = new Dictionary<int, int>();
+
+            Analyse(root);
+
+            var maxCount = dict.Select(val => val.Value).Max();
+            return dict.Where(val => val.Value == maxCount).Select(val => val.Key).ToArray();
+
+            void Analyse (TreeNode root)
+            {
+                if (root == null)
+                {
+                    return;
+                }
+
+                if (!dict.TryAdd(root.val, 1))
+                {
+                    dict[root.val] += 1;
+                }
+
+                if (root.right != null)
+                {
+                    Analyse(root.right);
+                }
+
+                if (root.left != null)
+                {
+                    Analyse(root.left);
+                }
+            }
+        }
+
+
+        /// <summary>
         /// 515. Find Largest Value in Each Tree Row
         /// </summary>
         public static IList<int> LargestValues(TreeNode root)
