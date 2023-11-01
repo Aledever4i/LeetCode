@@ -9,6 +9,14 @@ namespace LeetCode
     public static class _1000_1099
     {
         /// <summary>
+        /// 1025. Divisor Game
+        /// </summary>
+        public static bool DivisorGame(int n)
+        {
+            return (n % 2 == 0);
+        }
+
+        /// <summary>
         /// 1027. Longest Arithmetic Subsequence. Tags: Array, Hash Table, Binary Search, Dynamic Programming
         /// </summary>
         public static int LongestArithSeqLength(int[] nums)
