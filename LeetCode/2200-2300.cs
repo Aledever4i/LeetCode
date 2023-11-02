@@ -72,6 +72,47 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 2265. Count Nodes Equal to Average of Subtree
+        /// </summary>
+        public static int AverageOfSubtree(TreeNode root)
+        {
+            int result = 0;
+
+            if (root == null)
+            {
+                return result;
+            }
+
+            var (a, b) = GetChildAverageCount(root);
+
+            (int, int) GetChildAverageCount(TreeNode root)
+            {
+                int sumLeft = 0, countLeft = 0;
+                if (root.left != null)
+                {
+                    (sumLeft, countLeft) = GetChildAverageCount(root.left);
+                }
+
+                int sumRight = 0, countRight = 0;
+                if (root.right != null)
+                {
+                    (sumRight, countRight) = GetChildAverageCount(root.right);
+                }
+
+                int unionSum = sumLeft + sumRight + root.val;
+                int unionCount = countLeft + countRight + 1;
+                if (unionSum / unionCount == root.val)
+                {
+                    result++;
+                }
+
+                return (unionSum, unionCount);
+            }
+
+            return result;
+        }
+
+        /// <summary>
         /// 2272. Substring With Largest Variance
         /// </summary>
         public static int LargestVariance(string s)
