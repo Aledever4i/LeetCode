@@ -27,6 +27,15 @@
     <ClInclude Include="TreeNode.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
+    <ClInclude Include="From0100to0199.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="ListNode.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="From1200to1299.cpp">
@@ -41,5 +50,13 @@
     <ClCompile Include="From2200to2299.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="From0100to0199.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="LeetCodeCPlusPlus.rc">
+      <Filter>Файлы ресурсов</Filter>
+    </ResourceCompile>
   </ItemGroup>
 </Project>

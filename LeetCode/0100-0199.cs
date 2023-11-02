@@ -142,6 +142,49 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 141. Linked List Cycle
+        /// </summary>
+        public static bool HasCycle(ListNode head)
+        {
+            if (head == null)
+            {
+                return false;
+            }
+            var step = 0;
+            while (head.next != null)
+            {
+                head = head.next;
+                step++;
+
+                if (step == 10002)
+                {
+                    return true;
+                }
+            }
+            return false;
+
+
+
+            //if (head == null || head.next == null)
+            //{
+            //    return false; // No cycle if there are less than two nodes.
+            //}
+            //ListNode slow = head;
+            //ListNode fast = head;
+            //while (fast != null && fast.next != null)
+            //{
+            //    slow = slow.next; // Move one step.
+            //    fast = fast.next.next; // Move two steps.
+            //    if (slow == fast)
+            //    {
+            //        return true; // Cycle detected.
+            //    }
+            //}
+            //return false; // No cycle found.
+
+        }
+
+        /// <summary>
         /// 146. LRU Cache
         /// </summary>
         public class LRUCache
