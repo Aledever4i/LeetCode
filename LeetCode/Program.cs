@@ -9,7 +9,7 @@ namespace LeetCode
     {
         static void Main(string[] args)
         {
-            var result = _2400_2499.FindArray(new int[] { 5, 2, 0, 3, 1 });
+            var result = _0100_0199.FindPeakElement(new int[] { 1, 2 });
 
             Console.WriteLine(result);
         }

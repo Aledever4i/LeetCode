@@ -694,6 +694,41 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 162. Find Peak Element
+        /// </summary>
+        public static int FindPeakElement(int[] nums)
+        {
+            var n = nums.Length;
+
+            if (n == 1)
+            {
+                return 0;
+            }
+
+            int before = nums[0];
+            int current = nums[0];
+            int next = nums[1];
+            if (current >= before && current > next)
+            {
+                return 0;
+            }
+
+            for (int i = 1; i < n - 1; i++)
+            {
+                before = current;
+                current = next;
+                next = nums[i + 1];
+
+                if (current >= before && current >= next)
+                {
+                    return i;
+                }
+            }
+
+            return n - 1;
+        }
+
+        /// <summary>
         /// 167. Two Sum II - Input Array Is Sorted. Tags: Array, Two Pointers, Binary Search
         /// </summary>
         public static int[] TwoSum(int[] numbers, int target)
