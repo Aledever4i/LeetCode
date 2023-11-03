@@ -104,6 +104,30 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 1441. Build an Array With Stack Operations
+        /// </summary>
+        public static IList<string> BuildArray(int[] target, int n)
+        {
+            var result = new List<string>();
+            int currentNumber = 1;
+
+            foreach (var item in target)
+            {
+                while (currentNumber < item)
+                {
+                    result.Add("Push");
+                    result.Add("Pop");
+                    currentNumber++;
+                }
+
+                result.Add("Push");
+                currentNumber++;
+            }
+
+            return result;
+        }
+
+        /// <summary>
         /// 1456. Maximum Number of Vowels in a Substring of Given Length
         /// </summary>
         public static int MaxVowels(string s, int k)

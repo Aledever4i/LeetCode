@@ -36,6 +36,9 @@
     <ClInclude Include="ListNode.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
+    <ClInclude Include="From1400to1499.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="From1200to1299.cpp">
@@ -51,6 +54,9 @@
       <Filter>Исходные файлы</Filter>
     </ClCompile>
     <ClCompile Include="From0100to0199.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="From1400to1499.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
   </ItemGroup>

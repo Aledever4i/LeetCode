@@ -131,6 +131,7 @@
   <ItemGroup>
     <ClInclude Include="From0100to0199.h" />
     <ClInclude Include="From1200to1299.h" />
+    <ClInclude Include="From1400to1499.h" />
     <ClInclude Include="From2000to2099.h" />
     <ClInclude Include="From2200to2299.h" />
     <ClInclude Include="ListNode.h" />
@@ -141,6 +142,7 @@
     <ClCompile Include="..\ConsoleApplication1\ConsoleApplication1.cpp" />
     <ClCompile Include="From0100to0199.cpp" />
     <ClCompile Include="From1200to1299.cpp" />
+    <ClCompile Include="From1400to1499.cpp" />
     <ClCompile Include="From2000to2099.cpp" />
     <ClCompile Include="From2200to2299.cpp" />
   </ItemGroup>
