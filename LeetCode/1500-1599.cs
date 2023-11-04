@@ -39,9 +39,10 @@ namespace LeetCode
         /// </summary>
         public static int GetLastMoment(int n, int[] left, int[] right)
         {
-            var result = 0;
+            var leftMax = left.Length > 0 ? left.Max() : 0;
+            var rightMin = right.Length > 0 ? n - right.Min() : 0;
 
-            return result;
+            return Math.Max(leftMax, rightMin);
         }
 
         /// <summary>
