@@ -35,6 +35,16 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 1503. Last Moment Before All Ants Fall Out of a Plank
+        /// </summary>
+        public static int GetLastMoment(int n, int[] left, int[] right)
+        {
+            var result = 0;
+
+            return result;
+        }
+
+        /// <summary>
         /// 1512. Number of Good Pairs
         /// </summary>
         public static int NumIdenticalPairs(int[] nums)

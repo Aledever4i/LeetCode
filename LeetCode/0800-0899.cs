@@ -106,10 +106,10 @@ namespace LeetCode
             return (int)result;
         }
 
-/// <summary>
-/// 837. New 21 Game. Tags: Math, Dynamic Programming, Sliding Window, Probability and Statistics
-/// </summary>
-public static double New21Game(int n, int k, int maxPts)
+        /// <summary>
+        /// 837. New 21 Game. Tags: Math, Dynamic Programming, Sliding Window, Probability and Statistics
+        /// </summary>
+        public static double New21Game(int n, int k, int maxPts)
         {
             return 0.0;
         }
@@ -142,6 +142,39 @@ public static double New21Game(int n, int k, int maxPts)
 
                 return new string(stack.ToArray());
             }
+        }
+
+        /// <summary>
+        /// 853. Car Fleet
+        /// </summary>
+        public static int CarFleet(int target, int[] position, int[] speed)
+        {
+            var result = 0;
+            var carArray = new (int, int)[position.Length];
+            for (int i = 0; i < position.Length; i++)
+            {
+                carArray[i] = (position[i], speed[i]);
+            }
+            Array.Sort(carArray, new Comparison<(int, int)>((a, b) => a.Item1.CompareTo(b.Item1)));
+
+            List<double> time = new List<double>();
+            for (int i = 0; i < speed.Length; i++)
+            {
+                time.Add((target * 1.0 - carArray[i].Item1 * 1.0) / carArray[i].Item2 * 1.0);
+            }
+
+            double curr = double.MinValue;
+
+            for (int i = speed.Length - 1; i >= 0; i--)
+            {
+                if (time[i] > curr)
+                {
+                    curr = time[i];
+                    result++;
+                }
+            }
+
+            return result;
         }
 
         /// <summary>
