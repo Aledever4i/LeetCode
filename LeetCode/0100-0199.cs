@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO.Compression;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Numerics;
 using System.Reflection;
 using System.Runtime.Intrinsics.Arm;
 using System.Text;
@@ -904,6 +905,36 @@ namespace LeetCode
             var reversed = newConverted.Reverse();
 
             return Convert.ToUInt32(string.Join("", reversed), 2);
+        }
+
+        /// <summary>
+        /// 191. Number of 1 Bits
+        /// </summary>
+        public static int HammingWeight(uint n)
+        {
+            uint m1 = 0x55555555; //binary: 0101...
+            uint m2 = 0x33333333; //binary: 00110011..
+            uint m4 = 0x0f0f0f0f; //binary:  4 zeros,  4 ones ...
+            uint m8 = 0x00ff00ff; //binary:  8 zeros,  8 ones ...
+            uint m16 = 0x0000ffff; //binary: 16 zeros, 16 ones ...
+
+            n = (n & m1) + ((n >> 1) & m1);
+            n = (n & m2) + ((n >> 2) & m2);
+            n = (n & m4) + ((n >> 4) & m4);
+            n = (n & m8) + ((n >> 8) & m8); 
+            n = (n & m16) + ((n >> 16) & m16);
+            return (int)n;
+
+            //---------------------------------------
+            //var result = 0;
+            //for (result = 0; n > 0; result++)
+            //{
+            //    n &= n - 1;
+            //}
+            //return result;
+
+            //---------------------------------------
+            //return BitOperations.PopCount(n);
         }
 
         /// <summary>
