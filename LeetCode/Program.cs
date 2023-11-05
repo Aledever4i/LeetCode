@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LeetCode.Contest;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -9,7 +10,7 @@ namespace LeetCode
     {
         static void Main(string[] args)
         {
-            var result = _1500_1599.GetWinner(new int[] { 1, 11, 22, 33, 44, 55, 66, 77, 88, 99 }, 1000000000);
+            var result = _370.MaxBalancedSubsequenceSum(new int[] { 34, 34, 32, 33 });
 
             Console.WriteLine(result);
         }
