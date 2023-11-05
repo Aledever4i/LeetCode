@@ -9,7 +9,7 @@ namespace LeetCode
     {
         static void Main(string[] args)
         {
-            var result = _0100_0199.HammingWeight(8);
+            var result = _1500_1599.GetWinner(new int[] { 1, 11, 22, 33, 44, 55, 66, 77, 88, 99 }, 1000000000);
 
             Console.WriteLine(result);
         }

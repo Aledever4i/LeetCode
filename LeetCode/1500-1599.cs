@@ -82,6 +82,48 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 1535. Find the Winner of an Array Game
+        /// </summary>
+        public static int GetWinner(int[] arr, int k)
+        {
+            var currentWinCount = 0;
+            var queue = new Queue<int>(arr);
+            var currentItem = queue.Dequeue();
+            var hash = new HashSet<int>();
+
+            while (queue.Count > 0)
+            {
+                var nextItem = queue.Dequeue();
+
+                if (hash.Contains(nextItem))
+                {
+                    return currentItem;
+                }
+
+                if (currentItem > nextItem)
+                {
+                    currentWinCount++;
+                    queue.Enqueue(nextItem);
+                    hash.Add(nextItem);
+                }
+                else
+                {
+                    currentWinCount = 1;
+                    queue.Enqueue(currentItem);
+                    hash.Add(currentItem);
+                    currentItem = nextItem;
+                }
+
+                if (currentWinCount == k)
+                {
+                    return currentItem;
+                }
+            }
+
+            return 0;
+        }
+
+        /// <summary>
         /// 1558. Minimum Numbers of Function Calls to Make Target Array. Graph
         /// </summary>
         /// <param name="n"></param>
