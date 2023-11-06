@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Net.Sockets;
+using System.Numerics;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
@@ -352,6 +353,50 @@ namespace LeetCode
         public static int[] TopKFrequent(int[] nums, int k)
         {
             return nums.GroupBy(n => n).OrderByDescending(g => g.Count()).Take(k).Select(g => g.Key).ToArray();
+        }
+
+        /// <summary>
+        /// 372. Super Pow
+        /// </summary>
+        public static int SuperPow(int a, int[] b)
+        {
+            long result = 1;
+            var pows = b.ToArray();
+            result *= GetPow(a, pows[0]);
+
+            for (int i = 1; i < b.Length; i++)
+            {
+                result = GetOneShift(result);
+                result *= GetPow(a, pows[i]);
+                result %= 1337;
+            }
+
+            return (int)result;
+
+            long GetPow(long a, int b)
+            {
+                long rs = 1L;
+                for (int i = 0; i < b; i++)
+                {
+                    rs *= a;
+                    rs %= 1337;
+                }
+                return rs;
+            }
+
+            long GetOneShift(long a)
+            {
+                var init = a;
+                a *= a;
+                a %= 1337;
+                a *= a;
+                a %= 1337;
+                a *= init;
+                a %= 1337;
+                a *= a;
+                a %= 1337;
+                return a;
+            }
         }
 
         /// <summary>
