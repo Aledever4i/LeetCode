@@ -65,46 +65,55 @@ namespace LeetCode.Contest
             var n = nums.Length;
             var dp = new Dictionary<(int, int), long>();
 
-            getBalance(nums, -1, int.MinValue, 0);
-
-            long getBalance(int[] nums, int lastIndex, long lastValue, int positionId)
+            for (int i = 0; i < n; i++)
             {
-                if (positionId >= n)
-                {
-                    return 0;
-                }
+                var value = nums[i];
+                getBalance(nums, i, i);
+            }
 
+            long getBalance(int[] nums, int lastIndex, int positionId)
+            {
                 if (dp.ContainsKey((lastIndex, positionId)))
                 {
                     return dp[(lastIndex, positionId)];
                 }
-                    
+
+                if (positionId >= n)
+                {
+                    return dp[(lastIndex, positionId)] = int.MinValue;
+                }
+
                 var currValue = nums[positionId];
+                var lastValue = nums[lastIndex];
 
                 if (currValue < 0)
                 {
-                    dp[(lastIndex, positionId)] = getBalance(nums, lastIndex, lastValue, positionId + 1);
+                    dp[(lastIndex, positionId)] = getBalance(nums, lastIndex, positionId + 1);
                 }
-                else if (currValue > lastValue)
+                else if (lastIndex == positionId)
                 {
-                    if (currValue - lastValue >= positionId - lastIndex)
+                    dp[(lastIndex, positionId)] = currValue + Math.Max(getBalance(nums, positionId, positionId + 1), 0);
+                }
+                else if (currValue - lastValue >= positionId - lastIndex)
+                {
+                    if (currValue - lastValue == positionId - lastIndex)
                     {
-                        dp[(lastIndex, positionId)] = currValue + getBalance(nums, positionId, currValue, positionId + 1);
+                        dp[(lastIndex, positionId)] = currValue + Math.Max(getBalance(nums, positionId, positionId + 1), 0);
                     }
                     else
                     {
-                        dp[(lastIndex, positionId)] = getBalance(nums, positionId, currValue, positionId + 1);
+                        dp[(lastIndex, positionId)] = Math.Max(currValue + Math.Max(getBalance(nums, positionId, positionId + 1), 0), Math.Max(getBalance(nums, lastIndex, positionId + 1), 0));
                     }
                 }
                 else
                 {
-                    dp[(lastIndex, positionId)] = getBalance(nums, lastIndex, lastValue, positionId + 1);
+                    dp[(lastIndex, positionId)] = Math.Max(getBalance(nums, lastIndex, positionId + 1), 0);
                 }
 
                 return dp[(lastIndex, positionId)];
             }
 
-            return Math.Max(dp.Where(val => val.Value != 0).Select(v => v.Value).DefaultIfEmpty(long.MinValue).Max(), nums.Max());
+            return Math.Max(dp.Where(val => val.Key.Item1 == val.Key.Item2).Select(v => v.Value).DefaultIfEmpty(long.MinValue).Max(), nums.Max());
         }
     }
 }

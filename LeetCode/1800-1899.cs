@@ -6,6 +6,36 @@ using System.Threading.Tasks;
 
 namespace LeetCode
 {
+    /// <summary>
+    /// 1845. Seat Reservation Manager
+    /// </summary>
+    public class SeatManager
+    {
+        private readonly PriorityQueue<int, int> queue;
+        private readonly int tableCount;
+
+        public SeatManager(int n)
+        {
+            tableCount = n;
+            queue = new PriorityQueue<int, int>(tableCount);
+
+            for (int i = 1; i <= n; i++)
+            {
+                queue.Enqueue(i, i);
+            }
+        }
+
+        public int Reserve()
+        {
+            return queue.Dequeue();
+        }
+
+        public void Unreserve(int seatNumber)
+        {
+            queue.Enqueue(seatNumber, seatNumber);
+        }
+    }
+
     public class _1800_1899
     {
         /// <summary>
@@ -15,5 +45,7 @@ namespace LeetCode
         {
             return 0;
         }
+
+        
     }
 }
