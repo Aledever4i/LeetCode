@@ -304,6 +304,49 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 345. Reverse Vowels of a String
+        /// </summary>
+        public static string ReverseVowels(string s)
+        {
+            var n = s.Length;
+
+            var left = 0;
+            var right = n - 1;
+
+            while (left < right)
+            {
+                while (left < n && s[left] is not 'a' and not 'e' and not 'i' and not 'o' and not 'u' and not 'A' and not 'E' and not 'I' and not 'O' and not 'U')
+                {
+                    left++;
+                }
+
+                if (left >= right)
+                {
+                    break;
+                }
+
+                while (right > 0 && s[right] is not 'a' and not 'e' and not 'i' and not 'o' and not 'u' and not 'A' and not 'E' and not 'I' and not 'O' and not 'U')
+                {
+                    right--;
+                }
+
+                if (left < n && right > 0)
+                {
+                    var temp = s[left];
+                    var sb = new StringBuilder(s);
+                    sb[left] = sb[right];
+                    sb[right] = temp;
+                    s = sb.ToString();
+
+                    left++;
+                    right--;
+                }
+            }
+
+            return s;
+        }
+
+        /// <summary>
         /// 347. Top K Frequent Elements. Tags: Array, Hash Table, Divide and Conquer, Sorting, Heap(Priority Queue), Bucket Sort, Counting, Quickselect
         /// </summary>
         public static int[] TopKFrequent(int[] nums, int k)
