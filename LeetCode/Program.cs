@@ -10,7 +10,7 @@ namespace LeetCode
     {
         static void Main(string[] args)
         {
-            var result = _0300_0399.SuperPow(2147483647, new int[] { 2, 0, 0 });
+            var result = _1900_1999.EliminateMaximum(new int[] { 1, 1, 2, 3 }, new int[] { 1, 1, 1, 1 });
 
 
             Console.WriteLine(result);
