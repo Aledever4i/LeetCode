@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -63,57 +64,42 @@ namespace LeetCode.Contest
         public static long MaxBalancedSubsequenceSum(int[] nums)
         {
             var n = nums.Length;
-            var dp = new Dictionary<(int, int), long>();
+            var dict = new Dictionary<int, int>() { { int.MinValue, 0 } };
 
-            for (int i = 0; i < n; i++)
+            //for (int i = 0; i < n; i++)
+            //{
+            //    var value = nums[i];
+
+            //    if (value > 0)
+            //    {
+            //        var p = InternalBisectRight(nums, value, 0, n);
+
+            //        dict.Add(p, )
+            //    }
+            //}
+
+            return 0;
+
+            int InternalBisectRight(IDictionary<int, int> list, int item, int lo, int hi)
             {
-                var value = nums[i];
-                getBalance(nums, i, i);
-            }
+                object litem;
+                int mid;
 
-            long getBalance(int[] nums, int lastIndex, int positionId)
-            {
-                if (dp.ContainsKey((lastIndex, positionId)))
+                while (lo < hi)
                 {
-                    return dp[(lastIndex, positionId)];
-                }
-
-                if (positionId >= n)
-                {
-                    return dp[(lastIndex, positionId)] = int.MinValue;
-                }
-
-                var currValue = nums[positionId];
-                var lastValue = nums[lastIndex];
-
-                if (currValue < 0)
-                {
-                    dp[(lastIndex, positionId)] = getBalance(nums, lastIndex, positionId + 1);
-                }
-                else if (lastIndex == positionId)
-                {
-                    dp[(lastIndex, positionId)] = currValue + Math.Max(getBalance(nums, positionId, positionId + 1), 0);
-                }
-                else if (currValue - lastValue >= positionId - lastIndex)
-                {
-                    if (currValue - lastValue == positionId - lastIndex)
+                    mid = (lo + hi) / 2;
+                    if (item.CompareTo(list[mid]) < 0)
                     {
-                        dp[(lastIndex, positionId)] = currValue + Math.Max(getBalance(nums, positionId, positionId + 1), 0);
+                        hi = mid;
                     }
                     else
                     {
-                        dp[(lastIndex, positionId)] = Math.Max(currValue + Math.Max(getBalance(nums, positionId, positionId + 1), 0), Math.Max(getBalance(nums, lastIndex, positionId + 1), 0));
+                        lo = mid + 1;
                     }
                 }
-                else
-                {
-                    dp[(lastIndex, positionId)] = Math.Max(getBalance(nums, lastIndex, positionId + 1), 0);
-                }
 
-                return dp[(lastIndex, positionId)];
+                return lo;
             }
-
-            return Math.Max(dp.Where(val => val.Key.Item1 == val.Key.Item2).Select(v => v.Value).DefaultIfEmpty(long.MinValue).Max(), nums.Max());
         }
     }
 }
