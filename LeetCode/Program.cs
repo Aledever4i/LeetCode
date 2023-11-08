@@ -10,7 +10,7 @@ namespace LeetCode
     {
         static void Main(string[] args)
         {
-            var result = _1900_1999.EliminateMaximum(new int[] { 1, 1, 2, 3 }, new int[] { 1, 1, 1, 1 });
+            var result = _2800_2899.IsReachableAtTime(1, 1, 2, 2, 1);
 
 
             Console.WriteLine(result);

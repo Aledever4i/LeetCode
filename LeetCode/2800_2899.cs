@@ -46,6 +46,19 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 2849. Determine if a Cell Is Reachable at a Given Time
+        /// </summary>
+        public static bool IsReachableAtTime(int sx, int sy, int fx, int fy, int t)
+        {
+            if (sx == fx && sy == fy && t == 1)
+            {
+                return false;
+            }
+
+            return Math.Max(Math.Abs(sx - fx), Math.Abs(sy - fy)) <= t;
+        }
+
+        /// <summary>
         /// 2873. Maximum Value of an Ordered Triplet I
         /// </summary>
         public static long MaximumTripletValue(int[] nums)
