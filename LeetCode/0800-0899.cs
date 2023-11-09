@@ -338,13 +338,12 @@ namespace LeetCode
         /// </summary>
         public static int BinaryGap(int n)
         {
-            var binaryString = Convert.ToString(n, 2);
             int res = 0;
             int? start = null;
 
-            for (int i = 0; i < binaryString.Length; i++)
+            for (int i = 0; i < 32; i++)
             {
-                if (binaryString[i] == '1')
+                if (((n >> i) & 1) != 0)
                 {
                     if (!start.HasValue)
                     {
