@@ -331,7 +331,36 @@ namespace LeetCode
                     dfsBuild(cur.right, cur, graph);
                 }
             }
-        }        
+        }
+
+        /// <summary>
+        /// 868. Binary Gap
+        /// </summary>
+        public static int BinaryGap(int n)
+        {
+            var binaryString = Convert.ToString(n, 2);
+            int res = 0;
+            int? start = null;
+
+            for (int i = 0; i < binaryString.Length; i++)
+            {
+                if (binaryString[i] == '1')
+                {
+                    if (!start.HasValue)
+                    {
+                        start = i;
+                    }
+                    else
+                    {
+                        res = Math.Max(res, i - start.Value);
+
+                        start = i;
+                    }
+                }
+            }
+
+            return res;
+        }
 
         /// <summary>
         /// 877. Stone Game. Tags: Array, Math, Dynamic Programming, Game Theory
