@@ -9,6 +9,37 @@ namespace LeetCode
     public static class _1200_1299
     {
         /// <summary>
+        /// 1200. Minimum Absolute Difference
+        /// </summary>
+        public static IList<IList<int>> MinimumAbsDifference(int[] arr)
+        {
+            Array.Sort(arr);
+
+            var result = new List<IList<int>>();
+            var min = int.MaxValue;
+
+            for (int i = 1; i < arr.Length; i++)
+            {
+                var value = arr[i];
+                var diff = value - arr[i - 1];
+
+                if (diff < min)
+                {
+                    min = diff;
+                    result.Clear();
+
+                    result.Add(new List<int>() { value - min, value });
+                }
+                else if (diff == min)
+                {
+                    result.Add(new List<int>() { value - min, value });
+                }
+            }
+
+            return result;
+        }
+
+        /// <summary>
         /// 1218. Longest Arithmetic Subsequence of Given Difference
         /// </summary>
         public static int LongestSubsequence(int[] arr, int difference)
