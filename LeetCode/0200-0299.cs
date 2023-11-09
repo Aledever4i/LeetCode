@@ -291,6 +291,46 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 257. Binary Tree Paths
+        /// </summary>
+        public static IList<string> BinaryTreePaths(TreeNode root)
+        {
+            if (root == null)
+            {
+                return new List<string>();
+            }
+
+            var result = new List<string>();
+
+            Analyse(root, new List<int>());
+
+            void Analyse(TreeNode node, List<int> ints)
+            {
+                var newInts = new List<int>(ints)
+                {
+                    node.val
+                };
+
+                if (node.right != null)
+                {
+                    Analyse(node.right, newInts);
+                }
+
+                if (node.left != null)
+                {
+                    Analyse(node.left, newInts);
+                }
+
+                if (node.left == null && node.right == null)
+                {
+                    result.Add(string.Join("->", newInts.ToArray()));
+                }
+            }
+
+            return result;
+        }
+
+        /// <summary>
         /// 258. Add Digits
         /// </summary>
         public static int AddDigits(int num)
