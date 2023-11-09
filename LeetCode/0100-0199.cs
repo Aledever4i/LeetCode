@@ -104,151 +104,6 @@ namespace LeetCode
         }
 
         /// <summary>
-        /// 128. Longest Consecutive Sequence
-        /// </summary>
-        public static int LongestConsecutive(int[] nums)
-        {
-            var n = nums.Length;
-            if (n == 0)
-            {
-                return 0;
-            }
-
-            var hash = new HashSet<int>();
-            var dp = new Dictionary<int, int>();
-            System.Array.Sort(nums);
-
-            var value = nums[0];
-            dp.Add(value, 1);
-            hash.Add(value);
-
-            for (int i = 1; i < nums.Length; i++)
-            {
-                value = nums[i];
-
-                if (hash.Add(value))
-                {
-                    if (dp.TryGetValue(value - 1, out int previous))
-                    {
-                        dp.Add(value, previous + 1);
-                    }
-                    else
-                    {
-                        dp.Add(value, 1);
-                    }
-                }
-            }
-
-            return dp.Values.Max();
-        }
-
-        /// <summary>
-        /// 141. Linked List Cycle
-        /// </summary>
-        public static bool HasCycle(ListNode head)
-        {
-            if (head == null)
-            {
-                return false;
-            }
-            var step = 0;
-            while (head.next != null)
-            {
-                head = head.next;
-                step++;
-
-                if (step == 10002)
-                {
-                    return true;
-                }
-            }
-            return false;
-
-
-
-            //if (head == null || head.next == null)
-            //{
-            //    return false; // No cycle if there are less than two nodes.
-            //}
-            //ListNode slow = head;
-            //ListNode fast = head;
-            //while (fast != null && fast.next != null)
-            //{
-            //    slow = slow.next; // Move one step.
-            //    fast = fast.next.next; // Move two steps.
-            //    if (slow == fast)
-            //    {
-            //        return true; // Cycle detected.
-            //    }
-            //}
-            //return false; // No cycle found.
-
-        }
-
-        /// <summary>
-        /// 146. LRU Cache
-        /// </summary>
-        public class LRUCache
-        {
-            private readonly int capacity;
-            private readonly Dictionary<int, LinkedListNode<CacheItem>> cacheMap;
-            private readonly LinkedList<CacheItem> cacheList;
-
-            public LRUCache(int capacity)
-            {
-                this.capacity = capacity;
-                cacheMap = new Dictionary<int, LinkedListNode<CacheItem>>(capacity);
-                cacheList = new LinkedList<CacheItem>();
-            }
-
-            public int Get(int key)
-            {
-                if (cacheMap.TryGetValue(key, out var node))
-                {
-                    cacheList.Remove(node);
-                    cacheList.AddFirst(node);
-                    return node.Value.Value;
-                }
-                return -1;
-            }
-
-            public void Put(int key, int value)
-            {
-                if (cacheMap.TryGetValue(key, out var node))
-                {
-                    node.Value.Value = value;
-                    cacheList.Remove(node);
-                    cacheList.AddFirst(node);
-                }
-                else
-                {
-                    if (cacheMap.Count >= capacity)
-                    {
-                        var lastNode = cacheList.Last;
-                        cacheMap.Remove(lastNode.Value.Key);
-                        cacheList.RemoveLast();
-                    }
-
-                    var newNode = new LinkedListNode<CacheItem>(new CacheItem(key, value));
-                    cacheMap.Add(key, newNode);
-                    cacheList.AddFirst(newNode);
-                }
-            }
-
-            private class CacheItem
-            {
-                public int Key { get; }
-                public int Value { get; set; }
-
-                public CacheItem(int key, int value)
-                {
-                    Key = key;
-                    Value = value;
-                }
-            }
-        }
-
-        /// <summary>
         /// 111. Minimum Depth of Binary Tree
         /// </summary>
         public static int MinDepth(TreeNode root)
@@ -500,6 +355,45 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 128. Longest Consecutive Sequence
+        /// </summary>
+        public static int LongestConsecutive(int[] nums)
+        {
+            var n = nums.Length;
+            if (n == 0)
+            {
+                return 0;
+            }
+
+            var hash = new HashSet<int>();
+            var dp = new Dictionary<int, int>();
+            System.Array.Sort(nums);
+
+            var value = nums[0];
+            dp.Add(value, 1);
+            hash.Add(value);
+
+            for (int i = 1; i < nums.Length; i++)
+            {
+                value = nums[i];
+
+                if (hash.Add(value))
+                {
+                    if (dp.TryGetValue(value - 1, out int previous))
+                    {
+                        dp.Add(value, previous + 1);
+                    }
+                    else
+                    {
+                        dp.Add(value, 1);
+                    }
+                }
+            }
+
+            return dp.Values.Max();
+        }
+
+        /// <summary>
         /// 134. Gas Station
         /// </summary>
         public static int CanCompleteCircuit(int[] gas, int[] cost)
@@ -684,6 +578,122 @@ namespace LeetCode
             }
 
             return false;
+        }
+
+        /// <summary>
+        /// 141. Linked List Cycle
+        /// </summary>
+        public static bool HasCycle(ListNode head)
+        {
+            if (head == null)
+            {
+                return false;
+            }
+            var step = 0;
+            while (head.next != null)
+            {
+                head = head.next;
+                step++;
+
+                if (step == 10002)
+                {
+                    return true;
+                }
+            }
+            return false;
+
+
+
+            //if (head == null || head.next == null)
+            //{
+            //    return false; // No cycle if there are less than two nodes.
+            //}
+            //ListNode slow = head;
+            //ListNode fast = head;
+            //while (fast != null && fast.next != null)
+            //{
+            //    slow = slow.next; // Move one step.
+            //    fast = fast.next.next; // Move two steps.
+            //    if (slow == fast)
+            //    {
+            //        return true; // Cycle detected.
+            //    }
+            //}
+            //return false; // No cycle found.
+
+        }
+
+        /// <summary>
+        /// 146. LRU Cache
+        /// </summary>
+        public class LRUCache
+        {
+            private readonly int capacity;
+            private readonly Dictionary<int, LinkedListNode<CacheItem>> cacheMap;
+            private readonly LinkedList<CacheItem> cacheList;
+
+            public LRUCache(int capacity)
+            {
+                this.capacity = capacity;
+                cacheMap = new Dictionary<int, LinkedListNode<CacheItem>>(capacity);
+                cacheList = new LinkedList<CacheItem>();
+            }
+
+            public int Get(int key)
+            {
+                if (cacheMap.TryGetValue(key, out var node))
+                {
+                    cacheList.Remove(node);
+                    cacheList.AddFirst(node);
+                    return node.Value.Value;
+                }
+                return -1;
+            }
+
+            public void Put(int key, int value)
+            {
+                if (cacheMap.TryGetValue(key, out var node))
+                {
+                    node.Value.Value = value;
+                    cacheList.Remove(node);
+                    cacheList.AddFirst(node);
+                }
+                else
+                {
+                    if (cacheMap.Count >= capacity)
+                    {
+                        var lastNode = cacheList.Last;
+                        cacheMap.Remove(lastNode.Value.Key);
+                        cacheList.RemoveLast();
+                    }
+
+                    var newNode = new LinkedListNode<CacheItem>(new CacheItem(key, value));
+                    cacheMap.Add(key, newNode);
+                    cacheList.AddFirst(newNode);
+                }
+            }
+
+            private class CacheItem
+            {
+                public int Key { get; }
+                public int Value { get; set; }
+
+                public CacheItem(int key, int value)
+                {
+                    Key = key;
+                    Value = value;
+                }
+            }
+        }
+
+        /// <summary>
+        /// 149. Max Points on a Line
+        /// </summary>
+        public static int MaxPoints(int[][] points)
+        {
+            var result = 0;
+
+            return result;
         }
 
         /// <summary>
