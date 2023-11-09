@@ -40,6 +40,63 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 2. Add Two Numbers
+        /// </summary>
+        public static ListNode AddTwoNumbers(ListNode l1, ListNode l2)
+        {
+            var hasDecimal = false;
+            ListNode result = null;
+            var list = new List<int>();
+
+            while (l1 != null && l2 != null)
+            {
+                var a = l1.val;
+                l1 = l1.next;
+
+                var b = l2.val;
+                l2 = l2.next;
+
+                var value = a + b + (hasDecimal ? 1 : 0);
+
+                hasDecimal = (value > 9);
+                value %= 10;
+                list.Add(value);
+            }
+
+            while (l1 != null)
+            {
+                var a = l1.val;
+                l1 = l1.next;
+                var value = a + (hasDecimal ? 1 : 0);
+                hasDecimal = (value > 9);
+                value %= 10;
+                list.Add(value);
+            }
+
+            while (l2 != null)
+            {
+                var a = l2.val;
+                l2 = l2.next;
+                var value = a + (hasDecimal ? 1 : 0);
+                hasDecimal = (value > 9);
+                value %= 10;
+                list.Add(value);
+            }
+
+            if (hasDecimal)
+            {
+                list.Add(1);
+            }
+
+            for (int i = list.Count - 1; i >= 0; i--)
+            {
+                result = new ListNode(list.ElementAt(i), result);
+            }
+
+            return result;
+        }
+
+        /// <summary>
         /// 3. Longest Substring Without Repeating Characters
         /// </summary>
         public static int LengthOfLongestSubstring(string s)
