@@ -64,6 +64,29 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 206. Reverse Linked List
+        /// </summary>
+        public static ListNode ReverseList(ListNode head)
+        {
+            if (head == null)
+            {
+                return head;
+            }
+
+            var value = head.val;
+            var current = new ListNode(value);
+
+            while (head.next != null)
+            {
+                var temp = new ListNode(head.next.val, current);
+                current = temp;
+                head = head.next;
+            }
+
+            return current;
+        }
+
+        /// <summary>
         /// 209. Minimum Size Subarray Sum. Tags: 
         /// </summary>
         public static int MinSubArrayLen(int target, int[] nums)

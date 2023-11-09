@@ -114,6 +114,14 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 1185. Day of the Week
+        /// </summary>
+        public static string DayOfTheWeek(int day, int month, int year)
+        {
+            return new DateTime(year, month, day).DayOfWeek.ToString();
+        }
+
+        /// <summary>
         /// 1187. Make Array Strictly Increasing. Tags: Array, Binary Search, Dynamic Programming, Sorting
         /// </summary>
         public static int MakeArrayIncreasing(int[] arr1, int[] arr2)
