@@ -121,6 +121,56 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 1759. Count Number of Homogenous Substrings
+        /// </summary>
+        public static int CountHomogenous(string s)
+        {
+            var mod = 1000000007;
+            var currentCharLength = 1;
+            var currentChar = s[0];
+            var n = s.Length;
+            var dict = new Dictionary<int, int>();
+            double result = 0;
+
+            for (int i = 1; i < n; i++)
+            {
+                var temp = s[i];
+
+                if (temp == currentChar)
+                {
+                    currentCharLength++;
+                }
+                else
+                {
+                    if (!dict.TryAdd(currentCharLength, 1))
+                    {
+                        dict[currentCharLength]++;
+                    }
+
+                    currentChar = temp;
+                    currentCharLength = 1;
+                }
+            }
+
+            if (!dict.TryAdd(currentCharLength, 1))
+            {
+                dict[currentCharLength]++;
+            }
+
+            foreach (int k in dict.Keys)
+            {
+                double temp = ((double)k * ((double)k + 1) / 2.0);
+                temp %= mod;
+                temp *= dict[k] % mod;
+
+                result += (int)temp;
+                result %= mod;
+            }
+
+            return (int)result;
+        }
+
+        /// <summary>
         /// 1768. Merge Strings Alternately
         /// </summary>
         public static string MergeAlternately(string word1, string word2)
