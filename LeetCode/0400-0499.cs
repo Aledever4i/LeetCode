@@ -93,6 +93,27 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 441. Arranging Coins
+        /// </summary>
+        public static int ArrangeCoins(int n)
+        {
+            var result = 0;
+            var iter = 1;
+
+            while (n > 0)
+            {
+                n -= iter;
+                if (n >= 0)
+                {
+                    result++;
+                    iter++;
+                }
+            }
+
+            return result;
+        }
+
+        /// <summary>
         /// 445. Add Two Numbers II. Tags: Linked List, Math, Stack
         /// </summary>
         public static ListNode AddTwoNumbers(ListNode l1, ListNode l2)
