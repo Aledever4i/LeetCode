@@ -69,6 +69,58 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 1743. Restore the Array From Adjacent Pairs
+        /// </summary>
+        public static int[] RestoreArray(int[][] adjacentPairs)
+        {
+            var n = adjacentPairs.Length;
+            var dict = new Dictionary<int, List<int>>();
+
+            foreach (var pair in adjacentPairs)
+            {
+                if (!dict.TryAdd(pair[0], new List<int>() { pair[1] }))
+                {
+                    dict[pair[0]].Add(pair[1]);
+                }
+
+                if (!dict.TryAdd(pair[1], new List<int>() { pair[0] }))
+                {
+                    dict[pair[1]].Add(pair[0]);
+                }
+            }
+
+            int root = 0;
+            foreach (var pair in dict)
+            {
+                if (pair.Value.Count == 1)
+                {
+                    root = pair.Key;
+                    break;
+                }
+            }
+
+            int curr = root;
+            var result = new List<int>() { root };
+            int prev = int.MinValue;
+
+            while (result.Count < dict.Count)
+            {
+                foreach (var neigbor in dict[curr])
+                {
+                    if (neigbor != prev)
+                    {
+                        result.Add(neigbor);
+                        prev = curr;
+                        curr = neigbor;
+                        break;
+                    }
+                }
+            }
+
+            return result.ToArray();
+        }
+
+        /// <summary>
         /// 1751. Maximum Number of Events That Can Be Attended II
         /// </summary>
         public static int MaxValue(int[][] events, int k)
