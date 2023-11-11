@@ -45,5 +45,44 @@ namespace LeetCode
 
             return 0;
         }
+
+        /// <summary>
+        /// 687. Longest Univalue Path
+        /// </summary>
+        public static int LongestUnivaluePath(TreeNode root)
+        {
+            var result = 0;
+
+            if (root != null)
+            {
+                Dfs(root, int.MinValue, 0);
+            }
+
+            return result;
+
+            void Dfs(TreeNode node, int prevValue, int count)
+            {
+                if (node.val == prevValue)
+                {
+                    count++;
+                }
+                else
+                {
+                    count = 1;
+                }
+
+                result = Math.Max(result, count);
+
+                if (node.left != null)
+                {
+                    Dfs(node.left, node.val, count);
+                }
+
+                if (node.right != null)
+                {
+                    Dfs(node.right, node.val, count);
+                }
+            }
+        }
     }
 }
