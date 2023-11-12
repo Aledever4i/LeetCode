@@ -4,6 +4,7 @@ using System.Linq;
 using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace LeetCode.Contest
 {
@@ -134,35 +135,98 @@ namespace LeetCode.Contest
 
             return Math.Min(countWithLastSwap, countWithoutLastSwap);
         }
+
+
         public static int MaximumStrongPairXor2(int[] nums)
         {
-            System.Array.Sort(nums);
+            MaximumStrongPairXor2Node _root = new MaximumStrongPairXor2Node();
 
-            var listPair = new List<(int, int)>();
-            var n = nums.Length;
-
-            for (int i = 0; i < n; i++)
+            foreach (var num in nums)
             {
-                var value1 = nums[i];
-                for (int j = i + 1; j < n; j++)
+                var bin = ConvertDecimalToBInary(num);
+                AddBinaryNumber(bin);
+            }
+
+            return 0;
+
+            bool[] GetMaxXor()
+            {
+                bool[] result = new bool[32];
+                MaximumStrongPairXor2Node cur = _root;
+
+                int index;
+                for (index = 0; index < 32; index++)
                 {
-                    var value2 = nums[j];
-
-                    if (Math.Min(value2, value1) >= value2 - value1)
+                    if (cur.next[0] != null && cur.next[1] != null)
                     {
-                        listPair.Add((value1, value2));
+                        result[index] = true;
+                        break;
                     }
+
+                    cur = cur.next[0] ?? cur.next[1];
                 }
+
+                while (index < 32)
+                {
+                    result[index] = true;
+                    index++;
+                }
+
+                return result;
             }
 
-            var result = 0;
-
-            foreach (var pair in listPair.Take(100))
+            MaximumStrongPairXor2Node AddValue(MaximumStrongPairXor2Node node, bool[] val, int d)
             {
-                result = Math.Max(pair.Item1 ^ pair.Item2, result);
+                if (node == null)
+                {
+                    node = new MaximumStrongPairXor2Node();
+                }
+
+                if (d == val.Length)
+                {
+                    return node;
+                }
+
+                int index = Convert.ToInt32(val[d]);
+                node.next[index] = AddValue(node.next[index], val, ++d);
+                return node;
             }
 
-            return result;
+            void AddBinaryNumber(bool[] binaryNumber)
+            {
+                _root = AddValue(_root, binaryNumber, 0);
+            }
+
+            bool[] ConvertDecimalToBInary(int number)
+            {
+                int counter = 32;
+                bool[] result = new bool[counter];
+                while (number > 0)
+                {
+                    result[--counter] = Convert.ToBoolean(number % 2);
+                    number /= 2;
+                }
+
+                return result;
+            }
+
+            int ConvertBinaryToDecimal(bool[] bits)
+            {
+                int result = 0;
+                int base_val = 1;
+                for (int i = bits.Length - 1; i >= 0; i--)
+                {
+                    result += Convert.ToInt32(bits[i]) * base_val;
+                    base_val *= 2;
+                }
+
+                return result;
+            }
+        }
+
+        class MaximumStrongPairXor2Node
+        {
+            public MaximumStrongPairXor2Node[] next = new MaximumStrongPairXor2Node[2];
         }
     }
 }
