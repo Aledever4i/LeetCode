@@ -68,6 +68,14 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 815. Bus Routes
+        /// </summary>
+        public static int NumBusesToDestination(int[][] routes, int source, int target)
+        {
+            return 0;
+        }
+
+        /// <summary>
         /// 823. Binary Trees With Factors
         /// </summary>
         public static int NumFactoredBinaryTrees(int[] arr)
