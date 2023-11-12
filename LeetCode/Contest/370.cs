@@ -5,6 +5,9 @@ using System.Linq;
 
 namespace LeetCode.Contest
 {
+    /// <summary>
+    /// 05.11.2023 - 2 задачи, 3 даже условия не понял, 4 оказалось такой, что даже готовое решение не смог разобрать у другого участника.
+    /// </summary>
     public static class _370
     {
         public static int FindChampion1(int[][] grid)
