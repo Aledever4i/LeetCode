@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace LeetCode
 {
@@ -30,6 +32,33 @@ namespace LeetCode
             }
 
             return result;
+        }
+
+        /// <summary>
+        /// 1980. Find Unique Binary String
+        /// </summary>
+        public static string FindDifferentBinaryString(string[] nums)
+        {
+            var value = nums[0];
+            var hash = new HashSet<int>();
+            var count = Math.Pow(2, value.Length);
+
+            foreach (var item in nums)
+            {
+                hash.Add(Convert.ToInt32(item, 2));
+            }
+
+            foreach (var x in Enumerable.Range(0, (int)count))
+            {
+                if (hash.Add(x))
+                {
+                    var binary = Convert.ToString(x, 2);
+
+                    return new string('0', value.Length - binary.Length) + binary;
+                }
+            }
+
+            return "";
         }
     }
 }
