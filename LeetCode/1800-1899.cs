@@ -46,6 +46,20 @@ namespace LeetCode
             return 0;
         }
 
-        
+        /// <summary>
+        /// 1877. Minimize Maximum Pair Sum in Array
+        /// </summary>
+        public int MinPairSum(int[] nums)
+        {
+            Array.Sort(nums);
+            var result = 0;
+
+            for (int i = 0; i < nums.Length / 2; i++)
+            {
+                result = Math.Max(nums[i] + nums[nums.Length - 1 - i], result);
+            }
+
+            return result;
+        }
     }
 }
