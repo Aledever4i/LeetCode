@@ -77,6 +77,17 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 1662. Check If Two String Arrays are Equivalent
+        /// </summary>
+        public static bool ArrayStringsAreEqual(string[] word1, string[] word2)
+        {
+            string word1String = string.Join("", word1);
+            string word2String = string.Join("", word2);
+
+            return word1String.Equals(word2String);
+        }
+
+        /// <summary>
         /// 1685. Sum of Absolute Differences in a Sorted Array
         /// </summary>
         public static int[] GetSumAbsoluteDifferences(int[] nums)
