@@ -81,6 +81,43 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 1160. Find Words That Can Be Formed by Characters
+        /// </summary>
+        public static int CountCharacters(string[] words, string chars)
+        {
+            var dict = chars.GroupBy(a => a).ToDictionary(a => a.Key, a => a.Count());
+
+            var result = 0;
+
+            foreach (var word in words)
+            {
+                var wordDict = word.GroupBy(a => a).ToDictionary(a => a.Key, a => a.Count());
+                var canContinue = true;
+                var tempResult = 0;
+
+                foreach (var key in wordDict.Keys)
+                {
+                    var wValue = wordDict[key];
+
+                    if (!dict.TryGetValue(key, out int value) || wValue > value)
+                    {
+                        canContinue = false;
+                        break;
+                    }
+
+                    tempResult += wValue;
+                }
+
+                if (canContinue)
+                {
+                    result += tempResult;
+                }
+            }
+
+            return result;
+        }
+
+        /// <summary>
         /// 1161. Maximum Level Sum of a Binary Tree. Tags: Tree, Depth-First Search, Breadth-First Search, Binary Tree
         /// </summary>
         public static int MaxLevelSum(TreeNode root)

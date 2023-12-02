@@ -75,5 +75,36 @@ namespace LeetCode
 
             return result;
         }
+
+        /// <summary>
+        /// 1685. Sum of Absolute Differences in a Sorted Array
+        /// </summary>
+        public static int[] GetSumAbsoluteDifferences(int[] nums)
+        {
+            var n = nums.Length;
+
+            var result = new int[n];
+            Array.Fill(result, 0);
+
+            int prefixSum = 0;
+            var sum = nums.Sum();
+
+            for (int i = 0; i < n; i++)
+            {
+                var v = nums[i];
+                int rightSum = sum - prefixSum - v;
+
+                int rightCount = n - 1 - i;
+
+                int leftTotal = i * v - prefixSum;
+                int rightTotal = rightSum - rightCount * v;
+
+                result[i] = leftTotal + rightTotal;
+                prefixSum += v;
+            }
+
+            return result;
+        }
     }
 }
+
