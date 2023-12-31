@@ -7,6 +7,14 @@ namespace LeetCode
     public static class _1900_1999
     {
         /// <summary>
+        /// 1903. Largest Odd Number in String
+        /// </summary>
+        public static string LargestOddNumber(string num)
+        {
+            return string.Empty;
+        }
+
+        /// <summary>
         /// 1921. Eliminate Maximum Number of Monsters
         /// </summary>
         public static int EliminateMaximum(int[] dist, int[] speed)
