@@ -166,6 +166,8 @@ namespace LeetCode.Contest
 
                 }
             }
+
+            return result;
         }
     }
 }

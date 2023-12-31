@@ -34,6 +34,31 @@ namespace LeetCode
     public static class _1600_1699
     {
         /// <summary>
+        /// 1624. Largest Substring Between Two Equal Characters
+        /// </summary>
+        public static int MaxLengthBetweenEqualCharacters(string s)
+        {
+            var dict = new Dictionary<char, List<int>>();
+
+            for (int i = 0; i < s.Length; i++)
+            {
+                var c = s[i];
+
+                if (!dict.TryAdd(c, new List<int>() { i })) {
+                    dict[c].Add(i);
+                }
+            }
+
+            var result = -1;
+            foreach (var v in dict.Where(d => d.Value.Count > 1))
+            {
+                result = Math.Max(result, v.Value.Max() - v.Value.Min() - 1);
+            }
+
+            return result;
+        }
+
+        /// <summary>
         /// 1658. Minimum Operations to Reduce X to Zero
         /// </summary>
         public static int MinOperations(int[] nums, int x)
