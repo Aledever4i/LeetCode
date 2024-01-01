@@ -342,6 +342,31 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 867. Transpose Matrix
+        /// </summary>
+        public static int[][] Transpose(int[][] matrix)
+        {
+            var n = matrix.Length;
+            var m = matrix[0].Length;
+
+            var result = new int[m][];
+            for (int i = 0; i < m; i++)
+            {
+                result[i] = new int[n];
+            }
+
+            for (int i = 0; i < n; i++)
+            {
+                for (int y = 0; y < m; y++)
+                {
+                    result[y][i] = matrix[i][y];
+                }
+            }
+
+            return result;
+        }
+
+        /// <summary>
         /// 868. Binary Gap
         /// </summary>
         public static int BinaryGap(int n)
