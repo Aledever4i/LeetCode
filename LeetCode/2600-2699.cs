@@ -77,5 +77,49 @@ namespace LeetCode
 
     public static class _2600_2699
     {
+        /// <summary>
+        /// 2610. Convert an Array Into a 2D Array With Conditions
+        /// </summary>
+        public static IList<IList<int>> FindMatrix(int[] nums)
+        {
+            var dict = new Dictionary<int, int>();
+
+            foreach (int num in nums)
+            {
+                if (!dict.TryAdd(num, 1))
+                {
+                    dict[num]++;
+                }
+            }
+
+            var result = new List<IList<int>>();
+
+            while (dict.Count > 0)
+            {
+                var keys = dict.Keys;
+                var row = new List<int>();
+                var keysForRemove = new List<int>();
+
+                foreach (var key in keys)
+                {
+                    var val = dict[key];
+                    row.Add(key);
+
+                    if (val == 1)
+                    {
+                        dict.Remove(key);
+                    }
+                    else
+                    {
+                        dict[key]--;
+                    }
+                }
+
+                result.Add(row);    
+            }
+
+            return result;
+        }
+
     }
 }
