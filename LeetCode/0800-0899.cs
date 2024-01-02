@@ -115,6 +115,32 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 824. Goat Latin
+        /// </summary>
+        public static string ToGoatLatin(string sentence)
+        {
+            var words = sentence.Split(' ');
+            var newWords = new List<string>();
+
+            for (int i = 0; i < words.Length; i++)
+            {
+                var currentWord = words[i];
+                var isVowel = currentWord[0] is 'a' or 'e' or 'i' or 'o' or 'u' or 'A' or 'E' or 'I' or 'O' or 'U';
+
+                if (isVowel)
+                {
+                    newWords.Add($"{currentWord}ma{string.Join("", Enumerable.Repeat('a', i + 1))}");
+                }
+                else
+                {
+                    newWords.Add($"{currentWord.Substring(1, currentWord.Length - 1)}{currentWord[0]}ma{string.Join("", Enumerable.Repeat('a', i + 1))}");
+                }
+            }
+
+            return string.Join(' ', newWords);
+        }
+
+        /// <summary>
         /// 837. New 21 Game. Tags: Math, Dynamic Programming, Sliding Window, Probability and Statistics
         /// </summary>
         public static double New21Game(int n, int k, int maxPts)
