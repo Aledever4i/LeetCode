@@ -331,5 +331,44 @@ namespace LeetCode
                 }
             }
         }
+
+        /// <summary>
+        /// 463. Island Perimeter
+        /// </summary>
+        public static int IslandPerimeter(int[][] grid)
+        {
+            var n = grid.Length;
+            var m = grid[0].Length;
+
+            var visited = new int[n][];
+            for (int i = 0; i < n; i++)
+            {
+                visited[i] = new int[m];
+            }
+
+            var isFound = false;
+            var queue = new Queue<(int, int)>();
+
+            for (int i = 0; i < n && !isFound; i++)
+            {
+                for (int y = 0; y < m && !isFound; y++)
+                {
+
+
+                    if (grid[i][y] == 1)
+                    {
+                        queue.Enqueue((i, y));
+                        isFound = true;
+                    }
+                }
+            }
+
+            while (queue.Count > 0)
+            {
+
+            }
+
+            return 0;
+        }
     }
 }
