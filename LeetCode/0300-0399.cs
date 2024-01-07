@@ -356,6 +356,14 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 349. Intersection of Two Arrays
+        /// </summary>
+        public static int[] Intersection(int[] nums1, int[] nums2)
+        {
+            return nums1.Intersect(nums2).ToArray();
+        }
+
+        /// <summary>
         /// 372. Super Pow
         /// </summary>
         public static int SuperPow(int a, int[] b)
