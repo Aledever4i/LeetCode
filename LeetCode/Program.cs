@@ -10,7 +10,7 @@ namespace LeetCode
     {
         static void Main(string[] args)
         {
-            var a = _0001_0099.NumDecodings("aaaa"); //-1
+            var a = _379.MaximumSetSize(new int[] { 1, 1, 2, 2, 1, 1 }, new int[] { 1, 3, 2, 2, 2, 1 }); //-1
 
             //var a = _371.MinOperations(new int[] { 17, 13, 19, 9, 6, 14 }, new int[] { 17, 14, 15, 1, 19, 19 }); //-1
             Console.WriteLine(a);

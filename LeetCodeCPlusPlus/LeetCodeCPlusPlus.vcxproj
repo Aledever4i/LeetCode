@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -133,6 +133,7 @@
     <ClInclude Include="From1200to1299.h" />
     <ClInclude Include="From1400to1499.h" />
     <ClInclude Include="From2000to2099.h" />
+    <ClInclude Include="From2100to2199.h" />
     <ClInclude Include="From2200to2299.h" />
     <ClInclude Include="ListNode.h" />
     <ClInclude Include="resource.h" />
@@ -144,6 +145,7 @@
     <ClCompile Include="From1200to1299.cpp" />
     <ClCompile Include="From1400to1499.cpp" />
     <ClCompile Include="From2000to2099.cpp" />
+    <ClCompile Include="From2100to2199.cpp" />
     <ClCompile Include="From2200to2299.cpp" />
   </ItemGroup>
   <ItemGroup>

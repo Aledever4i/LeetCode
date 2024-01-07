@@ -68,12 +68,20 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 2125. Number of Laser Beams in a Bank
+        /// </summary>
+        public static int NumberOfBeams(string[] bank)
+        {
+
+
+            return 0;
+        }
+
+        /// <summary>
         /// 2140. Solving Questions With Brainpower
         /// По аналогии с задачей 1035 попробывал решить через матрицу. В принципе решение прикольное, но не проходит по памяти.
         /// Поэтому старый подход с алгоритмом фибоначчи и кеширующей таблицей подошел.
         /// </summary>
-        /// <param name="questions"></param>
-        /// <returns></returns>
         public static long MostPoints(int[][] questions)
         {
             var cache = new long[questions.Length];
