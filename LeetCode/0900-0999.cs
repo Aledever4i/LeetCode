@@ -50,6 +50,39 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 938. Range Sum of BST
+        /// </summary>
+        public static int RangeSumBST(TreeNode root, int low, int high)
+        {
+            return Analize(root, low, high);
+
+            int Analize(TreeNode root, int low, int high)
+            {
+                int result = 0;
+
+                if (root != null)
+                {
+                    if (root.val >= low && root.val <= high)
+                    {
+                        result = root.val;
+                    }
+                }
+
+                if (root.left != null)
+                {
+                    result += Analize(root.left, low, high);
+                }
+                
+                if (root.right != null)
+                {
+                    result += Analize(root.right, low, high);
+                }
+
+                return result;
+            }
+        }
+
+        /// <summary>
         /// 956. Tallest Billboard. Tags: Array, Dynamic Programming
         /// </summary>
         public static int TallestBillboard(int[] rods)
