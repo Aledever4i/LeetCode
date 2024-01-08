@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
+using System.Runtime.Intrinsics.Arm;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -30,6 +31,32 @@ namespace LeetCode
             return result;
         }
 
+        /// <summary>
+        /// 413. Arithmetic Slices
+        /// </summary>
+        public static int NumberOfArithmeticSlices(int[] nums)
+        {
+            var result = 0;
+            var n = nums.Length;
+
+            for (int i = 0; i < n - 2; i++)
+            {
+                int diff = nums[i + 1] - nums[i];
+                for (int y = i + 2; y < n; y++)
+                {
+                    if (nums[y] - diff == nums[y - 1])
+                    {
+                        result += 1;
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+            }
+
+            return result;
+        }
 
         /// <summary>
         /// 435. Non-overlapping Intervals. TagsL Array, Dynamic Programming, Greedy, Sorting
@@ -168,6 +195,46 @@ namespace LeetCode
             {
                 head.next = new ListNode(resultList[resultList.Count - i]);
                 head = head.next;
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// 446. Arithmetic Slices II - Subsequence
+        /// </summary>
+        public static int NumberOfArithmeticSlices2(int[] nums)
+        {
+            var n = nums.Length;
+            var result = 0;
+
+            Dictionary<int, int>[] dp = new Dictionary<int, int>[n];
+            for (int i = 0; i < n; i++)
+            {
+                dp[i] = new Dictionary<int, int>();
+            }
+
+            for (int i = 0; i < n; i++)
+            {
+                for (int y = 0; y < i; y++)
+                {
+                    long diff = (long)nums[i] - nums[y];
+                    if (diff > int.MaxValue || diff < int.MinValue)
+                    {
+                        continue;
+                    }
+
+                    if (!dp[i].TryAdd((int)diff, 1))
+                    {
+                        dp[i][(int)diff] += 1;
+                    }
+
+                    if (dp[y].ContainsKey((int)diff))
+                    {
+                        dp[i][(int)diff] += dp[y][(int)diff];
+                        result += dp[y][(int)diff];
+                    }
+                }
             }
 
             return result;
