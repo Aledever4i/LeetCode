@@ -421,6 +421,58 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 872. Leaf-Similar Trees
+        /// </summary>
+        public static bool LeafSimilar(TreeNode root1, TreeNode root2)
+        {
+            var list1 = new List<int>();
+            var list2 = new List<int>();
+
+            Analyze(root1, list1);
+            Analyze(root2, list2);
+
+            void Analyze(TreeNode treeNode, List<int> values)
+            {
+                if (treeNode == null)
+                {
+                    return;
+                }
+
+                if (treeNode.left == null && treeNode.right == null)
+                {
+                    values.Add(treeNode.val);
+                }
+
+                if (treeNode.left != null)
+                {
+                    Analyze(treeNode.left, values);
+                }
+
+                if (treeNode.right != null)
+                {
+                    Analyze(treeNode.right, values);
+                }
+            }
+
+            if (list1.Count() != list2.Count())
+            {
+                return false;
+            }
+            else
+            {
+                for (int i = 0; i < list1.Count(); i++)
+                {
+                    if (list1.ElementAt(i) != list2.ElementAt(i))
+                    {
+                        return false;
+                    }
+                }
+            }
+
+            return true;
+        }
+
+        /// <summary>
         /// 877. Stone Game. Tags: Array, Math, Dynamic Programming, Game Theory
         /// </summary>
         public static bool StoneGame(int[] piles)
