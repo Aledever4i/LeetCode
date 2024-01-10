@@ -9,45 +9,6 @@ namespace LeetCode
     public static class _2300_2399
     {
         /// <summary>
-        /// 2352. Equal Row and Column Pairs
-        /// </summary>
-        public static int EqualPairs(int[][] grid)
-        {
-            var n = grid.Length;
-            var coincidences = new Dictionary<string, int>();
-            var result = 0;
-
-            for (int i = 0; i < n; i++)
-            {
-                var row = grid[i];
-
-                var key = string.Join("-", row);
-
-                if (!coincidences.TryAdd(key, 1))
-                {
-                    coincidences[key] += 1;
-                }
-            }
-
-            for (int i = 0; i < n; i++)
-            {
-                var columnKey = grid[0][i].ToString();
-
-                for (int y = 1; y < n; y++)
-                {
-                    columnKey = $"{columnKey}-{grid[y][i]}";
-                }
-
-                if (coincidences.TryGetValue(columnKey, out int value))
-                {
-                    result += value;
-                }
-            }
-
-            return result;
-        }
-
-        /// <summary>
         /// 2328. Number of Increasing Paths in a Grid
         /// </summary>
         public static int CountPaths(int[][] grid)
@@ -111,6 +72,114 @@ namespace LeetCode
                 }
             }
             return answer;
+        }
+        
+        /// <summary>
+        /// 2352. Equal Row and Column Pairs
+        /// </summary>
+        public static int EqualPairs(int[][] grid)
+        {
+            var n = grid.Length;
+            var coincidences = new Dictionary<string, int>();
+            var result = 0;
+
+            for (int i = 0; i < n; i++)
+            {
+                var row = grid[i];
+
+                var key = string.Join("-", row);
+
+                if (!coincidences.TryAdd(key, 1))
+                {
+                    coincidences[key] += 1;
+                }
+            }
+
+            for (int i = 0; i < n; i++)
+            {
+                var columnKey = grid[0][i].ToString();
+
+                for (int y = 1; y < n; y++)
+                {
+                    columnKey = $"{columnKey}-{grid[y][i]}";
+                }
+
+                if (coincidences.TryGetValue(columnKey, out int value))
+                {
+                    result += value;
+                }
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// 2385. Amount of Time for Binary Tree to Be Infected
+        /// </summary>
+        public static int AmountOfTime(TreeNode root, int start)
+        {
+            var graph = new Dictionary<int, List<int>>();
+            var visited = new HashSet<int>();
+
+            var wayQueue = new Queue<(TreeNode, TreeNode)>();
+            wayQueue.Enqueue((root, root.left));
+            wayQueue.Enqueue((root, root.right));
+            while (wayQueue.Count > 0)
+            {
+                var e = wayQueue.Dequeue();
+                if (e.Item2 != null)
+                {
+                    if (!graph.TryAdd(e.Item1.val, new List<int>() { e.Item2.val }))
+                    {
+                        graph[e.Item1.val].Add(e.Item2.val);
+                    }
+
+                    if (!graph.TryAdd(e.Item2.val, new List<int>() { e.Item1.val }))
+                    {
+                        graph[e.Item2.val].Add(e.Item1.val);
+                    }
+
+                    if (e.Item2.left != null)
+                    {
+                        wayQueue.Enqueue((e.Item2, e.Item2.left));
+                    }
+                    if (e.Item2.right != null)
+                    {
+                        wayQueue.Enqueue((e.Item2, e.Item2.right));
+                    }
+                }
+            }
+
+            if (graph.Count == 0)
+            {
+                return 0;
+            }
+
+            var queue = new Queue<(int, int)>();
+            var ways = graph[start];
+            visited.Add(start);
+            var result = 0;
+            foreach (var way in ways)
+            {
+                queue.Enqueue((way, 1));
+            }
+
+            while (queue.Count > 0)
+            {
+                var way = queue.Dequeue();
+                result = Math.Max(result, way.Item2);
+                visited.Add(way.Item1);
+                var newWays = graph[way.Item1];
+                foreach (var newWay in newWays)
+                {
+                    if (!visited.Contains(newWay))
+                    {
+                        queue.Enqueue((newWay, way.Item2 + 1));
+                    }
+                }
+            }
+
+            return result;
         }
     }
 }
