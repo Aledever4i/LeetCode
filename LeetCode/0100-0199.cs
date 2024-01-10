@@ -779,16 +779,24 @@ namespace LeetCode
             var n = letters.Length;
             var builder = new StringBuilder();
             var redeem = columnNumber;
+            var count = 0;
 
-            while (redeem / n > 0)
+            while (redeem > 0)
             {
-                builder.Append(letters[(int)redeem / n - 1]);
-                redeem = redeem % n;
+                redeem = redeem / 26;
+                count++;
             }
 
-            builder.Append(letters[(int)redeem - 1]);
+            return "";
 
-            return builder.ToString();
+            //{
+            //    builder.Append(letters[(int)redeem / n - 1]);
+            //    redeem = redeem % n;
+            //}
+
+            //builder.Append(letters[(int)redeem - 1]);
+
+            //return builder.ToString();
         }
 
         /// <summary>
