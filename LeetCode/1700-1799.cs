@@ -20,6 +20,37 @@ namespace LeetCode
     public class _1700_1799
     {
         /// <summary>
+        /// 1704. Determine if String Halves Are Alike
+        /// </summary>
+        public static bool HalvesAreAlike(string s)
+        {
+            var result = 0;
+
+            bool isVowel(char c)
+            {
+                return (new char[] { 'a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U' }).Contains(c); 
+            }
+
+            for (int i = 0; i < s.Length; i++)
+            {
+                if (isVowel(s[i]))
+                {
+
+                    if (i < s.Length / 2)
+                    {
+                        result++;
+                    }
+                    else
+                    {
+                        result--;
+                    }
+                }
+            }
+
+            return result == 0;
+        }
+
+        /// <summary>
         /// 1721. Swapping Nodes in a Linked List. Tags: Linked List, Two Pointers
         /// </summary>
         /// <param name="head"></param>
