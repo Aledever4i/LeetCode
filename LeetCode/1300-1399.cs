@@ -113,6 +113,31 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 1347. Minimum Number of Steps to Make Two Strings Anagram
+        /// </summary>
+        public static int MinSteps(string s, string t)
+        {
+            var sDict = s.GroupBy(c => c).ToDictionary(c => c.Key, c => c.Count());
+            var tDict = t.GroupBy(c => c).ToDictionary(c => c.Key, c => c.Count());
+
+            var changes = 0;
+
+            foreach (var sValue in sDict)
+            {
+                if (tDict.TryGetValue(sValue.Key, out int value))
+                {
+                    changes += (sValue.Value - value) > 0 ? (sValue.Value - value) : 0;
+                }
+                else
+                {
+                    changes += sValue.Value;
+                }
+            }
+
+            return changes > 0 ? changes : 1;
+        }
+
+        /// <summary>
         /// 1353. Maximum Number of Events That Can Be Attended
         /// </summary>
         public static int MaxEvents(int[][] events)

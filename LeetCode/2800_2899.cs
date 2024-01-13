@@ -59,6 +59,43 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 2870. Minimum Number of Operations to Make Array Empty
+        /// </summary>
+        public static int MinOperations(int[] nums)
+        {
+            var dict = new Dictionary<int, int>();
+
+            foreach (var num in nums)
+            {
+                if (!dict.TryAdd(num, 1))
+                {
+                    dict[num]++;
+                }
+            }
+
+            if (dict.Values.Any(x => x == 1))
+            {
+                return -1;
+            }
+
+            var result = 0;
+
+            foreach (var value in dict.Values)
+            {
+                if (value == 2)
+                {
+                    result++;
+                }
+                else
+                {
+                    result += (value / 3) + ((value % 3 > 0) ? 1 : 0);
+                }
+            }
+
+            return result;
+        }
+
+        /// <summary>
         /// 2873. Maximum Value of an Ordered Triplet I
         /// </summary>
         public static long MaximumTripletValue(int[] nums)
