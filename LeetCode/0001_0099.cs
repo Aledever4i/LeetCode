@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Security;
 using System.Text;
 using System.Threading.Tasks;
@@ -905,7 +906,35 @@ namespace LeetCode
         /// </summary>
         public static IList<IList<int>> PermuteUnique(int[] nums)
         {
+            //2 - 3 = 3
+            //3 - 3 = 6
+            //3 - 4 = 12
+            //4 - 4 = 24
+
+            var uniqueCount = nums.Distinct().Count();
+            var n = nums.Length;
+
+
             var result = new List<IList<int>>();
+
+            void Backtrack(List<int> curr, List<IList<int>> ans, List<int> visited)
+            {
+                if (curr.Count == nums.Length)
+                {
+                    ans.Add(new List<int>(curr));
+                    return;
+                }
+
+                foreach (int num in nums)
+                {
+                    if (!curr.Contains(num))
+                    {
+                        curr.Add(num);
+                        //Backtrack(curr, ans, nums);
+                        curr.RemoveAt(curr.Count - 1);
+                    }
+                }
+            }
 
             return result;
         }
