@@ -775,28 +775,16 @@ namespace LeetCode
         /// </summary>
         public static string ConvertToTitle(long columnNumber)
         {
-            const string letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-            var n = letters.Length;
             var builder = new StringBuilder();
-            var redeem = columnNumber;
-            var count = 0;
 
-            while (redeem > 0)
+            while (columnNumber > 0)
             {
-                redeem = redeem / 26;
-                count++;
+                columnNumber--;
+                builder.Append((char)(columnNumber % 26 + 'A'));
+                columnNumber /= 26;
             }
 
-            return "";
-
-            //{
-            //    builder.Append(letters[(int)redeem / n - 1]);
-            //    redeem = redeem % n;
-            //}
-
-            //builder.Append(letters[(int)redeem - 1]);
-
-            //return builder.ToString();
+            return new string(builder.ToString().Reverse().ToArray());
         }
 
         /// <summary>
