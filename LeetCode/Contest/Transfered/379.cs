@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LeetCode.Contest
+namespace LeetCode.Contest.Transfered
 {
     public static class _379
     {
@@ -75,7 +75,7 @@ namespace LeetCode.Contest
 
                 return false;
             }
-        
+
             bool RockCrossQueen(int a, int b, int c, int d, int e, int f)
             {
                 var rockMoves = new int[4][] {

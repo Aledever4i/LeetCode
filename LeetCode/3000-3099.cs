@@ -1,4 +1,4 @@
-﻿using LeetCode.Contest;
+﻿using LeetCode.Contest.Transfered;
 using System;
 using System.Collections.Generic;
 using System.Linq;

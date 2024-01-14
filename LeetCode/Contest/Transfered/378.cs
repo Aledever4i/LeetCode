@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LeetCode.Contest
+namespace LeetCode.Contest.Transfered
 {
     public static class _378
     {
@@ -36,7 +36,7 @@ namespace LeetCode.Contest
                     {
                         dict[(previewSymbol, frequency)] += 1;
                     }
-                        
+
                     frequency = 1;
                     previewSymbol = cur;
                 }
@@ -57,7 +57,7 @@ namespace LeetCode.Contest
                 {
                     result = Math.Max(result, v.Freq);
                 }
-                else if (dict.ContainsKey((v.Symb, v.Freq - 1)) || (v.Count == 2 && v.Freq > 1))
+                else if (dict.ContainsKey((v.Symb, v.Freq - 1)) || v.Count == 2 && v.Freq > 1)
                 {
                     result = Math.Max(result, v.Freq - 1);
                 }
@@ -113,8 +113,8 @@ namespace LeetCode.Contest
                     var endSymbol = s[end];
 
                     if (
-                        (y < a || y > b)
-                        || (end < c || end > d)
+                        y < a || y > b
+                        || end < c || end > d
                     )
                     {
                         if (y < a && end > d)
