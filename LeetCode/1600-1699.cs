@@ -59,6 +59,45 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 1657. Determine if Two Strings Are Close
+        /// </summary>
+        public static bool CloseStrings(string word1, string word2)
+        {
+            if (word1.Length != word2.Length)
+            {
+                return false;
+            }
+
+            var word1charDict = word1.GroupBy(c => c).ToDictionary(c => c.Key, c => c.Count());
+            var word2charDict = word2.GroupBy(c => c).ToDictionary(c => c.Key, c => c.Count());
+
+            foreach (var v in word1charDict)
+            {
+                if (!word2charDict.ContainsKey(v.Key))
+                {
+                    return false;
+                }
+            }
+
+            var word1CharCountDict = word1charDict.GroupBy(v => v.Value).ToDictionary(c => c.Key, c => c.Count());
+            var word2CharCountDict = word2charDict.GroupBy(v => v.Value).ToDictionary(c => c.Key, c => c.Count());
+
+            foreach (var x in word1CharCountDict)
+            {
+                if (!word2CharCountDict.TryGetValue(x.Key, out int value))
+                {
+                    return false;
+                }
+                else if (x.Value != value)
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        /// <summary>
         /// 1658. Minimum Operations to Reduce X to Zero
         /// </summary>
         public static int MinOperations(int[] nums, int x)
