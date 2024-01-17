@@ -40,6 +40,26 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 1207. Unique Number of Occurrences
+        /// </summary>
+        public static bool UniqueOccurrences(int[] arr)
+        {
+            var group = arr.GroupBy(num => num).ToDictionary(num => num.Key, num => num.Count());
+
+            var hash = new HashSet<int>();
+
+            foreach ( var item in group)
+            {
+                if (!hash.Add(item.Value))
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        /// <summary>
         /// 1218. Longest Arithmetic Subsequence of Given Difference
         /// </summary>
         public static int LongestSubsequence(int[] arr, int difference)
