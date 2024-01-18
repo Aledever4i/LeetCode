@@ -1409,7 +1409,7 @@ namespace LeetCode
         {
             var cache = new int[n + 1];
             cache[0] = 1;
-            cache[1] = 1;
+            cache[1] = 2;
 
             for (int i = 2; i <= n; i++)
             {
