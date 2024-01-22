@@ -952,40 +952,18 @@ namespace LeetCode
             {
                 return nums[0];
             }
-            else if (nums.Length == 1)
+
+            var prev = nums[0];
+            var current = Math.Max(nums[0], nums[1]);
+
+            for (int i = 2; i < nums.Length; i++)
             {
-                return Math.Max(nums[0], nums[1]);
+                var temp = current;
+                current = Math.Max(current, nums[i] + prev);
+                prev = temp;
             }
 
-            var dp = new int[nums.Length][];
-            for (int i = 0; i < nums.Length; i++)
-            {
-                dp[i] = new int[2];
-            }
-
-            dp[nums.Length - 1][0] = 0;
-            dp[nums.Length - 1][1] = nums[nums.Length - 1];
-
-            dp[nums.Length - 2][0] = nums[nums.Length - 1];
-            dp[nums.Length - 2][1] = nums[nums.Length - 2];
-
-
-            for (int i = nums.Length - 3; i >= 0; i--)
-            {
-                for (int y = 0; y < 2; y++)
-                {
-                    if (y == 0)
-                    {
-                        dp[i][0] = Math.Max(dp[i + 1][0], dp[i + 1][1]);
-                    }
-                    else
-                    {
-                        dp[i][1] = Math.Max(nums[i] + dp[i + 2][0], nums[i] + dp[i + 2][1]);
-                    }
-                }
-            }
-            
-            return Math.Max(dp[0][0], dp[0][1]);
+            return current;
         }
     }
 }

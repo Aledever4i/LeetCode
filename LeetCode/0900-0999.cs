@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace LeetCode
 {
@@ -31,6 +32,65 @@ namespace LeetCode
             }
 
             return result;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="arr"></param>
+        /// <returns></returns>
+        public static int SumSubarrayMins(int[] arr)
+        {
+            double mod = 10e8 + 7;
+            int n = arr.Length;
+            var left = new int[n];
+            var right = new int[n];
+
+            Array.Fill(left, -1);
+            Array.Fill(right, n);
+
+            var stack = new Stack<int>();
+
+            for (int i = 0; i < n; i++)
+            {
+                while (stack.Count > 0 && arr[stack.Peek()] >= arr[i])
+                {
+                    stack.Pop();
+                }
+
+                if (stack.Count > 0)
+                {
+                    left[i] = stack.Peek();
+                }
+
+                stack.Push(i);
+            }
+
+            stack.Clear();
+
+            for (int i = n - 1; i >= 0; i--)
+            {
+                while (stack.Count > 0 && arr[stack.Peek()] > arr[i])
+                {
+                    stack.Pop();
+                }
+                if (stack.Count > 0)
+                {
+                    right[i] = stack.Peek();
+                }
+
+                stack.Push(i);
+            }
+
+            double answer = 0;
+
+            for (int i = 0; i < n; i++)
+            {
+                answer += (long)(i - left[i]) * (right[i] - i) % mod * arr[i] % mod;
+                answer %= mod;
+            }
+
+            return (int)answer;
         }
 
 

@@ -32,6 +32,26 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 645. Set Mismatch
+        /// </summary>
+        public static int[] FindErrorNums(int[] nums)
+        {
+            var n = nums.Length;
+            var intHash = new HashSet<int>();
+            var duplicate = 0;
+
+            foreach (int i in nums)
+            {
+                if (!intHash.Add(i))
+                {
+                    duplicate = i;
+                }
+            }
+
+            return new int[] { duplicate, Enumerable.Range(1, n).Except(intHash).First() };
+        }
+
+        /// <summary>
         /// 673. Number of Longest Increasing Subsequence
         /// </summary>
         public static int FindNumberOfLIS(int[] nums)
