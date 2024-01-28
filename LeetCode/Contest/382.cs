@@ -78,17 +78,25 @@ namespace LeetCode.Contest
 
         public static long FlowerGame(int n, int m)
         {
-            if (n == 1 && m == 1)
+            long result = 0;
+
+            foreach (var x in Enumerable.Range(1, n))
             {
-                return 0;
+                long mCount = 0;
+
+                if (x % 2 == 1)
+                {
+                    mCount = m / 2;
+                }
+                else
+                {
+                    mCount = (m % 2 == 1) ? m / 2 + 1 : m / 2;
+                }
+
+                result += mCount;
             }
 
-            if (n == m)
-            {
-                return n * 2;
-            }
-
-            return Math.Min(n, m) + 1;
+            return result;
         }
     }
 }
