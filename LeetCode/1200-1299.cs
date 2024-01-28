@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace LeetCode
 {
@@ -169,6 +170,18 @@ namespace LeetCode
             double yStep = Math.Abs(point1Y - point2Y);
 
             return !coordinates.Any(coordinate => (coordinate[0] - point1X) / (point2X - point1X) != (coordinate[1] - point1Y) / (point2Y - point1Y));
+        }
+
+        /// <summary>
+        /// 1239. Maximum Length of a Concatenated String with Unique Characters
+        /// </summary>
+        public static int MaxLength(IList<string> arr)
+        {
+            var dp = new Dictionary<int, int>();
+            var hash = new HashSet<char>();
+
+
+            return 0;
         }
 
         /// <summary>

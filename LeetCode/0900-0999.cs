@@ -95,6 +95,14 @@ namespace LeetCode
 
 
         /// <summary>
+        /// 931. Minimum Falling Path Sum
+        /// </summary>
+        public static int MinFallingPathSum(int[][] matrix)
+        {
+            return 0;
+        }
+
+        /// <summary>
         /// 934. Shortest Bridge. Tags: Array, Depth-First Search, Breadth-First Search, Matrix
         /// </summary>
         public static int ShortestBridge(int[][] grid)
