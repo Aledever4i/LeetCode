@@ -10,6 +10,37 @@ namespace LeetCode
     public static class _2900_2999
     {
         /// <summary>
+        /// 2966. Divide Array Into Arrays With Max Difference
+        /// </summary>
+        public static int[][] DivideArray(int[] nums, int k)
+        {
+            var n = nums.Length;
+            if (n % 3 != 0)
+            {
+                return Array.Empty<int[]>();
+            }
+
+            Array.Sort(nums);
+            var result = new int[n / 3][];
+
+            for (int i = 0; i < n / 3; i++)
+            {
+                var n1 = nums[i * 3];
+                var n2 = nums[i * 3 + 1];
+                var n3 = nums[i * 3 + 2];
+
+                if (n3 - n1 > k)
+                {
+                    return Array.Empty<int[]>();
+                }
+
+                result[i] = new int[] { n1, n2, n3 };
+            }
+
+            return result;
+        }
+
+        /// <summary>
         /// 2980. Check if Bitwise OR Has Trailing Zeros
         /// </summary>
         public static bool HasTrailingZeros(int[] nums)
