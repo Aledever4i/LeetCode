@@ -156,6 +156,33 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 739. Daily Temperatures
+        /// </summary>
+        public static int[] DailyTemperatures(int[] temperatures)
+        {
+            var n = temperatures.Length;
+            var result = new int[n];
+            Array.Fill(result, 0);
+
+            var stack = new Stack<(int, int)>();
+
+            for (int i = 0; i < n; i++)
+            {
+                var value = temperatures[i];
+
+                while (stack.Count > 0 && stack.TryPeek(out (int, int) stackValue) && stackValue.Item1 < value)
+                {
+                    result[stackValue.Item2] = i - stackValue.Item2;
+                    stack.Pop();
+                }
+
+                stack.Push((value, i));
+            }
+
+            return result;
+        }
+
+        /// <summary>
         /// 744. Find Smallest Letter Greater Than Target. Tags: Array, Binary Search
         /// </summary>
         public static char NextGreatestLetter(char[] letters, char target)
