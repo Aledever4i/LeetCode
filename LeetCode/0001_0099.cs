@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
+using System.Numerics;
 using System.Runtime.CompilerServices;
 using System.Security;
 using System.Text;
@@ -822,6 +823,17 @@ namespace LeetCode
             }
 
             return left;
+        }
+
+        /// <summary>
+        /// 43. Multiply Strings
+        /// </summary>
+        public static string Multiply(string num1, string num2)
+        {
+            var n1 = BigInteger.Parse(num1);
+            var n2 = BigInteger.Parse(num2);
+
+            return (n1 * n2).ToString();
         }
 
         /// <summary>
