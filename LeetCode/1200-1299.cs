@@ -234,5 +234,27 @@ namespace LeetCode
                 return dp[position][remain];
             }
         }
+
+        /// <summary>
+        /// 1291. Sequential Digits
+        /// </summary>
+        public static IList<int> SequentialDigits(int low, int high)
+        {
+            var numbers = "123456789";
+            var sequences = new List<int>();
+
+            for (int i = 2; i <= 9; i++)
+            {
+                var start = int.Parse(numbers[..i]);
+                sequences.Add(start);
+                for (int y = 0; y < 9 - i; y++)
+                {
+                    start += int.Parse(string.Join("", Enumerable.Repeat(1, i)));
+                    sequences.Add(start);
+                }
+            }
+
+            return sequences.Where(n => n >= low && n <= high).ToList();
+        }
     }
 }
