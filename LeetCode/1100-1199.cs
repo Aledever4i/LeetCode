@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace LeetCode
 {
@@ -78,6 +79,14 @@ namespace LeetCode
         public static int StoneGameII(int[] piles)
         {
             return 1;
+        }
+
+        /// <summary>
+        /// 1143. Longest Common Subsequence
+        /// </summary>
+        public static int LongestCommonSubsequence(string text1, string text2)
+        {
+            return 0;
         }
 
         /// <summary>
