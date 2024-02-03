@@ -37,14 +37,26 @@ namespace LeetCode.PinaevSon
             return result;
         }
 
-        public static List<char[]> AllCombinationsZaebalProsto(char[] list, int k)
+        public static void AllCombinationZa500(char[] list, int k)
         {
-            var result = new List<char[]>();
+            Print(list, new List<char>(), k);
 
-            var count = Math.Pow(list.Count(), k);
-            var elementCount = count / list.Count();
+            void Print(char[] list, List<char> current, int k)
+            {
+                if (current.Count() == k)
+                {
+                    Console.WriteLine(string.Join("", current.ToArray()));
+                }
+                else
+                {
+                    foreach (var c in list)
+                    {
+                        var step = new List<char>(current.ToArray()) { c };
 
-            return result;
+                        Print(list, step, k);
+                    }
+                }
+            }
         }
     }
 }

@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.Intrinsics.X86;
 
 namespace LeetCode
 {
@@ -99,7 +101,59 @@ namespace LeetCode
         /// </summary>
         public static int MinFallingPathSum(int[][] matrix)
         {
-            return 0;
+            var r = matrix.Length;
+            var c = matrix[0].Length;
+
+            if (r == 1)
+            {
+                return matrix[0].Min();
+            }
+
+            if (c == 1)
+            {
+                return matrix.Select(n => n[0]).Sum();
+            }
+
+            var dp = new int[r][];
+            for (int i = 0; i < r; i++)
+            {
+                dp[i] = new int[c];
+                Array.Fill(dp[i], 100000);
+            }
+
+            int minStep(int[][] matrix, int[][] dp, int currRow, int currColumn)
+            {
+                if (currColumn >= c || currColumn < 0)
+                {
+                    return 10000000;
+                }
+
+                if (currRow == r)
+                {
+                    return 0;
+                }
+
+                if (dp[currRow][currColumn] != 100000)
+                {
+                    return dp[currRow][currColumn];
+                }
+
+                var currValue = matrix[currRow][currColumn];
+                var ans = int.MaxValue;
+
+                ans = Math.Min(ans, currValue + minStep(matrix, dp, currRow + 1, currColumn - 1));
+                ans = Math.Min(ans, currValue + minStep(matrix, dp, currRow + 1, currColumn));
+                ans = Math.Min(ans, currValue + minStep(matrix, dp, currRow + 1, currColumn + 1));
+
+                return dp[currRow][currColumn] = ans;
+            }
+
+            var result = int.MaxValue;
+            for (int i = 0; i < c; i++)
+            {
+                result = Math.Min(result, minStep(matrix, dp, 0, i));
+            }
+            return result;
         }
 
         /// <summary>
