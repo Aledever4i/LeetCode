@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace LeetCode
 {
@@ -135,6 +137,53 @@ namespace LeetCode
 
 
             return result;
+        }
+
+        /// <summary>
+        /// 1043. Partition Array for Maximum Sum
+        /// </summary>
+        public static int MaxSumAfterPartitioning(int[] arr, int k)
+        {
+            var n = arr.Length;
+
+            if (n == k)
+            {
+                return arr.Max() * n;
+            }
+            else if (k == 1)
+            {
+                return arr.Sum();
+            }
+
+            var dp = new int[n];
+            Array.Fill(dp, -1);
+            return maxSum(arr, k, dp, 0);
+
+            int maxSum(int[] arr, int k, int[] dp, int start)
+            {
+                if (start >= n)
+                {
+                    return 0;
+                }
+
+                if (dp[start] != -1)
+                {
+                    return dp[start];
+                }
+
+                var currMax = 0;
+                var ans = 0;
+                int end = Math.Min(n, start + k);
+
+                for (int i = start; i < end; i++)
+                {
+                    currMax = Math.Max(currMax, arr[i]);
+
+                    ans = Math.Max(ans, currMax * (i - start + 1) + maxSum(arr, k, dp, i + 1));
+                }
+
+                return dp[start] = ans;
+            }
         }
 
         /// <summary>

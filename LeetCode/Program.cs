@@ -11,7 +11,7 @@ namespace LeetCode
     {
         static void Main(string[] args)
         {
-            var a = _1200_1299.SequentialDigits(100, 200); //-1
+            var a = _1000_1099.MaxSumAfterPartitioning(new int[2] { 3, 7 }, 2); //-1
 
             //var a = _371.MinOperations(new int[] { 17, 13, 19, 9, 6, 14 }, new int[] { 17, 14, 15, 1, 19, 19 }); //-1
             Console.WriteLine(a);
