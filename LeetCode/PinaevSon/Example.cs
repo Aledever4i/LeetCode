@@ -37,23 +37,22 @@ namespace LeetCode.PinaevSon
             return result;
         }
 
-        public static void AllCombinationZa500(char[] list, int k)
+        public static void AllCombinationZa499(char[] list, int k)
         {
-            Print(list, new List<char>(), k);
+            Print(list, new char[list.Length], 0, k);
 
-            void Print(char[] list, List<char> current, int k)
+            void Print(char[] list, char[] current, int currentIndex, int k)
             {
-                if (current.Count() == k)
+                if (currentIndex == k)
                 {
-                    Console.WriteLine(string.Join("", current.ToArray()));
+                    Console.WriteLine(string.Join("", current));
                 }
                 else
                 {
                     foreach (var c in list)
                     {
-                        var step = new List<char>(current.ToArray()) { c };
-
-                        Print(list, step, k);
+                        current[currentIndex] = c;
+                        Print(list, current, currentIndex + 1, k);
                     }
                 }
             }

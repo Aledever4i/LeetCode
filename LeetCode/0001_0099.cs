@@ -1462,7 +1462,43 @@ namespace LeetCode
         /// </summary>
         public static string MinWindow(string s, string t)
         {
-            return string.Empty;
+            if (t.Length > s.Length)
+            {
+                return string.Empty;
+            }
+
+            int[] map = new int[128];
+            int nt = t.Length;
+            int start = 0, end = 0, minLen = int.MaxValue, startIndex = 0;
+
+            foreach (int i in t)
+            {
+                map[i]++;
+            }
+
+            while (end < s.Length)
+            {
+                if (map[s[end++]]-- > 0)
+                {
+                    nt--;
+                }
+
+                while (nt == 0)
+                {
+                    if (end - start < minLen)
+                    {
+                        startIndex = start;
+                        minLen = end - start;
+                    }
+
+                    if (map[s[start++]]++ == 0)
+                    {
+                        nt++;
+                    }
+                }
+            }
+
+            return minLen == int.MaxValue ? string.Empty : s.Substring(startIndex, minLen);
         }
 
         /// <summary>
