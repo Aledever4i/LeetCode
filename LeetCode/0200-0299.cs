@@ -468,5 +468,13 @@ namespace LeetCode
 
             return true;
         }
+
+        /// <summary>
+        /// 292. Nim Game
+        /// </summary>
+        public static bool CanWinNim(int n)
+        {
+            return n % 4 > 0;
+        }
     }
 }
