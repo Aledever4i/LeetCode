@@ -70,6 +70,35 @@ namespace LeetCode
     public static class _0700_0799
     {
         /// <summary>
+        /// 704. Binary Search
+        /// </summary>
+        public static int Search(int[] nums, int target)
+        {
+            int left = 0, right = nums.Length - 1;
+            while (left <= right)
+            {
+                var mid = (left + right) / 2;
+                var value = nums[mid];
+
+                if (value == target)
+                {
+                    return mid;
+                }
+
+                if (value > target)
+                {
+                    right = mid - 1;
+                }
+                else
+                {
+                    left = mid + 1;
+                }
+            }
+
+            return -1;
+        }
+
+        /// <summary>
         /// 714. Best Time to Buy and Sell Stock with Transaction Fee. Tags: Array, Dynamic Programming, Greedy
         /// </summary>
         public static int MaxProfit(int[] prices, int fee)
