@@ -61,6 +61,31 @@ namespace LeetCode
         }
     }
 
+    /// <summary>
+    /// 303. Range Sum Query - Immutable
+    /// </summary>
+    public class NumArray
+    {
+        private int[] _nums;
+
+        public NumArray(int[] nums)
+        {
+            _nums = nums;
+        }
+
+        public int SumRange(int left, int right)
+        {
+            int result = 0;
+
+            for (int i = left; i <= right; i++)
+            {
+                result += _nums[i];
+            }
+
+            return result;
+        }
+    }
+
     public interface NestedInteger
     {
         public bool IsInteger();
