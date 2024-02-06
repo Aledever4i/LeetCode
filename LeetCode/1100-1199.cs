@@ -74,6 +74,41 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 1137. N-th Tribonacci Number
+        /// </summary>
+        public static int Tribonacci(int n)
+        {
+            if (n == 0)
+            {
+                return 0;
+            }
+            else if (n == 1)
+            {
+                return 1;
+            }
+            else if (n == 2)
+            {
+                return 1;
+            }
+            else if (n == 3)
+            {
+                return 2;
+            }
+
+            var dp = new int[n + 1];
+            dp[1] = 1;
+            dp[2] = 1;
+            dp[3] = 2;
+
+            for (int i = 4; i < n + 1; i++)
+            {
+                dp[i] = dp[i - 1] + dp[i - 2] + dp[i - 3];
+            }
+
+            return dp[n];
+        }
+
+        /// <summary>
         /// 1140. Stone Game II
         /// </summary>
         public static int StoneGameII(int[] piles)
