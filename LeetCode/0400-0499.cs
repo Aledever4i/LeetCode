@@ -282,6 +282,27 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 451. Sort Characters By Frequency
+        /// </summary>
+        public static string FrequencySort(string s)
+        {
+            var count = new int[128];
+            Array.Fill(count, 0);
+            foreach (char c in s)
+            {
+                count[c]++;
+            }
+
+            StringBuilder stringBuilder = new StringBuilder();
+            foreach (var c in count.Select((v, index) => new { c = v, index = index }).Where(v => v.c > 0).OrderByDescending(v => v.c))
+            {
+                stringBuilder.Append(string.Join("", Enumerable.Repeat((char)c.index, c.c)));
+            }
+
+            return stringBuilder.ToString();
+        }
+
+        /// <summary>
         /// 455. Assign Cookies
         /// </summary>
         public static int FindContentChildren(int[] g, int[] s)
