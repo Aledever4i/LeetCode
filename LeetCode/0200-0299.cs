@@ -394,6 +394,34 @@ namespace LeetCode
             return 0;
         }
 
+        /// <summary>
+        /// 279. Perfect Squares
+        /// </summary>
+        public static int NumSquares(int n)
+        {
+            var dp = new int[n + 1];
+            dp[0] = 0;
+            dp[1] = 1;
+
+            for (int i = 2; i <= n; i++)
+            {
+                var min = int.MaxValue;
+
+                for (int j = 1; j * j <= i; j++)
+                {
+                    int rem = i - j * j;
+                    if (dp[rem] < min)
+                    {
+                        min = dp[rem];
+                    }
+                }
+
+                dp[i] = min + 1;
+            }
+
+            return dp[n];
+        }
+
         public static void MoveZeroes(int[] nums)
         {
             var zeroCount = 0;
