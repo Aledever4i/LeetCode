@@ -52,6 +52,58 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 647. Palindromic Substrings
+        /// </summary>
+        public static int CountSubstrings(string s)
+        {
+            var n = s.Length;
+            var result = 0;
+
+            var dp = new Dictionary<string, HashSet<int>>();
+
+            for (int i = 0; i < n; i++)
+            {
+                var stringBuilder = new StringBuilder();
+                for (int j = i; j < n; j++)
+                {
+                    stringBuilder.Append(s[j]);
+                    var current = stringBuilder.ToString();
+                    if (!dp.TryAdd(current, new HashSet<int>() { j }))
+                    {
+                        dp[current].Add(j);
+                    }
+                }
+            }
+
+            for (int i = n - 1; i >= 0; i--)
+            {
+                var stringBuilder = new StringBuilder();
+                for (int j = i; j >= 0; j--)
+                {
+                    stringBuilder.Append(s[j]);
+                    var current = stringBuilder.ToString();
+
+                    if (current.Length == 1)
+                    {
+                        result++;
+                    }
+                    else
+                    {
+                        if (dp.TryGetValue(current, out var x))
+                        {
+                            if (x.Contains(j + current.Length - 1))
+                            {
+                                result++;
+                            }
+                        }
+                    }
+                }
+            }
+
+            return result;
+        }
+
+        /// <summary>
         /// 673. Number of Longest Increasing Subsequence
         /// </summary>
         public static int FindNumberOfLIS(int[] nums)
