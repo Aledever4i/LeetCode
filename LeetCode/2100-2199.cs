@@ -176,5 +176,32 @@ namespace LeetCode
 
             //return result;
         }
+
+        /// <summary>
+        /// 2149. Rearrange Array Elements by Sign
+        /// </summary>
+        public static int[] RearrangeArray(int[] nums)
+        {
+            var result = new int[nums.Length];
+
+            var positiveIndex = 0;
+            var negativeIndex = 1;
+
+            foreach (var num in nums)
+            {
+                if (num > 0)
+                {
+                    result[positiveIndex] = num;
+                    positiveIndex += 2;
+                }
+                else
+                {
+                    result[negativeIndex] = num;
+                    negativeIndex += 2;
+                }
+            }
+
+            return result;
+        }
     }
 }
