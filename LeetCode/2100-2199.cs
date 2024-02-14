@@ -68,6 +68,36 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 2108. Find First Palindromic String in the Array
+        /// </summary>
+        public static string FirstPalindrome(string[] words)
+        {
+            foreach (var word in words)
+            {
+                var n = word.Length;
+                var left = 0;
+                var right = n - 1;
+                var isBreak = false;
+                while (left <= right && !isBreak)
+                {
+                    if (word[left] != word[right])
+                    {
+                        isBreak = true;
+                    }
+                    left++;
+                    right--;
+                }
+
+                if (!isBreak)
+                {
+                    return word;
+                }
+            }
+
+            return string.Empty;
+        }
+
+        /// <summary>
         /// 2125. Number of Laser Beams in a Bank
         /// </summary>
         public static int NumberOfBeams(string[] bank)
