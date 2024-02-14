@@ -11,9 +11,7 @@ namespace LeetCode
     {
         static void Main(string[] args)
         {
-            var a = _0600_0699.CountSubstrings("zbacca"); //-1
-
-            //var a = _371.MinOperations(new int[] { 17, 13, 19, 9, 6, 14 }, new int[] { 17, 14, 15, 1, 19, 19 }); //-1
+            var a = _384.CountMatchingSubarrays(new int[] { 471757862, 434926070, 300536237, 434926070, 300536237, 252753729, 222027142, 252753729, 222027142, 180219955 }, new int[] { -1, -1, 1, -1 });
             Console.WriteLine(a);
 
 
