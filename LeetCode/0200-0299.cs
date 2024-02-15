@@ -7,6 +7,47 @@ using System.Threading.Tasks;
 
 namespace LeetCode
 {
+    /// <summary>
+    /// 211. Design Add and Search Words Data Structure
+    /// </summary>
+    public class WordDictionary
+    {
+        Dictionary<int, List<string>> stringBuilder = new Dictionary<int, List<string>>();
+        public WordDictionary()
+        {
+            for (int i = 1; i <= 25; i++)
+            {
+                stringBuilder.Add(i, new List<string>());
+            }
+        }
+
+        public void AddWord(string word)
+        {
+            stringBuilder[word.Length].Add(word);
+        }
+
+        public bool Search(string word)
+        {
+            var n = word.Length;
+            foreach (var v in stringBuilder[n])
+            {
+                for (int i = 0; i < n; i++)
+                {
+                    if (v[i] != word[i] && word[i] != '.')
+                    {
+                        break;
+                    }
+
+                    if (i + 1 == n)
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+    }
+
     public static class _0200_0299
     {
         /// <summary>

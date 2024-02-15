@@ -11,7 +11,17 @@ namespace LeetCode
     {
         static void Main(string[] args)
         {
-            var a = _384.CountMatchingSubarrays(new int[] { 471757862, 434926070, 300536237, 434926070, 300536237, 252753729, 222027142, 252753729, 222027142, 180219955 }, new int[] { -1, -1, 1, -1 });
+            var a = new WordDictionary();
+            a.AddWord("a");
+            a.AddWord("a");
+            a.Search(".");
+            a.Search("a");
+            a.Search("aa");
+            a.Search("a");
+            a.Search(".a");
+            a.Search("a.");
+
+
             Console.WriteLine(a);
 
 

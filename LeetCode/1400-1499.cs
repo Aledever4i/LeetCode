@@ -164,8 +164,7 @@ namespace LeetCode
         public static int CherryPickup(int[][] grid)
         {
             var moves = new (int, int)[3] { (1, -1), (1, 0), (1, 1) };
-
-
+            return 0;
         }
 
         /// <summary>
