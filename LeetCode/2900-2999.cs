@@ -41,6 +41,39 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 2971. Find Polygon With the Largest Perimeter
+        /// </summary>
+        public static long LargestPerimeter(int[] nums)
+        {
+            Array.Sort(nums);
+            var index = nums.Length - 1;
+            long prefix = nums.Sum(v => (long)v) - nums[index];
+            long suffix = nums[index];
+
+            while (prefix <= suffix && index >= 0)
+            {
+                index--;
+
+                if (index < 0)
+                {
+                    break;
+                }
+
+                suffix = nums[index];
+                prefix = prefix - suffix;
+            }
+
+            if (index < 0)
+            {
+                return -1;
+            }
+            else
+            {
+                return suffix + prefix;
+            }
+        }
+
+        /// <summary>
         /// 2980. Check if Bitwise OR Has Trailing Zeros
         /// </summary>
         public static bool HasTrailingZeros(int[] nums)
