@@ -185,6 +185,30 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 1481. Least Number of Unique Integers after K Removals
+        /// </summary>
+        public static int FindLeastNumOfUniqueInts(int[] arr, int k)
+        {
+            var result = 0;
+            var newArray = arr.GroupBy(x => x).Select(x => new { Key = x, Count = x.Count() }).OrderBy(x => x.Count);
+
+            foreach (var item in newArray)
+            {
+                if (item.Count > k)
+                {
+                    k -= item.Count;
+                    result++;
+                }
+                else if (k > 0)
+                {
+                    k -= item.Count;
+                }
+            }
+
+            return result;
+        }
+
+        /// <summary>
         /// 1491. Average Salary Excluding the Minimum and Maximum Salary
         /// </summary>
         /// <param name="salary"></param>

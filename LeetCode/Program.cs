@@ -11,17 +11,7 @@ namespace LeetCode
     {
         static void Main(string[] args)
         {
-            var a = new WordDictionary();
-            a.AddWord("a");
-            a.AddWord("a");
-            a.Search(".");
-            a.Search("a");
-            a.Search("aa");
-            a.Search("a");
-            a.Search(".a");
-            a.Search("a.");
-
-
+            var a = _1400_1499.FindLeastNumOfUniqueInts(new int[] { 5, 5, 4 }, 1);
             Console.WriteLine(a);
 
 
