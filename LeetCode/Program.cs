@@ -11,7 +11,7 @@ namespace LeetCode
     {
         static void Main(string[] args)
         {
-            var a = _1400_1499.FindLeastNumOfUniqueInts(new int[] { 5, 5, 4 }, 1);
+            var a = _1600_1699.FurthestBuilding(new int[] { 4, 12, 2, 7, 3, 18, 20, 3, 19 }, 10, 2);
             Console.WriteLine(a);
 
 

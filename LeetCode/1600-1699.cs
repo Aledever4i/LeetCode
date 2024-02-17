@@ -59,6 +59,106 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 1642. Furthest Building You Can Reach
+        /// </summary>
+        public static int FurthestBuilding(int[] heights, int bricks, int ladders)
+        {
+            var ladderQueue = new PriorityQueue<int, int>();
+            int n = heights.Length;
+
+            for (int i = 0; i < n - 1; i++)
+            {
+                int diff = heights[i + 1] - heights[i];
+
+                if (diff > 0)
+                {
+                    ladderQueue.Enqueue(diff, diff);
+                }
+
+                if (ladderQueue.Count > ladders)
+                {
+                    bricks -= ladderQueue.Dequeue();
+                }
+
+                if (bricks < 0)
+                {
+                    return i;
+                }
+            }
+
+            return n - 1;
+        }
+
+        /// <summary>
+        /// 1642. Furthest Building You Can Reach
+        /// </summary>
+        public static int FurthestBuildingDP(int[] heights, int bricks, int ladders)
+        {
+            var n = heights.Length;
+            var dp = new int[bricks + 1][];
+            for (int i = 0; i < bricks + 1; i++)
+            {
+                dp[i] = new int[ladders + 1];
+                Array.Fill<int>(dp[i], -1);
+            }
+
+            return Calculate(heights, 0, bricks, ladders);
+
+            int Calculate(int[] heights, int currentPosition, int bricks, int ladders)
+            {
+                if (currentPosition == n - 1)
+                {
+                    return currentPosition;
+                }
+
+                if (dp[bricks][ladders] != -1)
+                {
+                    return dp[bricks][ladders];
+                }
+
+                var current = heights[currentPosition];
+
+                var nextPostiton = currentPosition;
+                var next = current;
+
+                while (current >= next)
+                {
+                    nextPostiton = nextPostiton + 1;
+
+                    if (nextPostiton == n - 1)
+                    {
+                        return nextPostiton;
+                    }
+
+                    next = heights[nextPostiton];
+                }
+
+                if (current >= next)
+                {
+                    return dp[bricks][ladders] = Calculate(heights, nextPostiton, bricks, ladders);
+                }
+                else
+                {
+                    var result = currentPosition;
+                    var h = next - current;
+
+                    if (bricks >= h)
+                    {
+                        result = Calculate(heights, nextPostiton, bricks - h, ladders);
+                    }
+
+                    if (ladders > 0)
+                    {
+                        result = Math.Max(result, Calculate(heights, nextPostiton, bricks, ladders - 1));
+                    }
+
+
+                    return dp[bricks][ladders] = result;
+                }
+            }
+        }
+
+        /// <summary>
         /// 1657. Determine if Two Strings Are Close
         /// </summary>
         public static bool CloseStrings(string word1, string word2)
