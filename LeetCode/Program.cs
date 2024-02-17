@@ -11,7 +11,7 @@ namespace LeetCode
     {
         static void Main(string[] args)
         {
-            var a = _1600_1699.FurthestBuilding(new int[] { 4, 12, 2, 7, 3, 18, 20, 3, 19 }, 10, 2);
+            var a = _1500_1599.NumWaterBottles(15, 4);
             Console.WriteLine(a);
 
 

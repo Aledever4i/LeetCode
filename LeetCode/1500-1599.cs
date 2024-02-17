@@ -82,6 +82,22 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 1518. Water Bottles
+        /// </summary>
+        public static int NumWaterBottles(int numBottles, int numExchange)
+        {
+            var result = numBottles;
+
+            while (numBottles >= numExchange)
+            {
+                result += numBottles / numExchange;
+                numBottles = numBottles % numExchange + numBottles / numExchange;
+            }
+
+            return result;
+        }
+
+        /// <summary>
         /// 1535. Find the Winner of an Array Game
         /// </summary>
         public static int GetWinner(int[] arr, int k)
