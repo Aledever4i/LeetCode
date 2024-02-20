@@ -412,6 +412,23 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 268. Missing Number
+        /// </summary>
+        public static int MissingNumber(int[] nums)
+        {
+            Array.Sort(nums);
+            for (int i = 0; i < nums.Length; i++)
+            {
+                if (i != nums[i])
+                {
+                    return i;
+                }
+            }
+
+            return nums.Length;
+        }
+
+        /// <summary>
         /// 274. H-Index
         /// </summary>
         public static int HIndex(int[] citations)
