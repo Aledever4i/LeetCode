@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.Metrics;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -50,6 +52,49 @@ namespace LeetCode
 
     public static class _0200_0299
     {
+        /// <summary>
+        /// 201. Bitwise AND of Numbers Range
+        /// </summary>
+        public static int RangeBitwiseAnd(int left, int right)
+        {
+            if (left == right)
+            {
+                return left;
+            }
+            else if (Math.Abs(left - right) == 1)
+            {
+                return left & right;
+            }
+            else
+            {
+                var array = new BitArray(32);
+                var isDifferent = false;
+
+                for (int i = 31; i >= 0; i--)
+                {
+                    if (!isDifferent && IsBitSet(left, i) == IsBitSet(right, i))
+                    {
+                        array.Set(i, IsBitSet(left, i));
+                    }
+                    else
+                    {
+                        isDifferent = true;
+                        array.Set(i, false);
+                    }
+
+                }
+
+                int[] intArray = new int[1];
+                array.CopyTo(intArray, 0);
+                return intArray[0];
+            }
+
+            bool IsBitSet(int b, int pos)
+            {
+                return (b & (1 << pos)) != 0;
+            }
+        }
+
         /// <summary>
         /// 202. Happy Number. Tags: Hash Table, Math, Two Pointers
         /// </summary>
