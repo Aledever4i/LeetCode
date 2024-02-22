@@ -211,5 +211,35 @@ namespace LeetCode
         {
             return 0;
         }
+
+        /// <summary>
+        /// 997. Find the Town Judge
+        /// </summary>
+        public static int FindJudge(int n, int[][] trust)
+        {
+            var dict = new Dictionary<int, int>();
+            var hash = new HashSet<int>();
+
+            for (int i = 1; i <= n; i++)
+            {
+                dict.Add(i, 0);
+            }
+
+            foreach (var tr in trust)
+            {
+                hash.Add(tr[0]);
+                dict[tr[1]]++;
+            }
+
+            foreach (var di in dict.Where(di => di.Value == n - 1))
+            {
+                if (!hash.Contains(di.Key))
+                {
+                    return di.Key;
+                }
+            }
+
+            return -1;
+        }
     }
 }
