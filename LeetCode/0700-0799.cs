@@ -365,5 +365,35 @@ namespace LeetCode
 
             return false;
         }
+
+        /// <summary>
+        /// 787. Cheapest Flights Within K Stops
+        /// </summary>
+        public static int FindCheapestPrice(int n, int[][] flights, int src, int dst, int k)
+        {
+            int[] distances = new int[n];
+            Array.Fill(distances, int.MaxValue);
+            distances[src] = 0;
+
+            for (int i = 0; i <= k; ++i)
+            {
+                var temp = (int[])distances.Clone();
+
+                foreach (var flight in flights)
+                {
+                    int from = flight[0];
+                    int to = flight[1];
+                    int cost = flight[2];
+                    if (distances[from] != int.MaxValue && distances[from] + cost < temp[to])
+                    {
+                        temp[to] = distances[from] + cost;
+                    }
+                }
+
+                distances = temp;
+            }
+
+            return distances[dst] == int.MaxValue ? -1 : distances[dst];
+        }
     }
 }
