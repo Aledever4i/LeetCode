@@ -458,5 +458,31 @@ namespace LeetCode
 
             return 0;
         }
+
+        /// <summary>
+        /// 482. License Key Formatting
+        /// </summary>
+        public static string LicenseKeyFormatting(string s, int k)
+        {
+            var result = new StringBuilder();
+            var charCount = 0;
+
+            for (int i = s.Length - 1; i >= 0; i--)
+            {
+                if (s[i] != '-')
+                {
+                    if (charCount == k)
+                    {
+                        result.Append('-');
+                        charCount = 0;
+                    }
+
+                    result.Append(s[i]);
+                    charCount++;
+                }
+            }
+
+            return (new string(result.ToString().Reverse().ToArray())).ToUpper();
+        }
     }
 }
