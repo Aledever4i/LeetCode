@@ -196,6 +196,31 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 543. Diameter of Binary Tree
+        /// </summary>
+        public static int DiameterOfBinaryTree(TreeNode root)
+        {
+            var result = 0;
+            maxDeep(root, 0);
+            return result;
+
+            int maxDeep(TreeNode tree, int currentLevel)
+            {
+                if (tree == null)
+                {
+                    return currentLevel;
+                }
+
+                var left = maxDeep(tree.left, currentLevel + 1);
+                var right = maxDeep(tree.right, currentLevel + 1);
+
+                result = Math.Max(result, left + right);
+
+                return Math.Max(left, right);
+            }
+        }
+
+        /// <summary>
         /// 547. Number of Provinces. Tags: Depth-First Search, Breadth-First Search, Union Find, Graph
         /// </summary>
         public static int FindCircleNum(int[][] isConnected)
