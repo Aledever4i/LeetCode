@@ -44,6 +44,31 @@ namespace LeetCode
             }
         }
 
+        /// <summary>
+        /// 513. Find Bottom Left Tree Value
+        /// </summary>
+        public static int FindBottomLeftValue(TreeNode root)
+        {
+            return getleft(root, 0, false).Item1;
+
+            (int, int) getleft(TreeNode node, int deep, bool isRight)
+            {
+                if (node == null)
+                {
+                    return (0, 0);
+                }
+
+                var left = getleft(node.left, deep + 1, false);
+                var right = getleft(node.right, deep + 1, true);
+
+                if (left.Item1 == 0 && right.Item1 == 0)
+                {
+                    return (node.val, deep);
+                }
+
+                return left.Item2 >= right.Item2 ? left : right;
+            }
+        }
 
         /// <summary>
         /// 515. Find Largest Value in Each Tree Row
