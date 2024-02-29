@@ -10,6 +10,56 @@ namespace LeetCode
     public static class _2400_2499
     {
         /// <summary>
+        /// 2402. Meeting Rooms III
+        /// </summary>
+        public static int MostBooked(int n, int[][] meetings)
+        {
+            var roomUsed = new int[n];
+            var timer = 0;
+            var meetingQueue = new PriorityQueue<int, int>();
+            var room = new PriorityQueue<int, int>();
+            var unused = new PriorityQueue<int, int>();
+
+            for (int i = 0; i < n; i++)
+            {
+                unused.Enqueue(i, i);
+            }
+
+            foreach (var meeting in meetings)
+            {
+                meetingQueue.Enqueue(meeting[1] - meeting[0], meeting[0]);
+            }
+
+            while (meetingQueue.Count > 0)
+            {
+                while (
+                    (
+                        (unused.Count > 0)
+                        || (room.TryPeek(out int element, out int priority) && priority <= timer)
+                    )
+                    && meetingQueue.TryPeek(out int q, out int mP)
+                    && mP <= timer
+                )
+                {
+                    while (room.TryPeek(out int element1, out int priority1) && priority1 <= timer)
+                    {
+                        room.Dequeue();
+                        unused.Enqueue(element1, element1);
+                    }
+                
+                    var currentMeeting = meetingQueue.Dequeue();
+                    var roomNumber = unused.Dequeue();
+                    roomUsed[roomNumber]++;
+                    room.Enqueue(roomNumber, q + timer);
+                }
+
+                timer++;
+            }
+
+            return roomUsed.Select((x, index) => new { Number = x, Index = index }).MaxBy(x => x.Number).Index;
+        }
+
+        /// <summary>
         /// 2433. Find The Original Array of Prefix Xor
         /// </summary>
         public static int[] FindArray(int[] pref)
@@ -127,8 +177,6 @@ namespace LeetCode
 
             //return answer;
         }
-
-
 
         /// <summary>
         /// 2462. Total Cost to Hire K Workers

@@ -11,7 +11,16 @@ namespace LeetCode
     {
         static void Main(string[] args)
         {
-            var a = _1500_1599.NumWaterBottles(15, 4);
+            var ways = new int[5][] { new int[3] { 0, 1, 100 }, new int[3] { 1, 2, 100 }, new int[3] { 2, 0, 100 }, new int[3] { 1, 3, 600 }, new int[3] { 2, 3, 200 }};
+
+
+            var a = _386.LargestSquareArea(
+                new int[3][] { new int[] { 1, 1 }, new int[] { 2, 2 }, new int[] { 3, 1 }},
+                new int[3][] { new int[] { 3, 3 }, new int[] { 4, 4 }, new int[] { 6, 6 }}
+            );
+            // new int[4][] { new int[] { 0, 10 }, new int[] { 1, 5 }, new int[] { 2, 7 }, new int[] { 3, 4 } }
+            // 
+            // 
             Console.WriteLine(a);
 
 
