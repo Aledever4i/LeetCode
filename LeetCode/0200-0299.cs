@@ -506,6 +506,35 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 278. First Bad Version
+        /// </summary>
+        public static int FirstBadVersion(int n)
+        {
+            long left = 1, right = n;
+            while (left < right)
+            {
+                var mid = (left + right) / 2;
+                var isBad = IsBadVersion((int)mid);
+                if (isBad)
+                {
+                    right = mid;
+                }
+                else
+                {
+                    left = mid + 1;
+                }
+            }
+            return (int)left;
+
+
+
+            bool IsBadVersion(int version)
+            {
+                return true;
+            }
+        }
+
+        /// <summary>
         /// 279. Perfect Squares
         /// </summary>
         public static int NumSquares(int n)
