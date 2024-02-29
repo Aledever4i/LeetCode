@@ -87,6 +87,33 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 1614. Maximum Nesting Depth of the Parentheses
+        /// </summary>
+        public static int MaxDepth(string s)
+        {
+            var result = 0;
+            var open = 0;
+
+            foreach (var c in s)
+            {
+                if (c == '(')
+                {
+                    open++;
+
+                    result = Math.Max(result, open);
+                }
+                else if (c == ')')
+                {
+                    open--;
+
+                    result = Math.Max(result, open);
+                }
+            }
+
+            return result;
+        }
+
+        /// <summary>
         /// 1624. Largest Substring Between Two Equal Characters
         /// </summary>
         public static int MaxLengthBetweenEqualCharacters(string s)
