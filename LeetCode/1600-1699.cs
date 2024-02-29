@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace LeetCode
 {
+
     /// <summary>
     /// 1603. Design Parking System
     /// </summary>
@@ -33,6 +34,58 @@ namespace LeetCode
 
     public static class _1600_1699
     {
+        /// <summary>
+        /// 1609. Even Odd Tree
+        /// </summary>
+        public static bool IsEvenOddTree(TreeNode root)
+        {
+            var dict = new Dictionary<int, List<int>>();
+
+            Analyse(root, 1);
+
+            foreach (var key in dict.Keys)
+            {
+                var values = dict[key].ToArray();
+                var isOdd = key % 2 == 0;
+                var e = values.GetEnumerator();
+                e.MoveNext();
+                var previous = (int)e.Current;
+                if (isOdd && previous % 2 == 1)
+                {
+                    return false;
+                }
+                else if (!isOdd && previous % 2 == 0)
+                {
+                    return false;
+                }
+
+                while (e.MoveNext())
+                {
+                    if (!isOdd && (((int)e.Current).CompareTo(previous) <= 0 || (int)e.Current % 2 == 0))
+                    {
+                        return false;
+                    }
+                    else if (isOdd && (((int)e.Current).CompareTo(previous) >= 0 || (int)e.Current % 2 == 1))
+                    {
+                        return false;
+                    }
+
+                    previous = (int)e.Current;
+                }
+            }
+
+            return true;
+
+            void Analyse(TreeNode root, int level)
+            {
+                if (root == null) { return; }
+                Analyse(root.left, level + 1);
+                Analyse(root.right, level + 1);
+                if (dict.TryGetValue(level, out var values)) { values.Add(root.val); }
+                else { dict.Add(level, new List<int>() { root.val }); }
+            }
+        }
+
         /// <summary>
         /// 1624. Largest Substring Between Two Equal Characters
         /// </summary>
