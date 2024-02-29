@@ -212,6 +212,14 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 217. Contains Duplicate
+        /// </summary>
+        public static bool ContainsDuplicate(int[] nums)
+        {
+            return nums.GroupBy(n => n).Any(n => n.Count() > 1);
+        }
+
+        /// <summary>
         /// 219. Contains Duplicate II. Tags: Array, Hash Table, Sliding Window
         /// </summary>
         public static bool ContainsNearbyDuplicate(int[] nums, int k)
