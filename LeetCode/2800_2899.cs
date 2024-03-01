@@ -59,6 +59,40 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 2864. Maximum Odd Binary Number
+        /// </summary>
+        public static string MaximumOddBinaryNumber(string s)
+        {
+            var one = 0;
+            var zero = 0;
+
+            foreach (var x in s)
+            {
+                if (x == '1')
+                {
+                    one++;
+                }
+                else
+                {
+                    zero++;
+                }
+            }
+
+            if (one == 0)
+            {
+                return s;
+            }
+            else if (one == 1)
+            {
+                return $"{string.Join("", Enumerable.Repeat("0", zero))}1";
+            }
+            else
+            {
+                return $"{string.Join("", Enumerable.Repeat("1", one - 1))}{string.Join("", Enumerable.Repeat("0", zero))}1";
+            }
+        }
+
+        /// <summary>
         /// 2870. Minimum Number of Operations to Make Array Empty
         /// </summary>
         public static int MinOperations(int[] nums)
