@@ -14,7 +14,7 @@ namespace LeetCode
             var ways = new int[5][] { new int[3] { 0, 1, 100 }, new int[3] { 1, 2, 100 }, new int[3] { 2, 0, 100 }, new int[3] { 1, 3, 600 }, new int[3] { 2, 3, 200 }};
 
 
-            var a = _0900_0999.SortedSquares(new int[] { -4, -1, 0, 3, 10 });
+            var a = _0100_0199.SortedArrayToBST(new int[] { -10, -3, 0, 5, 9 });
             // new int[4][] { new int[] { 0, 10 }, new int[] { 1, 5 }, new int[] { 2, 7 }, new int[] { 3, 4 } }
             // 
             // 

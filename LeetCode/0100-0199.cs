@@ -108,7 +108,30 @@ namespace LeetCode
         /// </summary>
         public static TreeNode SortedArrayToBST(int[] nums)
         {
-            return new TreeNode();
+            return sep(nums);
+
+            TreeNode sep(int[] part)
+            {
+                if (part == null || part.Length == 0)
+                {
+                    return null;
+                }
+
+                var mid = part.Length / 2;
+                var result = new TreeNode(part[mid]);
+
+                if (mid - 1 >= 0)
+                {
+                    result.left = sep(part[..mid]);
+                }
+
+                if (mid + 1 < part.Length)
+                {
+                    result.right = sep(part[(mid + 1)..]);
+                }
+
+                return result;
+            }
         }
 
         /// <summary>
