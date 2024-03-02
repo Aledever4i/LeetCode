@@ -104,6 +104,14 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 108. Convert Sorted Array to Binary Search Tree
+        /// </summary>
+        public static TreeNode SortedArrayToBST(int[] nums)
+        {
+            return new TreeNode();
+        }
+
+        /// <summary>
         /// 111. Minimum Depth of Binary Tree
         /// </summary>
         public static int MinDepth(TreeNode root)
