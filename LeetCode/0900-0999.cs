@@ -213,6 +213,14 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 977. Squares of a Sorted Array
+        /// </summary>
+        public static int[] SortedSquares(int[] nums)
+        {
+            return nums.OrderBy(n => Math.Abs(n)).Select(n => (int)Math.Pow(n, 2)).ToArray();
+        }
+
+        /// <summary>
         /// 997. Find the Town Judge
         /// </summary>
         public static int FindJudge(int n, int[][] trust)
