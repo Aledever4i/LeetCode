@@ -718,6 +718,22 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 148. Sort List
+        /// </summary>
+        public static ListNode SortList(ListNode head)
+        {
+            var dict = new Dictionary<int, int>();
+            var next = head;
+            while (next != null)
+            {
+                dict.Add(next.val, 1);
+                next = next.next;
+            }
+
+            return new ListNode();
+        }
+
+        /// <summary>
         /// 149. Max Points on a Line
         /// </summary>
         public static int MaxPoints(int[][] points)
