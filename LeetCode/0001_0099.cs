@@ -596,6 +596,37 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 19. Remove Nth Node From End of List
+        /// </summary>
+        public static ListNode RemoveNthFromEnd(ListNode head, int n)
+        {
+            var count = 0;
+
+            var current = head;
+            while (current.next != null)
+            {
+                current = current.next;
+                count++;
+            }
+
+            int removeCount = count - n - 1;
+
+            if (removeCount == -1)
+            {
+                return head.next;
+            }
+
+            current = head;
+            for (int i = 0; i < removeCount; i++)
+            {
+                current = current.next;
+            }
+
+            current.next = current.next.next;
+            return head;
+        }
+
+        /// <summary>
         /// 20. Valid Parentheses. Tags: String, Stack
         /// </summary>
         public static bool IsValid(string s)
