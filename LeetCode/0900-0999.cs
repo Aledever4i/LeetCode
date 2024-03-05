@@ -205,6 +205,16 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 948. Bag of Tokens
+        /// </summary>
+        public static int BagOfTokensScore(int[] tokens, int power)
+        {
+
+
+            return 0;
+        }
+
+        /// <summary>
         /// 956. Tallest Billboard. Tags: Array, Dynamic Programming
         /// </summary>
         public static int TallestBillboard(int[] rods)
