@@ -152,6 +152,37 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 1750. Minimum Length of String After Deleting Similar Ends
+        /// </summary>
+        public static int MinimumLength(string s)
+        {
+            int start = 0, end = s.Length - 1;
+            var startChar = s[start];
+            var isNotBreak = true;
+
+            while (isNotBreak)
+            {
+                while (startChar == s[end])
+                {
+                    end--;
+
+                    while (startChar == s[start])
+                    {
+                        start++;
+                    }
+                }
+                
+                startChar = s[start++];
+
+                if (startChar != s[end])
+                {
+                    isNotBreak = false;
+                }
+            }
+            return end - start;
+        }
+
+        /// <summary>
         /// 1751. Maximum Number of Events That Can Be Attended II
         /// </summary>
         public static int MaxValue(int[][] events, int k)

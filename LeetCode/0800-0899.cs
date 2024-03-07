@@ -473,6 +473,28 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 876. Middle of the Linked List
+        /// </summary>
+        public static ListNode MiddleNode(ListNode head)
+        {
+            var count = 0;
+
+            var current = head;
+            while (current != null)
+            {
+                current = current.next;
+                count++;
+            }
+
+            for (int i = 0; i < (int)count / 2; i++)
+            {
+                head = head.next;
+            }
+
+            return head;
+        }
+
+        /// <summary>
         /// 877. Stone Game. Tags: Array, Math, Dynamic Programming, Game Theory
         /// </summary>
         public static bool StoneGame(int[] piles)
