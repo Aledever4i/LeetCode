@@ -11,7 +11,7 @@ namespace LeetCode
     {
         static void Main(string[] args)
         {
-            var a = _387.CountSubmatrices(new int[2][] { new int[] { 9, 8, 7, 10 }, new int[] { 7, 9, 3, 7 }}, 14);
+            var a = _1700_1799.MinimumLength("bbbbbbbbbbbbbbbbbbb");
             // new int[4][] { new int[] { 0, 10 }, new int[] { 1, 5 }, new int[] { 2, 7 }, new int[] { 3, 4 } }
             // 
             // 

@@ -156,30 +156,40 @@ namespace LeetCode
         /// </summary>
         public static int MinimumLength(string s)
         {
-            int start = 0, end = s.Length - 1;
-            var startChar = s[start];
-            var isNotBreak = true;
-
-            while (isNotBreak)
+            if (s.Length == 1)
             {
-                while (startChar == s[end])
-                {
-                    end--;
+                return 1;
+            }
 
-                    while (startChar == s[start])
+            int start = 0, end = s.Length - 1;
+            while (true && start != end)
+            {
+                var startChar = s[start];
+
+                if (startChar == s[end])
+                {
+                    while (end >= start && startChar == s[end])
+                    {
+                        end--;
+                    }
+
+                    while (start <= end && startChar == s[start])
                     {
                         start++;
                     }
-                }
-                
-                startChar = s[start++];
 
-                if (startChar != s[end])
+                    if (start > end)
+                    {
+                        break;
+                    }
+                }
+                else
                 {
-                    isNotBreak = false;
+                    break;
                 }
             }
-            return end - start;
+
+            return (start == end) ? 1 : (end > start) ? end - start + 1 : 0;
         }
 
         /// <summary>
