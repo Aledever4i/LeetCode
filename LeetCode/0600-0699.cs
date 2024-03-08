@@ -104,6 +104,41 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 653. Two Sum IV - Input is a BST
+        /// </summary>
+        public static bool FindTarget(TreeNode root, int k)
+        {
+            var dict = new HashSet<int>();
+
+            var queue = new Queue<TreeNode>();
+            queue.Enqueue(root);
+
+            while (queue.Count > 0)
+            {
+                var node = queue.Dequeue();
+
+                if (dict.Contains(k - node.val))
+                {
+                    return true;
+                }
+
+                dict.Add(node.val);
+
+                if (node.left != null)
+                {
+                    queue.Enqueue(node.left);
+                }
+
+                if (node.right != null)
+                {
+                    queue.Enqueue(node.right);
+                }
+            }
+
+            return false;
+        }
+
+        /// <summary>
         /// 673. Number of Longest Increasing Subsequence
         /// </summary>
         public static int FindNumberOfLIS(int[] nums)
