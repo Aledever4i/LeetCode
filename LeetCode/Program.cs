@@ -11,10 +11,7 @@ namespace LeetCode
     {
         static void Main(string[] args)
         {
-            var a = _1700_1799.MinimumLength("bbbbbbbbbbbbbbbbbbb");
-            // new int[4][] { new int[] { 0, 10 }, new int[] { 1, 5 }, new int[] { 2, 7 }, new int[] { 3, 4 } }
-            // 
-            // 
+            var a = _0900_0999.BagOfTokensScore(new int[] { 39, 41, 65, 0, 19 }, 33);
             Console.WriteLine(a);
 
 

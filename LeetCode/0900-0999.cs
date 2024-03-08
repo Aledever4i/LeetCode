@@ -209,9 +209,52 @@ namespace LeetCode
         /// </summary>
         public static int BagOfTokensScore(int[] tokens, int power)
         {
+            int n = tokens.Length;
+            int count = 0, result = 0;
+            if (tokens.Length == 0)
+            {
+                return result;
+            }
 
+            Array.Sort(tokens);
 
-            return 0;
+            int start = 0, end = tokens.Length;
+            bool isMoved = true;
+
+            while (start < n && power > tokens[start])
+            {
+                power = power - tokens[start];
+                start++;
+                count++;
+            }
+
+            result = count;
+
+            while (start < n && isMoved)
+            {
+                var next = tokens[start];
+                isMoved = false;
+
+                if (power < next && start < end && count > 0)
+                {
+                    power += tokens[end - 1];
+                    count--;
+                    end--;
+                    isMoved = true;
+                }
+
+                while (power >= next && start < end)
+                {
+                    power -= next;
+                    count++;
+                    next = tokens[++start];
+                    isMoved = true;
+                }
+
+                result = Math.Max(result, count);
+            }
+
+            return result;
         }
 
         /// <summary>
