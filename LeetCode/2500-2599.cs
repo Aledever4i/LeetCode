@@ -23,6 +23,16 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 2540. Minimum Common Value
+        /// </summary>
+        public static int GetCommon(int[] nums1, int[] nums2)
+        {
+            var common = nums1.Intersect(nums2);
+
+            return common.Any() ? common.Min() : -1;
+        }
+
+        /// <summary>
         /// 2542. Maximum Subsequence Score. Tags: Array, Greedy, Sorting, Heap(Priority Queue)
         /// </summary>
         public static long MaxScore(int[] nums1, int[] nums2, int k)
