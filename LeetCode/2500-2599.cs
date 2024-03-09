@@ -27,9 +27,23 @@ namespace LeetCode
         /// </summary>
         public static int GetCommon(int[] nums1, int[] nums2)
         {
-            var common = nums1.Intersect(nums2);
+            var common1 = common(nums1, nums2);
 
-            return common.Any() ? common.Min() : -1;
+            return common1.Any() ? common1.Min() : -1;
+
+            IEnumerable<int> common(int[] nums3, int[] nums4)
+            {
+                var set = new HashSet<int>(nums3);
+
+                foreach (var n in nums4)
+                {
+                    if (set.Remove(n))
+                    {
+                        yield return n;
+                    }
+                }
+
+            }
         }
 
         /// <summary>
