@@ -72,6 +72,43 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 101. Symmetric Tree
+        /// </summary>
+        public static bool IsSymmetric(TreeNode root)
+        {
+            var queue = new Queue<(TreeNode, TreeNode)>();
+
+            if (root == null || (root.left == null && root.right == null))
+            {
+                return true;
+            }
+
+            queue.Enqueue((root.left, root.right));
+
+            while (queue.Count > 0)
+            {
+                var current = queue.Dequeue();
+
+                if (current.Item1?.val != current.Item2?.val)
+                {
+                    return false;
+                }
+
+                if (current.Item1.left != null || current.Item2.right != null)
+                {
+                    queue.Enqueue((current.Item1.left, current.Item2.right));
+                }
+
+                if (current.Item1.right != null || current.Item2.left != null)
+                {
+                    queue.Enqueue((current.Item1.right, current.Item2.left));
+                }
+            }
+
+            return true;
+        }
+
+        /// <summary>
         /// 104. Maximum Depth of Binary Tree. Tags: Tree, Depth-First Search, Breadth-First Search, Binary Tree
         /// </summary>
         public static int MaxDepth(TreeNode root)
