@@ -261,6 +261,40 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 226. Invert Binary Tree
+        /// </summary>
+        public static TreeNode InvertTree(TreeNode root)
+        {
+            var queue = new Queue<TreeNode>();
+
+            if (root != null)
+            {
+                queue.Enqueue(root);
+            }
+
+            while (queue.Count > 0)
+            {
+                var current = queue.Dequeue();
+
+                var temp = current.left;
+                current.left = current.right;
+                current.right = temp;
+
+                if (current.left != null)
+                {
+                    queue.Enqueue(current.left);
+                }
+
+                if (current.right != null)
+                {
+                    queue.Enqueue(current.right);
+                }
+            }
+
+            return root;
+        }
+
+        /// <summary>
         /// 229. Majority Element II
         /// </summary>
         public static IList<int> MajorityElement(int[] nums)
