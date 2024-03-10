@@ -121,5 +121,30 @@ namespace LeetCode
                 return lps;
             }
         }
+
+        /// <summary>
+        /// 3074. Apple Redistribution into Boxes
+        /// </summary>
+        public static int MinimumBoxes(int[] apple, int[] capacity)
+        {
+            var applesSum = apple.Sum();
+            var result = 0;
+
+            System.Array.Sort(capacity);
+
+            for (int i = capacity.Length - 1; i >= 0; i--)
+            {
+                result++;
+
+                applesSum -= capacity[i];
+
+                if (applesSum <= 0)
+                {
+                    break;
+                }
+            }
+
+            return result;
+        }
     }
 }
