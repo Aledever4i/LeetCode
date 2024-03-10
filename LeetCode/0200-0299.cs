@@ -349,6 +349,32 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 230. Kth Smallest Element in a BST
+        /// </summary>
+        public static int KthSmallest(TreeNode root, int k)
+        {
+            int i = 0, solution = 0;
+
+            void DFSinorder(TreeNode node)
+            {
+                if (node == null) return;
+
+                DFSinorder(node.left);
+                i++;
+
+                if (i == k)
+                {
+                    solution = node.val;
+                }
+
+                DFSinorder(node.right);
+            }
+
+            DFSinorder(root);
+            return solution;
+        }
+
+        /// <summary>
         /// 231. Power of Two
         /// </summary>
         public static bool IsPowerOfTwo(int n)
