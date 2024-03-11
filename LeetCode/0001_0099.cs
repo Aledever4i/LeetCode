@@ -949,32 +949,33 @@ namespace LeetCode
         /// </summary>
         public static IList<IList<int>> PermuteUnique(int[] nums)
         {
-            //2 - 3 = 3
-            //3 - 3 = 6
-            //3 - 4 = 12
-            //4 - 4 = 24
-
-            var uniqueCount = nums.Distinct().Count();
+            var dict = new HashSet<string>();
             var n = nums.Length;
-
-
             var result = new List<IList<int>>();
+            var indexVisited = new HashSet<int>();
 
-            void Backtrack(List<int> curr, List<IList<int>> ans, List<int> visited)
+            Backtrack(new List<int>(), string.Empty, nums);
+
+            void Backtrack(List<int> curr, string pattern, int[] nums)
             {
                 if (curr.Count == nums.Length)
                 {
-                    ans.Add(new List<int>(curr));
+                    result.Add(new List<int>(curr));
                     return;
                 }
 
-                foreach (int num in nums)
+                for (int i = 0; i < nums.Length; i++)
                 {
-                    if (!curr.Contains(num))
+                    var value = nums[i];
+                    var newPattern = $"{pattern}{value}";
+
+                    if (!indexVisited.Contains(i) && dict.Add(newPattern))
                     {
-                        curr.Add(num);
-                        //Backtrack(curr, ans, nums);
+                        curr.Add(value);
+                        indexVisited.Add(i);
+                        Backtrack(curr, newPattern, nums);
                         curr.RemoveAt(curr.Count - 1);
+                        indexVisited.Remove(i);
                     }
                 }
             }
