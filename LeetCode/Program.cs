@@ -11,7 +11,7 @@ namespace LeetCode
     {
         static void Main(string[] args)
         {
-            var a = _0900_0999.BagOfTokensScore(new int[] { 39, 41, 65, 0, 19 }, 33);
+            var a = _1100_1199.RemoveZeroSumSublists(new ListNode(1, new ListNode(2, new ListNode(-3, new ListNode(3, new ListNode(1, null))))));
             Console.WriteLine(a);
 
 

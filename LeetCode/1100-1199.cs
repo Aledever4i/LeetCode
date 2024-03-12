@@ -195,6 +195,50 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 1171. Remove Zero Sum Consecutive Nodes from Linked List
+        /// </summary>
+        public static ListNode RemoveZeroSumSublists(ListNode head)
+        {
+            if (head == null)
+            {
+                return head;
+            }
+
+            var front = new ListNode(0, head);
+            var current = front;
+            int prefixSum = 0;
+
+            Dictionary<int, ListNode> prefixSumToNode = new Dictionary<int, ListNode>();
+            prefixSumToNode.Add(0, front);
+
+            while (current != null)
+            {
+                prefixSum += current.val;
+
+                if (prefixSumToNode.ContainsKey(prefixSum))
+                {
+                    prefixSumToNode[prefixSum] = current;
+                }
+                else
+                {
+                    prefixSumToNode.Add(prefixSum, current);
+                }
+
+                current = current.next;
+            }
+
+            prefixSum = 0;
+            current = front;
+            while (current != null)
+            {
+                prefixSum += current.val;
+                current.next = prefixSumToNode[prefixSum].next;
+                current = current.next;
+            }
+            return front.next;
+        }
+
+        /// <summary>
         /// 1185. Day of the Week
         /// </summary>
         public static string DayOfTheWeek(int day, int month, int year)
