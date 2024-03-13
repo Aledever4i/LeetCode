@@ -281,5 +281,36 @@ namespace LeetCode
 
             return result;
         }
+
+        /// <summary>
+        /// 2485. Find the Pivot Integer
+        /// </summary>
+        public static int PivotInteger(int n)
+        {
+            if (n == 1)
+            {
+                return 1;
+            }
+
+            var sum = new int[n + 1];
+            var prefixSum = 0;
+            for (int i = 1; i < n + 1; i++)
+            {
+                prefixSum += i;
+                sum[i] = prefixSum;
+            }
+
+            var postfixSum = 0;
+            for (int i = n; i > 0; i--)
+            {
+                postfixSum += i;
+                if (postfixSum == sum[i])
+                {
+                    return i;
+                }
+            }
+
+            return -1;
+        }
     }
 }
