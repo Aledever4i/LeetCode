@@ -146,5 +146,32 @@ namespace LeetCode
 
             return result;
         }
+
+        /// <summary>
+        /// 3083. Existence of a Substring in a String and Its Reverse
+        /// </summary>
+        public static bool IsSubstringPresent(string s)
+        {
+            var hash = new HashSet<string>();
+
+            if (s.Length == 1)
+            {
+                return false;
+            }
+
+            for (int i = 0; i < s.Length - 1; i++)
+            {
+                if (!hash.Add($"{s[i]}{s[i + 1]}"))
+                {
+                    return true;
+                }
+                if (!hash.Add($"{s[i + 1]}{s[i]}"))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
     }
 }
