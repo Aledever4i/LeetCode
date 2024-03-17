@@ -1204,6 +1204,53 @@ namespace LeetCode
             }
         }
 
+        /// <summary>
+        /// 57. Insert Interval
+        /// </summary>
+        public static int[][] Insert(int[][] intervals, int[] newInterval)
+        {
+            var list = new List<int[]>();
+            if (intervals.Length == 0)
+            {
+                list.Add(newInterval);
+                return list.ToArray();
+            }
+
+            var tempStart = int.MaxValue;
+            var tempEnd = int.MinValue;
+
+            foreach (var interval in intervals)
+            {
+                if (interval[1] < newInterval[0])
+                {
+                    list.Add(interval);
+                }
+                else
+                {
+                    if (newInterval[1] < interval[0])
+                    {
+                        list.Add(interval);
+                    }
+                    else
+                    {
+                        tempStart = Math.Min(tempStart, Math.Min(newInterval[0], interval[0]));
+                        tempEnd = Math.Max(tempEnd, Math.Max(newInterval[1], interval[1]));
+                    }
+                }
+            }
+
+            if (tempStart == int.MaxValue && tempEnd == int.MinValue)
+            {
+                list.Add(newInterval);
+            }
+            else
+            {
+                list.Add(new int[] { tempStart, tempEnd });
+            }
+
+            return list.OrderBy(x => x[0]).ToArray();
+        }
+
         // 58. Length of Last Word
         public static int LengthOfLastWord(string s)
         {
