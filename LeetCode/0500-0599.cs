@@ -155,6 +155,31 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 525. Contiguous Array
+        /// </summary>
+        public static int FindMaxLength(int[] nums)
+        {
+            var map = new Dictionary<int, int>
+            {
+                { 0, -1 }
+            };
+            int maxlen = 0, count = 0;
+            for (int i = 0; i < nums.Length; i++)
+            {
+                count += (nums[i] == 1 ? 1 : -1);
+                if (map.ContainsKey(count))
+                {
+                    maxlen = Math.Max(maxlen, i - map[count]);
+                }
+                else
+                {
+                    map.Add(count, i);
+                }
+            }
+            return maxlen;
+        }
+
+        /// <summary>
         /// 530. Minimum Absolute Difference in BST. Tags: Tree, Depth-First Search, Breadth-First Search, Binary Search Tree, Binary Tree,
         /// </summary>
         public static int GetMinimumDifference(TreeNode root)
