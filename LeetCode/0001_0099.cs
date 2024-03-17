@@ -1205,6 +1205,53 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 56. Merge Intervals
+        /// </summary>
+        public static int[][] Merge(int[][] intervals)
+        {
+            void Sort<T>(T[][] data, int col)
+            {
+                Comparer<T> comparer = Comparer<T>.Default;
+                Array.Sort<T[]>(data, (x, y) => comparer.Compare(x[col], y[col]));
+            }
+
+            var list = new List<int[]>();
+            Sort(intervals, 0);
+
+            var temp = intervals[0];
+
+            for (int i = 1; i < intervals.Length; i++)
+            {
+                if (temp[1] >= intervals[i][0])
+                {
+                    temp[0] = Math.Min(temp[0], intervals[i][0]);
+                    temp[1] = Math.Max(temp[1], intervals[i][1]);
+                }
+                else
+                {
+                    list.Add(temp);
+                    temp = intervals[i];
+                }
+            }
+
+            if (list.Count > 0)
+            {
+                var last = list.ElementAt(list.Count - 1);
+
+                if (temp[0] != last[0] && temp[1] != last[1])
+                {
+                    list.Add(temp);
+                }
+            }
+            else
+            {
+                list.Add(temp);
+            }
+
+            return list.ToArray();
+        }
+
+        /// <summary>
         /// 57. Insert Interval
         /// </summary>
         public static int[][] Insert(int[][] intervals, int[] newInterval)
