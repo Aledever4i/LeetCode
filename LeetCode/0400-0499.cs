@@ -303,6 +303,38 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 452. Minimum Number of Arrows to Burst Balloons
+        /// </summary>
+        public static int FindMinArrowShots(int[][] points)
+        {
+            void Sort<T>(T[][] data, int col)
+            {
+                Comparer<T> comparer = Comparer<T>.Default;
+                Array.Sort<T[]>(data, (x, y) => comparer.Compare(y[col], x[col]));
+            }
+
+            Sort(points, 1);
+            var count = 0;
+            var stack = new Stack<int[]>();
+            foreach (var point in points)
+            {
+                stack.Push(point);
+            }
+
+            while (stack.Count > 0)
+            {
+                count++;
+                var data = stack.Pop();
+
+                while (stack.TryPeek(out int[] result) && result[0] <= data[1])
+                {
+                    stack.Pop();
+                }
+            }
+            return count;
+        }
+
+        /// <summary>
         /// 455. Assign Cookies
         /// </summary>
         public static int FindContentChildren(int[] g, int[] s)
