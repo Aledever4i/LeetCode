@@ -139,6 +139,16 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 621. Task Scheduler
+        /// </summary>
+        public static int LeastInterval(char[] tasks, int n)
+        {
+            var dict = tasks.GroupBy(c => c).ToDictionary(c => c, c => c.Count());
+
+            var 
+        }
+
+        /// <summary>
         /// 673. Number of Longest Increasing Subsequence
         /// </summary>
         public static int FindNumberOfLIS(int[] nums)

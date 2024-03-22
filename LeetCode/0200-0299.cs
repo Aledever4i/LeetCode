@@ -383,6 +383,32 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 234. Palindrome Linked List
+        /// </summary>
+        public static bool IsPalindrome(ListNode head)
+        {
+            var list = new List<int>();
+
+            while (head != null)
+            {
+                list.Add(head.val);
+                head = head.next;
+            }
+
+            var n = list.Count;
+            var array = list.ToArray();
+            for (int i = 0; i < n / 2; i++)
+            {
+                if (array[i] != array[n - 1 - i])
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        /// <summary>
         /// 238. Product of Array Except Self
         /// </summary>
         public static int[] ProductExceptSelf(int[] nums)
