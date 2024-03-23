@@ -199,6 +199,29 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 1089. Duplicate Zeros
+        /// </summary>
+        public static void DuplicateZeros(int[] arr)
+        {
+            var n = arr.Length;
+            var newArray = new int[n];
+            var zeroCount = 0;
+
+            for (int i = 0; i < n - zeroCount; i++)
+            {
+                newArray[i + zeroCount] = arr[i];
+                if (arr[i] == 0 && i + 1 < n - zeroCount)
+                {
+                    zeroCount++;
+                    newArray[i + zeroCount] = 0;
+                }
+            }
+
+            newArray.CopyTo(arr, 0);
+        }
+
+
+        /// <summary>
         /// 1091. Shortest Path in Binary Matrix. Tags: Array, Breadth-First Search, Matrix
         /// </summary>
         public static int ShortestPathBinaryMatrix(int[][] grid)
