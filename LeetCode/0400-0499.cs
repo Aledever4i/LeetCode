@@ -141,6 +141,27 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 442. Find All Duplicates in an Array
+        /// </summary>
+        public static IEnumerable<int> FindDuplicates(int[] nums)
+        {
+            return Convert(nums).ToList();
+
+            IEnumerable<int> Convert(int[] nums)
+            {
+                var hash = new HashSet<int>();
+
+                foreach (var i in nums)
+                {
+                    if (!hash.Add(i))
+                    {
+                        yield return i;
+                    };
+                }
+            }
+        }
+
+        /// <summary>
         /// 445. Add Two Numbers II. Tags: Linked List, Math, Stack
         /// </summary>
         public static ListNode AddTwoNumbers(ListNode l1, ListNode l2)
