@@ -692,6 +692,43 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 143. Reorder List
+        /// </summary>
+        public static void ReorderList(ListNode head)
+        {
+            var start = head;
+            var stack = new Stack<ListNode>();
+
+            while (head != null)
+            {
+                stack.Push(head);
+                head = head.next;
+            }
+
+            head = start;
+            var n = stack.Count / 2;
+            if (n <= 1)
+            {
+                return;
+            }
+
+            for (int i = 0; i < n; i++)
+            {
+                var temp = head.next;
+                var next = stack.Pop();
+                if (next != null)
+                {
+                    next.next = null;
+                }
+                head.next = next;
+                head.next.next = temp;
+                head = head.next;
+            }
+
+            head = start;
+        }
+
+        /// <summary>
         /// 146. LRU Cache
         /// </summary>
         public class LRUCache

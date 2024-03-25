@@ -144,8 +144,7 @@ namespace LeetCode
         public static int LeastInterval(char[] tasks, int n)
         {
             var dict = tasks.GroupBy(c => c).ToDictionary(c => c, c => c.Count());
-
-            var 
+            return 0;
         }
 
         /// <summary>

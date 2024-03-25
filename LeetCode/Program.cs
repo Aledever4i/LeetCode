@@ -12,10 +12,10 @@ namespace LeetCode
         // Test
         static void Main(string[] args)
         {
-            var a = _0400_0499.FindMinArrowShots(new int[4][] { new int[2] { 10, 16 }, new int[2] { 2, 8 }, new int[2] { 1, 6 }, new int[2] { 7, 12 } });
+            _0100_0199.ReorderList(new ListNode(1, new ListNode(2, new ListNode(3, new ListNode(4, null)))));
                 
                 
-            Console.WriteLine(a);
+            //Console.WriteLine(a);
 
 
             //a = result.ShortestPath(11, 11);
