@@ -857,6 +857,14 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 41. First Missing Positive
+        /// </summary>
+        public static int FirstMissingPositive(int[] nums)
+        {
+            return 0;
+        }
+
+        /// <summary>
         /// 43. Multiply Strings
         /// </summary>
         public static string Multiply(string num1, string num2)

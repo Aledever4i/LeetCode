@@ -10,6 +10,43 @@ namespace LeetCode
     public static class _2900_2999
     {
         /// <summary>
+        /// 2958. Length of Longest Subarray With at Most K Frequency
+        /// </summary>
+        public static int MaxSubarrayLength(int[] nums, int k)
+        {
+            int left = 0, right = 0;
+            var n = nums.Length;
+            var occurs = new Dictionary<int, int>();
+            var result = 0;
+
+            while (right < n)
+            {
+                var x = nums[right];
+                if (!occurs.TryAdd(x, 1))
+                {
+                    occurs[x]++;
+
+                    if (occurs[x] > k)
+                    {
+                        while (nums[left] != x)
+                        {
+                            occurs[nums[left]]--;
+                            left++;
+                        }
+
+                        occurs[nums[left]]--;
+                        left++;
+                    }
+                }
+
+                result = Math.Max(result, right - left + 1);
+                right++;
+            }
+
+            return result;
+        }
+
+        /// <summary>
         /// 2966. Divide Array Into Arrays With Max Difference
         /// </summary>
         public static int[][] DivideArray(int[] nums, int k)

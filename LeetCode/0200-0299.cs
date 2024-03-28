@@ -679,6 +679,23 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 287. Find the Duplicate Number
+        /// </summary>
+        public static int FindDuplicate(int[] nums)
+        {
+            var hash = new HashSet<int>();
+            foreach (int num in nums)
+            {
+                if (!hash.Add(num))
+                {
+                    return num;
+                }
+            }
+
+            throw new ArgumentException(nameof(nums));
+        }
+
+        /// <summary>
         /// 290. Word Pattern. Tags: Hash Table, String
         /// </summary>
         public static bool WordPattern(string pattern, string s)
