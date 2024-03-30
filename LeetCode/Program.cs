@@ -12,14 +12,10 @@ namespace LeetCode
         // Test
         static void Main(string[] args)
         {
-            _0100_0199.ReorderList(new ListNode(1, new ListNode(2, new ListNode(3, new ListNode(4, null)))));
-                
-                
-            //Console.WriteLine(a);
-
+            var a = _0900_0999.SubarraysWithKDistinct(new int[] { 1, 2, 1, 2, 3 }, 2);
+            Console.WriteLine(a);
 
             //a = result.ShortestPath(11, 11);
-
             //a = result.ShortestPath(11, 11);
             //Console.WriteLine(a);
         }

@@ -332,6 +332,41 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 992. Subarrays with K Different Integers
+        /// </summary>
+        public static int SubarraysWithKDistinct(int[] nums, int k)
+        {
+            return Calc(nums, k) - Calc(nums, k - 1);
+
+            int Calc(int[] nums, int k)
+            {
+                var result = 0;
+                var n = nums.Length;
+                var occurs = new Dictionary<int, int>();
+
+                for (int left = 0, right = 0; right < n; right++)
+                {
+                    var current = nums[right];
+
+                    occurs[current] = occurs.TryGetValue(current, out int value) ? value + 1 : 1;
+
+                    while (occurs.Count > k)
+                    {
+                        occurs[nums[left]]--;
+                        if (occurs[nums[left]] == 0)
+                        {
+                            occurs.Remove(nums[left]);
+                        }
+                        left++;
+                    }
+                    result += right - left + 1;
+                }
+
+                return result;
+            }
+        }
+
+        /// <summary>
         /// 997. Find the Town Judge
         /// </summary>
         public static int FindJudge(int n, int[][] trust)
