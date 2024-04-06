@@ -75,6 +75,16 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 2444. Count Subarrays With Fixed Bounds
+        /// </summary>
+        public static long CountSubarrays(int[] nums, int minK, int maxK)
+        {
+            long result = 0;
+
+            return result;
+        }
+
+        /// <summary>
         /// 2448. Minimum Cost to Make Array Equal. Tags: Array, Binary Search, Greedy, Sorting, Prefix Sum
         /// </summary>
         public static long MinCost(int[] nums, int[] cost)

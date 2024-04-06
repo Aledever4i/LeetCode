@@ -140,6 +140,38 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 1544. Make The String Great
+        /// </summary>
+        public static string MakeGood(string s)
+        {
+            var list = new List<char>();
+
+            for (int i = 0; i < s.Length; i++)
+            {
+                var current = s[i];
+
+                if (list.Count == 0)
+                {
+                    list.Add(current);
+                    continue;
+                }
+
+                var previous = list[list.Count - 1];
+
+                if (current != previous && Char.ToLower(current) == Char.ToLower(previous))
+                {
+                    list.RemoveAt(list.Count - 1);
+                }
+                else
+                {
+                    list.Add(current);
+                }
+            }
+
+            return string.Join("", list);
+        }
+
+        /// <summary>
         /// 1558. Minimum Numbers of Function Calls to Make Target Array. Graph
         /// </summary>
         /// <param name="n"></param>
