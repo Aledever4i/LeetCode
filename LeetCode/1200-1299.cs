@@ -185,6 +185,50 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 1249. Minimum Remove to Make Valid Parentheses
+        /// </summary>
+        public static string MinRemoveToMakeValid(string s)
+        {
+            var listToPass = new List<int>();
+            var temp = new List<int>();
+
+            var count = 0;
+
+            for (int i = 0; i < s.Length; i++)
+            {
+                var c = s[i];
+
+                if (c == ')' && count == 0)
+                {
+                    listToPass.Add(i);
+                }
+                else if (c == ')')
+                {
+                    temp.RemoveAt(temp.Count - 1);
+                    count--;
+                }
+                else if (c == '(')
+                {
+                    temp.Add(i);
+                    count++;
+                }
+            }
+
+            listToPass.AddRange(temp);
+
+            var builder = new StringBuilder();
+            for (int i = 0; i < s.Length; i++)
+            {
+                if (!listToPass.Contains(i))
+                {
+                    builder.Append(s[i]);
+                }
+            }
+
+            return builder.ToString();
+        }
+
+        /// <summary>
         /// 1269. Number of Ways to Stay in the Same Place After Some Steps
         /// </summary>
         public static int NumWays(int steps, int arrLen)
