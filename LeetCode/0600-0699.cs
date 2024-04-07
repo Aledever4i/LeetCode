@@ -163,6 +163,78 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 678. Valid Parenthesis String
+        /// </summary>
+        public static bool CheckValidString(string s)
+        {
+            var count = 0;
+            var unique = 0;
+
+            for (var i = s.Length - 1; i >= 0; i--)
+            {
+                var c = s[i];
+
+                if (c == '(')
+                {
+                    if (count == 0 && unique == 0)
+                    {
+                        return false;
+                    }
+                    else if (count > 0)
+                    {
+                        count--;
+                    }
+                    else
+                    {
+                        unique--;
+                    }
+                }
+                else if (c == '*')
+                {
+                    unique++;
+                }
+                else
+                {
+                    count++;
+                }
+            }
+
+            count = 0;
+            unique = 0;
+
+            for (var i = 0; i < s.Length; i++)
+            {
+                var c = s[i];
+
+                if (c == ')')
+                {
+                    if (count == 0 && unique == 0)
+                    {
+                        return false;
+                    }
+                    else if (count > 0)
+                    {
+                        count--;
+                    }
+                    else
+                    {
+                        unique--;
+                    }
+                }
+                else if (c == '*')
+                {
+                    unique++;
+                }
+                else
+                {
+                    count++;
+                }
+            }
+
+            return (unique >= count);
+        }
+
+        /// <summary>
         /// 687. Longest Univalue Path
         /// </summary>
         public static int LongestUnivaluePath(TreeNode root)

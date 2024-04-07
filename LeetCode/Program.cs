@@ -12,7 +12,7 @@ namespace LeetCode
         // Test
         static void Main(string[] args)
         {
-            var a = _0900_0999.SubarraysWithKDistinct(new int[] { 1, 2, 1, 2, 3 }, 2);
+            var a = _0600_0699.CheckValidString("(((((*)))**");
             Console.WriteLine(a);
 
             //a = result.ShortestPath(11, 11);
