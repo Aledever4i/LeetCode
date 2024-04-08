@@ -20,6 +20,39 @@ namespace LeetCode
     public class _1700_1799
     {
         /// <summary>
+        /// 1700. Number of Students Unable to Eat Lunch
+        /// </summary>
+        public static int CountStudents(int[] students, int[] sandwiches)
+        {
+            var zeroStudentCount = students.Where(n => n == 0).Count();
+            var oneStudentCount = students.Length - zeroStudentCount;
+
+            foreach (var sandwich in sandwiches)
+            {
+                if (sandwich == 0 && zeroStudentCount == 0)
+                {
+                    return oneStudentCount;
+                }
+
+                if (sandwich == 1 && oneStudentCount == 0)
+                {
+                    return zeroStudentCount;
+                }
+
+                if (sandwich == 0)
+                {
+                    zeroStudentCount--;
+                }
+                else
+                {
+                    oneStudentCount--;
+                }
+            }
+
+            return 0;
+        }
+
+        /// <summary>
         /// 1704. Determine if String Halves Are Alike
         /// </summary>
         public static bool HalvesAreAlike(string s)
