@@ -12,7 +12,7 @@ namespace LeetCode
         // Test
         static void Main(string[] args)
         {
-            var a = _0600_0699.CheckValidString("(((((*)))**");
+            var a = _2000_2099.TimeRequiredToBuy(new int[] { 84, 49, 5, 24, 70, 77, 87, 8 }, 3);
             Console.WriteLine(a);
 
             //a = result.ShortestPath(11, 11);

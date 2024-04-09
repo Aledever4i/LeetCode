@@ -251,6 +251,20 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 2073. Time Needed to Buy Tickets
+        /// </summary>
+        public static int TimeRequiredToBuy(int[] tickets, int k)
+        {
+            var count = tickets[k];
+            var countRemove = 0;
+            if (k + 1 < tickets.Length)
+            {
+                countRemove = tickets[(k + 1)..].Where(x => x >= count).Count();
+            }
+            return tickets.Sum(x => Math.Min(x, count)) - countRemove;
+        }
+
+        /// <summary>
         /// 2090. K Radius Subarray Averages. Tags: Array, Sliding Window
         /// </summary>
         public static int[] GetAverages(int[] nums, int k)
