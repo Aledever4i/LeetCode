@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Numerics;
 using System.Runtime.Intrinsics.Arm;
@@ -29,6 +30,43 @@ namespace LeetCode
             }
 
             return result;
+        }
+
+        /// <summary>
+        /// 402. Remove K Digits
+        /// </summary>
+        public static string RemoveKdigits(string num, int k)
+        {
+            if (num.Length == k)
+            {
+                return "0"; 
+            }
+
+            StringBuilder result = new();
+            int digitsToRemove = k;
+
+            foreach (char digit in num)
+            {
+                while (digitsToRemove > 0 && result.Length > 0 && result[result.Length - 1] > digit)
+                {
+                    result.Remove(result.Length - 1, 1);
+                    digitsToRemove--;
+                }
+                result.Append(digit);
+            }
+
+            while (digitsToRemove > 0)
+            {
+                result.Remove(result.Length - 1, 1);
+                digitsToRemove--;
+            }
+
+            while (result.Length > 1 && result[0] == '0')
+            {
+                result.Remove(0, 1);
+            }
+
+            return result.ToString();
         }
 
         /// <summary>
