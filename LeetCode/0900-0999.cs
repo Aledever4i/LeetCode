@@ -316,6 +316,31 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 950. Reveal Cards In Increasing Order
+        /// </summary>
+        public static int[] DeckRevealedIncreasing(int[] deck)
+        {
+            System.Array.Sort(deck);
+            var list = new List<int>() { deck[deck.Length - 1] };
+
+            for (int i = deck.Length - 2; i >= 0; i--)
+            {
+                var card = deck[i];
+                swap(list);
+                list.Insert(0, card);
+            }
+
+            void swap(List<int> list)
+            {
+                int tmp = list[list.Count - 1];
+                list.RemoveAt(list.Count - 1);
+                list.Insert(0, tmp);
+            }
+
+            return list.ToArray();
+        }
+
+        /// <summary>
         /// 956. Tallest Billboard. Tags: Array, Dynamic Programming
         /// </summary>
         public static int TallestBillboard(int[] rods)
