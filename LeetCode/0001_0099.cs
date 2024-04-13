@@ -865,6 +865,25 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 42. Trapping Rain Water
+        /// </summary>
+        public static int Trap(int[] height)
+        {
+            int leftWall = height[0];
+            var result = 0;
+            bool isDowned = true;
+
+            for (int i = 1; i < height.Length; i++)
+            {
+                var nextWall = height[i];
+
+
+            }
+
+            return 0;
+        }
+
+        /// <summary>
         /// 43. Multiply Strings
         /// </summary>
         public static string Multiply(string num1, string num2)
