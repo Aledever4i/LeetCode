@@ -1712,6 +1712,59 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 85. Maximal Rectangle
+        /// </summary>
+        public static int MaximalRectangle(char[][] matrix)
+        {
+            int rows = matrix.Length;
+            int cols = matrix[0].Length;
+
+            int maxArea = 0;
+            int[] height = new int[cols];
+
+            for (int row = 0; row < rows; row++)
+            {
+                for (int col = 0; col < cols; col++)
+                {
+                    if (matrix[row][col] == '1')
+                    {
+                        height[col]++;
+                    }
+                    else
+                    {
+                        height[col] = 0;
+                    }
+                }
+
+                int area = LargestRectangleArea(height);
+                maxArea = Math.Max(maxArea, area);
+            }
+
+            return maxArea;
+            
+            int LargestRectangleArea(int[] heights)
+            {
+                Stack<int> stack = new Stack<int>();
+                int maxArea = 0;
+                int n = heights.Length;
+
+                for (int i = 0; i <= n; i++)
+                {
+                    while (stack.Count > 0 && (i == n || heights[stack.Peek()] >= heights[i]))
+                    {
+                        int h = heights[stack.Pop()];
+                        int w = stack.Count == 0 ? i : i - stack.Peek() - 1;
+                        maxArea = Math.Max(maxArea, h * w);
+                    }
+
+                    stack.Push(i);
+                }
+
+                return maxArea;
+            }
+        }
+
+        /// <summary>
         /// 86. Partition List
         /// </summary>
         public static ListNode Partition(ListNode head, int x)
