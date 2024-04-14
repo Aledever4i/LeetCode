@@ -70,6 +70,29 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 404. Sum of Left Leaves
+        /// </summary>
+        public static int SumOfLeftLeaves(TreeNode root)
+        {
+            int LeftSum(TreeNode root, bool isLeft)
+            {
+                if (root == null)
+                {
+                    return 0;
+                }
+
+                if (root.left == null && root.right == null)
+                {
+                    return isLeft ? root.val : 0; 
+                }
+
+                return LeftSum(root.left, true) + LeftSum(root.right, false);
+            }
+
+            return LeftSum(root, false);
+        }
+
+        /// <summary>
         /// 413. Arithmetic Slices
         /// </summary>
         public static int NumberOfArithmeticSlices(int[] nums)
