@@ -462,6 +462,29 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 129. Sum Root to Leaf Numbers
+        /// </summary>
+        public static int SumNumbers(TreeNode root)
+        {
+            int Sum(TreeNode root, string number)
+            {
+                if (root == null)
+                {
+                    return 0;
+                }
+
+                if (root.left == null && root.right == null)
+                {
+                    return int.Parse($"{number}{root.val}");
+                }
+
+                return Sum(root.left, $"{number}{root.val}") + Sum(root.right, $"{number}{root.val}");
+            }
+
+            return Sum(root, string.Empty);
+        }
+
+        /// <summary>
         /// 134. Gas Station
         /// </summary>
         public static int CanCompleteCircuit(int[] gas, int[] cost)
