@@ -9,6 +9,45 @@ namespace LeetCode
     public static class _0600_0699
     {
         /// <summary>
+        /// 623. Add One Row to Tree
+        /// </summary>
+        public static TreeNode AddOneRow(TreeNode root, int val, int depth)
+        {
+            if (depth == 1)
+            {
+                return new TreeNode(val, root);
+            }
+
+            var queue = new Queue<(TreeNode, int)>();
+            queue.Enqueue((root, 1));
+
+            while (queue.Count > 0)
+            {
+                var element = queue.Dequeue();
+
+                if (element.Item2 == depth - 1)
+                {
+                    element.Item1.left = new TreeNode(val, element.Item1.left, null);
+                    element.Item1.right = new TreeNode(val, null, element.Item1.right);
+                }
+                else
+                {
+                    if (element.Item1.left != null)
+                    {
+                        queue.Enqueue((element.Item1.left, element.Item2 + 1));
+                    }
+
+                    if (element.Item1.right != null)
+                    {
+                        queue.Enqueue((element.Item1.right, element.Item2 + 1));
+                    }
+                }
+            }
+
+            return root;
+        }
+
+        /// <summary>
         /// 643. Maximum Average Subarray I. Tags: Array, Sliding Window
         /// </summary>
         public static double FindMaxAverage(int[] nums, int k)
