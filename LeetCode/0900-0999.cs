@@ -357,6 +357,31 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 988. Smallest String Starting From Leaf
+        /// </summary>
+        public static string SmallestFromLeaf(TreeNode root)
+        {
+            var queue = new Queue<TreeNode>();
+            var list = new List<int>();
+            var nodeList = new List<TreeNode>();
+            
+            queue.Enqueue(root);
+
+            while (queue.Count >= 0)
+            {
+                if (queue.Count == 0)
+                {
+
+                }
+            }
+            
+            
+            while (root != null) { }
+
+            return string.Empty;
+        }
+
+        /// <summary>
         /// 992. Subarrays with K Different Integers
         /// </summary>
         public static int SubarraysWithKDistinct(int[] nums, int k)
