@@ -389,6 +389,26 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 350. Intersection of Two Arrays II
+        /// </summary>
+        public static int[] Intersection2(int[] nums1, int[] nums2)
+        {
+            var dict1 = nums1.GroupBy(x => x).ToDictionary(x => x.Key, x => x.Count());
+            var dict2 = nums2.GroupBy(x => x).ToDictionary(x => x.Key, x => x.Count());
+            var result = new List<int>();
+
+            foreach (var key in dict1.Keys)
+            {
+                if (dict2.TryGetValue(key, out var value))
+                {
+                    result.AddRange(Enumerable.Repeat(key, Math.Min(value, dict1[key])));
+                }
+            }
+
+            return result.ToArray();
+        }
+
+        /// <summary>
         /// 372. Super Pow
         /// </summary>
         public static int SuperPow(int a, int[] b)
