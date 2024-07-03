@@ -46,6 +46,28 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 1509. Minimum Difference Between Largest and Smallest Value in Three Moves
+        /// </summary>
+        public static int MinDifference(int[] nums)
+        {
+            if (nums.Length <= 4)
+            {
+                return 0;
+            }
+
+            Array.Sort(nums);
+
+            var answers = new int[] {
+                nums[nums.Length - 4] - nums[0],
+                nums[nums.Length - 3] - nums[1],
+                nums[nums.Length - 2] - nums[2],
+                nums[nums.Length - 1] - nums[3]
+            };
+
+            return answers.Min();
+        }
+
+        /// <summary>
         /// 1512. Number of Good Pairs
         /// </summary>
         public static int NumIdenticalPairs(int[] nums)
@@ -169,6 +191,38 @@ namespace LeetCode
             }
 
             return string.Join("", list);
+        }
+
+        /// <summary>
+        /// 1550. Three Consecutive Odds
+        /// </summary>
+        /// <param name="arr"></param>
+        /// <returns></returns>
+        public static bool ThreeConsecutiveOdds(int[] arr)
+        {
+            if (arr.Length <= 2)
+            {
+                return false;
+            }
+
+            int a = arr[0];
+            int b = arr[1];
+            int c;
+
+            for (int i = 2; i < arr.Length; i++)
+            {
+                c = arr[i];
+
+                if (a % 2 == 1 && b % 2 == 1 && c % 2 == 1)
+                {
+                    return true;
+                }
+
+                a = b;
+                b = c;
+            }
+
+            return false;
         }
 
         /// <summary>
