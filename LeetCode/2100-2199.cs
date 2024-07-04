@@ -203,5 +203,35 @@ namespace LeetCode
 
             return result;
         }
+
+        /// <summary>
+        /// 2181. Merge Nodes in Between Zeros
+        /// </summary>
+        public static ListNode MergeNodes(ListNode head)
+        {
+            var result = new ListNode();
+            var start = result;
+
+            while (head != null)
+            {
+                var newValue = 0;
+
+                while (head != null && head.val != 0)
+                {
+                    newValue += head.val;
+                    head = head.next;
+                }
+
+                if (newValue != 0)
+                {
+                    result.next = new ListNode(newValue);
+                    result = result.next;
+                }
+
+                head = head.next;
+            }
+
+            return start.next;
+        }
     }
 }
