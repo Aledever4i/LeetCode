@@ -251,6 +251,45 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 2058. Find the Minimum and Maximum Number of Nodes Between Critical Points
+        /// </summary>
+        public static int[] NodesBetweenCriticalPoints(ListNode head)
+        {
+            var answers = new List<int>();
+            var prev = head;
+            var current = head.next;
+            var next = current.next;
+            var position = 2;
+
+            while (next != null)
+            {
+                if (current.val < prev.val && current.val < next.val)
+                {
+                    answers.Add(position);
+                }
+                if (current.val > prev.val && current.val > next.val)
+                {
+                    answers.Add(position);
+                }
+                position++;
+                prev = current;
+                current = next;
+                next = next.next;
+            }
+            if (answers.Count <= 1)
+            {
+                return new int[] { -1, -1 };
+            }
+            var max = answers.Max() - answers.Min();
+            var min = int.MaxValue;
+            for (int i = 0; i < answers.Count - 1; i++)
+            {
+                min = Math.Min(min, answers.ElementAt(i + 1) - answers.ElementAt(i));
+            }
+            return new int[] { min, max };
+        }
+
+        /// <summary>
         /// 2073. Time Needed to Buy Tickets
         /// </summary>
         public static int TimeRequiredToBuy(int[] tickets, int k)
