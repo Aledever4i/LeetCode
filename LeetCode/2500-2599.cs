@@ -97,5 +97,20 @@ namespace LeetCode
 
             return pair.OrderByDescending(v => v).Take(k - 1).Sum() - pair.OrderBy(v => v).Take(k - 1).Sum();
         }
+
+        /// <summary>
+        /// 2582. Pass the Pillow
+        /// </summary>
+        public static int PassThePillow(int n, int time)
+        {
+            var position = time % ((n - 1) * 2);
+
+            if (position < n - 1)
+            {
+                return position + 1;
+            }
+
+            return n - (position - n);
+        }
     }
 }
