@@ -12,7 +12,7 @@ namespace LeetCode
         // Test
         static void Main(string[] args)
         {
-            var a = _1500_1599.MinDifference(new int[] { 82, 81, 95, 75, 20 });
+            var a = _1800_1899.FindTheWinner(5, 2);
             Console.WriteLine(a);
         }
     }

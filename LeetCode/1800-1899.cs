@@ -47,6 +47,39 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 1823. Find the Winner of the Circular Game
+        /// </summary>
+        public static int FindTheWinner(int n, int k)
+        {
+            var link = new LinkedList<int>();
+            for (int i = 1; i < n + 1; i++)
+            {
+                link.AddLast(i);
+            }
+            var current = link.First;
+            var next = link.First;
+            
+
+            while (link.Count != 1)
+            {
+                int iter = k - 1;
+                while (iter > 0)
+                {
+                    current = current.Next;
+                    current ??= link.First;
+                    iter--;
+                }
+
+                next = current.Next;
+                next ??= link.First;
+                link.Remove(current);
+                current = next;
+            }
+
+            return link.First();
+        }
+
+        /// <summary>
         /// 1877. Minimize Maximum Pair Sum in Array
         /// </summary>
         public int MinPairSum(int[] nums)
