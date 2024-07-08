@@ -12,7 +12,7 @@ namespace LeetCode
         // Test
         static void Main(string[] args)
         {
-            var a = _1800_1899.FindTheWinner(5, 2);
+            var a = _2400_2499.AppendCharacters("lxvqffcj", "vjtgatotj");
             Console.WriteLine(a);
         }
     }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Numerics;
 using System.Text;
@@ -321,6 +322,36 @@ namespace LeetCode
             }
 
             return -1;
+        }
+
+        /// <summary>
+        /// 2486. Append Characters to String to Make Subsequence
+        /// </summary>
+        public static int AppendCharacters(string s, string t)
+        {
+            var sIndex = 0;
+            var tIndex = 0;
+            var isFound = false;
+
+            for (; tIndex < t.Length && sIndex < s.Length; tIndex++)
+            {
+                var current = t[tIndex];
+                for (; sIndex < s.Length; sIndex++)
+                {
+                    if (current == s[sIndex])
+                    {
+                        sIndex++;
+                        isFound = true;
+                        break;
+                    }
+                    else
+                    {
+                        isFound = false;
+                    }
+                }
+            }
+
+            return (t.Length == tIndex && isFound) ? 0 : t.Length - tIndex + (isFound ? 0 : 1);
         }
     }
 }
