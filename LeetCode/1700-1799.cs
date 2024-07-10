@@ -53,6 +53,34 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 1701. Average Waiting Time
+        /// </summary>
+        public static double AverageWaitingTime(int[][] customers)
+        {
+            double result = 0;
+            int currentTime = 0;
+
+            foreach (var customer in customers)
+            {
+                var arrivalTime = customer[0];
+                var cookingTime = customer[1];
+
+                if (currentTime <= arrivalTime)
+                {
+                    currentTime = arrivalTime + cookingTime;
+                    result += cookingTime;
+                }
+                else
+                {
+                    currentTime += cookingTime;
+                    result += currentTime - arrivalTime;
+                }
+            }
+
+            return result / customers.Length;
+        }
+
+        /// <summary>
         /// 1704. Determine if String Halves Are Alike
         /// </summary>
         public static bool HalvesAreAlike(string s)
