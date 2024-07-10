@@ -12,7 +12,7 @@ namespace LeetCode
         // Test
         static void Main(string[] args)
         {
-            var a = _2400_2499.AppendCharacters("lxvqffcj", "vjtgatotj");
+            var a = _1500_1599.MinOperations(new string[] { "d1/", "d2/", "../", "d21/", "./" });
             Console.WriteLine(a);
         }
     }

@@ -355,5 +355,30 @@ namespace LeetCode
                 return result + matrix[center][center];
             }
         }
+
+        /// <summary>
+        /// 1598. Crawler Log Folder
+        /// </summary>
+        public static int MinOperations(string[] logs)
+        {
+            var result = 0;
+            foreach (var log in logs)
+            {
+                if (log == "./")
+                {
+                    continue;
+                }
+                else if (log == "../")
+                {
+                    result = (result > 0) ? result - 1 : 0;
+                }
+                else
+                {
+                    result++;
+                }
+            }
+
+            return result;
+        }
     }
 }
