@@ -112,6 +112,48 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 1717. Maximum Score From Removing Substrings
+        /// </summary>
+        public static int MaximumGain(string s, int x, int y)
+        {
+            if (x < y)
+            {
+                (y, x) = (x, y);
+                s = new string(s.Reverse().ToArray());
+            }
+
+            int aCount = 0, bCount = 0, totalPoints = 0;
+            for (int i = 0; i < s.Length; ++i)
+            {
+                char currentChar = s[i];
+
+                if (currentChar == 'a')
+                {
+                    ++aCount;
+                }
+                else if (currentChar == 'b')
+                {
+                    if (aCount > 0)
+                    {
+                        --aCount;
+                        totalPoints += x;
+                    }
+                    else
+                    {
+                        ++bCount;
+                    }
+                }
+                else
+                {
+                    totalPoints += Math.Min(bCount, aCount) * y;
+                    aCount = bCount = 0;
+                }
+            }
+            totalPoints += Math.Min(bCount, aCount) * y;
+            return totalPoints;
+        }
+
+        /// <summary>
         /// 1721. Swapping Nodes in a Linked List. Tags: Linked List, Two Pointers
         /// </summary>
         /// <param name="head"></param>
