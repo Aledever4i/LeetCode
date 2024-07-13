@@ -12,7 +12,7 @@ namespace LeetCode
         // Test
         static void Main(string[] args)
         {
-            var a = _1500_1599.MinOperations(new string[] { "d1/", "d2/", "../", "d21/", "./" });
+            var a = _2700_2799.SurvivedRobotsHealths(new int[] { 3, 32, 23, 2 }, new int[] { 45, 42, 4, 10 }, "RRLR");
             Console.WriteLine(a);
         }
     }
