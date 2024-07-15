@@ -233,5 +233,38 @@ namespace LeetCode
 
             return start.next;
         }
+
+        /// <summary>
+        /// 2196. Create Binary Tree From Descriptions
+        /// </summary>
+        public static TreeNode CreateBinaryTree(int[][] descriptions)
+        {
+            var nodes = new List<int>();
+            var parents = new List<int>();
+
+            var dict = new Dictionary<int, TreeNode>();
+
+            foreach (var desc in descriptions)
+            {
+                nodes.Add(desc[1]);
+                parents.Add(desc[0]);
+
+                dict.TryAdd(desc[0], new TreeNode(desc[0], null, null));
+                dict.TryAdd(desc[1], new TreeNode(desc[1], null, null));
+
+                if (desc[2] == 1)
+                {
+                    dict[desc[0]].left = dict[desc[1]];
+                }
+                else
+                {
+                    dict[desc[0]].right = dict[desc[1]];
+                }
+            }
+
+            var root = parents.Except(nodes).First();
+
+            return dict[root];
+        }
     }
 }

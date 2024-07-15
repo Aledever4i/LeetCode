@@ -12,7 +12,7 @@ namespace LeetCode
         // Test
         static void Main(string[] args)
         {
-            var a = _2700_2799.SurvivedRobotsHealths(new int[] { 3, 32, 23, 2 }, new int[] { 45, 42, 4, 10 }, "RRLR");
+            var a = _2100_2199.CreateBinaryTree(new int[][] { new int[] { 20, 15, 1 }, new int[] { 20, 17, 0 }, new int[] { 50, 20, 1 }, new int[] { 50, 80, 0 }, new int[] { 80, 19, 1 } });
             Console.WriteLine(a);
         }
     }
