@@ -59,59 +59,30 @@ namespace LeetCode
         public static IList<TreeNode> DelNodes(TreeNode root, int[] to_delete)
         {
             var result = new List<TreeNode>();
-
-            var x = Check(root, to_delete);
-            if (x)
-            {
-                result.Add(root);
-            }
-
-            bool Check(TreeNode treeNode, int[] to_delete)
-            {
-                var v1 = false;
-                var v2 = false;
-                var toDelete = to_delete.Contains(treeNode.val);
-
-                if (treeNode.left != null)
-                {
-                    v1 = Check(treeNode.left, to_delete);
-
-                    if (v1 && toDelete)
-                    {
-                        result.Add(treeNode.left);
-                    }
-
-                    if (!toDelete && !v1)
-                    {
-                        treeNode.left = null;
-                    }
-                }
-
-                if (treeNode.right != null)
-                {
-                    v2 = Check(treeNode.right, to_delete);
-
-
-                    if (v2 && toDelete)
-                    {
-                        result.Add(treeNode.right);
-                    }
-
-                    if (!toDelete && !v2)
-                    {
-                        treeNode.right = null;
-                    }
-                }
-
-                if (toDelete)
-                {
-                    return false;
-                }
-
-                return true;
-            }
-
+            Check(ref root, true, to_delete);
             return result;
+
+            void Check(ref TreeNode treeNode, bool isRoot, int[] to_delete)
+            {
+                if (treeNode == null)
+                {
+                    return;
+                }
+
+                var deleted = to_delete.Contains(treeNode.val);
+
+                Check(ref treeNode.right, deleted, to_delete);
+                Check(ref treeNode.left, deleted, to_delete);
+
+                if (deleted)
+                {
+                    treeNode = null;
+                }
+                else if (isRoot)
+                {
+                    result.Add(treeNode);
+                }
+            }
         }
 
         /// <summary>
