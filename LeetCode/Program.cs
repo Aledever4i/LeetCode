@@ -12,7 +12,9 @@ namespace LeetCode
         // Test
         static void Main(string[] args)
         {
-            var a = _2100_2199.CreateBinaryTree(new int[][] { new int[] { 20, 15, 1 }, new int[] { 20, 17, 0 }, new int[] { 50, 20, 1 }, new int[] { 50, 80, 0 }, new int[] { 80, 19, 1 } });
+            var root = new TreeNode(1, new TreeNode(2, new TreeNode(4), new TreeNode(5)), new TreeNode(3, new TreeNode(6), new TreeNode(7)));
+
+            var a = _1500_1599.CountPairs(root, 3);
             Console.WriteLine(a);
         }
     }

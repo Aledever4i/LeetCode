@@ -343,7 +343,7 @@ namespace LeetCode
         /// </summary>
         public static string GetDirections(TreeNode root, int startValue, int destValue)
         {
-
+            return string.Empty;
         }
     }
 }

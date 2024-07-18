@@ -120,6 +120,38 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 1530. Number of Good Leaf Nodes Pairs
+        /// </summary>
+        public static int CountPairs(TreeNode root, int distance)
+        {
+            int result = 0;
+            Dfs(root, distance);
+            return result;
+
+            List<int> Dfs(TreeNode node, int distance)
+            {
+                if (node == null) return new List<int>();
+                if (node.left == null && node.right == null) return new List<int> { 0 };
+
+                var leftDistances = Dfs(node.left, distance);
+                var rightDistances = Dfs(node.right, distance);
+
+                foreach (int l in leftDistances)
+                {
+                    foreach (int r in rightDistances)
+                    {
+                        if (l + r + 2 <= distance) result++;
+                    }
+                }
+
+                var distances = new List<int>();
+                foreach (int l in leftDistances) distances.Add(l + 1);
+                foreach (int r in rightDistances) distances.Add(r + 1);
+                return distances;
+            }
+        }
+
+        /// <summary>
         /// 1535. Find the Winner of an Array Game
         /// </summary>
         public static int GetWinner(int[] arr, int k)
