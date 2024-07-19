@@ -243,5 +243,32 @@ namespace LeetCode
                 return informTime[managerId];
             }
         }
+
+        /// <summary>
+        /// 1380. Lucky Numbers in a Matrix
+        /// </summary>
+        public static IList<int> LuckyNumbers(int[][] matrix)
+        {
+            var rows = matrix.Length;
+            var cols = matrix[0].Length;
+            var result = new List<int>();
+            var max = new List<int>();
+
+            for (int i = 0; i < cols; i++)
+            {
+                max.Add(matrix.Select(r => r[i]).Max());
+            }
+
+            for (int i = 0; i < rows; i++)
+            {
+                var rowMin = matrix[i].Min();
+                if (max.Contains(rowMin))
+                {
+                    result.Add(rowMin);
+                }
+            }
+
+            return result;
+        }
     }
 }
