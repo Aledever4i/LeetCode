@@ -35,6 +35,42 @@ namespace LeetCode
     public static class _1600_1699
     {
         /// <summary>
+        /// 1605. Find Valid Matrix Given Row and Column Sums
+        /// </summary>
+        public static int[][] RestoreMatrix(int[] rowSum, int[] colSum)
+        {
+            var result = new int[rowSum.Length][];
+            for (int i = 0; i < rowSum.Length; i++)
+            {
+                result[i] = new int[colSum.Length];
+            }
+
+            for (int i = 0; i < rowSum.Length; i++)
+            {
+                for (int y = 0; y < colSum.Length; y++)
+                {
+                    if (rowSum[i] > 0)
+                    {
+                        if (rowSum[i] > colSum[y])
+                        {
+                            result[i][y] = colSum[y];
+                            rowSum[i] -= colSum[y];
+                            colSum[y] = 0;
+                        }
+                        else
+                        {
+                            result[i][y] = rowSum[i];
+                            colSum[y] -= rowSum[i];
+                            rowSum[i] = 0;
+                        }
+                    }
+                }
+            }
+
+            return result;
+        }
+
+        /// <summary>
         /// 1609. Even Odd Tree
         /// </summary>
         public static bool IsEvenOddTree(TreeNode root)
