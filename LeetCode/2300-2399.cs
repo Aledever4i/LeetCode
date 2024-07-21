@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LeetCode.Algorithms;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -177,6 +178,60 @@ namespace LeetCode
                         queue.Enqueue((newWay, way.Item2 + 1));
                     }
                 }
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// 2392. Build a Matrix With Conditions
+        /// </summary>
+        public static int[][] BuildMatrix(int k, int[][] rowConditions, int[][] colConditions)
+        {
+            var rowDict = new Dictionary<int, List<int>>(k);
+            for (int i = 1; i <= k; i++)
+            {
+                rowDict.Add(i, new List<int>());
+            }
+
+            var colDict = new Dictionary<int, List<int>>(k);
+            for (int i = 1; i <= k; i++)
+            {
+                colDict.Add(i, new List<int>());
+            }
+
+            foreach (var rCond in rowConditions)
+            {
+                rowDict[rCond[0]].Add(rCond[1]);
+            }
+            foreach (var cCond in colConditions)
+            {
+                colDict[cCond[0]].Add(cCond[1]);
+            }
+
+            var rowList = new List<int>();
+            if (!Sorting.TopologicalSort(rowDict, 1, k, rowList))
+            {
+                return new List<int[]>().ToArray();
+            }
+            var rowOrder = new Dictionary<int, int>(rowList.Select((v, i) => new KeyValuePair<int, int>(v, i)));
+
+            var colList = new List<int>();
+            if (!Sorting.TopologicalSort(colDict, 1, k, colList))
+            {
+                return new List<int[]>().ToArray();
+
+            }
+            var colOrder = new Dictionary<int, int>(colList.Select((v, i) => new KeyValuePair<int, int>(v, i)));
+
+            var result = new int[k][];
+            for (int i = 0; i < k; i++)
+            {
+                result[i] = new int[k];
+            }
+            for (int i = 1; i <= k; i++)
+            {
+                result[rowOrder[i]][colOrder[i]] = i;
             }
 
             return result;
