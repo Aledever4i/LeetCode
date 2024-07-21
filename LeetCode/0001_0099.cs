@@ -827,6 +827,41 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 31. Next Permutation
+        /// </summary>
+        public static void NextPermutation(int[] nums)
+        {
+            if (nums.Length == 1)
+            {
+                return;
+            }
+
+            var index = nums.Length - 2;
+            var list = new List<int>();
+
+            for (; index > 0; index--)
+            {
+                var value = nums[index];
+                var prevValue = nums[index + 1];
+
+                if (value < prevValue)
+                {
+                    nums[index] = prevValue;
+                    nums[index + 1] = value;
+                    break;
+                }
+
+                list.Add(value);
+            }
+
+            var c = list.Count;
+            for (int i = index; i < c; i++)
+            {
+                nums[index] = list.ElementAt(i - c);
+            }
+        }
+
+        /// <summary>
         /// 35. Search Insert Position. Tags: Array, Binary Search
         /// </summary>
         public static int SearchInsert(int[] nums, int target)
