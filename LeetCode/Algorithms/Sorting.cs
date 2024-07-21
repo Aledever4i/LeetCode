@@ -9,6 +9,9 @@ namespace LeetCode.Algorithms
 {
     public static class Sorting
     {
+        /// <summary>
+        /// Сортировка для графов, возращает последовательность снятия зависимостей с точек
+        /// </summary>
         public static bool TopologicalSort(Dictionary<int, List<int>> elements, int minValue, int maxValue, in List<int> output)
         {
             var indegree = new Dictionary<int, int>();
@@ -64,28 +67,5 @@ namespace LeetCode.Algorithms
 
             return true;
         }
-
-        public static bool LoopCheck(int less, int more, Dictionary<int, List<int>> dict)
-        {
-            var queue = new Queue<int>(new int[] { less });
-            while (queue.Count > 0)
-            {
-                var key = queue.Dequeue();
-                var elements = dict[key];
-
-                if (elements.Contains(more))
-                {
-                    return false;
-                }
-
-                foreach (var e in elements)
-                {
-                    queue.Enqueue(e);
-                }
-            }
-
-            return true;
-        }
-
     }
 }

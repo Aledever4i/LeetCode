@@ -1,6 +1,8 @@
-﻿using System;
+﻿using LeetCode.Algorithms;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 
 namespace LeetCode
 {
@@ -343,7 +345,36 @@ namespace LeetCode
         /// </summary>
         public static string GetDirections(TreeNode root, int startValue, int destValue)
         {
-            return string.Empty;
+            var startPath = new StringBuilder();
+            SearchPathByBFS(root, startValue, new StringBuilder(), ref startPath);
+
+            var destinationPath = new StringBuilder();
+            SearchPathByBFS(root, destValue, new StringBuilder(), ref destinationPath);
+
+            var (aRemoved, bRemoved) = StringFunctions.LowestCommonAncestorRemove(startPath.ToString(), destinationPath.ToString());
+            return $"{string.Join("", Enumerable.Repeat("U", aRemoved.Length))}{bRemoved}";
+
+            void SearchPathByBFS(TreeNode root, int searchValue, StringBuilder path, ref StringBuilder resultPath)
+            {
+                if (root == null)
+                {
+                    return;
+                }
+
+                if (root.val == searchValue)
+                {
+                    resultPath.Append(path.ToString());
+                    return;
+                }
+
+                path.Append("L");
+                SearchPathByBFS(root.left, searchValue, path, ref resultPath);
+                path.Remove(path.Length - 1, 1);
+
+                path.Append("R");
+                SearchPathByBFS(root.right, searchValue, path, ref resultPath);
+                path.Remove(path.Length - 1, 1);
+            }
         }
     }
 }
