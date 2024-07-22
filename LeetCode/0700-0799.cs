@@ -136,6 +136,67 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 726. Number of Atoms
+        /// </summary>
+        public static string CountOfAtoms(string formula)
+        {
+            var queue = new Queue<(string, int)>();
+            var current = string.Empty;
+            var index = 0;
+            var dict = new Dictionary<string, int>();
+
+            for (int i = 0; i < formula.Length; i++)
+            {
+                var symbol = formula[i];
+
+                if (symbol == '(')
+                {
+                    index++;
+                }
+                else if (symbol == ')')
+                {
+                    var multi = string.Empty;
+                    int intMulti = 1;
+
+                    while (i + 1 < formula.Length && Char.IsDigit(formula[i + 1]))
+                    {
+                        multi += formula[i + 1];
+                        i++;
+                    }
+
+                    if (!string.IsNullOrWhiteSpace(multi))
+                    {
+                        intMulti = int.Parse(multi);
+                    }
+
+                    while (queue.TryPeek(out var result) && result.Item2 == index)
+                    {
+                        if (!dict.TryAdd(symbol.ToString(), intMulti))
+                        {
+                            dict[symbol.ToString()] += intMulti;
+                        }
+                    }
+
+
+                }
+                else if (Char.IsDigit(symbol))
+                {
+
+                }
+                else if (Char.IsLower(symbol))
+                {
+
+                }
+                else
+                {
+
+                }
+            }
+
+            return string.Empty;
+        }
+
+        /// <summary>
         /// 735. Asteroid Collision. Tags: Array, Stack, Simulation
         /// </summary>
         public static int[] AsteroidCollision(int[] asteroids)
