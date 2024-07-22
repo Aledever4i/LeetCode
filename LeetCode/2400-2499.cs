@@ -61,6 +61,20 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 2418. Sort the People
+        /// </summary>
+        public static string[] SortPeople(string[] names, int[] heights)
+        {
+            return
+                names
+                    .Select((n, index) => new { N = n, I = index })
+                    .Join(heights.Select((n, index) => new { N = n, I = index }), name => name.I, height => height.I, (name, height) => new { Name = name, Height = height })
+                    .OrderByDescending(v => v.Height.N)
+                    .Select(v => v.Name.N)
+                    .ToArray();
+        }
+
+        /// <summary>
         /// 2433. Find The Original Array of Prefix Xor
         /// </summary>
         public static int[] FindArray(int[] pref)

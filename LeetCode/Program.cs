@@ -12,8 +12,8 @@ namespace LeetCode
         // Test
         static void Main(string[] args)
         {
-            _0001_0099.NextPermutation(new int[] { 1, 2, 2, 2, 1, 1 });
-            //Console.WriteLine(a);
+            var a = _2400_2499.SortPeople(new string[] { "Alice", "Bob", "Bob" }, new int[] { 155, 185, 150 });
+            Console.WriteLine(a);
         }
     }
 }
