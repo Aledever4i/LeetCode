@@ -1,8 +1,10 @@
-﻿using System;
+﻿using LeetCode.Algorithms;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace LeetCode
 {
@@ -312,6 +314,35 @@ namespace LeetCode
             var words = s.Split(" ");
             var reversedWords = words.Select(word => string.Join("", word.Reverse()));
             return string.Join(" ", reversedWords);
+        }
+
+        /// <summary>
+        /// 559. Maximum Depth of N-ary Tree
+        /// </summary>
+        public static int MaxDepth(Node root)
+        {
+            if (root == null)
+            {
+                return 0;
+            }
+
+            var queue = new Queue<(Node, int)>();
+            queue.Enqueue((root, 1));
+            int result = 0;
+
+            while (queue.Count > 0)
+            {
+                var node = queue.Dequeue();
+
+                result = Math.Max(result, node.Item2);
+
+                foreach (var item in node.Item1.children)
+                {
+                    queue.Enqueue((item, node.Item2 + 1));
+                }
+            }
+
+            return result;
         }
 
         /// <summary>
