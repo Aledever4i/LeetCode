@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -344,6 +345,21 @@ namespace LeetCode
 
                 return dp[startIndex].Value;
             }
+        }
+
+        /// <summary>
+        /// 762. Prime Number of Set Bits in Binary Representation
+        /// </summary>
+        public static int CountPrimeSetBits(int left, int right)
+        {
+            var result = 0;
+
+            for (int i = left; i <= right; i++)
+            {
+                result += (new int[] { 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31 }).Contains(BitOperations.PopCount((uint)i)) ? 1 : 0;
+            }
+
+            return result;
         }
 
         /// <summary>
