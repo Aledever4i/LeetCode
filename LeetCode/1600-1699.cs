@@ -175,6 +175,14 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 1636. Sort Array by Increasing Frequency
+        /// </summary>
+        public static int[] FrequencySort(int[] nums)
+        {
+            return nums.GroupBy(n => n).OrderBy(n => n.Count()).ThenByDescending(n => n.Key).SelectMany(n => Enumerable.Repeat(n.Key, n.Count())).ToArray();
+        }
+
+        /// <summary>
         /// 1642. Furthest Building You Can Reach
         /// </summary>
         public static int FurthestBuilding(int[] heights, int bricks, int ladders)
