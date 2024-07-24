@@ -11,6 +11,16 @@ namespace LeetCode
     public static class _1000_1099
     {
         /// <summary>
+        /// 1018. Binary Prefix Divisible By 5
+        /// </summary>
+        public static IList<bool> PrefixesDivBy5(int[] nums)
+        {
+
+
+            return new List<bool>();
+        }
+
+        /// <summary>
         /// 1025. Divisor Game
         /// </summary>
         public static bool DivisorGame(int n)

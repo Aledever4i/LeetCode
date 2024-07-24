@@ -235,6 +235,25 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 2191. Sort the Jumbled Numbers
+        /// </summary>
+        public static int[] SortJumbled(int[] mapping, int[] nums)
+        {
+            var convertTable = new Dictionary<int, int>();
+
+            for (int i = 0; i < nums.Length; i++)
+            {
+                var value = string.Join("", nums[i].ToString().Select(v => mapping[(int)Char.GetNumericValue(v)])).TrimStart('0');
+
+                convertTable.TryAdd(nums[i], string.IsNullOrWhiteSpace(value) ? 0 : int.Parse(value));
+            }
+
+            Array.Sort(nums, (a, b) => { return convertTable[a].CompareTo(convertTable[b]); });
+
+            return nums;
+        }
+
+        /// <summary>
         /// 2196. Create Binary Tree From Descriptions
         /// </summary>
         public static TreeNode CreateBinaryTree(int[][] descriptions)
