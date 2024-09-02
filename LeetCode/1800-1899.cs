@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -93,6 +94,32 @@ namespace LeetCode
             }
 
             return result;
+        }
+
+        /// <summary>
+        /// 1894. Find the Student that Will Replace the Chalk
+        /// </summary>
+        public static int ChalkReplacer(int[] chalk, int k)
+        {
+            var fullIter = chalk.Sum(n => (decimal)n);
+
+            if (k >= fullIter)
+            {
+                int multi = k / (int)fullIter;
+                k -= multi * (int)fullIter;
+            }
+
+            for (int i = 0; i < chalk.Length; i++)
+            {
+                if (chalk[i] > k)
+                {
+                    return i;
+                }
+                
+                k -= chalk[i];
+            }
+
+            return 0;
         }
     }
 }
