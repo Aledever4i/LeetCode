@@ -54,6 +54,35 @@ namespace LeetCode
     public static class _1100_1199
     {
         /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="books"></param>
+        /// <param name="shelfWidth"></param>
+        /// <returns></returns>
+        public static int MinHeightShelves(int[][] books, int shelfWidth)
+        {
+            var level = books.Length;
+            return Store(0, 0, 0, shelfWidth);
+
+            int Store(int curlevel, int height, int reservedHeight, int curShelf)
+            {
+                if (curlevel == level)
+                {
+                    return height;
+                }
+
+                var book = books[curlevel];
+
+                if (curShelf < book[0])
+                {
+                    return Store(curlevel + 1, height + book[1], book[1], shelfWidth);
+                }
+
+                return Math.Min(Store(curlevel + 1, height + book[1], book[1], shelfWidth), Store(curlevel + 1, (reservedHeight < book[1]) ? height + book[1] - reservedHeight : height, Math.Max(reservedHeight, book[1]), curShelf - book[0]));
+            }
+        }
+
+        /// <summary>
         /// 1110. Delete Nodes And Return Forest
         /// </summary>
         public static IList<TreeNode> DelNodes(TreeNode root, int[] to_delete)
