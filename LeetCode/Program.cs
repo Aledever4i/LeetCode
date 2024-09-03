@@ -12,18 +12,7 @@ namespace LeetCode
         // Test
         static void Main(string[] args)
         {
-            var a = _1100_1199.MinHeightShelves(
-                new int[][] { 
-                    new int[] { 1, 1 },
-                    new int[] { 2, 3 },
-                    new int[] { 2, 3 },
-                    new int[] { 1, 1 },
-                    new int[] { 1, 1 },
-                    new int[] { 1, 1 },
-                    new int[] { 1, 2 }
-                },
-                4
-            );
+            var a = _1900_1999.GetLucky("iiii", 1);
             Console.WriteLine(a);
         }
     }

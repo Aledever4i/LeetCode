@@ -43,6 +43,21 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 1945. Sum of Digits of String After Convert
+        /// </summary>
+        public static int GetLucky(string s, int k)
+        {
+            var numbers = string.Join("", s.Select(x => x - 'a' + 1));
+
+            while (k-- > 0)
+            {
+                numbers = numbers.Sum(x => (decimal)(x -'0')).ToString();
+            }
+
+            return int.Parse(numbers);
+        }
+
+        /// <summary>
         /// 1980. Find Unique Binary String
         /// </summary>
         public static string FindDifferentBinaryString(string[] nums)
