@@ -584,6 +584,20 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 884. Uncommon Words from Two Sentences
+        /// </summary>
+        public static string[] UncommonFromSentences(string s1, string s2)
+        {
+            var SentenceFirstGroup = s1.Split(" ").GroupBy(x => x).ToDictionary(x => x.Key, y => y.Count());
+            var SentenceSecondGroup = s2.Split(" ").GroupBy(x => x).ToDictionary(x => x.Key, y => y.Count());
+
+            var result = new List<string>();
+            result.AddRange(SentenceFirstGroup.Where(g => g.Value == 1 && !SentenceSecondGroup.ContainsKey(g.Key)).Select(g => g.Key));
+            result.AddRange(SentenceSecondGroup.Where(g => g.Value == 1 && !SentenceFirstGroup.ContainsKey(g.Key)).Select(g => g.Key));
+            return result.ToArray();
+        }
+
+        /// <summary>
         /// 896. Monotonic Array
         /// </summary>
         public static bool IsMonotonic(int[] nums)
