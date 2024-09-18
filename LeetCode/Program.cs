@@ -12,7 +12,7 @@ namespace LeetCode
         // Test
         static void Main(string[] args)
         {
-            var a = _1900_1999.GetLucky("iiii", 1);
+            var a = _0100_0199.LargestNumber(new int[] { 432, 43243 });
             Console.WriteLine(a);
         }
     }

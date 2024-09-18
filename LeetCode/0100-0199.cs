@@ -983,6 +983,29 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 179. Largest Number
+        /// </summary>
+        public static string LargestNumber(int[] nums)
+        {
+            Array.Sort(nums, (a, b) => { return Check(a, b); });
+
+            int Check(int a, int b)
+            {
+                var aString = a.ToString();
+                var bString = b.ToString();
+
+                return (bString + aString).CompareTo(aString + bString);
+            }
+
+            if (nums[0] == 0)
+            {
+                return "0";
+            }
+
+            return string.Join("" ,nums);
+        }
+
+        /// <summary>
         /// 188. Best Time to Buy and Sell Stock IV. Tags: Array, Dynamic Programming
         /// </summary>
         public static int MaxProfit(int k, int[] prices)
