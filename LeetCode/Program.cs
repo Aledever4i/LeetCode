@@ -12,7 +12,7 @@ namespace LeetCode
         // Test
         static void Main(string[] args)
         {
-            var a = _0100_0199.LargestNumber(new int[] { 432, 43243 });
+            var a = _0300_0399.LexicalOrder(100);
             Console.WriteLine(a);
         }
     }

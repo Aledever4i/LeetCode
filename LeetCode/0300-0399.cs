@@ -509,6 +509,40 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 386. Lexicographical Numbers
+        /// </summary>
+        public static IList<int> LexicalOrder(int n)
+        {
+            var list = new List<int>();
+            createChilds(1);
+            return list;
+
+            void createChilds(int startNumber)
+            {
+                if (startNumber > n)
+                {
+                    return;
+                }
+
+                for (int i = 0; i <= ((startNumber == 1) ? 8 : 9); i++)
+                {
+                    var curNum = startNumber + i;
+
+                    if (curNum <= n)
+                    {
+                        list.Add(curNum);
+
+                        if (curNum * 10 <= n)
+                        {
+                            createChilds(curNum * 10);
+                        }
+                    }
+
+                }
+            }
+        }
+
+        /// <summary>
         /// 387. First Unique Character in a String. Tags: Hash Table, String, Queue, Counting
         /// </summary>
         public static int FirstUniqChar(string s)
