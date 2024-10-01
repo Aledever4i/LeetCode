@@ -181,6 +181,40 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 440. K-th Smallest in Lexicographical Order
+        /// </summary>
+        public static int FindKthNumber(int n, int k)
+        {
+            var answer = 0;
+            var operationCount = 0;
+            createChilds(1, 9);
+            return answer;
+
+            void createChilds(double startNumber, int count)
+            {
+                if (startNumber > n || operationCount > k)
+                {
+                    return;
+                }
+
+                for (int i = 0; i < count && operationCount <= k && startNumber + i <= n; i++)
+                {
+                    var curNum = startNumber + i;
+                    operationCount++;
+                    if (operationCount == k)
+                    {
+                        answer = (int)curNum;
+                    }
+
+                    if (curNum <= n && curNum * 10 <= n)
+                    {
+                        createChilds(curNum * 10, 10);
+                    }
+                }
+            }
+        }
+
+        /// <summary>
         /// 441. Arranging Coins
         /// </summary>
         public static int ArrangeCoins(int n)

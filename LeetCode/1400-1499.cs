@@ -445,5 +445,16 @@ namespace LeetCode
 
             return result;
         }
+
+        /// <summary>
+        /// 1497. Check If Array Pairs Are Divisible by k
+        /// </summary>
+        /// <param name="arr"></param>
+        /// <param name="k"></param>
+        /// <returns></returns>
+        public bool CanArrange(int[] arr, int k)
+        {
+            return false;
+        }
     }
 }
