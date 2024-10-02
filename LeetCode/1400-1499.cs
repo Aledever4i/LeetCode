@@ -449,12 +449,39 @@ namespace LeetCode
         /// <summary>
         /// 1497. Check If Array Pairs Are Divisible by k
         /// </summary>
-        /// <param name="arr"></param>
-        /// <param name="k"></param>
-        /// <returns></returns>
-        public bool CanArrange(int[] arr, int k)
+        public static bool CanArrange(int[] arr, int k)
         {
-            return false;
+            var extended = arr.Select(x => ((x % k) + k) % k).GroupBy(x => x).ToDictionary(x => x.Key, x => x.Count());
+
+            if (extended.TryGetValue(0, out var count) && count % 2 != 0)
+            {
+                return false;
+            }
+
+            foreach (var key in extended.Keys.Where(x => x > 0))
+            {
+                var isExists1 = extended.TryGetValue(key, out var count1);
+                var isExists2 = extended.TryGetValue(k - key, out var count2);
+
+                if (key == k - key && count1 % 2 == 1)
+                {
+                    return false;
+                }
+                else if (isExists1 && isExists2 && count1 != count2)
+                {
+                    return false;
+                }
+                else if (isExists1 && !isExists2)
+                {
+                    return false;
+                }
+                else if (!isExists1 && isExists2)
+                {
+                    return false;
+                }
+            }
+
+            return true;
         }
     }
 }

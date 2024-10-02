@@ -12,7 +12,7 @@ namespace LeetCode
         // Test
         static void Main(string[] args)
         {
-            var a = _3300_3399.CountOfSubstrings("euoibeoabu", 2);
+            var a = _1400_1499.CanArrange(new int[] { -1, 1, -2, 2, -3, 3, -4, 4 }, 3);
             Console.WriteLine(a);
         }
     }
