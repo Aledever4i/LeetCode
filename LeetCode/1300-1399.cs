@@ -113,6 +113,34 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 1331. Rank Transform of an Array
+        /// </summary>
+        public static int[] ArrayRankTransform(int[] arr)
+        {
+            var newArray = arr.Select((x, i) => new { Pos = i, Value = x }).OrderBy(x => x.Value);
+
+            var start = 1;
+            var current = newArray.ElementAt(0);
+            var result = new List<(int, int)>() { (start, 0) };
+
+            for (int i = 1; i < newArray.Count(); i++)
+            {
+                if (current == newArray.ElementAt(i))
+                {
+                    result.Add((start, i));
+                }
+                else
+                {
+                    start++;
+                    result.Add((start, i));
+                    current = newArray.ElementAt(i);
+                }
+            }
+
+            return result.OrderBy(x => x.Item2).Select(x => x.Item1).ToArray();
+        }
+
+        /// <summary>
         /// 1334. Find the City With the Smallest Number of Neighbors at a Threshold Distance
         /// </summary>
         public static int FindTheCity(int n, int[][] edges, int distanceThreshold)

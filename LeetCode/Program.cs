@@ -12,7 +12,7 @@ namespace LeetCode
         // Test
         static void Main(string[] args)
         {
-            var a = _1400_1499.CanArrange(new int[] { -1, 1, -2, 2, -3, 3, -4, 4 }, 3);
+            var a = _1300_1399.ArrayRankTransform(new int[] { 40, 10, 20 });
             Console.WriteLine(a);
         }
     }
