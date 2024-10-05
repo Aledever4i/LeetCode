@@ -367,5 +367,26 @@ namespace LeetCode
 
             return (t.Length == tIndex && isFound) ? 0 : t.Length - tIndex + (isFound ? 0 : 1);
         }
+
+        /// <summary>
+        /// 2491. Divide Players Into Teams of Equal Skill
+        /// </summary>
+        public static long DividePlayers(int[] skill)
+        {
+            var skillDictionary = skill.GroupBy(x => x).ToDictionary(x => (decimal)x.Key, x => x.Count());
+            var maxPower = skillDictionary.Keys.Min() + skillDictionary.Keys.Max();
+            decimal result = 0;
+
+            foreach (var key in skillDictionary.Keys) {
+                if (!skillDictionary.TryGetValue(maxPower - key, out int count) || skillDictionary[key] != count)
+                {
+                    return -1;
+                }
+
+                result += ((key / 2) * (maxPower - key) * count);
+            }
+
+            return (long)(result);
+        }
     }
 }
