@@ -632,5 +632,29 @@ namespace LeetCode
 
             return (new string(result.ToString().Reverse().ToArray())).ToUpper();
         }
+
+        /// <summary>
+        /// 495. Teemo Attacking
+        /// </summary>
+        public static int FindPoisonedDuration(int[] timeSeries, int duration)
+        {
+            var result = 0;
+            for (int i = 0; i < timeSeries.Length; i++)
+            {
+                if (i + 1 == timeSeries.Length)
+                {
+                    result += duration;
+                }
+                else
+                {
+                    var current = timeSeries[i];
+                    var next = timeSeries[i + 1];
+
+                    result += (current + duration < next) ? duration : next - current;
+                }
+            }
+
+            return result;
+        }
     }
 }
