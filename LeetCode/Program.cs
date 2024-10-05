@@ -12,7 +12,7 @@ namespace LeetCode
         // Test
         static void Main(string[] args)
         {
-            var a = _1300_1399.ArrayRankTransform(new int[] { 40, 10, 20 });
+            var a = _0500_0599.CheckInclusion("ab", "eidbaooo");
             Console.WriteLine(a);
         }
     }

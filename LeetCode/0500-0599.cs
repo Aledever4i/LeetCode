@@ -1,5 +1,6 @@
 ﻿using LeetCode.Algorithms;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -359,6 +360,48 @@ namespace LeetCode
             }
 
             return sum;
+        }
+
+        /// <summary>
+        /// 567. Permutation in String
+        /// </summary>
+        public static bool CheckInclusion(string s1, string s2)
+        {
+            var repeater = new Dictionary<char, int>();
+            for (char c = 'A'; c <= 'Z'; c++)
+            {
+                repeater.Add(c, 0);
+            }
+            foreach (char c in s1)
+            {
+                repeater[c] += 1;
+            }
+
+            var check = new Dictionary<char, int>();
+            for (char c = 'A'; c <= 'Z'; c++)
+            {
+                check.Add(c, 0);
+            }
+
+            var curLen = 0;
+            var startPoint = 0;
+
+            for (int i = 0; i < s2.Length && curLen < s1.Length; i++)
+            {
+                var cNew = s2[i];
+                check[cNew] += 1;
+                curLen++;
+
+                while (check[cNew] > repeater[cNew])
+                {
+                    var cOld = s2[startPoint];
+                    check[cOld] -= 1;
+                    curLen--;
+                    startPoint++;
+                }
+            }
+
+            return (curLen == s1.Length);
         }
     }
 }

@@ -389,6 +389,27 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 1590. Make Sum Divisible by P
+        /// </summary>
+        public static int MinSubarray(int[] nums, int p)
+        {
+            var array = nums.Select(x => x % p).Where(x => x > 0).GroupBy(x => x).ToDictionary(x => x.Key, x => x.Count());
+            var hasChanges = true;
+
+            foreach (var key in array.Keys)
+            {
+                
+            }
+
+            while (hasChanges)
+            {
+                
+            }
+
+            return array[0];
+        }
+
+        /// <summary>
         /// 1598. Crawler Log Folder
         /// </summary>
         public static int MinOperations(string[] logs)
