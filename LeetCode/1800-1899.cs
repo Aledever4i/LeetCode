@@ -48,6 +48,37 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 1813. Sentence Similarity III
+        /// </summary>
+        public bool AreSentencesSimilar(string sentence1, string sentence2)
+        {
+            LinkedList<string> deque1 = new(sentence1.Split(" "));
+            LinkedList<string> deque2 = new(sentence2.Split(" "));
+
+            while (
+                deque1.Count > 0
+                && deque2.Count > 0
+                && deque1.First().Equals(deque2.First())
+            )
+            {
+                deque1.RemoveFirst();
+                deque2.RemoveFirst();
+            }
+
+            while (
+                deque1.Count > 0
+                && deque2.Count > 0
+                && deque1.Last().Equals(deque2.Last())
+            )
+            {
+                deque1.RemoveLast();
+                deque2.RemoveLast();
+            }
+
+            return deque1.Count == 0 || deque2.Count == 0;
+        }
+
+        /// <summary>
         /// 1823. Find the Winner of the Circular Game
         /// </summary>
         public static int FindTheWinner(int n, int k)
