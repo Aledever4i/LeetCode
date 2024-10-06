@@ -280,6 +280,48 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 1275. Find Winner on a Tic Tac Toe Game
+        /// </summary>
+        public static string Tictactoe(int[][] moves)
+        {
+            if (moves.Length <= 4)
+            {
+                return "Pending";
+            }
+
+            int[][] winCombinations = new int[][]
+            {
+                new[] {0,1,2}, new[] {3,4,5}, new[] {6,7,8}, // verticals
+                new[] {0,4,8}, new[] {2,4,6},                // diagonals
+                new[] {0,3,6}, new[] {1,4,7}, new[] {2,5,8}  // horizontals
+            };
+            int[] x = new int[9];
+            int[] o = new int[9];
+
+            for (int i = 0; i < moves.Length; i++)
+            {
+                var index = moves[i][0] + moves[i][1] * 3;
+
+                if (i % 2 == 0)
+                {
+                    x[index] = 1;
+                }
+                else
+                {
+                    o[index] = 1;
+                }
+            }
+
+            foreach (var combination in winCombinations)
+            {
+                if (combination.All(i => x[i] == 1)) return "A";
+                if (combination.All(i => o[i] == 1)) return "B";
+            }
+
+            return moves.Length == 9 ? "Draw" : "Pending";
+        }
+
+        /// <summary>
         /// 1291. Sequential Digits
         /// </summary>
         public static IList<int> SequentialDigits(int low, int high)
