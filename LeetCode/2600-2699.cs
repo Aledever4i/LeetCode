@@ -121,5 +121,33 @@ namespace LeetCode
             return result;
         }
 
+        /// <summary>
+        /// 2696. Minimum String Length After Removing Substrings
+        /// </summary>
+        public static int MinLength(string s)
+        {
+            var prev = new Stack<char>();
+            var next = new Queue<char>(s);
+
+            while (next.Count > 0)
+            {
+                var cur = next.Dequeue();
+
+                if (cur == 'B' && prev.TryPeek(out var result) && result == 'A')
+                {
+                    prev.Pop();
+                }
+                else if (cur == 'D' && prev.TryPeek(out result) && result == 'C')
+                {
+                    prev.Pop();
+                }
+                else
+                {
+                    prev.Push(cur);
+                }
+            }
+
+            return prev.Count;
+        }
     }
 }
