@@ -96,6 +96,33 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 921. Minimum Add to Make Parentheses Valid
+        /// </summary>
+        public static int MinAddToMakeValid(string s)
+        {
+            var result = 0;
+            var open = 0;
+
+            foreach (char c in s)
+            {
+                if (c == ')' && open == 0)
+                {
+                    result++;
+                }
+                else if (c == ')')
+                {
+                    open--;
+                }
+                else
+                {
+                    open++;
+                }
+            }
+
+            return result + open;
+        }
+
+        /// <summary>
         /// 930. Binary Subarrays With Sum
         /// </summary>
         public static int NumSubarraysWithSum(int[] nums, int goal)
