@@ -43,6 +43,25 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 1942. The Number of the Smallest Unoccupied Chair
+        /// </summary>
+        public static int SmallestChair(int[][] times, int targetFriend)
+        {
+            var sorted = times.Select((time, index) => new { Order = index, Come = time[0], Out = time[1] }).OrderBy(t => t.Come);
+            var priority = new PriorityQueue<int, int>();
+            foreach (var n in Enumerable.Range(1, times.Length)) {
+                priority.Enqueue(n, n);
+            }
+
+            foreach (var temp in sorted)
+            {
+                
+            }
+
+            return 0;
+        }
+
+        /// <summary>
         /// 1945. Sum of Digits of String After Convert
         /// </summary>
         public static int GetLucky(string s, int k)
