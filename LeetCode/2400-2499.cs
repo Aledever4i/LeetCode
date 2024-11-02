@@ -369,6 +369,29 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 2490. Circular Sentence
+        /// </summary>
+        public static bool IsCircularSentence(string sentence)
+        {
+            if (sentence[0] != sentence[sentence.Length - 1])
+            {
+                return false;
+            }
+
+            var words = sentence.Split(' ');
+
+            for (int i = 0; i < words.Length - 1; i++)
+            {
+                if (words.ElementAt(i)[words[i].Length - 1] != words.ElementAt(i + 1)[0])
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        /// <summary>
         /// 2491. Divide Players Into Teams of Equal Skill
         /// </summary>
         public static long DividePlayers(int[] skill)

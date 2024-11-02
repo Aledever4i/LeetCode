@@ -9,6 +9,15 @@ namespace LeetCode
     public static class _0600_0699
     {
         /// <summary>
+        /// 621. Task Scheduler
+        /// </summary>
+        public static int LeastInterval(char[] tasks, int n)
+        {
+            var dict = tasks.GroupBy(c => c).ToDictionary(c => c, c => c.Count());
+            return 0;
+        }
+
+        /// <summary>
         /// 623. Add One Row to Tree
         /// </summary>
         public static TreeNode AddOneRow(TreeNode root, int val, int depth)
@@ -178,11 +187,33 @@ namespace LeetCode
         }
 
         /// <summary>
-        /// 621. Task Scheduler
+        /// 670. Maximum Swap
         /// </summary>
-        public static int LeastInterval(char[] tasks, int n)
+        public static int MaximumSwap(int num)
         {
-            var dict = tasks.GroupBy(c => c).ToDictionary(c => c, c => c.Count());
+            var numS = num.ToString();
+            var numL = numS.Length;
+            var leftest = 10;
+
+            for (int i = numL - 1; i >= 0; i--)
+            {
+                var c = numS[i];
+                if (leftest > c - 'a')
+                {
+                    leftest = c - 'a';
+                }
+            }
+
+            if (leftest == 10)
+            {
+                return num;
+            }
+
+            for (int i = 0; i < numL - 1; i++)
+            {
+
+            }
+
             return 0;
         }
 
