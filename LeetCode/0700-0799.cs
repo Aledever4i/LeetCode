@@ -472,5 +472,36 @@ namespace LeetCode
 
             return distances[dst] == int.MaxValue ? -1 : distances[dst];
         }
+
+        /// <summary>
+        /// 796. Rotate String
+        /// </summary>
+        public static bool RotateString1(string s, string goal)
+        {
+            if (s.Length != goal.Length)
+                return false;
+
+            for (int i = 0; i < s.Length; i++)
+            {
+                if (s[..i] == goal[(goal.Length - i)..] && s[i..] == goal[..(goal.Length - i)])
+                { return true; }
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// 796. Rotate String
+        /// </summary>
+        public static bool RotateString2(string s, string goal)
+        {
+            if (goal.Length == s.Length)
+            {
+                string doubleS = s + s;
+                return doubleS.Contains(goal);
+            }
+
+            return false;
+        }
     }
 }

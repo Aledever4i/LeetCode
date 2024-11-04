@@ -12,7 +12,7 @@ namespace LeetCode
         // Test
         static void Main(string[] args)
         {
-            var a = _2400_2499.IsCircularSentence("ab a");
+            var a = _0700_0799.RotateString("abcde", "cdeab");
             Console.WriteLine(a);
         }
     }
