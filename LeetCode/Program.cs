@@ -12,7 +12,7 @@ namespace LeetCode
         // Test
         static void Main(string[] args)
         {
-            var a = _0700_0799.RotateString("abcde", "cdeab");
+            var a = _0700_0799.RotateString1("abcde", "cdeab");
             Console.WriteLine(a);
         }
     }

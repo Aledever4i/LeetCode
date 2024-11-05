@@ -10,6 +10,38 @@ namespace LeetCode
     public static class _2900_2999
     {
         /// <summary>
+        /// 2914. Minimum Number of Changes to Make Binary String Beautiful
+        /// </summary>
+        public static int MinChanges(string s)
+        {
+            var currentNumber = s[0];
+            var currentCount = 1;
+            var result = 0;
+
+            for (var i = 1; i < s.Length; i++)
+            {
+                if (currentNumber == s[i])
+                {
+                    currentCount++;
+                    continue;
+                }
+
+                if (currentCount % 2 == 1)
+                {
+                    currentCount++;
+                    result++;
+                }
+                else
+                {
+                    currentNumber = s[i];
+                    currentCount = 1;
+                }
+            }
+
+            return result;
+        }
+
+        /// <summary>
         /// 2958. Length of Longest Subarray With at Most K Frequency
         /// </summary>
         public static int MaxSubarrayLength(int[] nums, int k)
