@@ -202,5 +202,28 @@ namespace LeetCode
 
             return result;
         }
+
+        /// <summary>
+        /// 2275. Largest Combination With Bitwise AND Greater Than Zero
+        /// </summary>
+        public static int LargestCombination(int[] candidates)
+        {
+            var a = new int[32];
+            
+            foreach (var candidate in candidates)
+            {
+                var to2 = Convert.ToString(candidate, 2).Reverse().ToArray();
+
+                for (int i = 0; i < to2.Length; i++)
+                {
+                    if (to2[i] == '1')
+                    {
+                        a[i] += 1;
+                    }
+                }
+            }
+
+            return a.Max();
+        }
     }
 }
