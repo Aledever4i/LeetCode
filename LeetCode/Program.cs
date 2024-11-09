@@ -12,7 +12,7 @@ namespace LeetCode
         // Test
         static void Main(string[] args)
         {
-            var a = _1800_1899.GetMaximumXor(new int[] { 2, 3, 4, 7 }, 3);
+            var a = _3100_3199.MinEnd(36845498, 15573081);
 
             Console.WriteLine(a);
         }

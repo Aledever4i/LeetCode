@@ -9,6 +9,35 @@ namespace LeetCode
     public class _3100_3199
     {
         /// <summary>
+        /// 3133. Minimum Array End
+        /// </summary>
+        public static long MinEnd(int n, int x)
+        {
+            var xString = Convert.ToString(x, 2).Reverse().ToList();
+            var y = Convert.ToString(n - 1, 2).Reverse().ToArray();
+            var yLength = y.Count();
+
+            var yIndex = 0;
+            for (int i = 0; i < xString.Count() && yIndex < yLength; i++)
+            {
+                if (xString[i] == '0')
+                {
+                    xString[i] = y[yIndex];
+                    yIndex++;
+                }
+            }
+
+            if (yIndex < yLength)
+            {
+                xString.AddRange(y[yIndex..]);
+            }
+
+            xString.Reverse();
+            var answer = string.Join("", xString).TrimStart('0');
+            return Convert.ToInt64(answer, 2);
+        }
+
+        /// <summary>
         /// 3163. String Compression III
         /// </summary>
         public string CompressedString(string word)
