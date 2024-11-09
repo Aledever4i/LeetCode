@@ -112,6 +112,32 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 1829. Maximum XOR for Each Query
+        /// </summary>
+        public static int[] GetMaximumXor(int[] nums, int maximumBit)
+        {
+            var number = Convert.ToInt32(Math.Pow(2, maximumBit) - 1);
+            var length = nums.Length;
+
+            var result = new int[length];
+
+            var temp = new int[length];
+            temp[0] = nums[0];
+
+            for (int i = 1; i < length; i++)
+            {
+                temp[i] = temp[i - 1] ^ nums[i];
+            }
+
+            for (int i = 0; i < length; i++)
+            {
+                result[i] = number ^ temp[i];
+            }
+
+            return result.Reverse().ToArray();
+        }
+
+        /// <summary>
         /// 1877. Minimize Maximum Pair Sum in Array
         /// </summary>
         public int MinPairSum(int[] nums)
