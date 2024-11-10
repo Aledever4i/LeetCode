@@ -173,5 +173,126 @@ namespace LeetCode
 
             return false;
         }
+
+        /// <summary>
+        /// 3095. Shortest Subarray With OR at Least K I
+        /// </summary>
+        public static int MinimumSubarrayLength1(int[] nums, int k)
+        {
+            int minLength = int.MaxValue;
+            int windowStart = 0;
+            int windowEnd = 0;
+            int[] bitCounts = new int[32]; // Tracks count of set bits at each position
+
+            // Expand window until end of array
+            while (windowEnd < nums.Length)
+            {
+                // Add current number to window
+                updateBitCounts(bitCounts, nums[windowEnd], 1);
+
+                // Contract window while OR value is valid
+                while (
+                    windowStart <= windowEnd &&
+                    convertBitCountsToNumber(bitCounts) >= k
+                )
+                {
+                    // Update minimum length found so far
+                    minLength = Math.Min(minLength, windowEnd - windowStart + 1);
+
+                    // Remove leftmost number and shrink window
+                    updateBitCounts(bitCounts, nums[windowStart], -1);
+                    windowStart++;
+                }
+
+                windowEnd++;
+            }
+
+            return minLength == int.MaxValue ? -1 : minLength;
+
+            void updateBitCounts(int[] bitCounts, int number, int delta) {
+                for (int bitPosition = 0; bitPosition < 32; bitPosition++)
+                {
+                    // Check if bit is set at current position
+                    if (((number >> bitPosition) & 1) != 0)
+                    {
+                        bitCounts[bitPosition] += delta;
+                    }
+                }
+            }
+
+            int convertBitCountsToNumber(int[] bitCounts)
+            {
+                int result = 0;
+                for (int bitPosition = 0; bitPosition < 32; bitPosition++)
+                {
+                    if (bitCounts[bitPosition] != 0)
+                    {
+                        result |= 1 << bitPosition;
+                    }
+                }
+                return result;
+            }
+        }
+
+        /// <summary>
+        /// 3097. Shortest Subarray With OR at Least K II
+        /// </summary>
+        public static int MinimumSubarrayLength2(int[] nums, int k)
+        {
+            int minLength = int.MaxValue;
+            int windowStart = 0;
+            int windowEnd = 0;
+            int[] bitCounts = new int[32]; // Tracks count of set bits at each position
+
+            // Expand window until end of array
+            while (windowEnd < nums.Length)
+            {
+                // Add current number to window
+                updateBitCounts(bitCounts, nums[windowEnd], 1);
+
+                // Contract window while OR value is valid
+                while (
+                    windowStart <= windowEnd &&
+                    convertBitCountsToNumber(bitCounts) >= k
+                )
+                {
+                    // Update minimum length found so far
+                    minLength = Math.Min(minLength, windowEnd - windowStart + 1);
+
+                    // Remove leftmost number and shrink window
+                    updateBitCounts(bitCounts, nums[windowStart], -1);
+                    windowStart++;
+                }
+
+                windowEnd++;
+            }
+
+            return minLength == int.MaxValue ? -1 : minLength;
+
+            void updateBitCounts(int[] bitCounts, int number, int delta)
+            {
+                for (int bitPosition = 0; bitPosition < 32; bitPosition++)
+                {
+                    // Check if bit is set at current position
+                    if (((number >> bitPosition) & 1) != 0)
+                    {
+                        bitCounts[bitPosition] += delta;
+                    }
+                }
+            }
+
+            int convertBitCountsToNumber(int[] bitCounts)
+            {
+                int result = 0;
+                for (int bitPosition = 0; bitPosition < 32; bitPosition++)
+                {
+                    if (bitCounts[bitPosition] != 0)
+                    {
+                        result |= 1 << bitPosition;
+                    }
+                }
+                return result;
+            }
+        }
     }
 }
