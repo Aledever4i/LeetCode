@@ -12,7 +12,7 @@ namespace LeetCode
         // Test
         static void Main(string[] args)
         {
-            var a = _3100_3199.MinEnd(36845498, 15573081);
+            var a = _2600_2699.PrimeSubOperation(new int[] { 4, 9, 6, 10 });
 
             Console.WriteLine(a);
         }

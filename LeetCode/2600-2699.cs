@@ -78,6 +78,78 @@ namespace LeetCode
     public static class _2600_2699
     {
         /// <summary>
+        /// 2601. Prime Subtraction Operation
+        /// </summary>
+        public static bool PrimeSubOperation(int[] nums)
+        {
+            var primes = GeneratePrimesNaive(1000);
+            nums[0] = GetPrime(0, nums[0], primes);
+
+            for (var i = 1; i < nums.Length; i++)
+            {
+                nums[i] = GetPrime(nums[i - 1], nums[i], primes);
+
+                if (nums[i] <= nums[i - 1])
+                {
+                    return false;
+                }
+            }
+
+            return true;
+
+            int[] GeneratePrimesNaive(int n)
+            {
+                var primes = new List<int> { 2 };
+                int nextPrime = 3;
+                while (nextPrime <= n)
+                {
+                    int sqrt = (int)Math.Sqrt(nextPrime);
+                    bool isPrime = true;
+                    for (int i = 0; (int)primes[i] <= sqrt; i++)
+                    {
+                        if (nextPrime % primes[i] == 0)
+                        {
+                            isPrime = false;
+                            break;
+                        }
+                    }
+
+                    if (isPrime)
+                    {
+                        primes.Add(nextPrime);
+                    }
+
+                    nextPrime += 2;
+                }
+                return primes.ToArray();
+            }
+        
+            int GetPrime(int left, int right, int[] primes)
+            {
+                var result = right;
+                for (var i = primes.Length - 1; i >= 0; i--)
+                {
+                    var value = primes[i];
+
+                    if (value > right)
+                    {
+                        continue;
+                    }
+
+                    if (right - value <= left)
+                    {
+                        continue;
+                    }
+
+                    result = right - value;
+                    break;
+                }
+
+                return result;
+            }
+        }
+
+        /// <summary>
         /// 2610. Convert an Array Into a 2D Array With Conditions
         /// </summary>
         public static IList<IList<int>> FindMatrix(int[] nums)
