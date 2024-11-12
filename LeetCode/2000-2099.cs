@@ -292,6 +292,90 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 2070. Most Beautiful Item for Each Query
+        /// </summary>
+        public static int[] MaximumBeauty(int[][] items, int[] queries)
+        {
+            var newItems2 = items.Select(x => (x[0], x[1])).OrderBy(x => x.Item1).ToArray();
+
+            var currentPrice = newItems2[0].Item1;
+            var currentBeauty = newItems2[0].Item2;
+
+            var itemsList = new List<(int, int)>();
+
+            for (int i = 1; i < newItems2.Length; i++)
+            {
+                var price = newItems2[i].Item1;
+                var beauty = newItems2[i].Item2;
+
+                if (beauty > currentBeauty && price == currentPrice)
+                {
+                    currentBeauty = beauty;
+                }
+                else if (currentBeauty >= beauty)
+                {
+                    continue;
+                }
+                else if (beauty > currentBeauty && price > currentPrice)
+                {
+                    itemsList.Add((currentPrice, currentBeauty));
+                    currentBeauty = beauty;
+                    currentPrice = price;
+                }
+            }
+
+            var count = itemsList.Count();
+            if (count == 0)
+            {
+                itemsList.Add((currentPrice, currentBeauty));
+            }
+            else
+            {
+                var last = itemsList[itemsList.Count() - 1];
+                if (currentBeauty > last.Item2 && currentPrice > last.Item1)
+                {
+                    itemsList.Add((currentPrice, currentBeauty));
+                }
+            }
+
+            return queries.Select(v => find(v, 0, itemsList.Count() - 1, itemsList.ToArray())).ToArray();
+
+            int find(int price, int left, int right, (int Key, int Value)[] newItems)
+            {
+                var (Key, Value) = newItems[left];
+                if (Key > price)
+                {
+                    if (left == 0)
+                    {
+                        return 0;
+                    }
+
+                    return newItems[left - 1].Value;
+                }
+                if (left >= right)
+                {
+                    return newItems[right].Value;
+                }
+
+                var index = (left + right) / 2;
+                var element = newItems[index];
+
+                if (element.Key == price)
+                {
+                    return element.Value;
+                }
+                else if (element.Key > price)
+                {
+                    return find(price, left, index, newItems);
+                }
+                else
+                {
+                    return find(price, index + 1, right, newItems);
+                }
+            }
+        }
+
+        /// <summary>
         /// 2073. Time Needed to Buy Tickets
         /// </summary>
         public static int TimeRequiredToBuy(int[] tickets, int k)

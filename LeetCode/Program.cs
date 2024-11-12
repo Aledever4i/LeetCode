@@ -12,7 +12,14 @@ namespace LeetCode
         // Test
         static void Main(string[] args)
         {
-            var a = _2600_2699.PrimeSubOperation(new int[] { 4, 9, 6, 10 });
+        //    var a = _2000_2099.MaximumBeauty(new int[][] { new int[] { 864, 954 }, new int[] { 958, 150 }, new int[] { 193, 732 }, 
+        //        new int[] { 567,715 }, new int[] { 247, 919 } ,
+        //        new int[] { 136,746 }, new int[] { 781, 962 }
+        //    }, new int[] { 885, 1445, 1580, 1309, 205, 1788, 1214, 1404, 572, 1170, 989, 265, 153, 151, 1479, 1180, 875, 276, 1584 });
+
+            var a = _2000_2099.MaximumBeauty(new int[][] { new int[] { 1, 2 }, new int[] { 3, 2 }, new int[] { 2, 4 },
+                new int[] { 5,6 }, new int[] { 3, 5 } 
+            }, new int[] { 1, 2, 3, 4, 5, 6 });
 
             Console.WriteLine(a);
         }
