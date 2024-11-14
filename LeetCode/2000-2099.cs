@@ -292,6 +292,45 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 2064. Minimized Maximum of Products Distributed to Any Store
+        /// </summary>
+        public static int MinimizedMaximum(int n, int[] quantities)
+        {
+            int left = 1;
+            int right = quantities.Max();
+
+            while (left < right)
+            {
+                int mid = left + (right - left) / 2;
+                if (CanDistribute(n, quantities, mid))
+                {
+                    right = mid;
+                }
+                else
+                {
+                    left = mid + 1;
+                }
+            }
+
+            return left;
+
+            bool CanDistribute(int n, int[] quantities, int maxProductsPerStore)
+            {
+                int requiredStores = 0;
+                foreach (int quantity in quantities)
+                {
+                    requiredStores += (quantity + maxProductsPerStore - 1) / maxProductsPerStore;
+                    if (requiredStores > n)
+                    {
+                        return false;
+                    }
+                }
+
+                return requiredStores <= n;
+            }
+        }
+
+        /// <summary>
         /// 2070. Most Beautiful Item for Each Query
         /// </summary>
         public static int[] MaximumBeauty(int[][] items, int[] queries)
