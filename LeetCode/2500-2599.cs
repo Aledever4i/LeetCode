@@ -99,6 +99,77 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 2563. Count the Number of Fair Pairs
+        /// </summary>
+        public static long CountFairPairs1(int[] nums, int lower, int upper)
+        {
+            long result = 0;
+
+            Array.Sort(nums);
+            var startIndex = 0;
+
+            var endIndex = nums.Length - 1;
+            var endValue = nums[endIndex];
+            var returnCount = 0;
+
+            while (startIndex < endIndex)
+            {
+                var startValue = nums[startIndex];
+
+                while (startValue + endValue > upper && endIndex > 0)
+                {
+                    endIndex--;
+                    endValue = nums[endIndex];
+                }
+
+                while (startValue + endValue >= lower && startIndex < endIndex && endIndex > 0)
+                {
+                    endIndex--;
+                    returnCount++;
+                    endValue = nums[endIndex];
+                    result += 1;
+                }
+
+                endIndex += returnCount;
+                endValue = nums[endIndex];
+                returnCount = 0;
+                startIndex++;
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// 2563. Count the Number of Fair Pairs
+        /// </summary>
+        public static long CountFairPairs2(int[] nums, int lower, int upper)
+        {
+            Array.Sort(nums);
+            return Bound(nums, upper + 1) - Bound(nums, lower);
+
+            long Bound(int[] nums, int value)
+            {
+                int left = 0, right = nums.Length - 1;
+                long result = 0;
+                while (left < right)
+                {
+                    int sum = nums[left] + nums[right];
+                    if (sum < value)
+                    {
+                        result += (right - left);
+                        left++;
+                    }
+                    else
+                    {
+                        right--;
+                    }
+                }
+
+                return result;
+            }
+        }
+
+        /// <summary>
         /// 2582. Pass the Pillow
         /// </summary>
         public static int PassThePillow(int n, int time)

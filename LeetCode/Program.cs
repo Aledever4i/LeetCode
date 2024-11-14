@@ -17,9 +17,7 @@ namespace LeetCode
         //        new int[] { 136,746 }, new int[] { 781, 962 }
         //    }, new int[] { 885, 1445, 1580, 1309, 205, 1788, 1214, 1404, 572, 1170, 989, 265, 153, 151, 1479, 1180, 875, 276, 1584 });
 
-            var a = _2000_2099.MaximumBeauty(new int[][] { new int[] { 1, 2 }, new int[] { 3, 2 }, new int[] { 2, 4 },
-                new int[] { 5,6 }, new int[] { 3, 5 } 
-            }, new int[] { 1, 2, 3, 4, 5, 6 });
+            var a = _2500_2599.CountFairPairs(new int[] { 1, 7, 9, 2, 5 }, 11, 11);
 
             Console.WriteLine(a);
         }
