@@ -302,6 +302,55 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 862. Shortest Subarray with Sum at Least K
+        /// </summary>
+        public static int ShortestSubarray(int[] nums, int k)
+        {
+            int n = nums.Length;
+            long[] prefixSums = new long[n + 1];
+
+            for (int i = 1; i <= n; i++)
+            {
+                prefixSums[i] = prefixSums[i - 1] + nums[i - 1];
+            }
+
+            LinkedList<int> candidateIndices = new LinkedList<int>();
+
+            int shortestSubarrayLength = int.MaxValue;
+
+            for (int i = 0; i <= n; i++)
+            {
+                while (
+                    candidateIndices.Count > 0 &&
+                    prefixSums[i] - prefixSums[candidateIndices.First()] >=
+                    k
+                )
+                {
+                    shortestSubarrayLength = Math.Min(
+                        shortestSubarrayLength,
+                        i - candidateIndices.First()
+                    );
+
+                    candidateIndices.RemoveFirst();
+                }
+
+                while (
+                    candidateIndices.Count > 0 &&
+                    prefixSums[i] <= prefixSums[candidateIndices.Last()]
+                )
+                {
+                    candidateIndices.RemoveLast();
+                }
+
+                candidateIndices.AddLast(i);
+            }
+
+            return shortestSubarrayLength == int.MaxValue
+                ? -1
+                : shortestSubarrayLength;
+        }
+
+        /// <summary>
         /// 863. All Nodes Distance K in Binary Tree
         /// TODO: НЕ РЕШИЛ САМ
         /// </summary>
