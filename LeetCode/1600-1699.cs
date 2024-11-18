@@ -283,6 +283,47 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 1652. Defuse the Bomb
+        /// </summary>
+        public static int[] Decrypt(int[] code, int k)
+        {
+            var n = code.Length;
+            var result = new int[n];
+            var prefixSum = 0;
+
+            if (k == 0)
+            {
+                Array.Fill(result, 0);
+                return result;
+            }
+
+            if (k > 0)
+            {
+                prefixSum = code[..k].Sum();
+                for (int i = 0; i < n; i++)
+                {
+                    var index = (i + k) % n;
+                    prefixSum = prefixSum + code[index] - code[i];
+                    result[i] = prefixSum;
+                }
+
+                return result;
+            }
+
+            prefixSum = code[(n + k)..].Sum();
+            result[0] = prefixSum;
+
+            for (int i = 1; i < n; i++)
+            {
+                var index =  (n + k + i - 1) % n;
+                prefixSum = prefixSum - code[index] + code[i - 1];
+                result[i] = prefixSum;
+            }
+
+            return result;
+        }
+
+        /// <summary>
         /// 1657. Determine if Two Strings Are Close
         /// </summary>
         public static bool CloseStrings(string word1, string word2)
