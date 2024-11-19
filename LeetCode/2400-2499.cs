@@ -204,6 +204,59 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 2461. Maximum Sum of Distinct Subarrays With Length K
+        /// </summary>
+        public static long MaximumSubarraySum(int[] nums, int k)
+        {
+            var hashSet = new Dictionary<int, int>();
+            long prefix = 0;
+            long result = 0; 
+
+            for (int i = 0; i < k; i++)
+            {
+                var v = nums[i];
+                if (!hashSet.TryAdd(v, 1))
+                {
+                    hashSet[v] += 1;
+                }
+                prefix += v;
+            }
+
+            if (hashSet.Keys.Count == k)
+            {
+                result = prefix;
+            }
+
+            for (int i = k; i < nums.Length; i++)
+            {
+                var prev = nums[i - k];
+                var current = nums[i];
+
+                if (hashSet[prev] == 1)
+                {
+                    hashSet.Remove(prev);
+                }
+                else
+                {
+                    hashSet[prev] -= 1;
+                }
+
+                if (!hashSet.TryAdd(current, 1))
+                {
+                    hashSet[current] += 1;
+                }
+
+                prefix += current - prev;
+                if (hashSet.Count == k)
+                {
+                    result = Math.Max(prefix, result);
+                }
+            }
+
+            return result;
+        }
+
+        /// <summary>
         /// 2462. Total Cost to Hire K Workers
         /// </summary>
         public static long TotalCost(int[] costs, int k, int candidates)
