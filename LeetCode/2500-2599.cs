@@ -23,6 +23,49 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 2516. Take K of Each Character From Left and Right
+        /// </summary>
+        public static int TakeCharacters(string s, int k)
+        {
+            int[] count = new int[3];
+            int n = s.Length;
+            var a = s.ToArray();
+
+            // Count total occurrences
+            foreach (var c in s)
+            {
+                count[c - 'a']++;
+            }
+
+            if (count.Any(i => i < k))
+            {
+                return -1;
+            }
+
+            int[] window = new int[3];
+            int left = 0, maxWindow = 0;
+
+            for (int right = 0; right < n; right++)
+            {
+                window[a[right] - 'a']++;
+                while (
+                    left <= right &&
+                    (count[0] - window[0] < k ||
+                        count[1] - window[1] < k ||
+                        count[2] - window[2] < k)
+                )
+                {
+                    window[a[left] - 'a']--;
+                    left++;
+                }
+
+                maxWindow = Math.Max(maxWindow, right - left + 1);
+            }
+
+            return n - maxWindow;
+        }
+
+        /// <summary>
         /// 2540. Minimum Common Value
         /// </summary>
         public static int GetCommon(int[] nums1, int[] nums2)
