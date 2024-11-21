@@ -45,6 +45,97 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 2257. Count Unguarded Cells in the Grid
+        /// </summary>
+        public static int CountUnguarded(int m, int n, int[][] guards, int[][] walls)
+        {
+            int UNGUARDED = 0;
+            int GUARDED = 1;
+            int GUARD = 2;
+            int WALL = 3;
+
+            int[][] grid = new int[m][];
+            for (int i = 0; i < m; i++)
+            {
+                grid[i] = new int[n];
+            }
+
+            foreach (int[] guard in guards)
+            {
+                grid[guard[0]][guard[1]] = GUARD;
+            }
+
+            foreach (int[] wall in walls)
+            {
+                grid[wall[0]][wall[1]] = WALL;
+            }
+
+            for (int row = 0; row < m; row++)
+            {
+                bool isGuardLineActive = grid[row][0] == GUARD;
+                for (int col = 1; col < n; col++)
+                {
+                    isGuardLineActive = updateCellVisibility(grid, row, col, isGuardLineActive);
+                }
+
+                isGuardLineActive = grid[row][n - 1] == GUARD;
+                for (int col = n - 2; col >= 0; col--)
+                {
+                    isGuardLineActive = updateCellVisibility(grid, row, col, isGuardLineActive);
+                }
+            }
+
+            for (int col = 0; col < n; col++)
+            {
+                bool isGuardLineActive = grid[0][col] == GUARD;
+                for (int row = 1; row < m; row++)
+                {
+                    isGuardLineActive = updateCellVisibility(grid, row, col, isGuardLineActive);
+                }
+
+                isGuardLineActive = grid[m - 1][col] == GUARD;
+                for (int row = m - 2; row >= 0; row--)
+                {
+                    isGuardLineActive = updateCellVisibility(grid, row, col, isGuardLineActive);
+                }
+            }
+
+            int count = 0;
+            for (int row = 0; row < m; row++)
+            {
+                for (int col = 0; col < n; col++)
+                {
+                    if (grid[row][col] == UNGUARDED)
+                    {
+                        count++;
+                    }
+                }
+            }
+
+            return count;
+
+            bool updateCellVisibility(int[][] grid, int row, int col, bool isGuardLineActive)
+            {
+                if (grid[row][col] == GUARD)
+                {
+                    return true;
+                }
+
+                if (grid[row][col] == WALL)
+                {
+                    return false;
+                }
+
+                if (isGuardLineActive)
+                {
+                    grid[row][col] = GUARDED;
+                }
+
+                return isGuardLineActive;
+            }
+        }
+
+        /// <summary>
         /// 2259. Remove Digit From Number to Maximize Result
         /// </summary>
         public static string RemoveDigit(string number, char digit)
