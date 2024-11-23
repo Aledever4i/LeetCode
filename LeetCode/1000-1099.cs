@@ -209,6 +209,32 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 1072. Flip Columns For Maximum Number of Equal Rows
+        /// </summary>
+        public static int MaxEqualRowsAfterFlips(int[][] matrix)
+        {
+            Dictionary<string, int> patternFrequency = new();
+
+            foreach (int[] currentRow in matrix)
+            {
+                StringBuilder patternBuilder = new();
+                for (int col = 0; col < currentRow.Length; col++)
+                {
+                    patternBuilder.Append((currentRow[0] == currentRow[col]) ? 'T' : 'F');
+                }
+
+                string rowPattern = patternBuilder.ToString();
+
+                if (!patternFrequency.TryAdd(rowPattern, 1))
+                {
+                    patternFrequency[rowPattern] += 1;
+                }
+            }
+
+            return patternFrequency.Values.Max();
+        }
+
+        /// <summary>
         /// 1089. Duplicate Zeros
         /// </summary>
         public static void DuplicateZeros(int[] arr)
