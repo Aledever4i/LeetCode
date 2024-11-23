@@ -417,6 +417,33 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 1684. Count the Number of Consistent Strings
+        /// </summary>
+        public static int CountConsistentStrings(string allowed, string[] words)
+        {
+            var dict = new HashSet<char>();
+            foreach (var c in allowed)
+            {
+                dict.Add(c);
+            }
+
+            var result = 0;
+            foreach (var word in words)
+            {
+                foreach (var c in word)
+                {
+                    if (!dict.Contains(c))
+                    {
+                        result--;
+                        break;
+                    }
+                }
+            }
+
+            return words.Length + result;
+        }
+
+        /// <summary>
         /// 1685. Sum of Absolute Differences in a Sorted Array
         /// </summary>
         public static int[] GetSumAbsoluteDifferences(int[] nums)
