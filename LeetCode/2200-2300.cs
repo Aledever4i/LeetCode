@@ -7,6 +7,22 @@ namespace LeetCode
     public static class _2200_2300
     {
         /// <summary>
+        /// 2220. Minimum Bit Flips to Convert Number
+        /// </summary>
+        public static int MinBitFlips(int start, int goal)
+        {
+            int xorResult = start ^ goal;
+            int count = 0;
+
+            while (xorResult != 0)
+            {
+                xorResult &= (xorResult - 1);
+                count++;
+            }
+            return count;
+        }
+
+        /// <summary>
         /// 2251. Number of Flowers in Full Bloom
         /// </summary>
         public static int[] FullBloomFlowers(int[][] flowers, int[] people)
