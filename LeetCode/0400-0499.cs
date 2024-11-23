@@ -608,6 +608,16 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 476. Number Complement
+        /// </summary>
+        public static int FindComplement(int num)
+        {
+            var c = string.Join("", Convert.ToString(num, 2).Select(c => c == '1' ? '0' : '1'));
+            c = c.TrimStart('0');
+            return c.Length == 0 ? 0 : Convert.ToInt32(c, 2);
+        }
+
+        /// <summary>
         /// 482. License Key Formatting
         /// </summary>
         public static string LicenseKeyFormatting(string s, int k)
