@@ -138,6 +138,45 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 1861. Rotating the Box
+        /// </summary>
+        public static char[][] RotateTheBox(char[][] box)
+        {
+            var n = box.Length;
+            var m = box[0].Length;
+
+            var result = new char[m][];
+            for (int i = 0; i < m; i++)
+            {
+                result[i] = new char[n];
+                Array.Fill(result[i], '.');
+            }
+
+            for (int i = 0; i < n; i++)
+            {
+                var row = box[i];
+                var platform = m;
+
+                for (int j = m - 1; j >= 0; j--)
+                {
+                    var value = row[j];
+
+                    if (value == '#')
+                    {
+                        result[--platform][n - i - 1] = value;
+                    }
+                    else if (value == '*')
+                    {
+                        result[j][n - i - 1] = value;
+                        platform = j;
+                    }
+                }
+            }
+
+            return result;
+        }
+
+        /// <summary>
         /// 1877. Minimize Maximum Pair Sum in Array
         /// </summary>
         public int MinPairSum(int[] nums)
