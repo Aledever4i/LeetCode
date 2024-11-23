@@ -258,6 +258,14 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 1556. Thousand Separator
+        /// </summary>
+        public static string ThousandSeparator(int n)
+        {
+            return string.Join("", n.ToString().Reverse().Select((x, i) => { return ((i + 1) % 3 == 0 && (i + 1 < n.ToString().Length)) ? $".{x}" : x.ToString(); }).Reverse());
+        }
+
+        /// <summary>
         /// 1558. Minimum Numbers of Function Calls to Make Target Array. Graph
         /// </summary>
         /// <param name="n"></param>
