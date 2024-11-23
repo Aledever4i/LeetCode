@@ -288,6 +288,43 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 1560. Most Visited Sector in a Circular Track
+        /// </summary>
+        public static IList<int> MostVisited(int n, int[] rounds)
+        {
+            if (n == 1)
+            {
+                return [1];
+            }
+
+            var first = rounds[0];
+            var prev = rounds[rounds.Length - 1];
+
+            var result = new List<int>();
+            if (prev >= first)
+            {
+                for (int i = first; i <= prev; i++)
+                {
+                    result.Add(i);
+                }
+            }
+            else
+            {
+                for (int i = 1; i <= prev; i++)
+                {
+                    result.Add(i);
+                }
+
+                for (int i = first; i <= n; i++)
+                {
+                    result.Add(i);
+                }
+            }
+
+            return result;
+        }
+
+        /// <summary>
         /// 1569. Number of Ways to Reorder Array to Get Same BST. Tags: Array, Math, Divide and Conquer, Dynamic Programming, Tree, Union Find, Binary Search Tree, Memoization, Combinatorics, Binary Tree
         /// </summary>
         public static int NumOfWays(int[] nums)
