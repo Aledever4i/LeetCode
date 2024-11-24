@@ -77,6 +77,32 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 1975. Maximum Matrix Sum
+        /// </summary>
+        public static long MaxMatrixSum(int[][] matrix)
+        {
+            long result = 0;
+
+            var negativeCount = 0;
+            var minimum = int.MaxValue;
+
+            foreach (var n in matrix) {
+                foreach (var t in n) {
+                    if (t < 0)
+                    {
+                        negativeCount++;
+                    }
+
+                    minimum = Math.Min(minimum, Math.Abs(t));
+
+                    result += Math.Abs(t);
+                }
+            }
+
+            return ((negativeCount & 1) == 0) ? result : result - minimum * 2;
+        }
+
+        /// <summary>
         /// 1980. Find Unique Binary String
         /// </summary>
         public static string FindDifferentBinaryString(string[] nums)
