@@ -376,6 +376,39 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 962. Maximum Width Ramp
+        /// </summary>
+        public static int MaxWidthRamp(int[] nums)
+        {
+            var result = 0;
+
+            var postfix = new int[nums.Length + 1];
+            postfix[nums.Length] = int.MinValue;
+
+            for (int i = nums.Length - 1; i >= 0; i--)
+            {
+                postfix[i] = Math.Max(postfix[i + 1], nums[i]);
+            }
+
+            for (int i = 0; i + result < nums.Length; i++)
+            {
+                var num = nums[i];
+                int j = i + result + 1;
+                var post = postfix[j];
+                
+                while (post >= num && j + 1 < postfix.Length)
+                {
+                    j++;
+                    post = postfix[j];
+                }
+
+                result = Math.Max(j - i - 1, result);
+            }
+
+            return result;
+        }
+
+        /// <summary>
         /// 977. Squares of a Sorted Array
         /// </summary>
         public static int[] SortedSquares(int[] nums)
