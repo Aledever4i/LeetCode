@@ -42,6 +42,28 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 2924. Find Champion II
+        /// </summary>
+        public static int FindChampion(int n, int[][] edges)
+        {
+            if (n == 1)
+            {
+                return 0;
+            }
+
+            var winners = new List<int>();
+            for (var i = 0; i < n; i++)
+            {
+                winners.Add(i);
+            }
+
+            var losers = edges.Select(edge => edge[1]);
+            var bests = winners.Except(losers);
+
+            return bests.Count() > 1 || !bests.Any() ? -1 : bests.First();
+        }
+
+        /// <summary>
         /// 2958. Length of Longest Subarray With at Most K Frequency
         /// </summary>
         public static int MaxSubarrayLength(int[] nums, int k)
