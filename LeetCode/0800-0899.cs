@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Runtime.Intrinsics.Arm;
 using System.Text;
 using System.Threading.Tasks;
@@ -303,51 +304,38 @@ namespace LeetCode
 
         /// <summary>
         /// 862. Shortest Subarray with Sum at Least K
+        /// TODO: НЕ РЕШИЛ САМ
         /// </summary>
         public static int ShortestSubarray(int[] nums, int k)
         {
-            int n = nums.Length;
-            long[] prefixSums = new long[n + 1];
+            int res = int.MaxValue;
+            long curSum = 0;
+            var q = new LinkedList<(long sum, int index)>();
 
-            for (int i = 1; i <= n; i++)
+            for (int r = 0; r < nums.Length; r++)
             {
-                prefixSums[i] = prefixSums[i - 1] + nums[i - 1];
-            }
-
-            LinkedList<int> candidateIndices = new LinkedList<int>();
-
-            int shortestSubarrayLength = int.MaxValue;
-
-            for (int i = 0; i <= n; i++)
-            {
-                while (
-                    candidateIndices.Count > 0 &&
-                    prefixSums[i] - prefixSums[candidateIndices.First()] >=
-                    k
-                )
+                curSum += nums[r];
+                if (curSum >= k)
                 {
-                    shortestSubarrayLength = Math.Min(
-                        shortestSubarrayLength,
-                        i - candidateIndices.First()
-                    );
-
-                    candidateIndices.RemoveFirst();
+                    res = Math.Min(res, r + 1);
                 }
 
-                while (
-                    candidateIndices.Count > 0 &&
-                    prefixSums[i] <= prefixSums[candidateIndices.Last()]
-                )
+                while (q.Count > 0 && curSum - q.First.Value.sum >= k)
                 {
-                    candidateIndices.RemoveLast();
+                    var (_, endIdx) = q.First.Value;
+                    q.RemoveFirst();
+                    res = Math.Min(res, r - endIdx);
                 }
 
-                candidateIndices.AddLast(i);
+                while (q.Count > 0 && q.Last.Value.sum > curSum)
+                {
+                    q.RemoveLast();
+                }
+
+                q.AddLast((curSum, r));
             }
 
-            return shortestSubarrayLength == int.MaxValue
-                ? -1
-                : shortestSubarrayLength;
+            return res == int.MaxValue ? -1 : res;
         }
 
         /// <summary>
