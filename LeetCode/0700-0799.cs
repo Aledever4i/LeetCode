@@ -379,6 +379,60 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 773. Sliding Puzzle
+        /// </summary>
+        public static int SlidingPuzzle(int[][] board)
+        {
+            int[][] directions = [
+                [1, 3],
+                [0, 2, 4],
+                [1, 5],
+                [0, 4],
+                [1, 3, 5],
+                [2, 4]
+            ];
+
+            string target = "123450";
+            string stateStart = $"{string.Join("", board[0])}{string.Join("", board[1])}";
+
+            HashSet<string> visited = [];
+            Queue<(string, int)> queue = new();
+            queue.Enqueue((stateStart, 0));
+            visited.Add(stateStart);
+
+            while (queue.Count > 0)
+            {
+                var currentState = queue.Dequeue();
+
+                if (currentState.Item1.Equals(target))
+                {
+                    return currentState.Item2;
+                }
+
+                int zeroPos = currentState.Item1.IndexOf('0');
+                foreach (int newPos in directions[zeroPos])
+                {
+                    string nextState = Swap(currentState.Item1, zeroPos, newPos);
+
+                    if (visited.Contains(nextState)) continue;
+
+                    visited.Add(nextState);
+                    queue.Enqueue((nextState, currentState.Item2 + 1));
+                }
+            }
+
+            return -1;
+
+            string Swap(string str, int i, int j)
+            {
+                var iChar = str[i];
+                var jChar = str[j];
+
+                return str.Remove(i, 1).Insert(i, jChar.ToString()).Remove(j, 1).Insert(j, iChar.ToString());
+            }
+        }
+
+        /// <summary>
         /// 779. K-th Symbol in Grammar
         /// </summary>
         public static int KthGrammar(int n, int k)
