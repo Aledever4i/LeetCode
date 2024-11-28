@@ -77,6 +77,68 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 3243. Shortest Distance After Road Addition Queries I
+        /// </summary>
+        public static int[] ShortestDistanceAfterQueries2(int n, int[][] queries)
+        {
+            int[] dp = new int[n];
+            for (int i = 0; i < n; i++)
+            {
+                dp[i] = -1;
+            }
+            List<List<int>> adjList = [];
+
+            for (int i = 0; i < n; i++)
+            {
+                adjList.Add([]);
+            }
+            for (int i = 0; i < n - 1; i++)
+            {
+                adjList[i].Add(i + 1);
+            }
+
+            List<int> answer = [];
+            foreach (int[] road in queries)
+            {
+                int u = road[0];
+                int v = road[1];
+
+                adjList[u].Add(v);
+
+                answer.Add(findMinDistance(adjList, n, 0, dp));
+
+                for (int i = 0; i < n; i++)
+                {
+                    dp[i] = -1;
+                }
+            }
+
+            int[] result = new int[answer.Count];
+            for (int i = 0; i < answer.Count; i++)
+            {
+                result[i] = answer[i];
+            }
+
+            return result;
+
+            int findMinDistance(List<List<int>> adjList, int n, int currentNode, int[] dp)
+            {
+                if (currentNode == n - 1) return 0;
+
+                if (dp[currentNode] != -1) return dp[currentNode];
+
+                int minDistance = n;
+
+                foreach (int neighbor in adjList[currentNode])
+                {
+                    minDistance = Math.Min(minDistance, findMinDistance(adjList, n, neighbor, dp) + 1);
+                }
+
+                return dp[currentNode] = minDistance;
+            }
+        }
+
+        /// <summary>
         /// 3255. Find the Power of K-Size Subarrays II
         /// </summary>
         public static int[] ResultsArray2(int[] nums, int k)
