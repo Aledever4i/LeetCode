@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using static System.Formats.Asn1.AsnWriter;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace LeetCode
 {
@@ -209,6 +210,84 @@ namespace LeetCode
                 }
 
                 return result;
+            }
+        }
+
+        /// <summary>
+        /// 2577. Minimum Time to Visit a Cell In a Grid
+        /// </summary>
+        public static int MinimumTime(int[][] grid)
+        {
+            if (grid[0][1] > 1 && grid[1][0] > 1)
+            {
+                return -1;
+            }
+
+            int n = grid.Length;
+            int m = grid[0].Length;
+
+            bool[][] visited = new bool[n][];
+            for (int i = 0; i < n; i++)
+            {
+                visited[i] = new bool[m];
+            }
+
+            var priority = new PriorityQueue<(int, int, int), int>();
+            priority.Enqueue((0, 0, 0), int.MaxValue);
+
+            while (priority.Count > 0)
+            {
+                var point = priority.Dequeue();
+
+                if (point.Item1 == n - 1 && point.Item2 == m - 1)
+                {
+                    return point.Item3;
+                }
+
+                if (visited[point.Item1][point.Item2])
+                {
+                    continue;
+                }
+                visited[point.Item1][point.Item2] = true;
+
+                if (IsValid(point.Item1 + 1, point.Item2, visited))
+                {
+                    var g = grid[point.Item1 + 1][point.Item2];
+                    int waitTime = ((g - point.Item3) % 2 == 0) ? 1 : 0;
+                    int nextTime = Math.Max(g + waitTime, point.Item3 + 1);
+                    priority.Enqueue((point.Item1 + 1, point.Item2, nextTime), nextTime);
+                }
+
+                if (IsValid(point.Item1, point.Item2 + 1, visited))
+                {
+                    var g = grid[point.Item1][point.Item2 + 1];
+                    int waitTime = ((g - point.Item3) % 2 == 0) ? 1 : 0;
+                    int nextTime = Math.Max(g + waitTime, point.Item3 + 1);
+                    priority.Enqueue((point.Item1, point.Item2 + 1, nextTime), nextTime);
+                }
+
+                if (IsValid(point.Item1, point.Item2 - 1, visited))
+                {
+                    var g = grid[point.Item1][point.Item2 - 1];
+                    int waitTime = ((g - point.Item3) % 2 == 0) ? 1 : 0;
+                    int nextTime = Math.Max(g + waitTime, point.Item3 + 1);
+                    priority.Enqueue((point.Item1, point.Item2 - 1, nextTime), nextTime);
+                }
+
+                if (IsValid(point.Item1 - 1, point.Item2, visited))
+                {
+                    var g = grid[point.Item1 - 1][point.Item2];
+                    int waitTime = ((g - point.Item3) % 2 == 0) ? 1 : 0;
+                    int nextTime = Math.Max(g + waitTime, point.Item3 + 1);
+                    priority.Enqueue((point.Item1 - 1, point.Item2, nextTime), nextTime);
+                }
+            }
+
+            return -1;
+
+            bool IsValid(int x, int y, bool[][] visited)
+            {
+                return (x < grid.Length && x >= 0 && y < grid[0].Length && y >= 0 && !visited[x][y]);
             }
         }
 
