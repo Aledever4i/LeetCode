@@ -332,5 +332,68 @@ namespace LeetCode
 
             return a.Max();
         }
+
+        /// <summary>
+        /// 2290. Minimum Obstacle Removal to Reach Corner
+        /// </summary>
+        public static int MinimumObstacles(int[][] grid)
+        {
+            int n = grid.Length;
+            int m = grid[0].Length;
+
+            var dict = new Dictionary<(int, int), int>();
+            for (int i = 0; i < n; i++)
+            {
+                for (int j = 0; j < m; j++)
+                {
+                    dict.Add((i, j), int.MaxValue);
+                }
+            }
+
+            var priority = new PriorityQueue<((int, int), int), int>();
+            priority.Enqueue(((0, 0), 0), int.MaxValue);
+
+            while (priority.Count > 0)
+            {
+                var point = priority.Dequeue();
+                var cost = point.Item2 + grid[point.Item1.Item1][point.Item1.Item2];
+                if (point.Item1.Item1 == n - 1 && point.Item1.Item2 == m - 1)
+                {
+                    return cost;
+                }
+
+                if (cost < dict[(point.Item1.Item1, point.Item1.Item2)])
+                {
+                    dict[(point.Item1.Item1, point.Item1.Item2)] = cost;
+
+                    if (IsValid(point.Item1.Item1 + 1, point.Item1.Item2))
+                    {
+                        priority.Enqueue(((point.Item1.Item1 + 1, point.Item1.Item2), cost), cost);
+                    }
+
+                    if (IsValid(point.Item1.Item1, point.Item1.Item2 + 1))
+                    {
+                        priority.Enqueue(((point.Item1.Item1, point.Item1.Item2 + 1), cost), cost);
+                    }
+
+                    if (IsValid(point.Item1.Item1, point.Item1.Item2 - 1))
+                    {
+                        priority.Enqueue(((point.Item1.Item1, point.Item1.Item2 - 1), cost), cost);
+                    }
+
+                    if (IsValid(point.Item1.Item1 - 1, point.Item1.Item2))
+                    {
+                        priority.Enqueue(((point.Item1.Item1 - 1, point.Item1.Item2), cost), cost);
+                    }
+                }
+            }
+
+            return -1;
+
+            bool IsValid(int x, int y)
+            {
+                return (x < grid.Length && x >= 0 && y < grid[0].Length && y >= 0);
+            }
+        }
     }
 }
