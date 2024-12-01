@@ -152,6 +152,27 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 650. 2 Keys Keyboard
+        /// </summary>
+        public static int MinSteps(int n)
+        {
+            if (n == 1) return 0;
+
+            return 1 + minStepsHelper(1, 1);
+
+            int minStepsHelper(int currLen, int pasteLen)
+            {
+                if (currLen == n) return 0;
+                if (currLen > n) return 1000;
+
+                int opt1 = 2 + minStepsHelper(currLen * 2, currLen);
+                int opt2 = 1 + minStepsHelper(currLen + pasteLen, pasteLen);
+
+                return Math.Min(opt1, opt2);
+            }
+        }
+
+        /// <summary>
         /// 653. Two Sum IV - Input is a BST
         /// </summary>
         public static bool FindTarget(TreeNode root, int k)
