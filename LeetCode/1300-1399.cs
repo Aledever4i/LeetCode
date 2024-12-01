@@ -151,6 +151,14 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 1346. Check If N and Its Double Exist
+        /// </summary>
+        public static bool CheckIfExist(int[] arr)
+        {
+
+        }
+
+        /// <summary>
         /// 1347. Minimum Number of Steps to Make Two Strings Anagram
         /// </summary>
         public static int MinSteps(string s, string t)

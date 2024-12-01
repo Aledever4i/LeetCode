@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 
 namespace LeetCode
 {
@@ -498,6 +499,74 @@ namespace LeetCode
                 SearchPathByBFS(root.right, searchValue, path, ref resultPath);
                 path.Remove(path.Length - 1, 1);
             }
+        }
+
+        /// <summary>
+        /// 2097. Valid Arrangement of Pairs
+        /// </summary>
+        public static int[][] ValidArrangement(int[][] pairs)
+        {
+            //var inDegree = new Dictionary<int, int>();
+            //var outDegree = new Dictionary<int, int>();
+            //var adjacencyMatrix = new Dictionary<int, Queue<int>>();
+
+            //foreach (var pair in pairs)
+            //{
+            //    int start = pair[0], end = pair[1];
+            //    adjacencyMatrix
+            //        .computeIfAbsent(start, k-> new ArrayDeque<>())
+            //        .add(end);
+            //    outDegree.put(start, outDegree.getOrDefault(start, 0) + 1);
+            //    inDegree.put(end, inDegree.getOrDefault(end, 0) + 1);
+            //}
+
+            //var result = new List<int>();
+            //int startNode = -1;
+            //foreach (int node in outDegree.keySet())
+            //{
+            //    if (outDegree[node] == inDegree.getOrDefault(node, 0) + 1)
+            //    {
+            //        startNode = node;
+            //        break;
+            //    }
+            //}
+
+            //// If no such node exists, start from the first pair's first element
+            //if (startNode == -1)
+            //{
+            //    startNode = pairs[0][0];
+            //}
+
+            //// Start DFS traversal
+            //visit(startNode, adjacencyMatrix, result);
+
+            //// Reverse the result since DFS gives us the path in reverse
+            //Collections.reverse(result);
+
+            //// Construct the result pairs
+            //int[][] pairedResult = new int[result.size() - 1][2];
+            //for (int i = 1; i < result.size(); i++)
+            //{
+            //    pairedResult[i - 1] = new int[] {
+            //    result.get(i - 1),
+            //    result.get(i),
+            //};
+            //}
+
+            //return pairedResult;
+
+            //void visit(int node, Map<Integer, Deque<Integer>> adjMatrix, List<Integer> res)
+            //{
+            //    Deque<Integer> neighbors = adjMatrix.get(node);
+            //    while (neighbors != null && !neighbors.isEmpty())
+            //    {
+            //        int nextNode = neighbors.pollFirst();
+            //        visit(nextNode, adjMatrix, res);
+            //    }
+            //    res.add(node);
+            //}
+
+            return pairs;
         }
     }
 }
