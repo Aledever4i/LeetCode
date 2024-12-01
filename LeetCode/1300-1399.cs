@@ -155,7 +155,24 @@ namespace LeetCode
         /// </summary>
         public static bool CheckIfExist(int[] arr)
         {
+            var hash = new HashSet<int>();
 
+            foreach (int i in arr)
+            {
+                if (hash.Contains(i * 2))
+                {
+                    return true;
+                }
+
+                if (i % 2 == 0 && hash.Contains(i / 2))
+                {
+                    return true;
+                }
+
+                hash.Add(i);
+            }
+
+            return false;
         }
 
         /// <summary>
