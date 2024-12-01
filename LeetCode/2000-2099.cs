@@ -38,6 +38,33 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 2022. Convert 1D Array Into 2D Array
+        /// </summary>
+        public static int[][] Construct2DArray(int[] original, int m, int n)
+        {
+            if (original.Length != m * n)
+            {
+                return [];
+            }
+
+            var result = new int[m][];
+            for (int i = 0; i < m; i++)
+            {
+                result[i] = new int[n];
+            }
+
+            for (int i = 0; i < original.Length; i++)
+            {
+                var row = i / n;
+                var column = (n == 1) ? 0 : i % n;
+
+                result[row][column] = original[i];
+            }
+
+            return result;
+        }
+
+        /// <summary>
         /// 2024. Maximize the Confusion of an Exam
         /// </summary>
         public static int MaxConsecutiveAnswers(string answerKey, int k)

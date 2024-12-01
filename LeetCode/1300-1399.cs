@@ -145,8 +145,6 @@ namespace LeetCode
         /// </summary>
         public static int FindTheCity(int n, int[][] edges, int distanceThreshold)
         {
-
-
             return 0;
         }
 
