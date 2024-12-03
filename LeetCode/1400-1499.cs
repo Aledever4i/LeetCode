@@ -128,6 +128,16 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 1455. Check If a Word Occurs As a Prefix of Any Word in a Sentence
+        /// </summary>
+        public static int IsPrefixOfWord(string sentence, string searchWord)
+        {
+            var x = sentence.Split(" ").Select((w, index) => new { index, searchResult = $" {w}".IndexOf($" {searchWord}") }).Where(g => g.searchResult != -1);
+
+            return x.Any() ? x.Select(v => v.index).Min() + 1 : -1;
+        }
+
+        /// <summary>
         /// 1456. Maximum Number of Vowels in a Substring of Given Length
         /// </summary>
         public static int MaxVowels(string s, int k)
