@@ -98,6 +98,25 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 2109. Adding Spaces to a String
+        /// </summary>
+        public static string AddSpaces(string s, int[] spaces)
+        {
+            var stringBuilder = new StringBuilder();
+            var prev = 0;
+
+            for (var i = 0; i < spaces.Length; i++)
+            {
+                stringBuilder.Append(s[prev..spaces[i]]).Append(' ');
+                prev = spaces[i];
+            }
+
+            stringBuilder.Append(s[prev..s.Length]);
+
+            return stringBuilder.ToString();
+        }
+
+        /// <summary>
         /// 2125. Number of Laser Beams in a Bank
         /// </summary>
         public static int NumberOfBeams(string[] bank)
