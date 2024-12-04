@@ -52,39 +52,23 @@ namespace LeetCode
         {
             if (str2.Length > str1.Length) return false;
 
-            var isFailed = false;
-            for (int i = 0, y = 0; i < str2.Length && y < str1.Length; i++)
+            var index = 0;
+            for (int i = 0; i < str1.Length && index < str2.Length; i++)
             {
-                var current = str2[i] - 'a';
+                var currentStr1 = str1[i] - 'a';
+                var charStr2 = str2[index] - 'a';
 
-                while (y < str1.Length)
+                if (
+                    currentStr1 == charStr2
+                    || currentStr1 + 1 == charStr2
+                    || currentStr1 - 25 == charStr2
+                )
                 {
-                    var next = str1[y] - 'a';
-
-                    y++;
-
-                    if (
-                        next == current
-                        || (next + 1) == current
-                        || (next == 25 && current == 0)
-                    )
-                    {
-                        break;
-                    }
-
-                    if (y == str1.Length)
-                    {
-                        isFailed = true;
-                    }
-                }
-
-                if (i == str2.Length - 1 && !isFailed)
-                {
-                    return true;
+                    index++;
                 }
             }
 
-            return false;
+            return index == str2.Length;
         }
 
         /// <summary>
