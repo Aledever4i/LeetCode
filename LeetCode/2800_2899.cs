@@ -46,6 +46,48 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 2825. Make String a Subsequence Using Cyclic Increments
+        /// </summary>
+        public static bool CanMakeSubsequence(string str1, string str2)
+        {
+            if (str2.Length > str1.Length) return false;
+
+            var isFailed = false;
+            for (int i = 0, y = 0; i < str2.Length && y < str1.Length; i++)
+            {
+                var current = str2[i] - 'a';
+
+                while (y < str1.Length)
+                {
+                    var next = str1[y] - 'a';
+
+                    y++;
+
+                    if (
+                        next == current
+                        || (next + 1) == current
+                        || (next == 25 && current == 0)
+                    )
+                    {
+                        break;
+                    }
+
+                    if (y == str1.Length)
+                    {
+                        isFailed = true;
+                    }
+                }
+
+                if (i == str2.Length - 1 && !isFailed)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        /// <summary>
         /// 2849. Determine if a Cell Is Reachable at a Given Time
         /// </summary>
         public static bool IsReachableAtTime(int sx, int sy, int fx, int fy, int t)
