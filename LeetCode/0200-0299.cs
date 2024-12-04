@@ -118,6 +118,20 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 203. Remove Linked List Elements
+        /// </summary>
+        public static ListNode RemoveElements(ListNode head, int val)
+        {
+            var current = head;
+            var result = new ListNode
+            {
+                next = current
+            };
+
+            return new ListNode();
+        }
+
+        /// <summary>
         /// 205. Isomorphic Strings. Tags: Hash Table, String
         /// </summary>
         public static bool IsIsomorphic(string s, string t)
