@@ -122,6 +122,11 @@ namespace LeetCode
         /// </summary>
         public static ListNode RemoveElements(ListNode head, int val)
         {
+            while (head != null && head.val == val)
+            {
+                head = head.next;
+            }
+
             var current = head;
             var result = new ListNode
             {

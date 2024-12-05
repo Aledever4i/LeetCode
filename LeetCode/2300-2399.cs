@@ -74,7 +74,59 @@ namespace LeetCode
             }
             return answer;
         }
-        
+
+        /// <summary>
+        /// 2337. Move Pieces to Obtain a String
+        /// </summary>
+        public static bool CanChange(string start, string target)
+        {
+            var queue = new Queue<(char c, int index)>();
+            for (int i = 0; i < start.Length; i++)
+            {
+                var c = start[i];
+                if (c == 'L' || c == 'R')
+                {
+                    queue.Enqueue((c, i));
+                }
+            }
+
+            for (int i = 0; i < target.Length; i++)
+            {
+                var c = target[i];
+                if (c == 'L' || c == 'R')
+                {
+                    if (queue.Count == 0)
+                    {
+                        return false;
+                    }
+
+                    var element = queue.Dequeue();
+
+                    if (c == 'L' && element.c == 'L' && i > element.index)
+                    {
+                        return false;
+                    }
+
+                    if (c == 'R' && element.c == 'R' && i < element.index)
+                    {
+                        return false;
+                    }
+
+                    if (c != element.c)
+                    {
+                        return false;
+                    }
+                }
+            }
+
+            if (queue.Count > 0)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
         /// <summary>
         /// 2352. Equal Row and Column Pairs
         /// </summary>
