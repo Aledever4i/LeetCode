@@ -143,6 +143,30 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 2554. Maximum Number of Integers to Choose From a Range I
+        /// </summary>
+        public static int MaxCount(int[] banned, int n, int maxSum)
+        {
+            var elements = Enumerable.Range(1, n);
+
+            var filtered = elements.Except(banned).OrderBy(e => e).ToArray();
+
+            var result = 0;
+
+            for (int i = 0; i < filtered.Length; i++)
+            {
+                result += filtered[i];
+
+                if (result > maxSum)
+                {
+                    return i;
+                }
+            }
+
+            return filtered.Length;
+        }
+
+        /// <summary>
         /// 2563. Count the Number of Fair Pairs
         /// </summary>
         public static long CountFairPairs1(int[] nums, int lower, int upper)
