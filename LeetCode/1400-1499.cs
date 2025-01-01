@@ -67,6 +67,33 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 1422. Maximum Score After Splitting a String
+        /// </summary>
+        /// <param name="s"></param>
+        /// <returns></returns>
+        public static int MaxScore(string s)
+        {
+            var ones = s.Where(c => c == '1').Count();
+            var zeros = 0;
+            var result = 0;
+            for (int i = 0; i < s.Length - 1; i++)
+            {
+                if (s[i] == '0')
+                {
+                    zeros++;
+                }
+                else
+                {
+                    ones--;
+                }
+
+                result = Math.Max(result, zeros + ones);
+            }
+
+            return result;
+        }
+
+        /// <summary>
         /// 1425. Constrained Subsequence Sum
         /// </summary>
         public static int ConstrainedSubsetSum(int[] nums, int k)
