@@ -167,6 +167,47 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 2559. Count Vowel Strings in Ranges
+        /// </summary>
+        /// <param name="words"></param>
+        /// <param name="queries"></param>
+        /// <returns></returns>
+        public static int[] VowelStrings(string[] words, int[][] queries)
+        {
+            bool isVowel(char c) => c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u';
+
+            int[] ans = new int[queries.Length];
+            int[] prefixSum = new int[words.Length];
+            int sum = 0;
+
+            for (int i = 0; i < words.Length; i++)
+            {
+                string currentWord = words[i];
+                if (isVowel(currentWord[0]) && isVowel(currentWord[^1]))
+                {
+                    sum++;
+                }
+                prefixSum[i] = sum;
+            }
+
+            for (int i = 0; i < queries.Length; i++)
+            {
+                int[] currentQuery = queries[i];
+
+                if (currentQuery[0] == 0)
+                {
+                    ans[i] = prefixSum[currentQuery[1]];
+                }
+                else
+                {
+                    ans[i] = prefixSum[currentQuery[1]] - prefixSum[currentQuery[0] - 1];
+                }
+            }
+
+            return ans;
+        }
+
+        /// <summary>
         /// 2563. Count the Number of Fair Pairs
         /// </summary>
         public static long CountFairPairs1(int[] nums, int lower, int upper)
