@@ -220,6 +220,34 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 2270. Number of Ways to Split Array
+        /// </summary>
+        /// <param name="nums"></param>
+        /// <returns></returns>
+        public static int WaysToSplitArray(int[] nums)
+        {
+            long leftSum = 0, rightSum = 0;
+            foreach (int num in nums)
+            {
+                rightSum += num;
+            }
+
+            int count = 0;
+            for (int i = 0; i < nums.Length - 1; i++)
+            {
+                leftSum += nums[i];
+                rightSum -= nums[i];
+
+                if (leftSum >= rightSum)
+                {
+                    count++;
+                }
+            }
+
+            return count;
+        }
+
+        /// <summary>
         /// 2272. Substring With Largest Variance
         /// </summary>
         public static int LargestVariance(string s)
