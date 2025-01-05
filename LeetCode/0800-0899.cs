@@ -180,6 +180,37 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 848. Shifting Letters
+        /// </summary>
+        public static string ShiftingLetters(string s, int[] shifts)
+        {
+            var ans = new long[s.Length];
+
+            for (int i = 0; i < s.Length; i++)
+            {
+                ans[i] += s[i] - 'a';
+            }
+
+            var sum = shifts.Sum(x => (long)x % 26);
+
+            for (int i = 0; i < shifts.Length; i++)
+            {
+                ans[i] = (ans[i] + sum) % 26;
+                sum -= (shifts[i] % 26);
+            }
+
+            var stringBuilder = new StringBuilder();
+
+            for (int i = 0; i < ans.Length; i++)
+            {
+                var c = Convert.ToChar(ans[i] % 26 + 'a');
+                stringBuilder.Append(c);
+            }
+
+            return stringBuilder.ToString();
+        }
+
+        /// <summary>
         /// 853. Car Fleet
         /// </summary>
         public static int CarFleet(int target, int[] position, int[] speed)
