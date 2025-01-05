@@ -43,6 +43,34 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 1930. Unique Length-3 Palindromic Subsequences
+        /// </summary>
+        public static int CountPalindromicSubsequence(string s)
+        {
+            var ans = 0;
+            var data = s.Select((x, index) => new { x, index }).GroupBy(x => x.x).ToDictionary(x => x.Key, v => v.Select(y => y.index).ToArray());
+
+            foreach (var key in data.Keys)
+            {
+                if (data[key].Length >= 2)
+                {
+                    var left = data[key][0];
+                    var right = data[key].ElementAt(data[key].Length - 1);
+
+                    foreach (var innerKey in data.Keys)
+                    {
+                        if (data[innerKey].Any(v => v > left && v < right))
+                        {
+                            ans++;
+                        }
+                    }
+                }
+            }
+
+            return ans;
+        }
+
+        /// <summary>
         /// 1942. The Number of the Smallest Unoccupied Chair
         /// </summary>
         public static int SmallestChair(int[][] times, int targetFriend)
