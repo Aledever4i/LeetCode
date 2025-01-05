@@ -167,6 +167,39 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 2381. Shifting Letters II
+        /// </summary>
+        public static string ShiftingLetters(string s, int[][] shifts)
+        {
+            var ans = new int[s.Length];
+            for (int i = 0; i < s.Length; i++)
+            {
+                ans[i] += s[i] - 'a';
+            }
+
+            var v = shifts.GroupBy(v => (v[0], v[1])).Select(v => new int[] { v.Key.Item1, v.Key.Item2, v.Select(x => x[2] == 0 ? -1 : 1).Sum() }).ToArray();
+
+            for (int i = 0; i < v.Length; i++)
+            {
+                for (int y = v[i][0]; y <= v[i][1]; y++)
+                {
+                    ans[y] += v[i][2];
+                }
+            }
+
+            var stringBuilder = new StringBuilder();
+
+            for (int i = 0; i < ans.Length; i++)
+            {
+                var c = Convert.ToChar((52000 + ans[i]) % 26 + 'a');
+
+                stringBuilder.Append(c);
+            }
+
+            return stringBuilder.ToString();
+        }
+
+        /// <summary>
         /// 2385. Amount of Time for Binary Tree to Be Infected
         /// </summary>
         public static int AmountOfTime(TreeNode root, int start)

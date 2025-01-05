@@ -17,7 +17,8 @@ namespace LeetCode
         //        new int[] { 136,746 }, new int[] { 781, 962 }
         //    }, new int[] { 885, 1445, 1580, 1309, 205, 1788, 1214, 1404, 572, 1170, 989, 265, 153, 151, 1479, 1180, 875, 276, 1584 });
 
-            var a = _1900_1999.CountPalindromicSubsequence("bbcbaba");
+            var a = _2300_2399.ShiftingLetters("abc",
+                [[0, 1, 0], [1, 2, 1], [0, 2, 1]]);
 
             Console.WriteLine(a);
         }
