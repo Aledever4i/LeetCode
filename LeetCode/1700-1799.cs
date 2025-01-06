@@ -429,6 +429,32 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 1769. Minimum Number of Operations to Move All Balls to Each Box
+        /// </summary>
+        public static int[] MinOperations(string boxes)
+        {
+            int n = boxes.Length;
+            int[] answer = new int[n];
+
+            int ballsToLeft = 0, movesToLeft = 0;
+            int ballsToRight = 0, movesToRight = 0;
+
+            for (int i = 0; i < n; i++)
+            {
+                answer[i] += movesToLeft;
+                ballsToLeft += boxes[i] == '1' ? 1 : 0;
+                movesToLeft += ballsToLeft;
+
+                int j = n - 1 - i;
+                answer[j] += movesToRight;
+                ballsToRight += boxes[j] == '1' ? 1 : 0;
+                movesToRight += ballsToRight;
+            }
+
+            return answer;
+        }
+
+        /// <summary>
         /// 1793. Maximum Score of a Good Subarray
         /// </summary>
         public static int MaximumScore(int[] nums, int k)
