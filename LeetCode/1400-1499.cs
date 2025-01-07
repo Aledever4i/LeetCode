@@ -11,6 +11,27 @@ namespace LeetCode
     public static class _1400_1499
     {
         /// <summary>
+        /// 1408. String Matching in an Array
+        /// </summary>
+        public static IList<string> StringMatching(string[] words)
+        {
+            var fullstring = string.Join(" ", words);
+            var ans = new List<string>();
+
+            foreach (var word in words)
+            {
+                var index = fullstring.IndexOf(word);
+
+                if (fullstring.IndexOf(word, index + word.Length) != -1)
+                {
+                    ans.Add(word);
+                }
+            }
+
+            return ans;
+        }
+
+        /// <summary>
         /// 1420. Build Array Where You Can Find The Maximum Exactly K Comparisons
         /// </summary>
         public static int NumOfArrays(int n, int m, int k)
