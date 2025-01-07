@@ -177,6 +177,25 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 1876. Substrings of Size Three with Distinct Characters
+        /// </summary>
+        public static int CountGoodSubstrings(string s)
+        {
+            var ans = 0;
+
+            for (int i = 0; i < s.Length - 2; i++)
+            {
+                var z = new[] { s[i], s[i + 1], s[i + 2] };
+                if (z.Distinct().Count() == 3)
+                {
+                    ans++;
+                }
+            }
+
+            return ans;
+        }
+
+        /// <summary>
         /// 1877. Minimize Maximum Pair Sum in Array
         /// </summary>
         public int MinPairSum(int[] nums)
