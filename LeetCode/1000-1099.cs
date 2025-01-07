@@ -11,6 +11,27 @@ namespace LeetCode
     public static class _1000_1099
     {
         /// <summary>
+        /// 1005. Maximize Sum Of Array After K Negations
+        /// </summary>
+        public static int LargestSumAfterKNegations(int[] nums, int k)
+        {
+            var queue = new PriorityQueue<int, int>();
+            foreach (var num in nums)
+            {
+                queue.Enqueue(num, num);
+            }
+
+            while (k > 0)
+            {
+                var element = queue.Dequeue();
+                queue.Enqueue(element * -1, element * -1);
+                k--;
+            }
+
+            return queue.UnorderedItems.Select(v => v.Element).Sum();
+        }
+
+        /// <summary>
         /// 1018. Binary Prefix Divisible By 5
         /// </summary>
         public static IList<bool> PrefixesDivBy5(int[] nums)
