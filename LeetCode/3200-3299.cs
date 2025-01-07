@@ -8,6 +8,23 @@ namespace LeetCode
     public static class _3200_3299
     {
         /// <summary>
+        /// 3222. Find the Winning Player in Coin Game
+        /// </summary>
+        public static string WinningPlayer(int x, int y)
+        {
+            var winner = "Bob";
+
+            while (x >= 1 && y >= 4)
+            {
+                winner = (winner == "Bob") ? "Alice" : "Bob";
+                x--;
+                y -= 4;
+            }
+
+            return winner;
+        }
+
+        /// <summary>
         /// 3243. Shortest Distance After Road Addition Queries I
         /// </summary>
         public static int[] ShortestDistanceAfterQueries(int n, int[][] queries)
