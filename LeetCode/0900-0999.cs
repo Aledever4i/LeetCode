@@ -409,6 +409,24 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 976. Largest Perimeter Triangle
+        /// </summary>
+        public static int LargestPerimeter(int[] nums)
+        {
+            var sides = nums.OrderByDescending(n => n).ToArray();
+
+            for (int i = 0; i < nums.Length - 2; i++)
+            {
+                if (sides[i] < sides[i + 1] + sides[i + 2])
+                {
+                    return sides[i] + sides[i + 1] + sides[i + 2];
+                }
+            }
+
+            return 0;
+        }
+
+        /// <summary>
         /// 977. Squares of a Sorted Array
         /// </summary>
         public static int[] SortedSquares(int[] nums)
