@@ -1,9 +1,89 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 
 namespace LeetCode
 {
+    public class TrieNode2227
+    {
+        public int frequency = 0;
+        public Dictionary<int, TrieNode2227> branches = [];
+    }
+
+    /// <summary>
+    /// 2227. Encrypt and Decrypt Strings
+    /// </summary>
+    public class Encrypter
+    {
+        private Dictionary<char, string> encrypt = new();
+        private readonly TrieNode2227 root = new();
+
+        public Encrypter(char[] keys, string[] values, string[] dictionary)
+        {
+            for (int i = 0; i < keys.Length; i++)
+            {
+                encrypt.Add(keys[i], values[i]);
+            }
+
+            foreach (var word in dictionary)
+            {
+                AddWord(Encrypt(word));
+            }
+        }
+
+        public string Encrypt(string word1)
+        {
+            var result = new StringBuilder();
+            foreach (var c in word1)
+            {
+                if (!encrypt.TryGetValue(c, out string value))
+                {
+                    return string.Empty;
+                }
+
+                result.Append(value);
+            }
+
+            return result.ToString();
+        }
+
+        public int Decrypt(string word2)
+        {
+            TrieNode2227 current = root;
+
+            for (int i = 0; i < word2.Length; i++)
+            {
+                int hashPrefixSuffix = word2[i] - 'a';
+                if (!current.branches.TryGetValue(hashPrefixSuffix, out var value))
+                {
+                    return 0;
+                }
+
+                current = value;
+            }
+
+            return current.frequency;
+        }
+
+        private void AddWord(string word)
+        {
+            TrieNode2227 current = root;
+            var prefix = 0;
+
+            while (prefix < word.Length)
+            {
+                int hashPrefixSuffix = word[prefix] - 'a';
+                current.branches.TryAdd(hashPrefixSuffix, new TrieNode2227());
+                current = current.branches[hashPrefixSuffix];
+                prefix++;
+            }
+
+            current.frequency++;
+        }
+    }
+
     public static class _2200_2300
     {
         /// <summary>
