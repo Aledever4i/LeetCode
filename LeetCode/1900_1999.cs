@@ -1,6 +1,11 @@
-﻿using System;
+﻿using LeetCode.Algorithms;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net.Http.Headers;
+using System.Numerics;
+using System.Xml.Linq;
 
 namespace LeetCode
 {
@@ -83,7 +88,7 @@ namespace LeetCode
 
             foreach (var temp in sorted)
             {
-                
+
             }
 
             return 0;
@@ -98,10 +103,109 @@ namespace LeetCode
 
             while (k-- > 0)
             {
-                numbers = numbers.Sum(x => (decimal)(x -'0')).ToString();
+                numbers = numbers.Sum(x => (decimal)(x - '0')).ToString();
             }
 
             return int.Parse(numbers);
+        }
+
+        public class TrieNode1948
+        {
+            public string name = string.Empty;
+            public Dictionary<string, TrieNode1948> children = [];
+        }
+
+        /// <summary>
+        /// 1948. Delete Duplicate Folders in System
+        /// </summary>
+        public static IList<IList<string>> DeleteDuplicateFolder(IList<IList<string>> paths)
+        {
+            // Root of the tree
+            var root = new TrieNode1948 { name = "/" };
+
+            // Build the tree from the given paths
+            foreach (var path in paths)
+            {
+                AddPath(root, path);
+            }
+
+            // Dictionary to store serialized subtree structures and their frequency
+            var subtreeCount = new Dictionary<string, int>();
+            var nodeToSerialization = new Dictionary<TrieNode1948, string>();
+
+            // Post-order traversal to serialize subtrees and count them
+            SerializeSubtree(root, subtreeCount, nodeToSerialization);
+
+            // List to collect remaining paths after removing duplicates
+            var remainingPaths = new List<IList<string>>();
+
+            // Traverse the tree again to collect valid paths
+            CollectPaths(root, [], remainingPaths, subtreeCount, nodeToSerialization);
+
+            return remainingPaths;
+
+            void AddPath(TrieNode1948 root, IList<string> path)
+            {
+                TrieNode1948 current = root;
+                foreach (var dir in path)
+                {
+                    current.children.TryAdd(dir, new TrieNode1948 { name = dir });
+                    current = current.children[dir];
+                }
+            }
+
+            string SerializeSubtree(TrieNode1948 node, Dictionary<string, int> subtreeCount, Dictionary<TrieNode1948, string> nodeToSerialization)
+            {
+                if (node.children.Count == 0) return ""; // Leaf node
+
+                // Serialize the subtree rooted at this node
+                var serializedChildren = new List<string>();
+                foreach (var child in node.children.Values)
+                {
+                    serializedChildren.Add(child.name + "(" + SerializeSubtree(child, subtreeCount, nodeToSerialization) + ")");
+                }
+
+                serializedChildren.Sort(); // Sort to ensure identical structures have the same serialization
+                string serialized = string.Join(",", serializedChildren);
+
+                // Count the serialized structure
+                if (!subtreeCount.TryAdd(serialized, 1))
+                {
+                    subtreeCount[serialized]++;
+                }
+                   
+                nodeToSerialization[node] = serialized;
+                return serialized;
+            }
+
+            void CollectPaths(TrieNode1948 node, List<string> currentPath, IList<IList<string>> remainingPaths, Dictionary<string, int> subtreeCount, Dictionary<TrieNode1948, string> nodeToSerialization)
+            {
+                if (node == null) return;
+
+                // Serialize the subtree to check if it has duplicates
+                if (nodeToSerialization.TryGetValue(node, out string value))
+                {
+                    // If this subtree occurs more than once, skip this subtree
+                    if (subtreeCount.ContainsKey(value) && subtreeCount[value] > 1)
+                    {
+                        return;
+                    }
+                }
+
+                // Add the current path to remaining paths if not the root node
+                if (!node.name.Equals("/"))
+                {
+                    remainingPaths.Add(new List<string>(currentPath));
+                }
+
+                // Recursively collect paths from child nodes
+                foreach (var child in node.children)
+                {
+                    currentPath.Add(child.Key);
+                    CollectPaths(child.Value, currentPath, remainingPaths, subtreeCount, nodeToSerialization);
+                    currentPath.RemoveAt(currentPath.Count - 1);
+                }
+            }
         }
 
         /// <summary>
