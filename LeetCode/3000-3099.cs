@@ -1,10 +1,8 @@
-﻿using LeetCode.Contest.Transfered;
+﻿using LeetCode.Algorithms.Trie2;
+using LeetCode.Contest.Transfered;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LeetCode
 {
@@ -149,6 +147,19 @@ namespace LeetCode
             }
 
             return ans;
+        }
+
+        /// <summary>
+        /// 3045. Count Prefix and Suffix Pairs II
+        /// </summary>
+        public static long CountPrefixSuffixPairs2(string[] words)
+        {
+            Trie2 trie = new Trie2();
+            foreach (var word in words)
+            {
+                trie.AddWord(word);
+            }
+            return trie.countPrefixSuffixPairs;
         }
 
         /// <summary>
