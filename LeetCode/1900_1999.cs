@@ -156,7 +156,10 @@ namespace LeetCode
 
             string SerializeSubtree(TrieNode1948 node, Dictionary<string, int> subtreeCount, Dictionary<TrieNode1948, string> nodeToSerialization)
             {
-                if (node.children.Count == 0) return ""; // Leaf node
+                if (node.children.Count == 0)
+                {
+                    return string.Empty; // Leaf node
+                }
 
                 // Serialize the subtree rooted at this node
                 var serializedChildren = new List<string>();
@@ -183,13 +186,10 @@ namespace LeetCode
                 if (node == null) return;
 
                 // Serialize the subtree to check if it has duplicates
-                if (nodeToSerialization.TryGetValue(node, out string value))
+                // If this subtree occurs more than once, skip this subtree
+                if (nodeToSerialization.TryGetValue(node, out string value) && subtreeCount.TryGetValue(value, out int count) && count > 1)
                 {
-                    // If this subtree occurs more than once, skip this subtree
-                    if (subtreeCount.ContainsKey(value) && subtreeCount[value] > 1)
-                    {
-                        return;
-                    }
+                    return;
                 }
 
                 // Add the current path to remaining paths if not the root node
