@@ -123,6 +123,35 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 3042. Count Prefix and Suffix Pairs I
+        /// </summary>
+        public static int CountPrefixSuffixPairs(string[] words)
+        {            
+            var ans = 0;
+            for (int i = 0; i < words.Length; i++)
+            {
+                var word = words[i];
+
+                for (int y = i + 1; y < words.Length; y++)
+                {
+                    var word2 = words[y];
+
+                    if (word2.Length < word.Length)
+                    {
+                        continue;
+                    }
+
+                    if (word2.Substring(0, word.Length) == word && word2.Substring(word2.Length - word.Length, word.Length) == word)
+                    {
+                        ans++;
+                    }
+                }
+            }
+
+            return ans;
+        }
+
+        /// <summary>
         /// 3074. Apple Redistribution into Boxes
         /// </summary>
         public static int MinimumBoxes(int[] apple, int[] capacity)
