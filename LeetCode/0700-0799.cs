@@ -68,6 +68,11 @@ namespace LeetCode
         }
     }
 
+    public class Trie720
+    {
+        public Trie720[] branches = new Trie720[26]; 
+    }
+
     public static class _0700_0799
     {
         /// <summary>
@@ -134,6 +139,45 @@ namespace LeetCode
 
                 return dp[(i, isBuy)];
             }
+        }
+
+        /// <summary>
+        /// 720. Longest Word in Dictionary
+        /// </summary>
+        public static string LongestWord(string[] words)
+        {
+            var ans = string.Empty;
+            var dict = new Trie720();
+
+            foreach (var word in words.OrderBy(w => w.Length).ThenByDescending(w => w))
+            {
+                var current = dict;
+                var i = 0;
+
+                while (i < word.Length)
+                {
+                    var c = word[i];
+                    var charDict = current.branches[c - 'a'];
+
+                    if (word.Length - 1 == i && charDict == null)
+                    {
+                        current.branches[c - 'a'] = new Trie720();
+                    }
+                    else if (charDict == null)
+                    {
+                        break;
+                    }
+                    current = current.branches[c - 'a'];
+                    i++;
+                }
+
+                if (i == word.Length)
+                {
+                    ans = word;
+                }
+            }
+
+            return ans;
         }
 
         /// <summary>
