@@ -254,6 +254,25 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 2185. Counting Words With a Given Prefix
+        /// </summary>
+        public static int PrefixCount(string[] words, string pref)
+        {
+            var len = pref.Length;
+            var ans = 0;
+
+            foreach (var word in words.Where(w => w.Length >= len))
+            {
+                if (pref == word[..len])
+                {
+                    ans++;
+                }
+            }
+
+            return ans;
+        }
+
+        /// <summary>
         /// 2191. Sort the Jumbled Numbers
         /// </summary>
         public static int[] SortJumbled(int[] mapping, int[] nums)
