@@ -10,33 +10,28 @@ using System.Threading.Tasks;
 
 namespace LeetCode
 {
-    public class TrieNode208
-    {
-        public bool isEnd = false;
-        public TrieNode208[] branches = new TrieNode208[26];
-    }
-
     /// <summary>
     /// 208. Implement Trie (Prefix Tree)
     /// </summary>
     public class Trie
     {
-        private readonly TrieNode208 root;
+        private readonly Trie[] branches;
+        public bool isEnd = false;
 
         public Trie()
         {
-            root = new();
+            branches = new Trie[26];
         }
 
         public void Insert(string word)
         {
-            var current = root;
+            Trie current = this;
 
             foreach (var c in word)
             {
                 if (current.branches[c - 'a'] == null)
                 {
-                    current.branches[c - 'a'] = new TrieNode208();
+                    current.branches[c - 'a'] = new Trie();
                 }
                 
                 current = current.branches[c - 'a'];
@@ -47,7 +42,7 @@ namespace LeetCode
 
         public bool Search(string word)
         {
-            var current = root;
+            var current = this;
 
             foreach (var c in word)
             {
@@ -66,7 +61,7 @@ namespace LeetCode
 
         public bool StartsWith(string prefix)
         {
-            var current = root;
+            var current = this;
 
             foreach (var c in prefix)
             {
