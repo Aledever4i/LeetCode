@@ -17,7 +17,11 @@ namespace LeetCode
             //        new int[] { 136,746 }, new int[] { 781, 962 }
             //    }, new int[] { 885, 1445, 1580, 1309, 205, 1788, 1214, 1404, 572, 1170, 989, 265, 153, 151, 1479, 1180, 875, 276, 1584 });
 
-            var a = _3000_3099.CountPrefixSuffixPairs2(["ma", "mama"]);
+            var a = new MyStack225();
+            a.Push(1);
+            a.Push(2);
+            a.Pop();
+            a.Top();
 
             Console.WriteLine(a);
         }

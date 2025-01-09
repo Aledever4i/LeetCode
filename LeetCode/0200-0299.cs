@@ -120,6 +120,67 @@ namespace LeetCode
         }
     }
 
+    /// <summary>
+    /// 225. Implement Stack using Queues
+    /// </summary>
+    public class MyStack225
+    {
+        private Queue<int> que1;
+        private Queue<int> que2;
+        private int count = 0;
+
+        public MyStack225()
+        {
+            que1 = new();
+            que2 = new();
+        }
+
+        public void Push(int x)
+        {
+            que1.Enqueue(x);
+            count++;
+        }
+
+        public int Pop()
+        {
+            var n = 0;
+            while (n < count - 1)
+            {
+                que2.Enqueue(que1.Dequeue());
+                n++;
+            }
+            count--;
+
+            var ans = que1.Dequeue();
+            que1 = que2;
+            que2 = new();
+
+            return ans;
+        }
+
+        public int Top()
+        {
+            var n = 0;
+            while (n < count - 1)
+            {
+                que2.Enqueue(que1.Dequeue());
+                n++;
+            }
+
+            var ans = que1.Dequeue();
+            que2.Enqueue(ans);
+            que1 = que2;
+            que2 = new();
+
+            return ans;
+        }
+
+        public bool Empty()
+        {
+            return que1.Count == 0;
+        }
+    }
+
     public static class _0200_0299
     {
         /// <summary>
