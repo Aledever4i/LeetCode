@@ -10,6 +10,80 @@ using System.Threading.Tasks;
 
 namespace LeetCode
 {
+    public class TrieNode208
+    {
+        public bool isEnd = false;
+        public TrieNode208[] branches = new TrieNode208[26];
+    }
+
+    /// <summary>
+    /// 208. Implement Trie (Prefix Tree)
+    /// </summary>
+    public class Trie
+    {
+        private readonly TrieNode208 root;
+
+        public Trie()
+        {
+            root = new();
+        }
+
+        public void Insert(string word)
+        {
+            var current = root;
+
+            foreach (var c in word)
+            {
+                if (current.branches[c - 'a'] == null)
+                {
+                    current.branches[c - 'a'] = new TrieNode208();
+                }
+                
+                current = current.branches[c - 'a'];
+            }
+
+            current.isEnd = true;
+        }
+
+        public bool Search(string word)
+        {
+            var current = root;
+
+            foreach (var c in word)
+            {
+                var element = current.branches[c - 'a'];
+
+                if (element == null)
+                {
+                    return false;
+                }
+
+                current = element;
+            }
+
+            return current.isEnd;
+        }
+
+        public bool StartsWith(string prefix)
+        {
+            var current = root;
+
+            foreach (var c in prefix)
+            {
+                var element = current.branches[c - 'a'];
+
+                if (element == null)
+                {
+                    return false;
+                }
+
+                current = element;
+            }
+
+            return true;
+        }
+    }
+
     /// <summary>
     /// 211. Design Add and Search Words Data Structure
     /// </summary>
