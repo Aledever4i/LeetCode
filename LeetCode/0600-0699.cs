@@ -6,6 +6,13 @@ using System.Threading.Tasks;
 
 namespace LeetCode
 {
+    public class Trie648
+    {
+        public bool isWord = false;
+        public string baseWord = string.Empty;
+        public Trie648[] branches = new Trie648[26];
+    }
+
     public static class _0600_0699
     {
         /// <summary>
@@ -149,6 +156,61 @@ namespace LeetCode
             }
 
             return result;
+        }
+
+        /// <summary>
+        /// 648. Replace Words
+        /// </summary>
+        public static string ReplaceWords(IList<string> dictionary, string sentence)
+        {
+            var trie = new Trie648();
+            foreach (var word in dictionary)
+            {
+                var current = trie;
+
+                for (int i = 0; i < word.Length; i++)
+                {
+                    var c = word[i];
+                    var bran = current.branches[c - 'a'];
+
+                    if (bran == null)
+                    {
+                        current.branches[c - 'a'] = new Trie648();
+                    }
+
+                    current = current.branches[c - 'a'];
+                }
+
+                current.isWord = true;
+                current.baseWord = word;
+            }
+
+            var stringBuilder = new List<string>();
+            foreach (var word in sentence.Split(" "))
+            {
+                var current = trie;
+
+                for (int i = 0; i < word.Length; i++)
+                {
+                    var bran = current.branches[word[i] - 'a'];
+                    if (bran == null || i == word.Length - 1)
+                    {
+                        stringBuilder.Add(word);
+                        break;
+                    }
+                    else if (bran.isWord)
+                    {
+                        stringBuilder.Add(bran.baseWord);
+                        break;
+                    }
+                    else
+                    {
+                        current = bran;
+                    }
+                }
+            }
+
+            return string.Join(" ", stringBuilder);
         }
 
         /// <summary>
