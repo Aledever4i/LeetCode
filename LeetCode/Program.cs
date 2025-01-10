@@ -12,7 +12,7 @@ namespace LeetCode
         // Test
         static void Main(string[] args)
         {
-            var a = _0700_0799.LongestWord(["n", "j", "sl", "yyd", "slo", "jk", "jkdt", "y", "yy"]);
+            var a = _0900_0999.WordSubsets(["amazon", "apple", "facebook", "google", "leetcode"], ["e", "o"]);
 
             Console.WriteLine(a);
         }

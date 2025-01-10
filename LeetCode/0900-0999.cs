@@ -96,6 +96,52 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 916. Word Subsets
+        /// </summary>
+        public static IList<string> WordSubsets(string[] words1, string[] words2)
+        {
+            var ans = new List<string>();
+            var words1Ordered = words1.Select(c => new { word = c, chars = c.ToCharArray().GroupBy(c => c).ToDictionary(c => c.Key, c => c.Count()) });
+            var words2Ordered = words2.Distinct().Select(x => x.ToCharArray().GroupBy(c => c).ToDictionary(c => c.Key, c => c.Count()));
+
+            var b = new int[26];
+            foreach (var word2 in words2Ordered)
+            {
+                foreach (var key in word2.Keys)
+                {
+                    var count = word2[key];
+
+                    b[key - 'a'] = Math.Max(count, b[key - 'a']);
+                }
+            }
+
+            foreach (var word in words1Ordered)
+            {
+                var ok = true;
+
+                for (int i = 0; i < b.Length; i++)
+                {
+                    var count = b[i];
+
+                    if (count > 0)
+                    {
+                        if (!word.chars.TryGetValue(Convert.ToChar((int)'a' + i), out int count2) || count2 < count)
+                        {
+                            ok = false;
+                            break;
+                        }
+                    }
+                }
+
+                if (ok)
+                {
+                    ans.Add(word.word);
+                }
+            }
+            return ans;
+        }
+
+        /// <summary>
         /// 921. Minimum Add to Make Parentheses Valid
         /// </summary>
         public static int MinAddToMakeValid(string s)
