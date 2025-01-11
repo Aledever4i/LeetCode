@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace LeetCode
 {
@@ -39,6 +36,48 @@ namespace LeetCode
 
 
             return new List<bool>();
+        }
+
+        /// <summary>
+        /// 1023. Camelcase Matching
+        /// </summary>
+        public static IList<bool> CamelMatch(string[] queries, string pattern)
+        {
+            var rootTrie = new LinkedList<char>();
+            var ans = new List<bool>();
+
+            foreach (var c in pattern)
+            {
+                rootTrie.AddLast(c);
+            }
+
+            foreach (var word in queries)
+            {
+                var current = rootTrie;
+                var search = current.First;
+                var isOk = true;
+
+                for (int i = 0; i < word.Length; i++)
+                {
+                    var cha = word[i];
+                    if (Char.IsUpper(cha) && (search == null || cha != search.Value))
+                    {
+                        isOk = false;
+                        break;
+                    }
+                    else if (Char.IsUpper(cha) && cha == search.Value)
+                    {
+                        search = search.Next;
+                    }
+                    else if (!Char.IsUpper(cha) && search != null && cha == search.Value)
+                    {
+                        search = search.Next;
+                    }
+                }
+                ans.Add(isOk && search == null);
+            }
+
+            return ans;
         }
 
         /// <summary>

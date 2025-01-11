@@ -12,7 +12,7 @@ namespace LeetCode
         // Test
         static void Main(string[] args)
         {
-            var a = _0900_0999.WordSubsets(["amazon", "apple", "facebook", "google", "leetcode"], ["e", "o"]);
+            var a = _1000_1099.CamelMatch(["FooBar", "FooBarTest", "FootBall", "FrameBuffer", "ForceFeedBack"], "FB");
 
             Console.WriteLine(a);
         }
