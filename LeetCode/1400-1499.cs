@@ -11,6 +11,25 @@ namespace LeetCode
     public static class _1400_1499
     {
         /// <summary>
+        /// 1400. Construct K Palindrome Strings
+        /// </summary>
+        public static bool CanConstruct(string s, int k)
+        {
+            var sDict = s.ToCharArray().GroupBy(c => c).Select(g => new { count = g.Count() });
+            var unique = 0;
+
+            foreach (var sCount in sDict)
+            {
+                if (sCount.count % 2 == 1)
+                {
+                    unique++;
+                }
+            }
+
+            return unique <= k && s.Length > k;
+        }
+
+        /// <summary>
         /// 1408. String Matching in an Array
         /// </summary>
         public static IList<string> StringMatching(string[] words)
