@@ -12,7 +12,7 @@ namespace LeetCode
         // Test
         static void Main(string[] args)
         {
-            var a = _1000_1099.CamelMatch(["FooBar", "FooBarTest", "FootBall", "FrameBuffer", "ForceFeedBack"], "FB");
+            var a = _2100_2199.CanBeValid("())()))()(()(((())(()()))))((((()())(())", "1011101100010001001011000000110010100101");
 
             Console.WriteLine(a);
         }

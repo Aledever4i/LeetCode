@@ -117,6 +117,88 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 2116. Check if a Parentheses String Can Be Valid
+        /// </summary>
+        public static bool CanBeValid(string s, string locked)
+        {
+            if (s.Length % 2 == 1) return false;
+
+            var reserved = 0;
+            var open = 0;
+            for (int i = 0; i < locked.Length; i++)
+            {
+                var value = locked[i];
+
+                if (value == '0')
+                {
+                    reserved++;
+                }
+                else
+                {
+                    var sChar = s[i];
+
+                    if (sChar == '(')
+                    {
+                        open++;
+                    }
+                    else
+                    {
+                        if (open > 0)
+                        {
+                            open--;
+                        }
+                        else if (reserved > 0)
+                        {
+                            reserved--;
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                    }
+                }
+            }
+
+            reserved = 0;
+            open = 0;
+            for (int i = locked.Length - 1; i >= 0; i--)
+            {
+                var value = locked[i];
+
+                if (value == '0')
+                {
+                    reserved++;
+                }
+                else
+                {
+                    var sChar = s[i];
+
+                    if (sChar == ')')
+                    {
+                        open++;
+                    }
+                    else
+                    {
+                        if (open > 0)
+                        {
+                            open--;
+                        }
+                        else if (reserved > 0)
+                        {
+                            reserved--;
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                    }
+                }
+            }
+
+            return true;
+        }
+
+        /// <summary>
         /// 2125. Number of Laser Beams in a Bank
         /// </summary>
         public static int NumberOfBeams(string[] bank)
