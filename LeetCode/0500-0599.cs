@@ -403,5 +403,54 @@ namespace LeetCode
 
             return (curLen == s1.Length);
         }
+
+        /// <summary>
+        /// 572. Subtree of Another Tree
+        /// </summary>
+        public static bool IsSubtree(TreeNode root, TreeNode subRoot)
+        {
+            var rootHash = new StringBuilder();
+            var subRootValue = subRoot.val;
+            var queue = new Queue<TreeNode>();
+            queue.Enqueue(root);
+
+            while (queue.Count > 0)
+            {
+                var q = queue.Dequeue();
+
+                if (isEquals(q, subRoot))
+                {
+                    return true;
+                }
+
+                if (q.left != null)
+                {
+                    queue.Enqueue(q.left);
+                }
+
+                if (q.right != null)
+                {
+                    queue.Enqueue(q.right);
+                }
+            }
+
+            return false;
+
+            bool isEquals(TreeNode root, TreeNode subRoot)
+            {
+                if (root == null && subRoot == null)
+                {
+                    return true;
+                }
+                else if (root == null || subRoot == null)
+                {
+                    return false;
+                }
+                else
+                {
+                    return root.val == subRoot.val && isEquals(root.left, subRoot.left) && isEquals(root.right, subRoot.right);
+                }
+            }
+        }
     }
 }
