@@ -25,6 +25,20 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 3223. Minimum Length of String After Operations
+        /// </summary>
+        public static int MinimumLength(string s)
+        {
+            var array = new int[26];
+            foreach (var c in s)
+            {
+                array[c - 'a']++;
+            }
+
+            return array.Where(x => x > 0).Sum(x => x % 2 == 0 ? 2 : 1);
+        }
+
+        /// <summary>
         /// 3243. Shortest Distance After Road Addition Queries I
         /// </summary>
         public static int[] ShortestDistanceAfterQueries(int n, int[][] queries)
