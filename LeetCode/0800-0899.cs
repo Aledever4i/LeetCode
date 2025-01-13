@@ -77,6 +77,32 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 821. Shortest Distance to a Character
+        /// </summary>
+        public static int[] ShortestToChar(string s, char c)
+        {
+            var indexes = s.Select((cS, index) => new { cS, index }).Where(e => e.cS == c).Select(e => e.index).OrderBy(x => x);
+
+            var ans = new int[s.Length];
+
+            for (int i = 0; i < s.Length; i++)
+            {
+                var index = indexes.Where(v => v >= i);
+
+                ans[i] = index.Any() ? Math.Abs(i - index.Min()) : int.MaxValue;
+            }
+
+            for (int i = s.Length - 1; i >= 0; i--)
+            {
+                var index = indexes.Where(v => v <= i);
+
+                ans[i] = Math.Min(ans[i], index.Any() ? Math.Abs(i - index.Max()) : int.MaxValue);
+            }
+
+            return ans;
+        }
+
+        /// <summary>
         /// 823. Binary Trees With Factors
         /// </summary>
         public static int NumFactoredBinaryTrees(int[] arr)
