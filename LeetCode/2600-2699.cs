@@ -194,6 +194,39 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 2657. Find the Prefix Common Array of Two Arrays
+        /// </summary>
+        public static int[] FindThePrefixCommonArray(int[] A, int[] B)
+        {
+            var dict = new Dictionary<int, int>();
+            for (int i = 1; i <= A.Length; i++)
+            {
+                dict.Add(i, 0);
+            }
+
+            var ans = 0;
+            var array = new int[A.Length];
+            for (int i = 0; i < A.Length; i++)
+            {
+                dict[A[i]]++;
+                if (dict[A[i]] == 2)
+                {
+                    ans++;
+                }
+
+                dict[B[i]]++;
+                if (dict[B[i]] == 2)
+                {
+                    ans++;
+                }
+
+                array[i] = ans;
+            }
+
+            return array;
+        }
+
+        /// <summary>
         /// 2696. Minimum String Length After Removing Substrings
         /// </summary>
         public static int MinLength(string s)
