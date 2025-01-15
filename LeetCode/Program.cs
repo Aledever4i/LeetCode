@@ -12,7 +12,7 @@ namespace LeetCode
         // Test
         static void Main(string[] args)
         {
-            var a = _2100_2199.CanBeValid("())()))()(()(((())(()()))))((((()())(())", "1011101100010001001011000000110010100101");
+            var a = _2400_2499.MinimizeXor(1, 12);
 
             Console.WriteLine(a);
         }

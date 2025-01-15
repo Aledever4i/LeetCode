@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace LeetCode
 {
@@ -72,6 +74,39 @@ namespace LeetCode
                     .OrderByDescending(v => v.Height.N)
                     .Select(v => v.Name.N)
                     .ToArray();
+        }
+
+        /// <summary>
+        /// 2429. Minimize XOR
+        /// </summary>
+        public static int MinimizeXor(int num1, int num2)
+        {
+            int result = 0;
+            int targetSetBitsCount = BitOperations.PopCount((uint)num2);
+            int setBitsCount = 0;
+            int currentBit = 31;
+
+            while (setBitsCount < targetSetBitsCount)
+            {
+                if (isSet(num1, currentBit) || (targetSetBitsCount - setBitsCount > currentBit))
+                {
+                    result = setBit(result, currentBit);
+                    setBitsCount++;
+                }
+                currentBit--;
+            }
+
+            return result;
+
+            bool isSet(int x, int bit)
+            {
+                return (x & (1 << bit)) != 0;
+            }
+
+            int setBit(int x, int bit)
+            {
+                return x | (1 << bit);
+            }
         }
 
         /// <summary>
