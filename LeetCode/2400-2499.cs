@@ -77,6 +77,43 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 2425. Bitwise XOR of All Pairings
+        /// </summary>
+        public static int XorAllNums(int[] nums1, int[] nums2)
+        {
+            int len1 = nums1.Length;
+            int len2 = nums2.Length;
+
+            Dictionary<int, int> freq = new();
+            foreach (int num in nums1)
+            {
+                if (!freq.TryAdd(num, len2))
+                {
+                    freq[num] += len2;
+                }
+            }
+
+            foreach (int num in nums2)
+            {
+                if (!freq.TryAdd(num, len1))
+                {
+                    freq[num] += len1;
+                }
+            }
+
+            int ans = 0;
+            foreach (int num in freq.Keys)
+            {
+                if (freq[num] % 2 == 1)
+                {
+                    ans ^= num;
+                }
+            }
+
+            return ans;
+        }
+
+        /// <summary>
         /// 2429. Minimize XOR
         /// </summary>
         public static int MinimizeXor(int num1, int num2)
