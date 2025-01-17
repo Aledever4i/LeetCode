@@ -227,6 +227,14 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 2683. Neighboring Bitwise XOR
+        /// </summary>
+        public static bool DoesValidArrayExist(int[] derived)
+        {
+            return derived.Sum() % 2 == 0;
+        }
+
+        /// <summary>
         /// 2696. Minimum String Length After Removing Substrings
         /// </summary>
         public static int MinLength(string s)
