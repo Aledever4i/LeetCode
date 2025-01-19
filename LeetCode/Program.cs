@@ -12,7 +12,7 @@ namespace LeetCode
         // Test
         static void Main(string[] args)
         {
-            var a = _2400_2499.MinimizeXor(1, 12);
+            var a = _0400_0499.TrapRainWater([[1, 4, 3, 1, 3, 2], [3, 2, 1, 3, 2, 4], [2, 3, 3, 2, 3, 1]]);
 
             Console.WriteLine(a);
         }

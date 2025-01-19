@@ -258,6 +258,20 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 1368. Minimum Cost to Make at Least One Valid Path in a Grid
+        /// </summary>
+        /// <param name="grid"></param>
+        /// <returns></returns>
+        public static int MinCost(int[][] grid)
+        {
+            var result = 0;
+
+
+
+            return result;
+        }
+
+        /// <summary>
         /// 1376. Time Needed to Inform All Employees. Tags: Tree, Depth-First Search, Breadth-First Search
         /// </summary>
         public static int NumOfMinutes(int n, int headID, int[] manager, int[] informTime)

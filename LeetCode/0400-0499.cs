@@ -7,6 +7,7 @@ using System.Numerics;
 using System.Runtime.Intrinsics.Arm;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace LeetCode
 {
@@ -90,6 +91,82 @@ namespace LeetCode
             }
 
             return LeftSum(root, false);
+        }
+
+        /// <summary>
+        /// 407. Trapping Rain Water II
+        /// </summary>
+        public static int TrapRainWater(int[][] heightMap)
+        {
+            int[] dRow = { 0, 0, -1, 1 };
+            int[] dCol = { -1, 1, 0, 0 };
+
+            int numOfRows = heightMap.Length;
+            int numOfCols = heightMap[0].Length;
+
+            bool[][] visited = new bool[numOfRows][];
+            for (int i = 0; i < visited.Length; i++)
+            {
+                visited[i] = new bool[numOfCols];
+            }
+
+            var boundary = new PriorityQueue<Cell407, int>();
+            for (int i = 0; i < numOfRows; i++)
+            {
+                boundary.Enqueue(new Cell407(heightMap[i][0], i, 0), heightMap[i][0]);
+                boundary.Enqueue(new Cell407(heightMap[i][numOfCols - 1], i, numOfCols - 1), heightMap[i][numOfCols - 1]);
+                visited[i][0] = visited[i][numOfCols - 1] = true;
+            }
+
+            for (int i = 0; i < numOfCols; i++)
+            {
+                boundary.Enqueue(new Cell407(heightMap[0][i], 0, i), heightMap[0][i]);
+                boundary.Enqueue(new Cell407(heightMap[numOfRows - 1][i], numOfRows - 1, i), heightMap[numOfRows - 1][i]);
+                visited[0][i] = visited[numOfRows - 1][i] = true;
+            }
+
+            int totalWaterVolume = 0;
+            while (boundary.Count > 0)
+            {
+                Cell407 currentCell = boundary.Dequeue();
+
+                int currentRow = currentCell.row;
+                int currentCol = currentCell.col;
+                int minBoundaryHeight = currentCell.height;
+
+                for (int direction = 0; direction < 4; direction++)
+                {
+                    int neighborRow = currentRow + dRow[direction];
+                    int neighborCol = currentCol + dCol[direction];
+
+                    if (IsValidCell(neighborRow, neighborCol, numOfRows, numOfCols) && !visited[neighborRow][neighborCol])
+                    {
+                        int neighborHeight = heightMap[neighborRow][neighborCol];
+
+                        if (neighborHeight < minBoundaryHeight)
+                        {
+                            totalWaterVolume += minBoundaryHeight - neighborHeight;
+                        }
+
+                        boundary.Enqueue(new Cell407(Math.Max(neighborHeight, minBoundaryHeight), neighborRow, neighborCol), Math.Max(neighborHeight, minBoundaryHeight));
+                        visited[neighborRow][neighborCol] = true;
+                    }
+                }
+            }
+
+            return totalWaterVolume;
+
+            bool IsValidCell(int row, int col, int numOfRows, int numOfCols)
+            {
+                return row >= 0 && col >= 0 && row < numOfRows && col < numOfCols;
+            }
+        }
+
+        public class Cell407(int height, int row, int col)
+        {
+            public readonly int height = height;
+            public readonly int row = row;
+            public readonly int col = col;
         }
 
         /// <summary>
