@@ -229,6 +229,49 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 1267. Count Servers that Communicate
+        /// </summary>
+        public static int CountServers(int[][] grid)
+        {
+            if (grid == null || grid.Length == 0)
+            {
+                return 0;
+            }
+
+            int[] rowCounts = new int[grid[0].Length];
+            int[] colCounts = new int[grid.Length];
+
+            for (int row = 0; row < grid.Length; row++)
+            {
+                for (int col = 0; col < grid[0].Length; col++)
+                {
+                    if (grid[row][col] == 1)
+                    {
+                        rowCounts[col]++;
+                        colCounts[row]++;
+                    }
+                }
+            }
+
+            int communicableServersCount = 0;
+            for (int row = 0; row < grid.Length; row++)
+            {
+                for (int col = 0; col < grid[0].Length; col++)
+                {
+                    if (grid[row][col] == 1)
+                    {
+                        if (rowCounts[col] > 1 || colCounts[row] > 1)
+                        {
+                            communicableServersCount++;
+                        }
+                    }
+                }
+            }
+
+            return communicableServersCount;
+        }
+
+        /// <summary>
         /// 1269. Number of Ways to Stay in the Same Place After Some Steps
         /// </summary>
         public static int NumWays(int steps, int arrLen)
