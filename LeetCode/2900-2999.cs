@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace LeetCode
 {
@@ -61,6 +62,42 @@ namespace LeetCode
             var bests = winners.Except(losers);
 
             return bests.Count() > 1 || !bests.Any() ? -1 : bests.First();
+        }
+
+        /// <summary>
+        /// 2948. Make Lexicographically Smallest Array by Swapping Elements
+        /// </summary>
+        public static int[] LexicographicallySmallestArray(int[] nums, int limit)
+        {
+            int n = nums.Length;
+
+            var help = new (int value, int index)[n];
+            for (int i = 0; i < n; i++) help[i] = (nums[i], i);
+
+            Array.Sort(help, (a, b) => a.value.CompareTo(b.value));
+
+            int[] res = new int[n];
+            int prev = int.MinValue;
+            var pos = new List<int>();
+
+            int s = 0, e = 0;
+            while (e < n)
+            {
+                pos.Add(help[e].index);
+                prev = help[e].value;
+                e++;
+
+                if (e == n || help[e].value - prev > limit)
+                {
+                    pos.Sort();
+                    foreach (var idx in pos)
+                        res[idx] = help[s++].value;
+
+                    pos.Clear();
+                }
+            }
+
+            return res;
         }
 
         /// <summary>

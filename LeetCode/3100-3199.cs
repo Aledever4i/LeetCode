@@ -38,6 +38,26 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 3151. Special Array I
+        /// </summary>
+        public static bool IsArraySpecial(int[] nums)
+        {
+            var prev = nums[0];
+
+            for (int i = 1; i < nums.Length; i++)
+            {
+                if ((nums[i] - prev) % 2 == 0)
+                {
+                    return false;
+                }
+
+                prev = nums[i];
+            }
+
+            return true;
+        }
+
+        /// <summary>
         /// 3163. String Compression III
         /// </summary>
         public string CompressedString(string word)

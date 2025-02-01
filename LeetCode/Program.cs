@@ -12,7 +12,7 @@ namespace LeetCode
         // Test
         static void Main(string[] args)
         {
-            var a = _2000_2099.GridGame([[2, 5, 4], [1, 5, 1]]);
+            var a = _2900_2999.LexicographicallySmallestArray([1, 7, 28, 19, 10], 3);
 
             Console.WriteLine(a);
         }
