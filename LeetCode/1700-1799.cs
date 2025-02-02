@@ -348,6 +348,41 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 1752. Check if Array Is Sorted and Rotated
+        /// </summary>
+        public static bool Check(int[] nums)
+        {
+            var isSecond = false;
+            var prev = nums[0];
+
+            for (int i = 1; i < nums.Length; i++)
+            {
+                var next = nums[i];
+
+                if (prev <= next)
+                {
+                    prev = next;
+                }
+                else if (!isSecond)
+                {
+                    prev = next;
+                    isSecond = true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+
+            if (nums[nums.Length - 1] > nums[0] && isSecond)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        /// <summary>
         /// 1759. Count Number of Homogenous Substrings
         /// </summary>
         public static int CountHomogenous(string s)
