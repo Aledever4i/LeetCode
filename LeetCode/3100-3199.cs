@@ -9,6 +9,48 @@ namespace LeetCode
     public class _3100_3199
     {
         /// <summary>
+        /// 3105. Longest Strictly Increasing or Strictly Decreasing Subarray
+        /// </summary>
+        public static int LongestMonotonicSubarray(int[] nums)
+        {
+            var result = 0;
+            var minLen = 1;
+            var maxLen = 1;
+
+            for (var i = 1; i < nums.Length; i++)
+            {
+                var prev = nums[i - 1];
+                var cur = nums[i];
+
+                if (prev > cur)
+                {
+                    minLen++;
+                }
+                else
+                {
+                    result = Math.Max(result, minLen);
+                    minLen = 1;
+                }
+
+
+                if (cur > prev)
+                {
+                    maxLen++;
+                }
+                else
+                {
+                    result = Math.Max(result, maxLen);
+                    maxLen = 1;
+                }
+            }
+
+            result = Math.Max(result, minLen);
+            result = Math.Max(result, maxLen);
+
+            return result;
+        }
+
+        /// <summary>
         /// 3133. Minimum Array End
         /// </summary>
         public static long MinEnd(int n, int x)
