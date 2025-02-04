@@ -40,6 +40,30 @@ namespace LeetCode
     public class _1800_1899
     {
         /// <summary>
+        /// 1800. Maximum Ascending Subarray Sum
+        /// </summary>
+        public static int MaxAscendingSum(int[] nums)
+        {
+            var result = 0;
+            var current = nums[0];
+            
+            for (var i = 1; i < nums.Length; i++)
+            {
+                if (nums[i] > nums[i - 1])
+                {
+                    current += nums[i];
+                }
+                else
+                {
+                    result = Math.Max(result, current);
+                    current = nums[i];
+                }
+            }
+
+            return Math.Max(result, current);
+        }
+
+        /// <summary>
         /// 1802. Maximum Value at a Given Index in a Bounded Array. Tags: Binary Search, Greedy
         /// </summary>
         public static int MaxValue(int n, int index, int maxSum)
