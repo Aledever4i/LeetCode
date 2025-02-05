@@ -13,27 +13,27 @@ namespace LeetCode
         /// </summary>
         public static IList<int> GoodDaysToRobBank(int[] security, int time)
         {
-            var before = new SortedList<int, int>();
-            var after = new SortedList<int, int>();
-            var list = new List<int>();
+            var n = security.Length;
+            var leftDescendings = new int[n];
+            var rightDescendings = new int[n];
 
-            for (int i = 0; i < time; i++)
+            for (var i = 1; i < n; i++)
             {
-                before.Add(security[i], security[i]);
+                leftDescendings[i] = security[i - 1] < security[i] ? 0 : leftDescendings[i - 1] + 1;
             }
 
-            for (int i = time + 1; i < time + time + 1; i++)
+            for (var i = n - 2; i >= 0; i--)
             {
-                after.Add(security[i], security[i]);
+                rightDescendings[i] = security[i] > security[i + 1] ? 0 : rightDescendings[i + 1] + 1;
             }
 
-            for (int i = time; i < security.Length - time; i++)
+            var result = new List<int>();
+            for (var i = 0; i < n; i++)
             {
-                if (security[i] <= before.Keys.Min())
-                { }
+                if (leftDescendings[i] >= time && rightDescendings[i] >= time)
+                    result.Add(i);
             }
-
-            return new List<int>();
+            return result;
         }
 
         /// <summary>

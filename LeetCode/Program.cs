@@ -12,7 +12,7 @@ namespace LeetCode
         // Test
         static void Main(string[] args)
         {
-            var a = _2900_2999.LexicographicallySmallestArray([1, 7, 28, 19, 10], 3);
+            var a = _2100_2199.GoodDaysToRobBank([1, 1, 1, 1, 1], 0);
 
             Console.WriteLine(a);
         }
