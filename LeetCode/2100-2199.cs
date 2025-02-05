@@ -8,6 +8,33 @@ namespace LeetCode
 {
     public static class _2100_2199
     {
+        /// <summary>
+        /// 2100. Find Good Days to Rob the Bank
+        /// </summary>
+        public static IList<int> GoodDaysToRobBank(int[] security, int time)
+        {
+            var before = new SortedList<int, int>();
+            var after = new SortedList<int, int>();
+            var list = new List<int>();
+
+            for (int i = 0; i < time; i++)
+            {
+                before.Add(security[i], security[i]);
+            }
+
+            for (int i = time + 1; i < time + time + 1; i++)
+            {
+                after.Add(security[i], security[i]);
+            }
+
+            for (int i = time; i < security.Length - time; i++)
+            {
+                if (security[i] <= before.Keys.Min())
+                { }
+            }
+
+            return new List<int>();
+        }
 
         /// <summary>
         /// 2101. Detonate the Maximum Bombs. Tags: Array, Math, Depth-First Search, Breadth-First Search, Graph, Geometry
