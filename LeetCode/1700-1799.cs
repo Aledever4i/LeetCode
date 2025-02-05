@@ -490,6 +490,40 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 1790. Check if One String Swap Can Make Strings Equal
+        /// </summary>
+        public static bool AreAlmostEqual(string s1, string s2)
+        {
+            var diff = new List<int>();
+            for (int i = 0; i < s1.Length; i++)
+            {
+                if (s1[i] != s2[i]) diff.Add(i);
+
+                if (diff.Count == 3)
+                {
+                    return false;
+                }
+            }
+
+            if (diff.Count == 0)
+            {
+                return true;
+            }
+
+            if (diff.Count == 2)
+            {
+                var e1 = diff[0];
+                var e2 = diff[1];
+
+                if (s1[e1] == s2[e2] && s1[e2] == s2[e1])
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        /// <summary>
         /// 1793. Maximum Score of a Good Subarray
         /// </summary>
         public static int MaximumScore(int[] nums, int k)
