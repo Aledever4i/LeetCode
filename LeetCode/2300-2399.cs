@@ -1,5 +1,6 @@
 ﻿using LeetCode.Algorithms;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,6 +8,51 @@ using System.Threading.Tasks;
 
 namespace LeetCode
 {
+    /// <summary>
+    /// 2349. Design a Number Container System
+    /// </summary>
+    public class NumberContainers2349
+    {
+        private Dictionary<int, int> array;
+        private Dictionary<int, List<int>> indexes;
+
+        public NumberContainers2349()
+        {
+            array = [];
+            indexes = [];
+        }
+
+        public void Change(int index, int number)
+        {
+            if (array.TryGetValue(index, out int value))
+            {
+                indexes[value].Remove(index);
+
+                array[index] = number;
+            }
+            else
+            {
+                array.Add(index, number);
+            }          
+
+            if (!indexes.TryAdd(number, [index]))
+            {
+                indexes[number].Add(index);
+            }
+        }
+
+        public int Find(int number)
+        {
+            if (indexes.TryGetValue(number, out var result))
+            {
+                return result.Count != 0 ? result.Min() : -1;
+            }
+
+            return -1;
+        }
+    }
+
+
     public static class _2300_2399
     {
         /// <summary>
