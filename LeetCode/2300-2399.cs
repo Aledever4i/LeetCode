@@ -174,6 +174,36 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 2342. Max Sum of a Pair With Equal Sum of Digits
+        /// </summary>
+        /// <param name="nums"></param>
+        /// <returns></returns>
+        public static int MaximumSum(int[] nums)
+        {
+            Array.Sort(nums);
+
+            var keys = new Dictionary<int, int>();
+            var ans = -1;
+
+            for (int i = nums.Length - 1; i >= 0; i--)
+            {
+                var n = nums[i];
+                var key = n.ToString().ToCharArray().Select(s => s - '0').Sum();
+
+                if (keys.TryGetValue(key, out int value))
+                {
+                    ans = Math.Max(ans, n + value);
+                }
+                else
+                {
+                    keys.Add(key, n);
+                }
+            }
+
+            return ans;
+        }
+
+        /// <summary>
         /// 2352. Equal Row and Column Pairs
         /// </summary>
         public static int EqualPairs(int[][] grid)
