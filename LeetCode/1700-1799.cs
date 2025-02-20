@@ -154,6 +154,23 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 1718. Construct the Lexicographically Largest Valid Sequence
+        /// </summary>
+        public static int[] ConstructDistancedSequence(int n)
+        {
+            var ans = new int[n * 2 - 1];
+
+            ans[0] = n;
+            ans[n] = n;
+
+            for (int i = n - 1; i >= 1; i--)
+            {
+            }
+
+            return ans;
+        }
+
+        /// <summary>
         /// 1721. Swapping Nodes in a Linked List. Tags: Linked List, Two Pointers
         /// </summary>
         /// <param name="head"></param>
