@@ -201,5 +201,34 @@ namespace LeetCode
 
             return (result < 0) ? 0 : result;
         }
+
+        /// <summary>
+        /// 2845. Count of Interesting Subarrays
+        /// </summary>
+        public static long CountInterestingSubarrays(IList<int> nums, int modulo, int k)
+        {
+            int n = nums.Count;
+            Dictionary<int, int> cnt = [];
+            long res = 0;
+            int prefix = 0;
+            cnt[0] = 1;
+            for (int i = 0; i < n; i++)
+            {
+                prefix += (nums[i] % modulo == k) ? 1 : 0;
+                var x = (prefix - k + modulo) % modulo;
+
+                res += cnt.TryGetValue(x, out int value) ? value : 0;
+
+                if (cnt.ContainsKey(prefix % modulo))
+                {
+                    cnt[prefix % modulo]++;
+                }
+                else
+                {
+                    cnt[prefix % modulo] = 1;
+                }
+            }
+            return res;
+        }
     }
 }
