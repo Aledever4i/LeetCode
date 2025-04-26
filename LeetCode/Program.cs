@@ -12,7 +12,7 @@ namespace LeetCode
         // Test
         static void Main(string[] args)
         {
-            var a = _2300_2399.MaximumSum([368, 369, 307, 304, 384, 138, 90, 279, 35, 396, 114, 328, 251, 364, 300, 191, 438, 467, 183]);
+            var a = _2400_2499.CountSubarrays([1, 3, 5, 2, 7, 5], 1, 5);
 
             Console.WriteLine(a);
         }
